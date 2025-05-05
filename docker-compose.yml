@@ -1,3 +1,4 @@
+
 services:
   nginx:
     container_name: free_vpn_bot_nginx
@@ -16,9 +17,10 @@ services:
     volumes:
       - ./etc/nginx/templates:/etc/nginx/templates:ro
       - ./etc/nginx/conf:/etc/nginx/conf.d
-      - ${CERT_FULLCHAIN_PATH}:/etc/nginx/certs/fullchain.pem
-      - ${CERT_KEY_PATH}:/etc/nginx/certs/privkey.pem
+      - ${CERT_FULLCHAIN_PATH}:/etc/nginx/certs/fullchain.pem:ro
+      - ${CERT_KEY_PATH}:/etc/nginx/certs/privkey.pem:ro
       - ./certbot/data:/var/www/certbot
+      
   marzban:
     image: gozargah/marzban:v0.8.4
     container_name: free_vpn_bot_marzban
@@ -37,15 +39,13 @@ services:
       - ./volumes/marzban:/var/lib/marzban
       - ./certbot/data:/var/www/certbot
       - /etc/timezone:/etc/timezone:ro
-      - ${CERT_FULLCHAIN_PATH}:/etc/marzban/certs/fullchain.pem
-      - ${CERT_KEY_PATH}:/etc/marzban/certs/privkey.pem
-      - ${CERT_FULLCHAIN_PATH}:${CERT_FULLCHAIN_PATH}
-      - ${CERT_KEY_PATH}:${CERT_KEY_PATH}
+      - ./certs:/etc/marzban/certs:ro
     logging:
       driver: "json-file"
       options:
         max-size: "900k"
         max-file: "10"
+
   vpn_bot:
     image: free_vpn_bot
     container_name: free_vpn_bot
@@ -63,6 +63,22 @@ services:
       - free_vpn_bot
     depends_on:
       - marzban
+
+  instruction:
+    build:
+      context: .
+    container_name: free_vpn_instruction
+    command: python -m web.server
+    restart: always
+    volumes:
+      - .:/usr/src/app
+    ports:
+    - "0.0.0.0:8080:8080"
+    networks:
+      - free_vpn_bot
+    depends_on:
+      - marzban
+
 networks:
   free_vpn_bot:
     driver: bridge

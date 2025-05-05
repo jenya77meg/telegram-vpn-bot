@@ -1,0 +1,30 @@
+{
+  // 1) Отключаем встроенную валидацию CSS/SCSS/LESS
+  "css.validate": false,
+  "scss.validate": false,
+  "less.validate": false,
+
+  // 2) Игнорируем неизвестные @-правила везде
+  "css.lint.unknownAtRules": "ignore",
+  "scss.lint.unknownAtRules": "ignore",
+  "less.lint.unknownAtRules": "ignore",
+
+  // 3) Ассоциация файлов, чтобы Tailwind и PostCSS брались для CSS внутри HTML
+  "files.associations": {
+    "*.css": "postcss",
+    "*.html": "html"
+  },
+
+  // 4) Включаем проверку и подсказки Tailwind IntelliSense
+  "tailwindCSS.validate": true,
+  "tailwindCSS.experimental.configFile": "tailwind.config.js",
+  "tailwindCSS.includeLanguages": {
+    "html": "html",
+    "postcss": "css",
+    "css": "css",
+    "javascript": "javascript",
+    "javascriptreact": "javascriptreact",
+    "typescript": "typescript",
+    "typescriptreact": "typescriptreact"
+  }
+}

@@ -1,103 +1,150 @@
-import base64
 import json
 import logging
-from datetime import datetime
-from typing import List, Optional
+from datetime import datetime, timezone
 from urllib.parse import urlparse, parse_qs
+from typing import List, Optional
 
-from marzban_api_client.api.user import add_user, get_user, delete_expired_users
-from marzban_api_client.models import UserCreate, UserCreateProxies, UserResponse, UserCreateInbounds, UserDataLimitResetStrategy
+import httpcore
+import httpx
+
+from marzban_api_client.api.user.add_user             import asyncio_detailed as add_user
+from marzban_api_client.api.user.get_user             import asyncio_detailed as get_user_api
+from marzban_api_client.api.user.delete_expired_users import asyncio_detailed as delete_expired_users
+
+from marzban_api_client.models import (
+    UserCreate,
+    UserCreateProxies,
+    UserCreateInbounds,
+    UserDataLimitResetStrategy,
+    UserResponse,
+)
 from marzban_api_client.types import Response
 
-from loader import marzban_client
-
 logger = logging.getLogger(__name__)
-proxies = {
-#    "vmess": {},
-#    "vless": {
-#        "flow": ""
-#    },
-#    "trojan": {},
-    "shadowsocks": {
-        "method": "chacha20-ietf-poly1305"
-    }
-}
-proxies = UserCreateProxies.from_dict(proxies)
 
-inbounds = UserCreateInbounds.from_dict({
-    "Shadowsocks TCP": True
-})
+# ─── Шаблон прокси/инбаундов ────────────────────────────────────────────────────
+proxies = UserCreateProxies.from_dict({"vless": {"flow": "xtls-rprx-vision"}})
+inbounds = UserCreateInbounds.from_dict({"VLESS TCP": True})
 
-def expire_timestamp(expire: datetime):
-    new_utc_timestamp = int(expire.timestamp())
-    return new_utc_timestamp
+def expire_timestamp(dt: datetime) -> int:
+    """Переводим datetime → UNIX‑timestamp (секунды)."""
+    return int(dt.timestamp())
 
+async def create_user(
+    sub_id: str,
+    expire: datetime,
+    data_limit: int = 0,
+    reset_strategy: UserDataLimitResetStrategy = UserDataLimitResetStrategy.NO_RESET,
+) -> bool:
+    """POST /api/user — создаёт нового пользователя."""
+    from loader import marzban_client
 
-async def create_user(sub_id: str, expire: datetime) -> bool:
-    exp_timestamp = expire_timestamp(expire)
-    user_data = UserCreate(
+    body = UserCreate(
         username=sub_id,
-        data_limit=0,
-        data_limit_reset_strategy=UserDataLimitResetStrategy.NO_RESET,
-        expire=exp_timestamp,
+        data_limit=data_limit,
+        data_limit_reset_strategy=reset_strategy,
+        expire=expire_timestamp(expire),
         inbounds=inbounds,
-        proxies=proxies
+        proxies=proxies,
     )
-
-    logger.info("📤 Создание пользователя с данными:")
-    logger.info(json.dumps(user_data.to_dict(), indent=2, ensure_ascii=False))
+    logger.info("📤 create_user body: %s", json.dumps(body.to_dict(), ensure_ascii=False))
 
     client = await marzban_client.get_client()
-    response: Response = add_user.sync_detailed(client=client, body=user_data)
-
-    logger.info(f"📥 Ответ от Marzban: {response.status_code}")
-    if response.status_code != 200:
-        logger.warning(f"⚠️ Не удалось создать пользователя: {response.content}")
+    try:
+        resp: Response = await add_user(client=client, body=body)
+    except (httpcore.RemoteProtocolError, httpx.RemoteProtocolError) as e:
+        logger.error("❌ create_user: connection dropped: %s", e)
+        return False
+    except httpx.HTTPError as e:
+        logger.error("❌ create_user: HTTP error: %s", e)
+        return False
+    except Exception:
+        logger.exception("❌ create_user: unexpected error")
         return False
 
-    return True
-
+    logger.info("📥 create_user response: %s", resp.status_code)
+    return resp.status_code == 200
 
 async def get_marz_user(sub_id: str) -> UserResponse:
-    response: Response = await get_user.asyncio_detailed(sub_id,
-                                                         client=await marzban_client.get_client())
-    return response.parsed
+    """GET /api/user/{sub_id} — получает данные пользователя."""
+    from loader import marzban_client
 
+    client = await marzban_client.get_client()
+    resp = await get_user_api(sub_id, client=client)
+    return resp.parsed
+
+async def get_raw_link(sub_id: str) -> str:
+    """Из UserResponse.links возвращает первую VLESS‑ссылку."""
+    data = await get_marz_user(sub_id)
+    for link in data.links:
+        if link.startswith("vless://"):
+            return link
+    raise RuntimeError("No VLESS link")
 
 async def get_user_links(sub_id: str) -> str:
-    response: UserResponse = await get_marz_user(sub_id)
-    keys = []
-    logger.info("%s", response.links)
-    for x in response.links:
-        key_data = x.split('://')
-        if key_data[0] == 'vmess':
-            data = json.loads(base64.b64decode(key_data[1]).decode('utf-8'))
-            keys.append(
-                'Протокол: <b>{protocol_type}</b>\nКлюч: <pre>{access_key}</pre>'
-                .format(protocol_type=f'VMESS {data["net"]}', access_key=x)
-            )
-        elif (key_data[0] == 'vless') or (key_data[0] == 'trojan'):
-            parsed_url = urlparse(x)
-            if key_data[0] == 'vless':
-                query_params = parse_qs(parsed_url.query)
-                keys.append(
-                    'Протокол: <b>{protocol_type}</b>\nКлюч: <pre>{access_key}</pre>'
-                    .format(protocol_type=f'VLESS {query_params["type"][0]}', access_key=x)
-                )
-            if key_data[0] == 'trojan':
-                keys.append(
-                    'Протокол: <b>{protocol_type}\n</b>Ключ: <pre>{access_key}</pre>'
-                    .format(protocol_type=f'Trojan WS', access_key=x)
-                )
-        elif key_data[0] == 'ss':
-            keys.append(
-                'Протокол <b>{protocol_type}\n</b>Ключ: \n<pre lang="vpn">{access_key}</pre>'.format(
-                    protocol_type='Shadowsocks', access_key=x))
-    return "\n\n".join(keys)
+    """Формирует текстовый список всех VLESS‑ссылок."""
+    data = await get_marz_user(sub_id)
+    blocks: List[str] = []
+    for link in data.links:
+        if not link.startswith("vless://"):
+            continue
+        proto = parse_qs(urlparse(link).query).get("type", [""])[0]
+        blocks.append(f"Протокол: <b>VLESS {proto}</b>\n<pre>{link}</pre>")
+    return "\n\n".join(blocks)
 
+async def extend_user(
+    sub_id: str,
+    new_expire: datetime,
+    data_limit: Optional[int] = None,
+    reset_strategy: UserDataLimitResetStrategy = UserDataLimitResetStrategy.NO_RESET,
+) -> bool:
+    """
+    PUT /api/user/{sub_id} — продляет срок подписки и при необходимости обновляет лимит.
+    """
+    from loader import marzban_client
 
-async def delete_users():
-    local_utc_time = datetime.utcnow()
-    response: Response = await delete_expired_users.asyncio_detailed(expired_before=local_utc_time,
-                                                                     client=await marzban_client.get_client())
-    logger.info(f'DELETE USERS RESPONSE: {response.parsed}')
+    expire_ts = expire_timestamp(new_expire)
+    logger.info(f">>> extend_user: PUT /api/user/{sub_id} expire={expire_ts}")
+
+    # Формируем тело запроса
+    body_dict = {"expire": expire_ts}
+    if data_limit is not None:
+        body_dict["data_limit"] = data_limit
+        body_dict["data_limit_reset_strategy"] = reset_strategy
+
+    client = await marzban_client.get_client()
+    httpx_client = client.get_async_httpx_client()
+
+    try:
+        resp = await httpx_client.put(
+            url=f"/api/user/{sub_id}",
+            json=body_dict,
+        )
+    except (httpcore.RemoteProtocolError, httpx.RemoteProtocolError) as e:
+        logger.error("❌ extend_user: connection dropped: %s", e)
+        return False
+    except httpx.HTTPError as e:
+        logger.error("❌ extend_user: HTTP error: %s", e)
+        return False
+    except Exception:
+        logger.exception("❌ extend_user: unexpected error")
+        return False
+
+    body = await resp.aread()
+    logger.info(f">>> extend_user response: {resp.status_code} – {body!r}")
+    return resp.status_code == 200
+
+async def delete_users() -> None:
+    """DELETE /api/users/expired — удаляет всех просроченных."""
+    from loader import marzban_client
+
+    client = await marzban_client.get_client()
+    try:
+        resp: Response = await delete_expired_users(
+            expired_after=datetime(1970, 1, 1, tzinfo=timezone.utc),
+            expired_before=datetime.now(timezone.utc),
+            client=client,
+        )
+        logger.info("📤 delete_users response: %s", resp.parsed)
+    except Exception:
+        logger.exception("❌ delete_users: unexpected error")

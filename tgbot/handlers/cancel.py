@@ -5,24 +5,22 @@ from aiogram.types import Message, CallbackQuery
 
 from loader import bot
 
-cancel_router = Router()
+router = Router()
 
-
-@cancel_router.message(Command("cancel"))
-async def cancel_handler(message: Message, state: FSMContext):
-    current_state = await state.get_state()
-    if current_state is None:
+@router.message(Command("cancel"))
+async def cmd_cancel(message: Message, state: FSMContext):
+    if await state.get_state() is None:
         return
-
     await state.clear()
-    await message.answer('Действие отменено.')
+    await message.answer("Действие отменено.")
 
-
-@cancel_router.callback_query(F.data == 'cancel')
-async def cancel_callback(callback_query: CallbackQuery, state: FSMContext):
-    await callback_query.answer('Действие отменено.')
-    await bot.delete_message(chat_id=callback_query.message.chat.id, message_id=callback_query.message.message_id)
-    current_state = await state.get_state()
-    if current_state is None:
+@router.callback_query(F.data == "cancel")
+async def cb_cancel(callback: CallbackQuery, state: FSMContext):
+    await callback.answer("Действие отменено.")
+    await bot.delete_message(
+        chat_id=callback.message.chat.id,
+        message_id=callback.message.message_id
+    )
+    if await state.get_state() is None:
         return
     await state.clear()

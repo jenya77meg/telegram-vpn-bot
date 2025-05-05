@@ -1,13 +1,13 @@
-from tgbot.handlers.cancel import cancel_router
-from tgbot.handlers.user import user_router
-from tgbot.handlers.vpn_settings import vpn_router
+from tgbot.handlers.start import router as start_router
+from tgbot.handlers.vpn import router as vpn_router
+from tgbot.handlers.profile import router as profile_router
+from tgbot.handlers.cancel import router as cancel_router
+from tgbot.handlers.guide import router as guide_router
 
 routers_list = [
     cancel_router,
-    user_router,
-    vpn_router
-]
-
-__all__ = [
-    "routers_list",
+    start_router,
+    vpn_router,
+    profile_router,
+    guide_router,
 ]

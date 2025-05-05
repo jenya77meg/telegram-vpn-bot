@@ -2,10 +2,8 @@ import asyncio
 import logging
 from typing import Union
 
-from aiogram import Bot
-from aiogram import exceptions
+from aiogram import Bot, exceptions
 from aiogram.types import InlineKeyboardMarkup
-
 
 async def send_message(
         bot: Bot,
@@ -15,14 +13,14 @@ async def send_message(
         reply_markup: InlineKeyboardMarkup = None,
 ) -> bool:
     """
-    Safe messages sender
+    Safe message sender.
 
     :param bot: Bot instance.
-    :param user_id: user id. If str - must contain only digits.
-    :param text: text of the message.
+    :param user_id: user id. If str, must contain only digits.
+    :param text: message text.
     :param disable_notification: disable notification or not.
     :param reply_markup: reply markup.
-    :return: success.
+    :return: True on success.
     """
     try:
         await bot.send_message(
@@ -32,52 +30,45 @@ async def send_message(
             reply_markup=reply_markup,
         )
     except exceptions.TelegramBadRequest as e:
-        logging.error("Telegram server says - Bad Request: chat not found")
+        logging.error(f"BadRequest sending to [ID:{user_id}]: {e}")
     except exceptions.TelegramForbiddenError:
-        logging.error(f"Target [ID:{user_id}]: got TelegramForbiddenError")
+        logging.error(f"Forbidden sending to [ID:{user_id}]: bot was blocked")
     except exceptions.TelegramRetryAfter as e:
-        logging.error(
-            f"Target [ID:{user_id}]: Flood limit is exceeded. Sleep {e.retry_after} seconds."
-        )
+        logging.error(f"Flood limit exceeded for [ID:{user_id}], retry in {e.retry_after}s")
         await asyncio.sleep(e.retry_after)
-        return await send_message(
-            bot, user_id, text, disable_notification, reply_markup
-        )  # Recursive call
-    except exceptions.TelegramAPIError:
-        logging.exception(f"Target [ID:{user_id}]: failed")
+        return await send_message(bot, user_id, text, disable_notification, reply_markup)
+    except exceptions.TelegramNetworkError as e:
+        logging.error(f"Network error sending to [ID:{user_id}]: {e}")
+    except exceptions.TelegramAPIError as e:
+        logging.exception(f"API error sending to [ID:{user_id}]: {e}")
+    except Exception as e:
+        logging.exception(f"Unexpected error sending to [ID:{user_id}]: {e}")
     else:
-        logging.info(f"Target [ID:{user_id}]: success")
+        logging.info(f"Message sent successfully to [ID:{user_id}]")
         return True
     return False
 
-
 async def broadcast(
         bot: Bot,
-        users: list[Union[str, int]],
+        users: list[Union[int, str]],
         text: str,
         disable_notification: bool = False,
         reply_markup: InlineKeyboardMarkup = None,
 ) -> int:
     """
     Simple broadcaster.
+
     :param bot: Bot instance.
-    :param users: List of users.
-    :param text: Text of the message.
-    :param disable_notification: Disable notification or not.
-    :param reply_markup: Reply markup.
-    :return: Count of messages.
+    :param users: List of user IDs.
+    :param text: message text.
+    :param disable_notification: disable notification or not.
+    :param reply_markup: reply markup.
+    :return: number of successful sends.
     """
     count = 0
-    try:
-        for user_id in users:
-            if await send_message(
-                    bot, user_id, text, disable_notification, reply_markup
-            ):
-                count += 1
-            await asyncio.sleep(
-                0.05
-            )  # 20 messages per second (Limit: 30 messages per second)
-    finally:
-        logging.info(f"{count} messages successful sent.")
-
+    for user_id in users:
+        if await send_message(bot, user_id, text, disable_notification, reply_markup):
+            count += 1
+        await asyncio.sleep(0.05)  # limit ~20 msgs/sec
+    logging.info(f"{count} messages successfully sent.")
     return count
