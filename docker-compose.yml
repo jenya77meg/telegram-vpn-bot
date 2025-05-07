@@ -12,25 +12,29 @@ services:
     environment:
       DOMAIN: ${DOMAIN}
       LOCATION: ${SERVER_URL}
+      # Пути внутри контейнера, на которые монтируются боевые сертификаты
       CERT_FULLCHAIN_PATH: "/etc/nginx/certs/fullchain.pem"
-      CERT_KEY_PATH: "/etc/nginx/certs/privkey.pem"
+      CERT_KEY_PATH:     "/etc/nginx/certs/privkey.pem"
     volumes:
       - ./etc/nginx/templates:/etc/nginx/templates:ro
-      - ./etc/nginx/conf:/etc/nginx/conf.d
-      - ${CERT_FULLCHAIN_PATH}:/etc/nginx/certs/fullchain.pem:ro
-      - ${CERT_KEY_PATH}:/etc/nginx/certs/privkey.pem:ro
+      - ./certs/fullchain.pem:/etc/nginx/certs/fullchain.pem:ro
+      - ./certs/privkey.pem:/etc/nginx/certs/privkey.pem:ro
       - ./certbot/data:/var/www/certbot
-      
+
   marzban:
     image: gozargah/marzban:v0.8.4
     container_name: free_vpn_bot_marzban
     restart: always
     env_file: .env.marzban
     environment:
-      UVICORN_HOST: "0.0.0.0"
-      UVICORN_PORT: "8002"
-      YOUR_DOMAIN: ${DOMAIN}
+      UVICORN_HOST:       "0.0.0.0"
+      UVICORN_PORT:       "8002"
+      YOUR_DOMAIN:        ${DOMAIN}
+      UVICORN_SSL_CERTFILE: "/etc/marzban/certs/fullchain.pem"
+      UVICORN_SSL_KEYFILE:  "/etc/marzban/certs/privkey.pem"
+      UVICORN_SSL_CA_TYPE:  "public"
     ports:
+      - "1080:1080"
       - "127.0.0.1:8002:8002"
     networks:
       - free_vpn_bot
@@ -45,6 +49,8 @@ services:
       options:
         max-size: "900k"
         max-file: "10"
+
+
 
   vpn_bot:
     image: free_vpn_bot
