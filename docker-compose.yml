@@ -34,7 +34,7 @@ services:
       UVICORN_SSL_KEYFILE:  "/etc/marzban/certs/privkey.pem"
       UVICORN_SSL_CA_TYPE:  "public"
     ports:
-      - "1080:1080"
+      - "1081:1081"
       - "127.0.0.1:8002:8002"
     networks:
       - free_vpn_bot
