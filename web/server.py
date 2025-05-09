@@ -46,6 +46,7 @@ def create_app() -> web.Application:
     app.router.add_static('/assets/', path=str(BASE_DIR / 'assets'), show_index=False)
     app.router.add_get("/instruction", handle_instruction)
     app.router.add_get("/api/vpn/usage", handle_usage)
+    app.router.add_get("/subs/{token}", handle_proxy_sub)
     return app
 
 
@@ -68,6 +69,10 @@ async def handle_instruction(request: web.Request):
                 plan    = "платная"
                 raw_end = end_dt
                 link    = await safe_subscription_link(record["sub_id"])
+                # ссылка с параметром dns=1 — прокси отдаст в JSON блок "dns"
+                link_dns = None
+                if link:
+                    link_dns = f"{link}?dns=1"
                 raw_uri = await safe_link(record["sub_id"])
 
         # Пробная подписка
@@ -93,6 +98,7 @@ async def handle_instruction(request: web.Request):
             "end_date":  end_date,
             "days_left": days_left,
             "link":      link,
+            "link_dns":  link_dns,
             "raw_uri":   raw_uri,
             "user_key":  user_key,
         }
@@ -147,6 +153,36 @@ async def get_subscription_token(sub_id: str) -> str:
     """
     user = await get_marz_user(sub_id)
     return user.subscription_url
+
+
+async def handle_proxy_sub(request: web.Request):
+    """
+    Проксируем /subs/<token>?dns=1  →   Marzban /sub/<token>
+    И, если есть dns=1, в каждый
+    V2Ray-объект дописываем секцию «dns».
+    """
+    token    = request.match_info['token']
+    dns_flag = request.query.get('dns')
+
+    # получаем оригинальный массив конфигов от Marzban
+    client     = await marzban_client.get_client()
+    httpx_cli  = client.get_async_httpx_client()
+    resp       = await httpx_cli.get(f"/sub/{token}")
+    resp.raise_for_status()
+    arr        = resp.json()
+
+    # если в URL было ?dns=1 — подмешиваем секцию dns
+    if dns_flag:
+        for cfg in arr:
+            cfg.setdefault("dns", {})['servers'] = [
+                "https://dns.comss.one/dns-query",
+                "1.1.1.1",
+                "8.8.8.8"
+            ]
+
+    return web.json_response(arr)
+
+
 
 
 async def get_subscription_url(sub_id: str) -> str:
