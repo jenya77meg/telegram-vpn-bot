@@ -79,7 +79,7 @@ services:
     volumes:
       - .:/usr/src/app
     ports:
-    - "0.0.0.0:8080:8080"
+    - "0.0.0.0:9000:8080"
     networks:
       - free_vpn_bot
     depends_on:

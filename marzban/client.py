@@ -1,3 +1,4 @@
+# client.py
 import json
 import logging
 from datetime import datetime, timezone
@@ -27,7 +28,7 @@ proxies = UserCreateProxies.from_dict({"vless": {"flow": "xtls-rprx-vision"}})
 inbounds = UserCreateInbounds.from_dict({"VLESS TCP": True})
 
 def expire_timestamp(dt: datetime) -> int:
-    """Переводим datetime → UNIX‑timestamp (секунды)."""
+    """Переводим datetime → UNIX-timestamp (секунды)."""
     return int(dt.timestamp())
 
 async def create_user(
@@ -74,7 +75,7 @@ async def get_marz_user(sub_id: str) -> UserResponse:
     return resp.parsed
 
 async def get_raw_link(sub_id: str) -> str:
-    """Из UserResponse.links возвращает первую VLESS‑ссылку."""
+    """Из UserResponse.links возвращает первую VLESS-ссылку."""
     data = await get_marz_user(sub_id)
     for link in data.links:
         if link.startswith("vless://"):
@@ -82,7 +83,7 @@ async def get_raw_link(sub_id: str) -> str:
     raise RuntimeError("No VLESS link")
 
 async def get_user_links(sub_id: str) -> str:
-    """Формирует текстовый список всех VLESS‑ссылок."""
+    """Формирует текстовый список всех VLESS-ссылок."""
     data = await get_marz_user(sub_id)
     blocks: List[str] = []
     for link in data.links:
@@ -92,21 +93,29 @@ async def get_user_links(sub_id: str) -> str:
         blocks.append(f"Протокол: <b>VLESS {proto}</b>\n<pre>{link}</pre>")
     return "\n\n".join(blocks)
 
+async def get_subscription_url(sub_id: str) -> str:
+    """
+    Возвращает HTTP-URL подписки, по которому клиенты подтягивают JSON-массив
+    конфигов вместе с трафиком и датой окончания.
+    """
+    from loader import marzban_client
+
+    client = await marzban_client.get_client()
+    base = client.base_url.rstrip("/")
+    return f"{base}/api/v1/client/subscribe?token={sub_id}"
+
 async def extend_user(
     sub_id: str,
     new_expire: datetime,
     data_limit: Optional[int] = None,
     reset_strategy: UserDataLimitResetStrategy = UserDataLimitResetStrategy.NO_RESET,
 ) -> bool:
-    """
-    PUT /api/user/{sub_id} — продляет срок подписки и при необходимости обновляет лимит.
-    """
+    """PUT /api/user/{sub_id} — продлевает срок подписки и при необходимости обновляет лимит."""
     from loader import marzban_client
 
     expire_ts = expire_timestamp(new_expire)
     logger.info(f">>> extend_user: PUT /api/user/{sub_id} expire={expire_ts}")
 
-    # Формируем тело запроса
     body_dict = {"expire": expire_ts}
     if data_limit is not None:
         body_dict["data_limit"] = data_limit

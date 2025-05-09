@@ -3,13 +3,14 @@ import logging
 import sys
 from pathlib import Path
 from datetime import datetime, timezone
+import os
 
 import aiohttp_jinja2
 import jinja2
 from aiohttp import web
 
 from tgbot.services.db import get_user
-from marzban.client import get_raw_link
+from marzban.client import get_raw_link, get_marz_user
 from loader import marzban_client
 
 # Настройка логирования
@@ -40,16 +41,9 @@ async def log_requests(request: web.Request, handler):
 
 
 def create_app() -> web.Application:
-    # Включаем debug для подробных ошибок
     app = web.Application(debug=True, middlewares=[cors_middleware, log_requests])
     aiohttp_jinja2.setup(app, loader=jinja2.FileSystemLoader(str(TEMPLATES_DIR)))
-    # Статика
-    app.router.add_static(
-        '/assets/',
-        path=str(BASE_DIR / 'assets'),
-        show_index=False
-    )
-    # Роуты
+    app.router.add_static('/assets/', path=str(BASE_DIR / 'assets'), show_index=False)
     app.router.add_get("/instruction", handle_instruction)
     app.router.add_get("/api/vpn/usage", handle_usage)
     return app
@@ -58,7 +52,6 @@ def create_app() -> web.Application:
 @aiohttp_jinja2.template("dashboard.html")
 async def handle_instruction(request: web.Request):
     try:
-        # 1) Парсим user_id и достаём запись
         user_id = int(request.query.get("user_id", "0"))
         record  = await get_user(user_id) or {}
         now     = datetime.now(timezone.utc)
@@ -74,9 +67,7 @@ async def handle_instruction(request: web.Request):
             if end_dt > now:
                 plan    = "платная"
                 raw_end = end_dt
-                # HTTP JSON-подписка
-                link    = await safe_link(record["sub_id"])
-                # VLESS URI для прямого импорта
+                link    = await safe_subscription_link(record["sub_id"])
                 raw_uri = await safe_link(record["sub_id"])
 
         # Пробная подписка
@@ -85,8 +76,11 @@ async def handle_instruction(request: web.Request):
             if end_dt > now:
                 plan    = "пробная"
                 raw_end = end_dt
-                link    = await safe_link(record["trial_sub_id"])
+                link    = await safe_subscription_link(record["trial_sub_id"])
                 raw_uri = await safe_link(record["trial_sub_id"])
+
+        # Отладочное логирование
+        logger.info("DEBUG subscription link for user_id=%s → %r", user_id, link)
 
         end_date  = raw_end.strftime("%d.%m.%Y") if raw_end else "—"
         days_left = (raw_end - now).days if raw_end else None
@@ -111,6 +105,7 @@ async def handle_instruction(request: web.Request):
             status=500,
             content_type="text/plain"
         )
+
 
 async def handle_usage(request: web.Request):
     try:
@@ -144,11 +139,45 @@ async def handle_usage(request: web.Request):
 
     return web.json_response({"usedBytes": used, "totalBytes": total, "endDate": end_date})
 
+
+async def get_subscription_token(sub_id: str) -> str:
+    """
+    Берёт из модели пользователя готовый токен подписки,
+    такой же, как в ссылке и QR-коде панели.
+    """
+    user = await get_marz_user(sub_id)
+    return user.subscription_url
+
+
+async def get_subscription_url(sub_id: str) -> str:
+    """
+    Берём готовую ссылку подписки из панели (полный URL!) и возвращаем её «как есть».
+    """
+    # это уже полноценный URL вида https://host/.../sub/<token>
+    subscription_url = await get_subscription_token(sub_id)
+
+    # если вдруг вернулся относительный токен (без https://), склеиваем
+    if not subscription_url.startswith("http"):
+        prefix = os.getenv("XRAY_SUBSCRIPTION_URL_PREFIX", "").rstrip("/")
+        path   = os.getenv("XRAY_SUBSCRIPTION_PATH", "").lstrip("/").rstrip("/")
+        return f"{prefix}/{path}/{subscription_url}"
+
+    # иначе — просто отдаём уже полный URL
+    return subscription_url
+
+
+async def safe_subscription_link(sub_id: str) -> str | None:
+    try:
+        return await get_subscription_url(sub_id)
+    except Exception:
+        return None
+
 async def safe_link(sub_id: str) -> str | None:
     try:
         return await get_raw_link(sub_id)
     except Exception:
         return None
+
 
 if __name__ == "__main__":
     logger.info("Starting instruction server on 0.0.0.0:8080")

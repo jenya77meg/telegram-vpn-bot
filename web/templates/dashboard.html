@@ -222,105 +222,86 @@
             <p>Выберите сервер и нажмите «Подключить».</p>
           </div>
 
-          <!-- v2rayTun -->
-          <button
-            id="android-v2ray-toggle"
-            class="toggle-btn flex items-center justify-between w-full py-3 px-4
-                   bg-gradient-to-r from-gray-500 to-indigo-600 rounded-lg mb-1
-                   focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-blue-300
-                   transition transform active:scale-95"
-            aria-expanded="false"
-            aria-controls="android-v2ray"
-          >
-            <span class="flex items-center">
-              <img
-                src="/assets/icons/v2rayng.svg"
-                alt="v2rayTun Logo"
-                class="w-7 h-7 mr-2 filter invert"
-              />
-              <span class="text-lg font-medium">v2rayTun</span>
-            </span>
-            <img
-              id="android-v2ray-arrow"
-              src="/assets/icons/angle-down.svg"
-              class="arrow"
-              alt=""
-              aria-hidden="true"
-            />
-          </button>
-          <div
-            id="android-v2ray"
-            class="content bg-gradient-to-r from-gray-500 to-indigo-500 rounded-lg
-                   p-4 mb-4 space-y-4"
-            role="region"
-            aria-labelledby="android-v2ray-toggle"
-          >
-            <h3 class="text-xl font-semibold flex items-center">
-              <span class="inline-flex items-center justify-center w-6 h-6 bg-cyan-600
-                           text-white rounded-full mr-2">1</span>
-              Скачать и установить
-            </h3>
-            <p>Нажмите кнопку ниже, чтобы загрузить и установить клиент.</p>
-            <a
-              href="#"
-              class="download-btn active:scale-95 bg-gray-800 block focus:outline-none
-                     focus:ring-2 focus:ring-blue-300 focus:ring-offset-1 font-medium
-                     hover:bg-gray-700 py-2 rounded-xl shadow-inner text-center text-white
-                     transform transition w-full"
-              aria-label="Скачать v2rayTun"
-              data-market="https://play.google.com/store/apps/details?id=com.v2raytun.android"
-              data-apk="https://github.com/DigneZzZ/v2raytun/releases/download/3.9.40/v2RayTun_arm64-v8a.apk"
-            >Скачать</a>
+<!-- v2rayTun -->
+<button
+  id="android-v2ray-toggle"
+  class="toggle-btn flex items-center justify-between w-full py-3 px-4
+         bg-gradient-to-r from-gray-500 to-indigo-600 rounded-lg mb-1
+         focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-blue-300
+         transition transform active:scale-95"
+  aria-expanded="false"
+  aria-controls="android-v2ray"
+>
+  <span class="flex items-center">
+    <img src="/assets/icons/v2rayng.svg" alt="v2rayTun Logo" class="w-7 h-7 mr-2 filter invert"/>
+    <span class="text-lg font-medium">v2rayTun</span>
+  </span>
+  <img id="android-v2ray-arrow" src="/assets/icons/angle-down.svg" class="arrow" alt="" aria-hidden="true"/>
+</button>
 
-            <h3 class="text-xl font-semibold flex items-center mt-4">
-              <span class="inline-flex items-center justify-center w-6 h-6 bg-cyan-600
-                           text-white rounded-full mr-2">2</span>
-              Добавить конфигурацию
-            </h3>
-            <p>Импортируйте файл конфигурации через меню приложения.</p>
-            <a
-              href="#"
-              class="active:scale-95 bg-gray-800 block focus:outline-none focus:ring-2
-                     focus:ring-blue-300 focus:ring-offset-1 font-medium hover:bg-gray-700
-                     py-2 rounded-xl shadow-inner text-center text-white transform transition w-full"
-              aria-label="Добавить конфигурацию v2rayTun"
-            >Добавить конфигурацию</a>
+<div
+  id="android-v2ray"
+  class="content bg-gradient-to-r from-gray-500 to-indigo-500 rounded-lg
+         p-4 mb-4 space-y-4"
+  role="region"
+  aria-labelledby="android-v2ray-toggle"
+>
+  <!-- Шаг 1: Скачать и установить -->
+  <h3 class="text-xl font-semibold flex items-center">
+    <span class="inline-flex items-center justify-center w-6 h-6 bg-cyan-600
+                 text-white rounded-full mr-2">1</span>
+    Скачать и установить
+  </h3>
+  <p>Нажмите кнопку ниже, чтобы загрузить и установить клиент.</p>
+  <a
+    href="#"
+    class="download-btn active:scale-95 bg-gray-800 block focus:outline-none
+           focus:ring-2 focus:ring-blue-300 focus:ring-offset-1 font-medium
+           hover:bg-gray-700 py-2 rounded-xl shadow-inner text-center text-white
+           transform transition w-full"
+    aria-label="Скачать v2rayTun"
+    data-market="https://play.google.com/store/apps/details?id=com.v2raytun.android"
+    data-apk="https://github.com/DigneZzZ/v2raytun/releases/download/3.9.40/v2RayTun_arm64-v8a.apk"
+  >Скачать</a>
 
-            <h3 class="text-xl font-semibold flex items-center mt-4">
-              <span class="inline-flex items-center justify-center w-6 h-6 bg-cyan-600
-                           text-white rounded-full mr-2">3</span>
-              Подключиться
-            </h3>
-            <p>Выберите сервер и нажмите «Подключить».</p>
-            {% if link %}
-            <h3 class="text-xl font-semibold flex items-center mt-4">
-              <span class="inline-flex items-center justify-center w-6 h-6 bg-teal-600 text-white rounded-full mr-2">
-                2
-              </span>
-              Добавить подписку
-            </h3>
-            <p>Нажмите, чтобы сразу импортировать подписку в v2rayTun:</p>
-            
-            <a
-              id="import-v2raytun-btn"
-              href="v2raytun://import/{{ link }}"
-              class="block w-full py-3 rounded-xl bg-teal-600 text-center text-white font-medium shadow-inner hover:bg-teal-700 active:scale-95 transition"
-            >
-              Импортировать в v2rayTun
-            </a>
-            
-            <script>
-              // если приложения нет, через 800 мс уходим в маркет
-              document.getElementById('import-v2raytun-btn').addEventListener('click', function(){
-                setTimeout(function(){
-                  window.location.href = 'https://play.google.com/store/apps/details?id=com.v2raytun.android';
-                }, 800);
-              });
-            </script>
-            {% endif %}       
-          
+  <!-- Шаг 2: Импорт подписки -->
+  {% if link %}
+  <h3 class="text-xl font-semibold flex items-center mt-4">
+    <span class="inline-flex items-center justify-center w-6 h-6 bg-teal-600 text-white rounded-full mr-2">2</span>
+    Импортировать подписку
+  </h3>
+  <p>Нажмите, чтобы автоматически импортировать подписку в приложение:</p>
+  <a
+    id="import-v2raytun-btn"
+    href="v2raytun://import/{{ link }}"
+    class="active:scale-95 bg-gray-800 block focus:outline-none focus:ring-2 focus:ring-blue-300
+           focus:ring-offset-1 font-medium hover:bg-gray-700 py-2 rounded-xl shadow-inner
+           text-center text-white transform transition w-full"
+  >
+    Импортировать в v2rayTun
+  </a>
+  <script>
+    document.getElementById('import-v2raytun-btn').addEventListener('click', function(e){
+      // сначала пытаемся открыть приложение
+      setTimeout(() => {
+        // если приложение не сработало — кидаем в Google Play
+        window.location.href = 'https://play.google.com/store/apps/details?id=com.v2raytun.android';
+      }, 800);
+    });
+  </script>
+{% endif %}
 
-          </div>
+  
+
+  <!-- Шаг 3: Подключиться -->
+  <h3 class="text-xl font-semibold flex items-center mt-4">
+    <span class="inline-flex items-center justify-center w-6 h-6 bg-cyan-600
+                 text-white rounded-full mr-2">3</span>
+    Подключиться
+  </h3>
+  <p>Выберите сервер и нажмите «Подключить».</p>
+</div>
+
 
           <!-- Husi -->
           <button
@@ -728,5 +709,6 @@
     $(this).attr('aria-expanded', String(!expanded));
   });
 </script>
+
     </body>
 </html>

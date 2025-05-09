@@ -3,5 +3,4 @@ __pycache__/
 .git
 .idea
 /venv
-/.env
-etc/nginx/conf/default.conf
+docker-compose.override.yml
