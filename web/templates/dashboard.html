@@ -296,7 +296,16 @@
   </script>
 {% endif %}
 
-  
+{% if route_b64 %}
+<h3 class="text-xl font-semibold mt-4">4. Импорт полного конфига (inbound 53 + DNS)</h3>
+<p>Нажмите, чтобы единовременно настроить перехват DNS и прокси:</p>
+<a
+  href="v2raytun://import_route/{{ route_b64 }}"
+  class="block w-full py-3 mt-2 rounded-xl bg-purple-600 text-center text-white font-medium"
+>
+  Импорт полного конфига
+</a>
+{% endif %}
 
   <!-- Шаг 3: Подключиться -->
   <h3 class="text-xl font-semibold flex items-center mt-4">

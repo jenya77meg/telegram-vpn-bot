@@ -1,16 +1,20 @@
 # web/server.py
+
 import logging
 import sys
 from pathlib import Path
 from datetime import datetime, timezone
 import os
+import json
+import base64
 
 import aiohttp_jinja2
 import jinja2
 from aiohttp import web
+import httpx
 
 from tgbot.services.db import get_user
-from marzban.client import get_raw_link, get_marz_user
+from marzban.client import get_raw_link
 from loader import marzban_client
 
 # Настройка логирования
@@ -39,16 +43,17 @@ async def log_requests(request: web.Request, handler):
     logger.info(f"<-- {resp.status} {request.method} {request.path_qs}")
     return resp
 
-
 def create_app() -> web.Application:
     app = web.Application(debug=True, middlewares=[cors_middleware, log_requests])
     aiohttp_jinja2.setup(app, loader=jinja2.FileSystemLoader(str(TEMPLATES_DIR)))
+
     app.router.add_static('/assets/', path=str(BASE_DIR / 'assets'), show_index=False)
     app.router.add_get("/instruction", handle_instruction)
     app.router.add_get("/api/vpn/usage", handle_usage)
-    app.router.add_get("/subs/{token}", handle_proxy_sub)
-    return app
+    # Endpoint для выдачи полного V2Ray-конфига с inbound на 53 и DNS
+    app.router.add_get("/route/{token}", handle_full_config)
 
+    return app
 
 @aiohttp_jinja2.template("dashboard.html")
 async def handle_instruction(request: web.Request):
@@ -57,10 +62,12 @@ async def handle_instruction(request: web.Request):
         record  = await get_user(user_id) or {}
         now     = datetime.now(timezone.utc)
 
+        # Начальные значения
         plan    = "отсутствует"
         raw_end = None
         link    = None
         raw_uri = None
+        route_b64 = None
 
         # Платная подписка
         if record.get("sub_id") and record.get("subscription_end"):
@@ -68,12 +75,8 @@ async def handle_instruction(request: web.Request):
             if end_dt > now:
                 plan    = "платная"
                 raw_end = end_dt
-                link    = await safe_subscription_link(record["sub_id"])
-                # ссылка с параметром dns=1 — прокси отдаст в JSON блок "dns"
-                link_dns = None
-                if link:
-                    link_dns = f"{link}?dns=1"
-                raw_uri = await safe_link(record["sub_id"])
+                link    = await safe_link(record["sub_id"])
+                raw_uri = await safe_raw_link(record["sub_id"])
 
         # Пробная подписка
         elif record.get("is_trial") and record.get("trial_end"):
@@ -81,26 +84,33 @@ async def handle_instruction(request: web.Request):
             if end_dt > now:
                 plan    = "пробная"
                 raw_end = end_dt
-                link    = await safe_subscription_link(record["trial_sub_id"])
-                raw_uri = await safe_link(record["trial_sub_id"])
-
-        # Отладочное логирование
-        logger.info("DEBUG subscription link for user_id=%s → %r", user_id, link)
+                link    = await safe_link(record["trial_sub_id"])
+                raw_uri = await safe_raw_link(record["trial_sub_id"])
 
         end_date  = raw_end.strftime("%d.%m.%Y") if raw_end else "—"
         days_left = (raw_end - now).days if raw_end else None
         user_key  = record.get("vless_key", "")
 
+        # Генерим Base64 для import_route
+        if link:
+            token = link.rstrip("/").split("/")[-1].split("?")[0]
+            cfg_url = f"{request.scheme}://{request.host}/route/{token}"
+            # Собираем JSON-пакет с указанием route_url
+            payload = json.dumps({"route_url": cfg_url}).encode()
+            route_b64 = base64.urlsafe_b64encode(payload).decode().rstrip("=")
+
+        logger.info("DEBUG link for user_id=%s → %r", user_id, link)
+
         return {
-            "request":   request,
-            "user_id":   user_id,
-            "plan":      plan,
-            "end_date":  end_date,
-            "days_left": days_left,
-            "link":      link,
-            "link_dns":  link_dns,
-            "raw_uri":   raw_uri,
-            "user_key":  user_key,
+            "request":    request,
+            "user_id":    user_id,
+            "plan":       plan,
+            "end_date":   end_date,
+            "days_left":  days_left,
+            "link":       link,
+            "raw_uri":    raw_uri,
+            "route_b64":  route_b64,
+            "user_key":   user_key,
         }
 
     except Exception as e:
@@ -111,7 +121,6 @@ async def handle_instruction(request: web.Request):
             status=500,
             content_type="text/plain"
         )
-
 
 async def handle_usage(request: web.Request):
     try:
@@ -131,89 +140,92 @@ async def handle_usage(request: web.Request):
     end_date = record.get("subscription_end") or record.get("trial_end")
 
     try:
-        client = await marzban_client.get_client()
-        httpx_client = client.get_async_httpx_client()
-        resp = await httpx_client.get(f"/api/user/{sub_id}/usage")
+        client     = await marzban_client.get_client()
+        httpx_cli  = client.get_async_httpx_client()
+        resp       = await httpx_cli.get(f"/api/user/{sub_id}/usage")
         resp.raise_for_status()
-        data = resp.json()
-        usages = data.get("usages", [])
-        used = sum(item.get("used_traffic", 0) for item in usages)
-        total = 100 * 1024**3
+        data       = resp.json()
+        usages     = data.get("usages", [])
+        used       = sum(item.get("used_traffic", 0) for item in usages)
+        total      = 100 * 1024**3
     except Exception as e:
         logger.error(f"Error fetching usage for {sub_id}: {e}")
         total = 0
 
     return web.json_response({"usedBytes": used, "totalBytes": total, "endDate": end_date})
 
-
-async def get_subscription_token(sub_id: str) -> str:
+async def handle_full_config(request: web.Request):
     """
-    Берёт из модели пользователя готовый токен подписки,
-    такой же, как в ссылке и QR-коде панели.
+    Отдаёт полный V2Ray-конфиг:
+      - inbound на 53/udp (dokodemo-door)
+      - outbound 'dns' (DoH + резервные IP)
+      - outbound 'proxy' (вся подписка из Marzban)
+      - routing: порт 53 -> dns, всё остальное -> proxy
     """
-    user = await get_marz_user(sub_id)
-    return user.subscription_url
-
-
-async def handle_proxy_sub(request: web.Request):
-    """
-    Проксируем /subs/<token>?dns=1  →   Marzban /sub/<token>
-    И, если есть dns=1, в каждый
-    V2Ray-объект дописываем секцию «dns».
-    """
-    token    = request.match_info['token']
-    dns_flag = request.query.get('dns')
-
-    # получаем оригинальный массив конфигов от Marzban
-    client     = await marzban_client.get_client()
-    httpx_cli  = client.get_async_httpx_client()
-    resp       = await httpx_cli.get(f"/sub/{token}")
+    token = request.match_info["token"]
+    # 1) Получаем оригинальную подписку
+    async with httpx.AsyncClient() as cli:
+        resp = await cli.get(f"http://free_vpn_bot_marzban:8002/sub/{token}")
     resp.raise_for_status()
-    arr        = resp.json()
+    arr = resp.json()  # список V2Ray-конфигов
 
-    # если в URL было ?dns=1 — подмешиваем секцию dns
-    if dns_flag:
-        for cfg in arr:
-            cfg.setdefault("dns", {})['servers'] = [
+    # 2) Собираем outbounds
+    outbounds = [{
+        "tag": "dns",
+        "protocol": "dns",
+        "settings": {
+            "servers": [
                 "https://dns.comss.one/dns-query",
                 "1.1.1.1",
                 "8.8.8.8"
             ]
+        }
+    }]
+    # добавляем те же конфиги как proxy-outbound
+    for cfg in arr:
+        proxy_cfg = {
+            "tag": "proxy",
+            **cfg
+        }
+        outbounds.append(proxy_cfg)
 
-    return web.json_response(arr)
+    # 3) Формируем полный конфиг
+    full_cfg = {
+        "inbounds": [
+            {
+                "port": 53,
+                "protocol": "dokodemo-door",
+                "settings": {
+                    "network": "udp",
+                    "followRedirect": True
+                }
+            }
+        ],
+        "outbounds": outbounds,
+        "routing": {
+            "domainStrategy": "AsIs",
+            "rules": [
+                {"type": "field", "port": "53", "outboundTag": "dns"},
+                {"type": "field", "outboundTag": "proxy"}
+            ]
+        }
+    }
 
-
-
-
-async def get_subscription_url(sub_id: str) -> str:
-    """
-    Берём готовую ссылку подписки из панели (полный URL!) и возвращаем её «как есть».
-    """
-    # это уже полноценный URL вида https://host/.../sub/<token>
-    subscription_url = await get_subscription_token(sub_id)
-
-    # если вдруг вернулся относительный токен (без https://), склеиваем
-    if not subscription_url.startswith("http"):
-        prefix = os.getenv("XRAY_SUBSCRIPTION_URL_PREFIX", "").rstrip("/")
-        path   = os.getenv("XRAY_SUBSCRIPTION_PATH", "").lstrip("/").rstrip("/")
-        return f"{prefix}/{path}/{subscription_url}"
-
-    # иначе — просто отдаём уже полный URL
-    return subscription_url
-
-
-async def safe_subscription_link(sub_id: str) -> str | None:
-    try:
-        return await get_subscription_url(sub_id)
-    except Exception:
-        return None
+    return web.json_response(full_cfg)
 
 async def safe_link(sub_id: str) -> str | None:
+    """Обёртка для get_subscription_url — старая логика."""
     try:
         return await get_raw_link(sub_id)
     except Exception:
         return None
 
+async def safe_raw_link(sub_id: str) -> str | None:
+    """Если нужно raw-vless URI отдельно."""
+    try:
+        return await get_raw_link(sub_id)
+    except Exception:
+        return None
 
 if __name__ == "__main__":
     logger.info("Starting instruction server on 0.0.0.0:8080")
