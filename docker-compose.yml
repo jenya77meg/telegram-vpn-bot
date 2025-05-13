@@ -44,7 +44,7 @@ services:
       - ./certbot/data:/var/www/certbot
       - /etc/timezone:/etc/timezone:ro
       - ./certs:/etc/marzban/certs:ro
-      - /opt/telegram-vpn-bot/web/templates:/opt/telegram-vpn-bot/web/templates:ro
+      - ./web/templates:/opt/telegram-vpn-bot/web/templates:ro
     logging:
       driver: "json-file"
       options:

@@ -8,6 +8,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- jQuery для простого slideToggle -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <!-- Ваши кастомные стили -->
     <style>
       /* размер иконок */
@@ -32,107 +33,200 @@
     </style>
   </head>
   <body
-    data-user-id="{{ user_id }}"
+    data-user-id="{{ user.username }}"
     class="bg-[url('/assets/7.png')] bg-[length:150%] bg-center bg-fixed
            pt-6 min-h-screen font-sans
            md:bg-[url('/assets/7_full.jpg')] text-white"
   >
     <div class="container max-w-lg mx-auto px-4">
-      <!-- HEADER -->
-      <section
-        class="bg-gradient-to-r bg-opacity-90 from-gray-900 to-gray-800
-               flex flex-col items-center max-w-2xl mx-auto p-6 rounded-2xl
-               space-y-6 md:flex-row md:items-start md:space-x-8 md:space-y-0"
-      >
-        <!-- Левая часть -->
-        <div class="flex flex-col items-center space-y-4 flex-shrink-0">
-          <!-- Контейнер для круга + процент -->
-          <div class="relative">
-            <svg class="w-32 h-32 -rotate-90" viewBox="0 0 100 100">
-              <!-- фоновый полупрозрачный круг -->
-              <circle
-                class="stroke-current text-white/30"
-                stroke-width="8"
-                fill="transparent"
-                r="44" cx="50" cy="50"
-              />
-              <!-- динамический прогресс -->
-              <circle
-                id="progress-circle"
-                class="stroke-current text-green-400 transition-stroke duration-500"
-                stroke-width="8"
-                fill="transparent"
-                r="44" cx="50" cy="50"
-                style="stroke-dasharray: 276.46; stroke-dashoffset: 276.46;"
-              />
-            </svg>
-            <!-- Процент в центре -->
-            <div
-              id="progress-label"
-              class="absolute inset-0 flex items-center justify-center
-                     text-2xl font-bold text-white pointer-events-none"
-            >—%</div>
-          </div>
-          <!-- Использовано данных -->
-          <div class="text-sm font-medium text-white text-center">
-            <strong id="used-info">Загрузка…</strong>
-          </div>
-          <!-- ID пользователя -->
-          <div class="font-medium text-white">
-            ID: <span id="user-id">Загрузка…</span>
-          </div>
-          <!-- Статус -->
-          <button
-            id="status-btn"
-            class="px-5 py-2 bg-gradient-to-r from-orange-500 to-orange-600
-                   text-white rounded-full shadow-sm
-                   focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-blue-300
-                   transition transform active:scale-95"
-          >Просрочен</button>
-        </div>
-        <!-- Вертикальный разделитель (md+) -->
-        <div class="hidden md:block h-32 border-l border-gray-700"></div>
-        <!-- Правая часть: дата окончания и дни -->
-        <div class="flex flex-col space-y-2 text-sm text-white">
-          <div>
-            <span class="font-medium">Дата окончания подписки:</span>
-            <strong id="end-date">—</strong>
-          </div>
-          <div>
-            <span class="font-medium">Осталось дней:</span>
-            <strong id="days-left">—</strong>
-          </div>
-        </div>
-      </section>
+<!-- HEADER -->
+<section
+  class="bg-gradient-to-r bg-opacity-90 from-gray-900 to-gray-800
+         flex flex-col items-center max-w-2xl mx-auto p-6 rounded-2xl
+         space-y-6 md:flex-row md:items-start md:space-x-8 md:space-y-0"
+>
+  <!-- Левая часть -->
+  <div class="flex flex-col items-center space-y-4 flex-shrink-0">
+    <!-- Контейнер для круга + процент -->
+    <div class="relative">
+      <svg class="w-32 h-32 -rotate-90" viewBox="0 0 100 100">
+        <circle
+          class="stroke-current text-white/30"
+          stroke-width="8" fill="transparent"
+          r="44" cx="50" cy="50"
+        />
+        <circle
+          id="progress-circle"
+          class="stroke-current text-green-400 transition-stroke duration-500"
+          stroke-width="8" fill="transparent"
+          r="44" cx="50" cy="50"
+          style="stroke-dasharray: 276.46; stroke-dashoffset: 276.46;"
+        />
+      </svg>
+      <div
+        id="progress-label"
+        class="absolute inset-0 flex items-center justify-center
+               text-2xl font-bold text-white pointer-events-none"
+      >—%</div>
+    </div>
+
+    <!-- Использовано данных (теперь показывает used/limit) -->
+    <div class="text-sm font-medium text-white text-center">
+      <strong id="used-info">
+        {% if user.data_limit %}
+          {{ user.used_traffic | bytesformat }} / {{ user.data_limit | bytesformat }}
+        {% else %}
+          {{ user.used_traffic | bytesformat }}
+        {% endif %}
+      </strong>
+    </div>
+
+    <!-- ID пользователя -->
+    <div class="font-medium text-white">
+    ID: <span id="user-id">{{ user.username or user_id }}</span>
+    </div>
+
+
+    <!-- Статус -->
+    <button
+      id="status-btn"
+      class="px-5 py-2 bg-gradient-to-r from-orange-500 to-orange-600
+             text-white rounded-full shadow-sm
+             focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-blue-300
+             transition transform active:scale-95"
+    >
+      {% if user.status.value == 'active' %}
+        Активна
+      {% else %}
+        Просрочен
+      {% endif %}
+    </button>
+  </div>
+
+  <!-- Вертикальный разделитель (md+) -->
+  <div class="hidden md:block h-32 border-l border-gray-700"></div>
+
+  <!-- Правая часть: дата окончания и дни -->
+  <div class="flex flex-col space-y-2 text-sm text-white">
+    <div>
+      <span class="font-medium">Дата окончания подписки:</span>
+      <strong id="end-date">
+        {% if not user.expire %}
+          ∞
+        {% else %}
+          {{ user.expire | datetime }}
+        {% endif %}
+      </strong>
+    </div>
+    <div>
+      <span class="font-medium">Осталось дней:</span>
+      <strong id="days-left">
+        {% if user.expire %}
+          {% set now_ts = now().timestamp() %}
+          {% set days = ((user.expire - now_ts) // (24*3600)) %}
+          {{ days }} дн.
+        {% else %}
+          —
+        {% endif %}
+      </strong>
+    </div>
+  </div>
+</section>
+
 
       <!-- Блок с ключом VPN -->
-      <div class="backdrop-blur-xl bg-black/30 my-9 p-0 rounded-xl space-y-8">
-        <p class="-mb-4 leading-7 mt-2 mx-4 pt-4 text-center text-gray-200 text-xl">
-          По этой ссылке вы подключитесь к VPN. Скопируйте её и вставьте в выбранное вами приложение.
-        </p>
-        <div class="w-full relative">
-          <div class="w-full bg-gray-800 rounded-lg overflow-hidden flex select-none">
-            <div
-              id="key-preview"
-              class="bg-transparent flex-1 overflow-ellipsis overflow-hidden
-                     px-4 py-2 text-gray-200 text-lg whitespace-nowrap select-none"
-            >{{ user_key or "Ключ недоступен" }}</div>
-            <button
-              id="copy-key-btn"
-              data-key="{{ user_key }}"
-              class="bg-blue-600 bg-opacity-90 flex flex-shrink-0 font-semibold
-                     hover:bg-blue-700 items-center p-2 rounded-lg text-white"
-            >
-              <img
-                src="/assets/icons/import.svg"
-                alt="Копировать"
-                class="w-5 h-5 mr-2 filter invert select-none"
-              />
-              <span id="copy-btn-text" class="text-sm">Копировать</span>
-            </button>
+
+      
+      <!-- VPN Key Block -->
+        <div class="backdrop-blur-xl bg-black/30 my-9 p-0 rounded-xl space-y-8">
+          <p class="-mb-4 leading-7 mt-2 mx-4 pt-4 text-center text-gray-200 text-xl">
+            По этой ссылке вы подключитесь к VPN. Скопируйте её и вставьте в выбранное вами приложение.
+          </p>
+          <div class="w-full relative">
+            <div class="w-full bg-gray-800 rounded-lg overflow-hidden flex select-none">
+              {% if user.status.value == 'active' and user.links %}
+                  {% for link in user.links %}
+                  <div id="key-preview"
+                       class="bg-transparent flex-1 overflow-ellipsis overflow-hidden
+                              px-4 py-2 text-gray-200 text-lg whitespace-nowrap select-none">
+                      {{ link }}
+                  </div>
+                  <button id="copy-key-btn"
+                          data-key="{{ link }}"
+                          class="bg-blue-600 bg-opacity-90 flex flex-shrink-0 font-semibold
+                                 hover:bg-blue-700 items-center p-2 rounded-lg text-white">
+                      <img src="/assets/icons/import.svg"
+                           alt="Копировать"
+                           class="w-5 h-5 mr-2 filter invert select-none"/>
+                      <span id="copy-btn-text" class="text-sm">Копировать</span>
+                  </button>
+                  {% endfor %}
+              {% else %}
+                  <div id="key-preview"
+                       class="bg-transparent flex-1 overflow-ellipsis overflow-hidden
+                              px-4 py-2 text-gray-200 text-lg whitespace-nowrap select-none">
+                      {{ user_key or "Ключ недоступен" }}
+                  </div>
+                  <button id="copy-key-btn"
+                          data-key="{{ user_key }}"
+                          class="bg-blue-600 bg-opacity-90 flex flex-shrink-0 font-semibold
+                                 hover:bg-blue-700 items-center p-2 rounded-lg text-white">
+                      <img src="/assets/icons/import.svg"
+                           alt="Копировать"
+                           class="w-5 h-5 mr-2 filter invert select-none"/>
+                      <span id="copy-btn-text" class="text-sm">Копировать</span>
+                  </button>
+                  
+              {% endif %}
+            </div>
           </div>
         </div>
-      </div>
+
+
+
+
+      <script>
+        function copyLink(link, button) {
+            const tempInput = document.createElement('input');
+            tempInput.setAttribute('value', link);
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+
+            button.textContent = 'Copied!';
+            setTimeout(function () {
+                button.textContent = 'Copy';
+            }, 1500);
+        }
+
+        const qrButtons = document.querySelectorAll('.qr-button');
+        const qrPopup = document.getElementById('qrPopup');
+
+        qrButtons.forEach((qrButton) => {
+            qrButton.addEventListener('click', () => {
+                const link = qrButton.dataset.link;
+                while (qrCodeContainer.firstChild) {
+                    qrCodeContainer.removeChild(qrCodeContainer.firstChild);
+                }
+                const qrCode = new QRCode(qrCodeContainer, {
+                    text: link,
+                    width: 256,
+                    height: 256,
+                    correctLevel: QRCode.CorrectLevel.L
+                });
+                qrPopup.style.display = 'block';
+            });
+        });
+        function closeQrPopup() {
+            document.getElementById('qrPopup').style.display = 'none';
+        }
+    </script>
+
+
+
+
+
 
       <!-- CONTENT: инструкции по подключению -->
       <div class="backdrop-blur-xl bg-black/30 my-7 p-5 rounded-xl space-y-8">
@@ -642,58 +736,65 @@
               });
             });
           </script>
-        <script>
-            (async () => {
-              const userId = Number(document.body.dataset.userId);
-              document.getElementById('user-id').textContent = userId;
-              if (!Number.isInteger(userId) || userId <= 0) return;
-            
-              let data;
-              try {
-                const res = await fetch(`/api/vpn/usage?user_id=${userId}`);
-                data = await res.json();
-              } catch {
-                return;
-              }
-            
-              const { usedBytes, totalBytes, endDate } = data;
-              const percent = totalBytes ? Math.round((usedBytes/totalBytes)*100) : 0;
-            
-              // Обновляем круг и цвет
-              const circle = document.getElementById('progress-circle');
-              const r = circle.r.baseVal.value;
-              const c = 2 * Math.PI * r;
-              circle.style.transition = 'stroke-dashoffset 0.5s ease, stroke 0.5s ease';
-              circle.style.strokeDasharray  = `${c}`;
-              circle.style.strokeDashoffset = c - (percent/100)*c;
-              const hue = Math.round((1 - percent/100) * 120);
-              circle.style.stroke = `hsl(${hue}, 100%, 50%)`;
-              document.getElementById('progress-label').textContent = percent + '%';
-            
-              // Обновляем цифры в гигабайтах
-              const usedGB  = (usedBytes  / (1024 ** 3)).toFixed(2);
-              const totalGB = (totalBytes / (1024 ** 3)).toFixed(2);
-              document.getElementById('used-info').textContent = `${usedGB} GB / ${totalGB} GB`;
-              document.getElementById('end-date').textContent  =
-                endDate ? new Date(endDate).toLocaleDateString('ru-RU') : '—';
-            
-              const diff = endDate ? (new Date(endDate) - Date.now()) : 0;
-              const days = diff > 0 ? Math.floor(diff/1000/60/60/24) : 0;
-              document.getElementById('days-left').textContent = days + ' дн.';
-            
-              // Логика кнопки статуса
-              const statusBtn = document.getElementById('status-btn');
-              if (days > 0) {
-                statusBtn.textContent = 'Активна';
-                statusBtn.classList.remove('from-orange-500', 'to-orange-600');
-                statusBtn.classList.add('from-green-500', 'to-teal-500');
-              } else {
-                statusBtn.textContent = 'Просрочен';
-                statusBtn.classList.remove('from-green-500', 'to-teal-500');
-                statusBtn.classList.add('from-orange-500', 'to-orange-600');
-              }
-            })();
-            </script>
+<script>
+  (async () => {
+    const rawUserId = document.body.dataset.userId;
+    // Показываем ровно то, что вставил шаблон:
+    document.getElementById('user-id').textContent = rawUserId;
+  
+    // Пытаемся получить число для API:
+    const userId = Number(rawUserId);
+    if (!Number.isInteger(userId) || userId <= 0) {
+      // не числовой ID — выходим, не дергаем API
+      return;
+    }
+  
+    let data;
+    try {
+      const res = await fetch(`/api/vpn/usage?user_id=${userId}`);
+      data = await res.json();
+    } catch {
+      return;
+    }
+  
+    const { usedBytes, totalBytes, endDate } = data;
+    const percent = totalBytes ? Math.round((usedBytes/totalBytes)*100) : 0;
+  
+    // Обновляем круг и цифры…
+    const circle = document.getElementById('progress-circle');
+    const r = circle.r.baseVal.value;
+    const c = 2 * Math.PI * r;
+    circle.style.transition = 'stroke-dashoffset 0.5s ease, stroke 0.5s ease';
+    circle.style.strokeDasharray  = `${c}`;
+    circle.style.strokeDashoffset = c - (percent/100)*c;
+    const hue = Math.round((1 - percent/100) * 120);
+    circle.style.stroke = `hsl(${hue}, 100%, 50%)`;
+    document.getElementById('progress-label').textContent = percent + '%';
+  
+    const usedGB  = (usedBytes  / (1024 ** 3)).toFixed(2);
+    const totalGB = (totalBytes / (1024 ** 3)).toFixed(2);
+    document.getElementById('used-info').textContent    = `${usedGB} GB / ${totalGB} GB`;
+    document.getElementById('end-date').textContent     =
+      endDate ? new Date(endDate).toLocaleDateString('ru-RU') : '—';
+  
+    const diff = endDate ? (new Date(endDate) - Date.now()) : 0;
+    const days = diff > 0 ? Math.floor(diff/1000/60/60/24) : 0;
+    document.getElementById('days-left').textContent = days + ' дн.';
+  
+    // Кнопка статуса:
+    const statusBtn = document.getElementById('status-btn');
+    if (days > 0) {
+      statusBtn.textContent = 'Активна';
+      statusBtn.classList.replace('from-orange-500','from-green-500');
+      statusBtn.classList.replace('to-orange-600','to-teal-500');
+    } else {
+      statusBtn.textContent = 'Просрочен';
+      statusBtn.classList.replace('from-green-500','from-orange-500');
+      statusBtn.classList.replace('to-teal-500','to-orange-600');
+    }
+  })();
+  </script>
+  
         <script>
   const btn = document.getElementById('copy-key-btn');
   const textEl = document.getElementById('copy-btn-text');

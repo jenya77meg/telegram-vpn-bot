@@ -55,7 +55,7 @@ def create_app() -> web.Application:
 
     return app
 
-@aiohttp_jinja2.template("dashboard.html")
+@aiohttp_jinja2.template("subscription/index.html")
 async def handle_instruction(request: web.Request):
     try:
         user_id = int(request.query.get("user_id", "0"))
@@ -103,6 +103,7 @@ async def handle_instruction(request: web.Request):
 
         return {
             "request":    request,
+            "user":      record,
             "user_id":    user_id,
             "plan":       plan,
             "end_date":   end_date,
