@@ -7,7 +7,6 @@ from datetime import datetime, timezone
 import os
 import json
 import base64
-
 import aiohttp_jinja2
 import jinja2
 from aiohttp import web
@@ -103,7 +102,7 @@ async def handle_instruction(request: web.Request):
 
         return {
             "request":    request,
-            "user":      record,
+            "user":      user,
             "user_id":    user_id,
             "plan":       plan,
             "end_date":   end_date,
@@ -123,6 +122,7 @@ async def handle_instruction(request: web.Request):
             content_type="text/plain"
         )
 
+
 async def handle_usage(request: web.Request):
     try:
         user_id = int(request.query.get("user_id"))
@@ -133,27 +133,61 @@ async def handle_usage(request: web.Request):
     logger.debug(f"record keys for user {user_id}: {list(record.keys())}")
 
     sub_id = record.get("sub_id") or record.get("trial_sub_id")
-    if not sub_id:
-        return web.json_response({"usedBytes": 0, "totalBytes": 0, "endDate": None})
 
+    # 1) Пользователь из панели: есть только expire, нет sub_id
+    if not sub_id and record.get("expire") is not None:
+        used = record.get("used_traffic", 0)
+        # если лимита нет, подставляем used или хотя бы 1
+        raw_limit = record.get("data_limit", 0) or used or 1
+        total = raw_limit
+        end_iso = datetime.fromtimestamp(record["expire"], timezone.utc).isoformat()
+        return web.json_response({
+            "usedBytes":  used,
+            "totalBytes": total,
+            "endDate":    end_iso
+        })
+
+    # 2) Нет ни sub_id, ни expire — возвращаем нули
+    if not sub_id:
+        return web.json_response({
+            "usedBytes":  0,
+            "totalBytes": 0,
+            "endDate":    None
+        })
+
+    # 3) Пользователь с подпиской через API Marzban
     used = 0
     total = 0
-    end_date = record.get("subscription_end") or record.get("trial_end")
+    raw_end_str = record.get("subscription_end") or record.get("trial_end")
 
     try:
-        client     = await marzban_client.get_client()
-        httpx_cli  = client.get_async_httpx_client()
-        resp       = await httpx_cli.get(f"/api/user/{sub_id}/usage")
+        client    = await marzban_client.get_client()
+        httpx_cli = client.get_async_httpx_client()
+        resp      = await httpx_cli.get(f"/api/user/{sub_id}/usage")
         resp.raise_for_status()
-        data       = resp.json()
-        usages     = data.get("usages", [])
-        used       = sum(item.get("used_traffic", 0) for item in usages)
-        total      = 100 * 1024**3
+        data      = resp.json()
+        usages    = data.get("usages", [])
+        used      = sum(item.get("used_traffic", 0) for item in usages)
+        total     = 100 * 1024**3
     except Exception as e:
         logger.error(f"Error fetching usage for {sub_id}: {e}")
-        total = 0
 
-    return web.json_response({"usedBytes": used, "totalBytes": total, "endDate": end_date})
+    # Нормализуем конец: ISO без Z, чтобы new Date(endDate) в JS работал
+    if raw_end_str:
+        try:
+            dt = datetime.fromisoformat(raw_end_str.rstrip("Z"))
+            end_iso = dt.isoformat()
+        except Exception:
+            end_iso = raw_end_str
+    else:
+        end_iso = None
+
+    return web.json_response({
+        "usedBytes":  used,
+        "totalBytes": total,
+        "endDate":    end_iso
+    })
+
 
 async def handle_full_config(request: web.Request):
     """
@@ -170,26 +204,6 @@ async def handle_full_config(request: web.Request):
     resp.raise_for_status()
     arr = resp.json()  # список V2Ray-конфигов
 
-    # 2) Собираем outbounds
-    outbounds = [{
-        "tag": "dns",
-        "protocol": "dns",
-        "settings": {
-            "servers": [
-                "https://dns.comss.one/dns-query",
-                "1.1.1.1",
-                "8.8.8.8"
-            ]
-        }
-    }]
-    # добавляем те же конфиги как proxy-outbound
-    for cfg in arr:
-        proxy_cfg = {
-            "tag": "proxy",
-            **cfg
-        }
-        outbounds.append(proxy_cfg)
-
     # 3) Формируем полный конфиг
     full_cfg = {
         "inbounds": [
@@ -201,15 +215,7 @@ async def handle_full_config(request: web.Request):
                     "followRedirect": True
                 }
             }
-        ],
-        "outbounds": outbounds,
-        "routing": {
-            "domainStrategy": "AsIs",
-            "rules": [
-                {"type": "field", "port": "53", "outboundTag": "dns"},
-                {"type": "field", "outboundTag": "proxy"}
-            ]
-        }
+        ]
     }
 
     return web.json_response(full_cfg)
