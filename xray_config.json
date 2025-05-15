@@ -1,0 +1,37 @@
+{
+    "tag": "VLESS TCP REALITY",
+    "listen": "0.0.0.0",
+    "port": 443,
+    "protocol": "vless",
+    "settings": {
+      "clients": [],
+      "decryption": "none"
+    },
+    "streamSettings": {
+      "network": "tcp",
+      "tcpSettings": {},
+      "security": "reality",
+      "realitySettings": {
+        "show": false,
+        "dest": "google.com:443",
+        "xver": 0,
+        "serverNames": [
+          "example.com",
+          ""
+        ],
+        "privateKey": "8EB39uUWz65PYny54OHP3nV7YoqvTe2uvONJ38XIGgU",
+        "SpiderX": "/example",
+        "shortIds": [
+          "c72b39a770334324"
+        ]
+      }
+    },
+    "sniffing": {
+      "enabled": true,
+      "destOverride": [
+        "http",
+        "tls",
+        "quic"
+      ]
+    }
+  }
