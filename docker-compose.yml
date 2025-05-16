@@ -39,6 +39,7 @@ services:
     networks:
       - free_vpn_bot
     volumes:
+      - ./web:/code/web
       - marz-storage:/code
       - ./volumes/marzban:/var/lib/marzban
       - ./certbot/data:/var/www/certbot
