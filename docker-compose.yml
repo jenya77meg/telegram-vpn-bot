@@ -39,12 +39,13 @@ services:
     networks:
       - free_vpn_bot
     volumes:
-      - marz-storage:/code
+      
       - ./volumes/marzban:/var/lib/marzban
+
       - ./certbot/data:/var/www/certbot
       - /etc/timezone:/etc/timezone:ro
       - ./certs:/etc/marzban/certs:ro
-      - ./web/templates:/opt/telegram-vpn-bot/web/templates:ro
+      
     logging:
       driver: "json-file"
       options:
