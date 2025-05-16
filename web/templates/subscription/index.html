@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="ru">
+ <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>VPN-Панель</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- jQuery для простого slideToggle -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <!-- Ваши кастомные стили -->
+    <style>
+      /* размер иконок */
+      .icon-white {
+        width: 30px;
+        height: 30px;
+        filter: invert(1) brightness(2);
+        margin-right: .5rem;
+      }
+      /* стрелки */
+      .arrow {
+        width: 28px;
+        transition: transform .3s ease;
+      }
+      .rotated {
+        transform: rotate(180deg);
+      }
+      /* скрываем контент, slideToggle управляет display */
+      .content {
+        display: none;
+      }
+    </style>
+  </head>
+  <body
+    data-user-id="{{ user.username }}"
+    class="bg-[url('/assets/7.png')] bg-[length:150%] bg-center bg-fixed
+           pt-6 min-h-screen font-sans
+           md:bg-[url('/assets/7_full.jpg')] text-white"
+  >
+    <div class="container max-w-lg mx-auto px-4">
+<!-- HEADER -->
+<section
+  class="bg-gradient-to-r bg-opacity-90 from-gray-900 to-gray-800
+         flex flex-col items-center max-w-2xl mx-auto p-6 rounded-2xl
+         space-y-6 md:flex-row md:items-start md:space-x-8 md:space-y-0"
+>
+  <!-- Левая часть -->
+  <div class="flex flex-col items-center space-y-4 flex-shrink-0">
+    <!-- Контейнер для круга + процент -->
+    <div class="relative">
+      <svg class="w-32 h-32 -rotate-90" viewBox="0 0 100 100">
+        <circle
+          class="stroke-current text-white/30"
+          stroke-width="8" fill="transparent"
+          r="44" cx="50" cy="50"
+        />
+        <circle
+          id="progress-circle"
+          class="stroke-current text-green-400 transition-stroke duration-500"
+          stroke-width="8" fill="transparent"
+          r="44" cx="50" cy="50"
+          style="stroke-dasharray: 276.46; stroke-dashoffset: 276.46;"
+        />
+      </svg>
+      <div
+        id="progress-label"
+        class="absolute inset-0 flex items-center justify-center
+               text-2xl font-bold text-white pointer-events-none"
+      >—%</div>
+    </div>
+
+    <!-- Использовано данных (теперь показывает used/limit) -->
+    <div class="text-sm font-medium text-white text-center">
+      <strong id="used-info">
+        {% if user.data_limit %}
+          {{ user.used_traffic | bytesformat }} / {{ user.data_limit | bytesformat }}
+        {% else %}
+          {{ user.used_traffic | bytesformat }}
+        {% endif %}
+      </strong>
+    </div>
+
+    <!-- ID пользователя -->
+    <div class="font-medium text-white">
+    ID: <span id="user-id">{{ user.username or user_id }}</span>
+    </div>
+
+
+    <!-- Статус -->
+    <button
+      id="status-btn"
+      class="px-5 py-2 bg-gradient-to-r from-orange-500 to-orange-600
+             text-white rounded-full shadow-sm
+             focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-blue-300
+             transition transform active:scale-95"
+    >
+      {% if user.status.value == 'active' %}
+        Активна
+      {% else %}
+        Просрочен
+      {% endif %}
+    </button>
+  </div>
+
+  <!-- Вертикальный разделитель (md+) -->
+  <div class="hidden md:block h-32 border-l border-gray-700"></div>
+
+  <!-- Правая часть: дата окончания и дни -->
+  <div class="flex flex-col space-y-2 text-sm text-white">
+    <div>
+      <span class="font-medium">Дата окончания подписки:</span>
+      <strong id="end-date">
+        {% if not user.expire %}
+          ∞
+        {% else %}
+          {{ user.expire | datetime }}
+        {% endif %}
+      </strong>
+    </div>
+    <div>
+      <span class="font-medium">Осталось дней:</span>
+      <strong id="days-left">
+        {% if user.expire %}
+          {% set now_ts = now().timestamp() %}
+          {% set days = ((user.expire - now_ts) // (24*3600)) %}
+          {{ days }} дн.
+        {% else %}
+          —
+        {% endif %}
+      </strong>
+    </div>
+  </div>
+</section>
+
+
+      <!-- Блок с ключом VPN -->
+
+      
+      <!-- VPN Key Block -->
+        <div class="backdrop-blur-xl bg-black/30 my-9 p-0 rounded-xl space-y-8">
+          <p class="-mb-4 leading-7 mt-2 mx-4 pt-4 text-center text-gray-200 text-xl">
+            По этой ссылке вы подключитесь к VPN. Скопируйте её и вставьте в выбранное вами приложение.
+          </p>
+          <div class="w-full relative">
+            <div class="w-full bg-gray-800 rounded-lg overflow-hidden flex select-none">
+              {% if user.status.value == 'active' and user.links %}
+                  {% for link in user.links %}
+                  <div id="key-preview"
+                       class="bg-transparent flex-1 overflow-ellipsis overflow-hidden
+                              px-4 py-2 text-gray-200 text-lg whitespace-nowrap select-none">
+                      {{ link }}
+                  </div>
+                  <button id="copy-key-btn"
+                          data-key="{{ link }}"
+                          class="bg-blue-600 bg-opacity-90 flex flex-shrink-0 font-semibold
+                                 hover:bg-blue-700 items-center p-2 rounded-lg text-white">
+                      <img src="/assets/icons/import.svg"
+                           alt="Копировать"
+                           class="w-5 h-5 mr-2 filter invert select-none"/>
+                      <span id="copy-btn-text" class="text-sm">Копировать</span>
+                  </button>
+                  {% endfor %}
+              {% else %}
+                  <div id="key-preview"
+                       class="bg-transparent flex-1 overflow-ellipsis overflow-hidden
+                              px-4 py-2 text-gray-200 text-lg whitespace-nowrap select-none">
+                      {{ user_key or "Ключ недоступен" }}
+                  </div>
+                  <button id="copy-key-btn"
+                          data-key="{{ user_key }}"
+                          class="bg-blue-600 bg-opacity-90 flex flex-shrink-0 font-semibold
+                                 hover:bg-blue-700 items-center p-2 rounded-lg text-white">
+                      <img src="/assets/icons/import.svg"
+                           alt="Копировать"
+                           class="w-5 h-5 mr-2 filter invert select-none"/>
+                      <span id="copy-btn-text" class="text-sm">Копировать</span>
+                  </button>
+                  
+              {% endif %}
+            </div>
+          </div>
+        </div>
+
+
+
+
+      <script>
+        function copyLink(link, button) {
+            const tempInput = document.createElement('input');
+            tempInput.setAttribute('value', link);
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+
+            button.textContent = 'Copied!';
+            setTimeout(function () {
+                button.textContent = 'Copy';
+            }, 1500);
+        }
+
+        const qrButtons = document.querySelectorAll('.qr-button');
+        const qrPopup = document.getElementById('qrPopup');
+
+        qrButtons.forEach((qrButton) => {
+            qrButton.addEventListener('click', () => {
+                const link = qrButton.dataset.link;
+                while (qrCodeContainer.firstChild) {
+                    qrCodeContainer.removeChild(qrCodeContainer.firstChild);
+                }
+                const qrCode = new QRCode(qrCodeContainer, {
+                    text: link,
+                    width: 256,
+                    height: 256,
+                    correctLevel: QRCode.CorrectLevel.L
+                });
+                qrPopup.style.display = 'block';
+            });
+        });
+        function closeQrPopup() {
+            document.getElementById('qrPopup').style.display = 'none';
+        }
+    </script>
+
+
+
+
+
+
+      <!-- CONTENT: инструкции по подключению -->
+      <div class="backdrop-blur-xl bg-black/30 my-7 p-5 rounded-xl space-y-8">
+        <div class="text-center mb-4">
+          <h1 class="text-4xl font-bold">Как подключиться?</h1>
+          <p class="mt-2 text-gray-200 text-lg">Выберите ОС и программу ниже</p>
+        </div>
+
+        <!-- Android -->
+        <button
+          class="bg-gradient-to-r flex from-green-500 items-center justify-between
+                 mb-2 px-6 py-4 rounded-xl to-teal-500 toggle-btn w-full"
+          aria-expanded="false"
+        >
+          <span class="flex items-center text-xl font-semibold">
+            <img src="/assets/icons/android.svg" class="icon-white" alt="" aria-hidden="true"/>
+            Android
+          </span>
+          <img src="/assets/icons/angle-down.svg" class="arrow" alt="" aria-hidden="true"/>
+        </button>
+        <div class="bg-gradient-to-r content mb-8 p-2 rounded-xl space-y-5">
+          <div class="px-4 mb-2">
+            <div class="-ml-4 -mt-5 cursor-default opacity-90 text-xl">Выберите программу</div>
+          </div>
+
+          <!-- Amnezia VPN -->
+          <button
+            id="android-amnezia-toggle"
+            class="toggle-btn flex items-center justify-between w-full py-3 px-4
+                   bg-gradient-to-r from-teal-500 to-teal-600 rounded-lg mb-1
+                   focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-blue-300
+                   transition transform active:scale-95"
+            aria-expanded="false"
+            aria-controls="android-amnezia"
+          >
+            <span class="flex items-center">
+              <img
+                src="/assets/icons/logo-amnezia.svg"
+                alt="Amnezia Logo"
+                class="w-7 h-7 mr-2 filter invert"
+              />
+              <span class="text-lg font-medium">Amnezia VPN</span>
+            </span>
+            <img
+              id="android-amnezia-arrow"
+              src="/assets/icons/angle-down.svg"
+              class="arrow"
+              alt=""
+              aria-hidden="true"
+            />
+          </button>
+          <div
+            id="android-amnezia"
+            class="content bg-gradient-to-r from-teal-500 to-teal-600 rounded-lg
+                   p-4 mb-4 space-y-4"
+            role="region"
+            aria-labelledby="android-amnezia-toggle"
+          >
+            <h3 class="text-xl font-semibold flex items-center">
+              <span class="inline-flex items-center justify-center w-6 h-6 bg-teal-600
+                           text-white rounded-full mr-2">1</span>
+              Скачать и установить
+            </h3>
+            <p>Нажмите на кнопку ниже, чтобы загрузить клиент:</p>
+            <a
+              href="#"
+              class="download-btn active:scale-95 bg-gray-800 block focus:outline-none
+                     focus:ring-2 focus:ring-blue-300 focus:ring-offset-1 font-medium
+                     hover:bg-gray-700 py-2 rounded-xl shadow-inner text-center text-white
+                     transform transition w-full"
+              aria-label="Скачать APK Amnezia VPN"
+              data-market="https://play.google.com/store/apps/details?id=org.amnezia.vpn"
+              data-apk="https://github.com/amnezia-vpn/amnezia-client/releases/download/4.8.5.0/AmneziaVPN_4.8.5.0_android8+_arm64-v8a.apk"
+            >Скачать</a>
+
+            <h3 class="text-xl font-semibold flex items-center mt-4">
+                <span class="inline-flex items-center justify-center w-6 h-6 bg-teal-600 text-white rounded-full mr-2">2</span>
+                Добавить конфигурацию
+              </h3>
+              <p>Нажмите «Добавить конфигурацию» для импорта конфига в приложение.</p>
+              <button id="share-key-btn"
+              class="block w-full py-3 rounded-xl bg-green-500 hover:bg-green-600 text-white text-center font-medium">
+        Авто-импорт VLESS-URI в Amnezia VPN
+      </button>
+      
+            <h3 class="text-xl font-semibold flex items-center mt-4"><span class="inline-flex items-center justify-center w-6 h-6 bg-cyan-600 text-white rounded-full mr-2">3</span> Подключиться</h3>
+            <p>Выберите сервер и нажмите «Подключить».</p>
+          </div>
+
+<!-- v2rayTun -->
+<button
+  id="android-v2ray-toggle"
+  class="toggle-btn flex items-center justify-between w-full py-3 px-4
+         bg-gradient-to-r from-gray-500 to-indigo-600 rounded-lg mb-1
+         focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-blue-300
+         transition transform active:scale-95"
+  aria-expanded="false"
+  aria-controls="android-v2ray"
+>
+  <span class="flex items-center">
+    <img src="/assets/icons/v2rayng.svg" alt="v2rayTun Logo" class="w-7 h-7 mr-2 filter invert"/>
+    <span class="text-lg font-medium">v2rayTun</span>
+  </span>
+  <img id="android-v2ray-arrow" src="/assets/icons/angle-down.svg" class="arrow" alt="" aria-hidden="true"/>
+</button>
+
+<div
+  id="android-v2ray"
+  class="content bg-gradient-to-r from-gray-500 to-indigo-500 rounded-lg
+         p-4 mb-4 space-y-4"
+  role="region"
+  aria-labelledby="android-v2ray-toggle"
+>
+  <!-- Шаг 1: Скачать и установить -->
+  <h3 class="text-xl font-semibold flex items-center">
+    <span class="inline-flex items-center justify-center w-6 h-6 bg-cyan-600
+                 text-white rounded-full mr-2">1</span>
+    Скачать и установить
+  </h3>
+  <p>Нажмите кнопку ниже, чтобы загрузить и установить клиент.</p>
+  <a
+    href="#"
+    class="download-btn active:scale-95 bg-gray-800 block focus:outline-none
+           focus:ring-2 focus:ring-blue-300 focus:ring-offset-1 font-medium
+           hover:bg-gray-700 py-2 rounded-xl shadow-inner text-center text-white
+           transform transition w-full"
+    aria-label="Скачать v2rayTun"
+    data-market="https://play.google.com/store/apps/details?id=com.v2raytun.android"
+    data-apk="https://github.com/DigneZzZ/v2raytun/releases/download/3.9.40/v2RayTun_arm64-v8a.apk"
+  >Скачать</a>
+
+  <!-- Шаг 2: Импорт подписки -->
+  {% if link %}
+  <h3 class="text-xl font-semibold mt-4">2. Импорт подписки без DNS</h3>
+  <p>Нажмите, чтобы импортировать оригинальную подписку:</p>
+  <a
+    href="v2raytun://import/{{ link }}"
+    class="block w-full py-3 rounded-xl bg-teal-600 text-center text-white font-medium mb-2"
+  >
+    Импорт без DNS
+  </a>
+{% endif %}
+
+{% if link_dns %}
+  <h3 class="text-xl font-semibold mt-4">3. Импорт подписки с Private DNS</h3>
+  <p>Нажмите, чтобы импортировать подписку и настроить DoH — dns.comss.one:</p>
+  <a
+    href="v2raytun://import/{{ link_dns }}"
+    class="block w-full py-3 rounded-xl bg-indigo-600 text-center text-white font-medium"
+  >
+    Импорт с DNS
+  </a>
+  <script>
+    document.getElementById('import-v2raytun-btn').addEventListener('click', function(e){
+      // сначала пытаемся открыть приложение
+      setTimeout(() => {
+        // если приложение не сработало — кидаем в Google Play
+        window.location.href = 'https://play.google.com/store/apps/details?id=com.v2raytun.android';
+      }, 800);
+    });
+  </script>
+{% endif %}
+
+{% if route_b64 %}
+<h3 class="text-xl font-semibold mt-4">4. Импорт полного конфига (inbound 53 + DNS)</h3>
+<p>Нажмите, чтобы единовременно настроить перехват DNS и прокси:</p>
+<a
+  href="v2raytun://import_route/{{ route_b64 }}"
+  class="block w-full py-3 mt-2 rounded-xl bg-purple-600 text-center text-white font-medium"
+>
+  Импорт полного конфига
+</a>
+{% endif %}
+
+  <!-- Шаг 3: Подключиться -->
+  <h3 class="text-xl font-semibold flex items-center mt-4">
+    <span class="inline-flex items-center justify-center w-6 h-6 bg-cyan-600
+                 text-white rounded-full mr-2">3</span>
+    Подключиться
+  </h3>
+  <p>Выберите сервер и нажмите «Подключить».</p>
+</div>
+
+
+          <!-- Husi -->
+          <button
+            id="android-husi-toggle"
+            class="toggle-btn flex items-center justify-between w-full py-3 px-4
+                   bg-gradient-to-r from-cyan-600 to-blue-600 rounded-lg mb-1
+                   focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-blue-300
+                   transition transform active:scale-95"
+            aria-expanded="false"
+            aria-controls="android-husi"
+          >
+            <span class="flex items-center text-lg font-medium">
+              <img
+                src="/assets/icons/vpn.svg"
+                alt="Husi Logo"
+                class="w-7 h-7 mr-2 filter invert"
+              />
+              Husi
+            </span>
+            <img
+              id="android-husi-arrow"
+              src="/assets/icons/angle-down.svg"
+              class="arrow"
+              alt=""
+              aria-hidden="true"
+            />
+          </button>
+          <div
+            id="android-husi"
+            class="content bg-gradient-to-r from-cyan-600 to-blue-600 rounded-lg
+                   p-4 mb-4 space-y-4"
+            role="region"
+            aria-labelledby="android-husi-toggle"
+          >
+            <h3 class="text-xl font-semibold flex items-center">
+              <span class="inline-flex items-center justify-center w-6 h-6 bg-blue-600
+                           text-white rounded-full mr-2">1</span>
+              Скачать и установить
+            </h3>
+            <p>Нажмите на кнопку ниже, чтобы загрузить APK и установить клиент.</p>
+            <a
+              href="#"
+              class="download-btn active:scale-95 bg-gray-800 block focus:outline-none
+                     focus:ring-2 focus:ring-blue-300 focus:ring-offset-1 font-medium
+                     hover:bg-gray-700 py-2 rounded-xl shadow-inner text-center text-white
+                     transform transition w-full"
+              aria-label="Скачать Husi"
+              data-apk="https://github.com/xchacha20-poly1305/husi/releases/download/v0.10.22/husi-0.10.22-arm64-v8a.apk"
+            >Скачать</a>
+
+            <h3 class="text-xl font-semibold flex items-center mt-4">
+              <span class="inline-flex items-center justify-center w-6 h-6 bg-blue-600
+                           text-white rounded-full mr-2">2</span>
+              Добавить конфигурацию
+            </h3>
+            <p>Нажмите «Добавить конфигурацию» для импорта конфига.</p>
+            <a
+              href="#"
+              class="active:scale-95 bg-gray-800 block focus:outline-none focus:ring-2
+                     focus:ring-blue-300 focus:ring-offset-1 font-medium hover:bg-gray-700
+                     py-2 rounded-xl shadow-inner text-center text-white transform transition w-full"
+              aria-label="Добавить конфигурацию Husi"
+            >Добавить конфигурацию</a>
+
+            <h3 class="text-xl font-semibold flex items-center mt-4">
+              <span class="inline-flex items-center justify-center w-6 h-6 bg-blue-600
+                           text-white rounded-full mr-2">3</span>
+              Подключиться
+            </h3>
+            <p>Выберите сервер и нажмите «Подключить».</p>
+          </div>
+                </div>
+
+                
+                <!-- ===== iOS ===== -->
+                <button class="bg-gradient-to-r flex from-blue-500 items-center justify-between mb-2 px-6
+ py-4 rounded-xl to-indigo-500 toggle-btn w-full"><span class="flex items-center text-xl font-semibold"> <img src="/assets/icons/apple.svg" class="icon-white" alt="iOS"/>
+    iOS </span>
+                    <img src="/assets/icons/angle-down.svg" class="arrow" alt="toggle"/>
+                </button>
+                <div class="bg-gradient-to-r content mb-8 p-2 rounded-xl space-y-5">
+                    <div class="px-4 mb-2">
+                        <div class="-ml-4 -mt-4 cursor-default opacity-90 text-xl">Выберите программу</div>
+                    </div>
+<!-- 1) Streisand -->
+<button
+  id="ios-streisand-toggle"
+  class="toggle-btn flex items-center justify-between w-full py-3 px-4
+         bg-gradient-to-r from-blue-400 to-blue-600 rounded-lg mb-1
+         focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-blue-300
+         transition transform active:scale-95"
+  aria-expanded="false"
+  aria-controls="ios-streisand"
+>
+  <span class="flex items-center">
+    <img
+      src="/assets/icons/apple.svg"
+      alt="Streisand Logo"
+      class="w-7 h-7 mr-2 filter invert"
+    />
+    <span class="text-lg font-medium">Streisand</span>
+  </span>
+  <img
+    id="ios-streisand-arrow"
+    src="/assets/icons/angle-down.svg"
+    class="arrow"
+    alt=""
+    aria-hidden="true"
+  />
+</button>
+
+<div
+  id="ios-streisand"
+  class="content bg-gradient-to-r from-blue-400 to-blue-600 rounded-lg p-4 mb-4 space-y-4"
+  role="region"
+  aria-labelledby="ios-streisand-toggle"
+>
+  <h3 class="text-xl font-semibold flex items-center">
+    <span
+      class="inline-flex items-center justify-center w-6 h-6 bg-blue-600 text-white rounded-full mr-2"
+    >1</span>
+    Скачать и установить
+  </h3>
+  <p>Нажмите на кнопку ниже, чтобы перейти в App Store или, если он недоступен, скачать напрямую APK:</p>
+
+  <!-- Умная кнопка для iOS -->
+  <a
+    href="#"
+    class="download-btn
+           active:scale-95
+           bg-gray-800 block
+           focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-offset-1
+           font-medium hover:bg-gray-700
+           py-2 rounded-xl shadow-inner
+           text-center text-white transform transition w-full"
+    aria-label="Открыть Streisand в App Store"
+    data-market="https://apps.apple.com/ru/app/streisand/id6450534064?platform=iphone"
+    data-apk="https://github.com/amnezia-vpn/amnezia-client/releases/download/4.8.5.0/AmneziaVPN_4.8.5.0_android8+_arm64-v8a.apk"
+  >
+    Скачать
+  </a>
+
+  <h3 class="text-xl font-semibold flex items-center mt-4">
+    <span
+      class="inline-flex items-center justify-center w-6 h-6 bg-blue-600 text-white rounded-full mr-2"
+    >2</span>
+    Добавить конфигурацию
+  </h3>
+  <p>Импортируйте файл конфигурации через меню приложения.</p>
+  <a
+    href="#"
+    class="block w-full py-2 rounded-xl bg-gray-800 hover:bg-gray-700
+           text-center text-white font-medium shadow-inner
+           focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-blue-300
+           transition transform active:scale-95"
+    aria-label="Добавить конфигурацию Streisand"
+  >
+    Добавить конфигурацию
+  </a>
+
+  <h3 class="text-xl font-semibold flex items-center mt-4">
+    <span
+      class="inline-flex items-center justify-center w-6 h-6 bg-blue-600 text-white rounded-full mr-2"
+    >3</span>
+    Подключиться
+  </h3>
+  <p>Выберите сервер и нажмите «Подключить».</p>
+</div>
+
+               
+<!-- 3) v2raytun (iOS) -->
+<button
+  id="ios-v2raytun-toggle"
+  class="toggle-btn flex items-center justify-between w-full py-3 px-4
+         bg-gradient-to-r from-purple-500 to-indigo-700 rounded-lg mb-1
+         focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-blue-300
+         transition transform active:scale-95"
+  aria-expanded="false"
+  aria-controls="ios-v2raytun"
+>
+  <span class="flex items-center">
+    <img
+      src="/assets/icons/v2tun.svg"
+      alt="v2raytun Logo"
+      class="w-7 h-7 mr-2 filter invert"
+    />
+    <span class="text-lg font-medium">V2rayTun</span>
+  </span>
+  <img
+    id="ios-v2raytun-arrow"
+    src="/assets/icons/angle-down.svg"
+    class="arrow"
+    alt=""
+    aria-hidden="true"
+  />
+</button>
+
+<div
+  id="ios-v2raytun"
+  class="content bg-gradient-to-r from-purple-500 to-indigo-700 rounded-lg p-4 mb-4 space-y-4"
+  role="region"
+  aria-labelledby="ios-v2raytun-toggle"
+>
+  <h3 class="text-xl font-semibold flex items-center">
+    <span class="inline-flex items-center justify-center w-6 h-6 bg-pink-500 text-white rounded-full mr-2">1</span>
+    Скачать и установить
+  </h3>
+  <p>Нажмите кнопку ниже, чтобы перейти в App&nbsp;Store:</p>
+  <!-- «Умная» кнопка -->
+  <a
+  href="#"
+  class="download-btn active:scale-95 bg-gray-800 block focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-offset-1 font-medium hover:bg-gray-700 py-2 rounded-xl shadow-inner text-center text-white transform transition w-full"
+  aria-label="Скачать v2raytun"
+  data-market="https://apps.apple.com/ru/app/v2raytun/id6476628951?platform=iphone"
+>
+  Скачать
+</a>
+
+
+  <h3 class="text-xl font-semibold flex items-center mt-4">
+    <span class="inline-flex items-center justify-center w-6 h-6 bg-pink-500 text-white rounded-full mr-2">2</span>
+    Добавить конфигурацию
+  </h3>
+  <p>Импортируйте файл конфигурации через меню приложения.</p>
+  <a
+    href="#"
+    class="block w-full py-3 bg-gray-800 text-white text-center rounded-lg font-medium shadow-inner hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-blue-300 transition transform active:scale-95"
+    aria-label="Добавить конфигурацию v2raytun"
+  >
+    Добавить конфигурацию
+  </a>
+
+  <h3 class="text-xl font-semibold flex items-center mt-4">
+    <span class="inline-flex items-center justify-center w-6 h-6 bg-pink-500 text-white rounded-full mr-2">3</span>
+    Подключиться
+  </h3>
+  <p>Выберите сервер и нажмите «Подключить».</p>
+</div>
+
+                </div>
+            </div>
+            <!-- скрипт анимации -->
+            <!-- Мои конфиги -->
+            <!-- Поддержка Telegram (полупрозрачный градиент) -->
+            <div class="bg-gray-800 bg-opacity-70 to-indigo-500/60 rounded-xl shadow-lg hover:shadow-xl transition-shadow overflow-hidden">
+                <div class="p-6 space-y-4 text-center text-white">
+                    <h2 class="text-2xl font-bold">Поддержка Telegram</h2>
+                    <p>Если возникнут проблемы, обратитесь в службу поддержки в Telegram</p>
+                    <a href="https://t.me/inoskillol" class="inline-block px-4 py-2 bg-white bg-opacity-80 text-blue-600 font-semibold rounded-lg hover:bg-opacity-100 transition"> <i class="fab fa-telegram-plane mr-2"></i>Перейти в чат </a>
+                </div>
+            </div>
+        </div>
+        <!-- Внизу страницы, перед </body> -->
+
+  
+          
+        <script>
+            document.getElementById('share-key-btn').addEventListener('click', async () => {
+              const vlessUri = '{{ user_key }}';  // ваш динамический ключ из шаблона
+              
+              // 1) Пробуем Web Share API для текста
+              if (navigator.share) {
+                try {
+                  await navigator.share({
+                    title: 'Импорт конфигурации в Amnezia VPN',
+                    text: vlessUri
+                  });
+                  return; // всё хорошо, дальше Amnezia сама примет Intent
+                } catch (err) {
+                  console.warn('Share API не сработал:', err);
+                }
+              }
+            
+              // 2) Если шаринг недоступен, копируем в буфер и даём инструкцию
+              try {
+                await navigator.clipboard.writeText(vlessUri);
+                alert(
+                  'VLESS-URI скопирован в буфер.\n\n' +
+                  'Откройте приложение Amnezia VPN, нажмите «Let’s get started», выберите «Text key» и вставьте (Ctrl+V) скопированную строку.'
+                );
+              } catch (err) {
+                console.error('Не удалось скопировать в буфер:', err);
+                prompt(
+                  'Скопируйте этот VLESS-URI вручную и вставьте в Amnezia VPN:',
+                  vlessUri
+                );
+              }
+            });
+            </script>
+        <script>
+            // Универсальный обработчик для всех .download-btn
+            document.querySelectorAll('.download-btn').forEach(btn => {
+              btn.addEventListener('click', e => {
+                e.preventDefault();
+          
+                const ua        = navigator.userAgent || '';
+                const marketUrl = btn.dataset.market; // itms-apps://… или https://…
+                const apkUrl    = btn.dataset.apk;    // https://…
+          
+                // Если на iOS/Android есть marketUrl — пойдём туда
+                if ((/iPhone|iPad|iPod|Android/i.test(ua)) && marketUrl) {
+                  window.location.href = marketUrl;
+                }
+                // Иначе, если есть apkUrl — скачиваем APK
+                else if (apkUrl) {
+                  window.location.href = apkUrl;
+                }
+                else {
+                  console.warn('Нет ссылки для скачивания:', btn);
+                }
+              });
+            });
+          </script>
+            
+          
+        <script>
+            $(function(){
+              $('.toggle-btn').on('click', function(){
+                const $btn   = $(this);
+                const $cont  = $btn.next('.content');
+                const $arrow = $btn.find('.arrow');
+                $cont.slideToggle(300);
+                $arrow.toggleClass('rotated');
+              });
+            });
+          </script>
+<script>
+  (async () => {
+    const rawUserId = document.body.dataset.userId;
+    // Показываем ровно то, что вставил шаблон:
+    document.getElementById('user-id').textContent = rawUserId;
+  
+    // Пытаемся получить число для API:
+    const userId = Number(rawUserId);
+    if (!Number.isInteger(userId) || userId <= 0) {
+      // не числовой ID — выходим, не дергаем API
+      return;
+    }
+  
+    let data;
+    try {
+      const res = await fetch(`/api/vpn/usage?user_id=${userId}`);
+      data = await res.json();
+    } catch {
+      return;
+    }
+  
+    const { usedBytes, totalBytes, endDate } = data;
+    const percent = totalBytes ? Math.round((usedBytes/totalBytes)*100) : 0;
+  
+    // Обновляем круг и цифры…
+    const circle = document.getElementById('progress-circle');
+    const r = circle.r.baseVal.value;
+    const c = 2 * Math.PI * r;
+    circle.style.transition = 'stroke-dashoffset 0.5s ease, stroke 0.5s ease';
+    circle.style.strokeDasharray  = `${c}`;
+    circle.style.strokeDashoffset = c - (percent/100)*c;
+    const hue = Math.round((1 - percent/100) * 120);
+    circle.style.stroke = `hsl(${hue}, 100%, 50%)`;
+    document.getElementById('progress-label').textContent = percent + '%';
+  
+    const usedGB  = (usedBytes  / (1024 ** 3)).toFixed(2);
+    const totalGB = (totalBytes / (1024 ** 3)).toFixed(2);
+    document.getElementById('used-info').textContent    = `${usedGB} GB / ${totalGB} GB`;
+    document.getElementById('end-date').textContent     =
+      endDate ? new Date(endDate).toLocaleDateString('ru-RU') : '—';
+  
+    const diff = endDate ? (new Date(endDate) - Date.now()) : 0;
+    const days = diff > 0 ? Math.floor(diff/1000/60/60/24) : 0;
+    document.getElementById('days-left').textContent = days + ' дн.';
+  
+    // Кнопка статуса:
+    const statusBtn = document.getElementById('status-btn');
+    if (days > 0) {
+      statusBtn.textContent = 'Активна';
+      statusBtn.classList.replace('from-orange-500','from-green-500');
+      statusBtn.classList.replace('to-orange-600','to-teal-500');
+    } else {
+      statusBtn.textContent = 'Просрочен';
+      statusBtn.classList.replace('from-green-500','from-orange-500');
+      statusBtn.classList.replace('to-teal-500','to-orange-600');
+    }
+  })();
+  </script>
+  
+        <script>
+  const btn = document.getElementById('copy-key-btn');
+  const textEl = document.getElementById('copy-btn-text');
+
+  btn.addEventListener('click', async () => {
+    const key = btn.dataset.key;
+    if (!key) {
+      textEl.textContent = 'Нет ключа';
+      setTimeout(() => textEl.textContent = 'Копировать', 2000);
+      return;
+    }
+    try {
+      await navigator.clipboard.writeText(key);
+      textEl.textContent = 'Скопировано';
+      setTimeout(() => textEl.textContent = 'Копировать', 2000);
+    } catch (e) {
+      console.error('Ошибка копирования:', e);
+      textEl.textContent = 'Ошибка';
+      setTimeout(() => textEl.textContent = 'Копировать', 2000);
+    }
+  });
+</script>
+        <script>
+  // обновляем aria-expanded при клике
+  $('#android-amnezia-toggle').on('click', function(){
+    const expanded = $(this).attr('aria-expanded') === 'true';
+    $(this).attr('aria-expanded', String(!expanded));
+  });
+</script>
+
+    </body>
+</html>

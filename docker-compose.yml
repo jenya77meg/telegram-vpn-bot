@@ -22,7 +22,7 @@ services:
       - ./certbot/data:/var/www/certbot
 
   marzban:
-    image: gozargah/marzban:v0.8.4
+    image: gozargah/marzban:latest
     container_name: free_vpn_bot_marzban
     restart: always
     env_file: .env.marzban
@@ -44,6 +44,7 @@ services:
       - ./certbot/data:/var/www/certbot
       - /etc/timezone:/etc/timezone:ro
       - ./certs:/etc/marzban/certs:ro
+      - ./web/templates:/opt/telegram-vpn-bot/web/templates:ro
     logging:
       driver: "json-file"
       options:
