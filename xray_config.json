@@ -1,37 +1,64 @@
 {
-    "tag": "VLESS TCP REALITY",
-    "listen": "0.0.0.0",
-    "port": 443,
-    "protocol": "vless",
-    "settings": {
-      "clients": [],
-      "decryption": "none"
-    },
-    "streamSettings": {
-      "network": "tcp",
-      "tcpSettings": {},
-      "security": "reality",
-      "realitySettings": {
-        "show": false,
-        "dest": "google.com:443",
-        "xver": 0,
-        "serverNames": [
-          "example.com",
-          ""
+  "log": {
+    "loglevel": "warning"
+  },
+  "routing": {
+    "rules": [
+      {
+        "ip": [
+          "geoip:private"
         ],
-        "privateKey": "8EB39uUWz65PYny54OHP3nV7YoqvTe2uvONJ38XIGgU",
-        "SpiderX": "/example",
-        "shortIds": [
-          "c72b39a770334324"
+        "outboundTag": "BLOCK",
+        "type": "field"
+      }
+    ]
+  },
+  "inbounds": [
+    {
+      "tag": "VLESS TCP REALITY",
+      "listen": "0.0.0.0",
+      "port": 1081,
+      "protocol": "vless",
+      "settings": {
+        "clients": [],
+        "decryption": "none"
+      },
+      "streamSettings": {
+        "network": "tcp",
+        "tcpSettings": {},
+        "security": "reality",
+        "realitySettings": {
+          "show": false,
+          "dest": "host.almet-sam.ru:443",
+          "xver": 0,
+          "serverNames": [
+            "host.almet-sam.ru"
+          ],
+          "privateKey": "GAhLNcWIuKMStmA9BR1scq1m61Dvm6dO_0Q2EVYoNlg",
+          "SpiderX": "/example",
+          "shortIds": [
+            "b7cd9caf15c43113"
+          ]
+        }
+      },
+      "sniffing": {
+        "enabled": true,
+        "destOverride": [
+          "http",
+          "tls",
+          "quic"
         ]
       }
-    },
-    "sniffing": {
-      "enabled": true,
-      "destOverride": [
-        "http",
-        "tls",
-        "quic"
-      ]
     }
-  }
+  ],
+  "outbounds": [
+    {
+      "protocol": "freedom",
+      "tag": "DIRECT"
+    },
+    {
+      "protocol": "blackhole",
+      "tag": "BLOCK"
+    }
+  ]
+}

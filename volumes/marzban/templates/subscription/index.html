@@ -11,7 +11,7 @@
             background-size: cover;
         }
     </style>
-    <style>
+     <!--<style>
         /*
 ! tailwindcss v3.3.3 | MIT License | https://tailwindcss.com
 */
@@ -3175,19 +3175,41 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
             }
         }
     </style>
+      <style>
+        /* 5% белого фона */
+        .bg-white\/5 {
+          --tw-bg-opacity: 0.05;
+          background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+        }
+        /* 20% белой рамки */
+        .border-white\/20 {
+          --tw-border-opacity: 0.2;
+          border-color: rgb(255 255 255 / var(--tw-border-opacity));
+        }
+        /* чтобы полупрозрачный фон обрезался по padding-box */
+        .bg-clip-padding {
+          background-clip: padding-box;
+        }
+        /* создаёт изолированный контекст для фильтра */
+        .isolate {
+          isolation: isolate;
+        }
+      </style>-->
 
     <!-- <link rel="stylesheet" href="../output.css"> -->
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.7.3/dist/full.css" rel="stylesheet" type="text/css" />
-    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/shabnam-font@v5.0.1/dist/font-face.css" rel="stylesheet"
-        type="text/css" />
-
-    <script src="https://cdn.jsdelivr.net/npm/alpinejs-i18n@2.4.0/dist/cdn.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/flowbite@2.3.0/dist/flowbite.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.8/dist/cdn.min.js" defer></script>
-    <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
-    <script defer src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
-
-    <script defer>
+        <link rel="stylesheet" href="/statics/css/output.css">
+    <!--    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.7.3/dist/full.css" rel="stylesheet" type="text/css"/>-->
+        <link href="https://cdn.jsdelivr.net/gh/rastikerdar/shabnam-font@v5.0.1/dist/font-face.css" rel="stylesheet" type="text/css"/>
+        <script src="https://cdn.jsdelivr.net/npm/alpinejs-i18n@2.5.3/dist/cdn.min.js"></script>         
+        <!-- v2.5.3 для Alpine 3 :contentReference[oaicite:0]{index=0} -->
+        <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>         
+        <!-- v3.1.2 :contentReference[oaicite:1]{index=1} -->
+        <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.9/dist/cdn.min.js" defer></script>         
+        <!-- v3.14.9 :contentReference[oaicite:2]{index=2} -->
+        <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
+        <script defer src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>         
+        <!-- v1.0.0 :contentReference[oaicite:3]{index=3} -->
+        <script defer>
         const sub = "{{ user.subscription_url }}"
         let fullUrl = `${window.location.origin}{{ user.subscription_url }}`;
         if (sub.startsWith("http")) {
@@ -3906,7 +3928,7 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
                 myiOS: 'Моя версия IOS: ',
                 v2rayNGs3: "Обновите подписку",
                 v2rayNGs3Info: "После второго шага необходимо один раз обновить подписку. Ниже приведены два изображения, которые помогут вам в этом.",
-                howToConnect: "Как подключиться?",
+                howToConnect: "Как подключиться?1",
                 connectInfo: "Воспользоваться подпиской можно через следующее меню для нужной операционной системы",
                 macInfo: "Примечание: подключение на Mac OS аналогично IOS",
                 generalAccess: "Общий доступ",
@@ -6349,7 +6371,6 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
                height:50px;" id="countries"
                             class="border text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full px-2.5 py-3.5 bg-gray-100 border-gray-200 placeholder-gray-800 text-black dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
                             <option value="ru">Русский</option>
-                            
                             <option value="en">English</option>
                             
                         </select>

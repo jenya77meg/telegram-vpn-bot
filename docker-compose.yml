@@ -20,6 +20,7 @@ services:
       - ./certs/fullchain.pem:/etc/nginx/certs/fullchain.pem:ro
       - ./certs/privkey.pem:/etc/nginx/certs/privkey.pem:ro
       - ./certbot/data:/var/www/certbot
+      - ./volumes/marzban/static:/opt/telegram-vpn-bot/volumes/marzban/static:ro
 
   marzban:
     image: gozargah/marzban:latest
@@ -39,9 +40,10 @@ services:
     networks:
       - free_vpn_bot
     volumes:
-      
       - ./volumes/marzban:/var/lib/marzban
-
+      
+      - ./volumes/marzban/templates/subscription:/var/lib/marzban/templates/subscription:ro
+      - ./xray_config.json:/opt/marzban/xray_config.json:ro
       - ./certbot/data:/var/www/certbot
       - /etc/timezone:/etc/timezone:ro
       - ./certs:/etc/marzban/certs:ro
