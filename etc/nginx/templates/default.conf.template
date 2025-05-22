@@ -36,8 +36,18 @@ server {
         proxy_set_header    X-Real-IP         $remote_addr;
         proxy_set_header    X-Forwarded-For   $proxy_add_x_forwarded_for;
     }
+    location ^~ /assets/icons/ {
+        # подставляем реальный путь на диске, обязательно с финальным слешем
+        alias /opt/telegram-vpn-bot/volumes/marzban/templates/subscription/assets/icons/;
+        # пробуем статический файл, иначе отдаём 404
+        try_files $uri =404;
 
+        # можно добавить кэширование
+        expires 30d;
+        add_header Cache-Control public;
+    }
     location /assets/ {
+        alias /opt/telegram-vpn-bot/volumes/marzban/templates/subscription/assets/;
         proxy_pass          http://free_vpn_instruction/assets/;
         proxy_http_version  1.1;
         proxy_set_header    Host              $host;
@@ -92,6 +102,16 @@ server {
         proxy_set_header    Host              $host;
         proxy_set_header    X-Real-IP         $remote_addr;
         proxy_set_header    X-Forwarded-For   $proxy_add_x_forwarded_for;
+    }
+    location ^~ /assets/icons/ {
+        # подставляем реальный путь на диске, обязательно с финальным слешем
+        alias /opt/telegram-vpn-bot/volumes/marzban/templates/subscription/assets/icons/;
+        # пробуем статический файл, иначе отдаём 404
+        try_files $uri =404;
+
+        # можно добавить кэширование
+        expires 30d;
+        add_header Cache-Control public;
     }
 
     location /assets/ {
