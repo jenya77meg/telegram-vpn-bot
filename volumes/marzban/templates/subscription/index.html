@@ -52,6 +52,7 @@
                 opacity 150ms ease; } /* Эффект «вдавливания» при нажатии */a:active, button:active { transform: scale(0.95); opacity: 0.8; }</style>
         <!-- <link rel="stylesheet" href="../output.css"> -->
         <!--  <link rel="stylesheet" href="/statics/css/output.css">-->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css"/>
         <link href="https://cdn.jsdelivr.net/npm/daisyui@3.7.3/dist/full.css" rel="stylesheet" type="text/css"/>
         <link href="https://cdn.jsdelivr.net/gh/rastikerdar/shabnam-font@v5.0.1/dist/font-face.css" rel="stylesheet" type="text/css"/>
         <script src="https://cdn.jsdelivr.net/npm/alpinejs-i18n@2.5.3/dist/cdn.min.js"></script>         
@@ -887,7 +888,7 @@ if (expireDateInit.includes("∞")) {
                                 </div>
                                 <!-- RemainingDays -->
                                 <div class="backdrop-blur-md bg-white/5 border border-white/20 flex flex-1 flex-col items-center rounded-xl">
-                                    <div class="mb-2 mt-3 opacity-80 text-gray-300 text-xs uppercase">Осталось дней</div>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        {% set remaining_days = ((user.expire - now().timestamp()) // (24 * 3600)) %}
+                                    <div class="mb-2 mt-3 opacity-80 text-gray-300 text-xs uppercase">Осталось дней</div>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    {% set remaining_days = ((user.expire - now().timestamp()) // (24 * 3600)) %}
                                     <div class="mt-1 text-lg font-semibold">
                                         {% if not user.expire %}
                                         ∞ дн.
@@ -1492,13 +1493,11 @@ background: linear-gradient(115deg, rgba(153, 107, 138, 0.77) 0%, rgba(128, 136,
                                                                             <h3 x-text="$t('v2rayTuns3')" class="text-xl font-black leading-none tracking-tight text-white md:text-2xl"></h3>
                                                                         </div>
                                                                         <p x-text="$t('v2rayTuns3Info')" class="text-sm mb-4 font-normal text-white lg:text-base"></p>
-                                                                        <div class="flex items-center justify-start gap-x-4">
-                                                                            <div class="flex-1">
-                                                                                <img class="rounded-2xl w-full" src="/assets/icons/v2ray.photo1.png" alt="v2rayTun Step 1">
-                                                                            </div>
-                                                                            <div class="flex-1">
-                                                                                <img class="rounded-2xl w-full" src="https://raw.githubusercontent.com/x0sina/marzban-sub/main/2.jpg" alt="v2rayTun Step 2">
-                                                                            </div>
+                                                                        <div class="flex gap-4">
+                                                                            <!-- Превью 1 -->
+                                                                            <a href="https://raw.githubusercontent.com/jenya77meg/telegram-vpn-bot/2.0/volumes/marzban/templates/subscription/assets/icons/v2ray.photo1.png" class="glightbox block w-28 h-28 rounded-lg overflow-hidden" data-gallery="vpn-steps"> <img src="https://raw.githubusercontent.com/jenya77meg/telegram-vpn-bot/2.0/volumes/marzban/templates/subscription/assets/icons/v2ray.photo1.png" class="object-cover w-full h-full" alt="v2rayTun Step 1"/> </a>
+                                                                            <!-- Превью 2 -->
+                                                                            <a href="https://raw.githubusercontent.com/x0sina/marzban-sub/main/2.jpg" class="glightbox block w-28 h-28 rounded-lg overflow-hidden" data-gallery="vpn-steps"> <img src="https://raw.githubusercontent.com/x0sina/marzban-sub/main/2.jpg" class="object-cover w-full h-full" alt="v2rayTun Step 2"/> </a>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -1814,5 +1813,15 @@ background: linear-gradient(115deg,rgba(60, 145, 85, 1) 0%, rgba(43, 140, 126, 1
                 </div>
             </div>
         </div>
+        <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+        <script>
+  // инициализация
+  const lightbox = GLightbox({
+    selector: '.glightbox',
+    touchNavigation: true,
+    loop: false,
+    zoomable: true,
+  });
+</script>
     </body>
 </html>
