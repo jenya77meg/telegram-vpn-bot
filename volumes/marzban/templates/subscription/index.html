@@ -860,13 +860,10 @@ if (expireDateInit.includes("∞")) {
  flex items-center justify-between
  mb-8 px-4 py-1 rounded-full space-x-4 w-full">
                                 <!-- Левая часть: метка и значение в одну строку -->
-                                <div class="flex-1 flex items-center space-x-2">
-                                    <span class="font-semibold mr-2 opacity-80 text-sm uppercase">
-      {% if user.username.isdigit() %}ID:{% else %}Name:{% endif %} </span>
-                                    <span class="font-semibold text-base text-gray-400">{{ user.username }}</span>
+                                <div class="flex-1 flex items-center space-x-2"><span class="font-semibold mr-2 opacity-80 text-sm uppercase">
+      {% if user.username.isdigit() %}ID:{% else %}Name:{% endif %} </span><span class="font-semibold text-base text-gray-400">{{ user.username }}</span>
                                 </div>
-                                <!-- Правая часть: статус -->
-                                <span x-data="{ status: '{{ user.status.value }}' }" x-text="[
+                                <!-- Правая часть: статус --><span x-data="{ status: '{{ user.status.value }}' }" x-text="[
       status=='active'   ? $t('active')  :
       status=='limited'  ? $t('limited') :
       status=='expired'  ? $t('expired')  :
@@ -888,7 +885,7 @@ if (expireDateInit.includes("∞")) {
                                 </div>
                                 <!-- RemainingDays -->
                                 <div class="backdrop-blur-md bg-white/5 border border-white/20 flex flex-1 flex-col items-center rounded-xl">
-                                    <div class="mb-2 mt-3 opacity-80 text-gray-300 text-xs uppercase">Осталось дней</div>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    {% set remaining_days = ((user.expire - now().timestamp()) // (24 * 3600)) %}
+                                    <div class="mb-2 mt-3 opacity-80 text-gray-300 text-xs uppercase">Осталось дней</div>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        {% set remaining_days = ((user.expire - now().timestamp()) // (24 * 3600)) %}
                                     <div class="mt-1 text-lg font-semibold">
                                         {% if not user.expire %}
                                         ∞ дн.
@@ -912,7 +909,8 @@ if (expireDateInit.includes("∞")) {
                                             <div class="flex items-center justify-start gap-x-2 text-lg sm:text-xl font-medium">
                                                 <svg class="w-6 h-6" viewBox="0 0 18 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <path fill-rule="evenodd" clip-rule="evenodd" d="M8.987 4.5C8.987 1.5 10.487 0 13.487 0C13.487 3 11.987 4.5 8.987 4.5ZM7.66 6.133C7.018 5.838 6.282 5.5 5.323 5.5C3.194 5.5 0 7.629 0 11.887C0 16.145 2.7 22 5.323 22C6.121 22 6.653 21.734 7.186 21.468C7.718 21.202 8.25 20.936 9.049 20.936C9.847 20.936 10.512 21.202 11.178 21.468C11.843 21.734 12.508 22 13.307 22C15.142 22 17.014 19.136 17.973 15.956C17.091 15.636 15.327 13.985 15.327 11.887C15.327 9.181 16.564 7.964 17.182 7.557C16.067 6.186 14.515 5.5 13.307 5.5C12.347 5.5 11.443 5.838 10.653 6.133C10.04 6.361 9.496 6.565 9.049 6.565C8.601 6.565 8.159 6.361 7.66 6.133Z" fill="white"/>
-                                                </svg><span x-text="$t('iOS')"> </span>
+                                                </svg>
+                                                <span x-text="$t('iOS')"> </span>
                                             </div>
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" :class="{'!rotate-180': expanded}" class="w-6 h-6 mx-6 transform origin-center transition duration-200 ease-out">
                                                 <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 8.25l7.5 7.5 7.5-7.5"/>
@@ -943,7 +941,8 @@ if (expireDateInit.includes("∞")) {
                                                                                 </clipPath>
                                                                             </defs>
                                                                         </svg>
-                                                                        <div class="flex items-center justify-start gap-x-2"><span x-text="$t('addStreisand')"> </span>
+                                                                        <div class="flex items-center justify-start gap-x-2">
+                                                                            <span x-text="$t('addStreisand')"> </span>
                                                                             <div class="bg-gray-100 pb-1.5 px-2 pt-1 rounded-full">
                                                                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 fill-yellow-500 stroke-yellow-500">
                                                                                     <path fill-rule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z" clip-rule="evenodd"/>
@@ -959,8 +958,7 @@ if (expireDateInit.includes("∞")) {
                                                                 <div class="overflow-hidden">
                                                                     <div class="p-4 pb-6">
                                                                         <div class="flex flex-col">
-                                                                            <div class="flex items-center gap-x-2">
-                                                                                <span x-text="$t('needediOS')"></span>
+                                                                            <div class="flex items-center gap-x-2"><span x-text="$t('needediOS')"></span>
                                                                                 <div class="flex items-center rtl:flex-row-reverse rtl:justify-end gap-x-1">
                                                                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                                                         <g clip-path="url(#clip0_23_24)">
@@ -971,7 +969,8 @@ if (expireDateInit.includes("∞")) {
                                                                                                 <rect width="24" height="24" fill="white"/>
                                                                                             </clipPath>
                                                                                         </defs>
-                                                                                    </svg><span class="text-sm">14+</span>
+                                                                                    </svg>
+                                                                                    <span class="text-sm">14+</span>
                                                                                 </div>
                                                                             </div>
                                                                             <div class="flex items-center rtl:mr-[-10px] ltr:ml-[-10px] md:rtl:mr-[-20px] md:ltr:ml-[-20px]">
@@ -979,8 +978,7 @@ if (expireDateInit.includes("∞")) {
 </lord-icon>
                                                                                 <h3 x-text="$t('downloadApp')" class="text-xl font-black leading-none tracking-tight text-white md:text-2xl"> </h3>
                                                                             </div>
-                                                                            <p x-text="$t('clickForDownload')" class="text-sm mb-4 font-normal text-white lg:text-base"> </p>
-                                                                            <a href="https://apps.apple.com/us/app/streisand/id6450534064" class="flex mb-4 items-center gap-x-4 w-full bg-gray-800 shadow-md px-3 py-2 rounded-3xl justify-between"> <lord-icon class="w-8 h-8" src="https://cdn.lordicon.com/albqovim.json" trigger="loop" delay="1500" colors="primary:#fff" state="intro">
+                                                                            <p x-text="$t('clickForDownload')" class="text-sm mb-4 font-normal text-white lg:text-base"> </p><a href="https://apps.apple.com/us/app/streisand/id6450534064" class="flex mb-4 items-center gap-x-4 w-full bg-gray-800 shadow-md px-3 py-2 rounded-3xl justify-between"> <lord-icon class="w-8 h-8" src="https://cdn.lordicon.com/albqovim.json" trigger="loop" delay="1500" colors="primary:#fff" state="intro">
 </lord-icon> <span x-text="$t('download')"></span> <lord-icon class="w-8 h-8" src="https://cdn.lordicon.com/albqovim.json" trigger="loop" delay="1500" colors="primary:#fff" state="intro">
 </lord-icon> </a>
                                                                             <div class="flex items-center rtl:mr-[-10px] ltr:ml-[-10px] md:rtl:mr-[-20px] md:ltr:ml-[-20px]">
@@ -988,8 +986,7 @@ if (expireDateInit.includes("∞")) {
 </lord-icon>
                                                                                 <h3 x-text="$t('addConfigs')" class="text-xl font-black leading-none tracking-tight text-white md:text-2xl"> </h3>
                                                                             </div>
-                                                                            <p x-text="$t('clickForAdd')" class="text-sm mb-4 font-normal text-white lg:text-base"> </p>
-                                                                            <a id="ios-streisand" class="flex mb-4 items-center gap-x-4 w-full bg-stone-800 shadow-md px-3 py-2 rounded-3xl justify-between"> <lord-icon class="w-8 h-8" src="https://cdn.lordicon.com/mrdiiocb.json" trigger="loop" delay="2000" colors="primary:#fff">
+                                                                            <p x-text="$t('clickForAdd')" class="text-sm mb-4 font-normal text-white lg:text-base"> </p><a id="ios-streisand" class="flex mb-4 items-center gap-x-4 w-full bg-stone-800 shadow-md px-3 py-2 rounded-3xl justify-between"> <lord-icon class="w-8 h-8" src="https://cdn.lordicon.com/mrdiiocb.json" trigger="loop" delay="2000" colors="primary:#fff">
 </lord-icon> <span x-text="$t('AddtoApp')"></span> <lord-icon class="w-8 h-8" src="https://cdn.lordicon.com/mrdiiocb.json" trigger="loop" delay="2000" colors="primary:#fff">
 </lord-icon> </a>
                                                                             <div class="flex items-center rtl:mr-[-10px] ltr:ml-[-10px] md:rtl:mr-[-20px] md:ltr:ml-[-20px]">
@@ -997,8 +994,7 @@ if (expireDateInit.includes("∞")) {
 </lord-icon>
                                                                                 <h3 x-text="$t('routingTitle')" class="text-xl font-black leading-none tracking-tight text-white md:text-2xl"> </h3>
                                                                             </div>
-                                                                            <p x-text="$t('routingInfo')" class="text-sm mb-4 font-normal text-white lg:text-base"> </p>
-                                                                            <a href="streisand://aW1wb3J0L3JvdXRlOi8vWW5Cc2FYTjBNRERWQVFJREJBVUdEaU1rSlZWeWRXeGxjMTFrYjIxaGFXNU5ZWFJqYUdWeVZHNWhiV1ZlWkc5dFlXbHVVM1J5WVhSbFozbFVkWFZwWktJSEZ0VUlDUW9MREEwT0R4SVZXMjkxZEdKdmRXNWtWR0ZuWFdSdmJXRnBiazFoZEdOb1pYSldaRzl0WVdsdVVtbHdWMjVsZEhkdmNtdFdaR2x5WldOMFZtaDVZbkpwWktJUUVWOFFFMmRsYjNOcGRHVTZZMkYwWldkdmNua3RhWEpmRUE5eVpXZGxlSEE2TGlwY1hDNXBjaVNpRXhSWVoyVnZhWEE2YVhKZFoyVnZhWEE2Y0hKcGRtRjBaVjhRUkZSRFVDd2dWVVJRTENCSVZGUlFMQ0JJVkZSUVV5d2dVMU5JTENCVFRWUlFMQ0JUVGsxUUxDQk9WRkFzSUVaVVVDd2dVRTlRTXl3Z1NVMUJVQ3dnVkdWc2JtVjAxQmNZQ2d3WkRob1ZXMjkxZEdKdmRXNWtWR0ZuWFdSdmJXRnBiazFoZEdOb1pYSlZZbXh2WTJ1b0d4d2RIaDhnSVNKZkVCaG5aVzl6YVhSbE9tTmhkR1ZuYjNKNUxXRmtjeTFoYkd4ZkVCUm5aVzl6YVhSbE9tTmhkR1ZuYjNKNUxXRmtjMThRRVdkbGIzTnBkR1U2ZVdGb2IyOHRZV1J6WHhBVFoyVnZjMmwwWlRwemNHOTBhV1o1TFdGa2MxOFFFbWRsYjNOcGRHVTZaMjl2WjJ4bExXRmtjMThRRVdkbGIzTnBkR1U2WVhCd2JHVXRZV1J6WHhBU1oyVnZjMmwwWlRwaGJXRjZiMjR0WVdSelh4QVJaMlZ2YzJsMFpUcGhaRzlpWlMxaFpITnVBRWtBVWdBdEFFUUFhUUJ5QUdVQVl3QjBBQ0RZUE4zdTJEemQ5MXhKVUVsbVRtOXVUV0YwWTJoZkVDUTNNamt5T1RCRlJDMUdSVFpCTFRReE9VVXRPVE15TmkxRE1rVkJOREl3UmpWQk0wTUFDQUFUQUJrQUp3QXNBRHNBUUFCREFFNEFXZ0JvQUc4QWNnQjZBSUVBaUFDTEFLRUFzd0MyQUw4QXpRRVVBUjBCS1FFM0FUMEJSZ0ZoQVhnQmpBR2lBYmNCeXdIZ0FmUUNFUUllQUFBQUFBQUFBZ0VBQUFBQUFBQUFKZ0FBQUFBQUFBQUFBQUFBQUFBQUFrVT0=" class="flex mb-4 items-center gap-x-4 w-full shadow-md px-3 py-2 bg-gradient-to-r from-green-500 via-green-900 to-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 transition-all duration-300 justify-between rounded-2xl"> <div class="rounded-xl overflow-hidden">
+                                                                            <p x-text="$t('routingInfo')" class="text-sm mb-4 font-normal text-white lg:text-base"> </p><a href="streisand://aW1wb3J0L3JvdXRlOi8vWW5Cc2FYTjBNRERWQVFJREJBVUdEaU1rSlZWeWRXeGxjMTFrYjIxaGFXNU5ZWFJqYUdWeVZHNWhiV1ZlWkc5dFlXbHVVM1J5WVhSbFozbFVkWFZwWktJSEZ0VUlDUW9MREEwT0R4SVZXMjkxZEdKdmRXNWtWR0ZuWFdSdmJXRnBiazFoZEdOb1pYSldaRzl0WVdsdVVtbHdWMjVsZEhkdmNtdFdaR2x5WldOMFZtaDVZbkpwWktJUUVWOFFFMmRsYjNOcGRHVTZZMkYwWldkdmNua3RhWEpmRUE5eVpXZGxlSEE2TGlwY1hDNXBjaVNpRXhSWVoyVnZhWEE2YVhKZFoyVnZhWEE2Y0hKcGRtRjBaVjhRUkZSRFVDd2dWVVJRTENCSVZGUlFMQ0JJVkZSUVV5d2dVMU5JTENCVFRWUlFMQ0JUVGsxUUxDQk9WRkFzSUVaVVVDd2dVRTlRTXl3Z1NVMUJVQ3dnVkdWc2JtVjAxQmNZQ2d3WkRob1ZXMjkxZEdKdmRXNWtWR0ZuWFdSdmJXRnBiazFoZEdOb1pYSlZZbXh2WTJ1b0d4d2RIaDhnSVNKZkVCaG5aVzl6YVhSbE9tTmhkR1ZuYjNKNUxXRmtjeTFoYkd4ZkVCUm5aVzl6YVhSbE9tTmhkR1ZuYjNKNUxXRmtjMThRRVdkbGIzTnBkR1U2ZVdGb2IyOHRZV1J6WHhBVFoyVnZjMmwwWlRwemNHOTBhV1o1TFdGa2MxOFFFbWRsYjNOcGRHVTZaMjl2WjJ4bExXRmtjMThRRVdkbGIzTnBkR1U2WVhCd2JHVXRZV1J6WHhBU1oyVnZjMmwwWlRwaGJXRjZiMjR0WVdSelh4QVJaMlZ2YzJsMFpUcGhaRzlpWlMxaFpITnVBRWtBVWdBdEFFUUFhUUJ5QUdVQVl3QjBBQ0RZUE4zdTJEemQ5MXhKVUVsbVRtOXVUV0YwWTJoZkVDUTNNamt5T1RCRlJDMUdSVFpCTFRReE9VVXRPVE15TmkxRE1rVkJOREl3UmpWQk0wTUFDQUFUQUJrQUp3QXNBRHNBUUFCREFFNEFXZ0JvQUc4QWNnQjZBSUVBaUFDTEFLRUFzd0MyQUw4QXpRRVVBUjBCS1FFM0FUMEJSZ0ZoQVhnQmpBR2lBYmNCeXdIZ0FmUUNFUUllQUFBQUFBQUFBZ0VBQUFBQUFBQUFKZ0FBQUFBQUFBQUFBQUFBQUFBQUFrVT0=" class="flex mb-4 items-center gap-x-4 w-full shadow-md px-3 py-2 bg-gradient-to-r from-green-500 via-green-900 to-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 transition-all duration-300 justify-between rounded-2xl"> <div class="rounded-xl overflow-hidden">
                                                                                     <svg width="37" height="25" viewBox="0 0 37 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                                                         <rect width="37" height="8.65385" fill="#239F40"/>
                                                                                         <rect y="16.3462" width="37" height="8.65385" fill="#DA0000"/>
@@ -1019,8 +1015,7 @@ if (expireDateInit.includes("∞")) {
                                                                                         </defs>
                                                                                     </svg>
                                                                                 </div> <span x-text="$t('routingIR')"></span> <lord-icon class="w-8 h-8" src="https://cdn.lordicon.com/mrdiiocb.json" trigger="loop" delay="2000" colors="primary:#fff">
-</lord-icon> </a>
-                                                                            <a href="streisand://aW1wb3J0L3JvdXRlOi8vWW5Cc2FYTjBNRERWQVFJREJBVUdEQlVXRjFWeWRXeGxjMTFrYjIxaGFXNU5ZWFJqYUdWeVZHNWhiV1ZlWkc5dFlXbHVVM1J5WVhSbFozbFVkWFZwWktJSEVkUUlDUW9MREEwT0VGMWtiMjFoYVc1TllYUmphR1Z5Vm1SdmJXRnBibEpwY0Z0dmRYUmliM1Z1WkZSaFoxWnNhVzVsWVhLZ29ROVlaMlZ2YVhBNmNuVldaR2x5WldOMDBoSUpFQk5iYjNWMFltOTFibVJVWVdlaEZGNXlaV2RsZUhBNkxpcGNMbkoxSkcwQVVnQlZBQzBBUkFCcEFISUFaUUJqQUhUWVBOMzMyRHpkK2xwSlVFOXVSR1Z0WVc1a1h4QWtOVU5CUmpGRU5rWXRPRVV3TWkwME5EUTFMVUkxTWpjdE5rVkVRVGN3TVRZNE1UVkRDQk1aSnl3N1FFTk1XbUZrY0hkNGVvT0tqNXVkck1mU0FBQUFBQUFBQVFFQUFBQUFBQUFBR0FBQUFBQUFBQUFBQUFBQUFBQUFBUGs9" class="flex mb-4 items-center gap-x-4 w-full shadow-md px-3 py-2 bg-gradient-to-r from-indigo-600 via-indigo-700 to-indigo-800 focus:ring-4 focus:outline-none focus:ring-blue-700 transition-all duration-300 justify-between rounded-2xl"> <div class="rounded-xl overflow-hidden">
+</lord-icon> </a><a href="streisand://aW1wb3J0L3JvdXRlOi8vWW5Cc2FYTjBNRERWQVFJREJBVUdEQlVXRjFWeWRXeGxjMTFrYjIxaGFXNU5ZWFJqYUdWeVZHNWhiV1ZlWkc5dFlXbHVVM1J5WVhSbFozbFVkWFZwWktJSEVkUUlDUW9MREEwT0VGMWtiMjFoYVc1TllYUmphR1Z5Vm1SdmJXRnBibEpwY0Z0dmRYUmliM1Z1WkZSaFoxWnNhVzVsWVhLZ29ROVlaMlZ2YVhBNmNuVldaR2x5WldOMDBoSUpFQk5iYjNWMFltOTFibVJVWVdlaEZGNXlaV2RsZUhBNkxpcGNMbkoxSkcwQVVnQlZBQzBBUkFCcEFISUFaUUJqQUhUWVBOMzMyRHpkK2xwSlVFOXVSR1Z0WVc1a1h4QWtOVU5CUmpGRU5rWXRPRVV3TWkwME5EUTFMVUkxTWpjdE5rVkVRVGN3TVRZNE1UVkRDQk1aSnl3N1FFTk1XbUZrY0hkNGVvT0tqNXVkck1mU0FBQUFBQUFBQVFFQUFBQUFBQUFBR0FBQUFBQUFBQUFBQUFBQUFBQUFBUGs9" class="flex mb-4 items-center gap-x-4 w-full shadow-md px-3 py-2 bg-gradient-to-r from-indigo-600 via-indigo-700 to-indigo-800 focus:ring-4 focus:outline-none focus:ring-blue-700 transition-all duration-300 justify-between rounded-2xl"> <div class="rounded-xl overflow-hidden">
                                                                                     <svg width="37" height="25" viewBox="0 0 37 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                                                         <g clip-path="url(#clip0_106_7)">
                                                                                             <path d="M37 8.33325H0V16.6666H37V8.33325Z" fill="#0039A6"/>
@@ -1056,7 +1051,8 @@ if (expireDateInit.includes("∞")) {
                                                                                     <rect width="24" height="24" fill="white"/>
                                                                                 </clipPath>
                                                                             </defs>
-                                                                        </svg><span x-text="$t('addFoXray')"> </span>
+                                                                        </svg>
+                                                                        <span x-text="$t('addFoXray')"> </span>
                                                                     </div>
                                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" :class="{'!rotate-180': expanded}" class="w-6 h-6 mx-6 transform origin-center transition duration-200 ease-out">
                                                                         <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 8.25l7.5 7.5 7.5-7.5"/>
@@ -1066,8 +1062,7 @@ if (expireDateInit.includes("∞")) {
                                                                 <div class="overflow-hidden">
                                                                     <div class="p-4 pb-6">
                                                                         <div class="flex flex-col">
-                                                                            <div class="flex items-center gap-x-2">
-                                                                                <span x-text="$t('needediOS')"></span>
+                                                                            <div class="flex items-center gap-x-2"><span x-text="$t('needediOS')"></span>
                                                                                 <div class="flex items-center rtl:flex-row-reverse rtl:justify-end gap-x-1">
                                                                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                                                         <g clip-path="url(#clip0_23_24)">
@@ -1078,7 +1073,8 @@ if (expireDateInit.includes("∞")) {
                                                                                                 <rect width="24" height="24" fill="white"/>
                                                                                             </clipPath>
                                                                                         </defs>
-                                                                                    </svg><span class="text-sm">16+</span>
+                                                                                    </svg>
+                                                                                    <span class="text-sm">16+</span>
                                                                                 </div>
                                                                             </div>
                                                                             <div class="flex items-center rtl:mr-[-10px] ltr:ml-[-10px] md:rtl:mr-[-20px] md:ltr:ml-[-20px]">
@@ -1086,8 +1082,7 @@ if (expireDateInit.includes("∞")) {
 </lord-icon>
                                                                                 <h3 x-text="$t('downloadApp')" class="text-xl font-black leading-none tracking-tight text-white md:text-2xl"> </h3>
                                                                             </div>
-                                                                            <p x-text="$t('clickForDownload')" class="text-sm mb-4 font-normal text-white lg:text-base"> </p>
-                                                                            <a href="https://apps.apple.com/us/app/foxray/id6448898396" class="flex mb-4 items-center gap-x-4 w-full bg-gray-800 shadow-md px-3 py-2 rounded-3xl justify-between"> <lord-icon class="w-8 h-8" src="https://cdn.lordicon.com/albqovim.json" trigger="loop" delay="1500" colors="primary:#fff" state="intro">
+                                                                            <p x-text="$t('clickForDownload')" class="text-sm mb-4 font-normal text-white lg:text-base"> </p><a href="https://apps.apple.com/us/app/foxray/id6448898396" class="flex mb-4 items-center gap-x-4 w-full bg-gray-800 shadow-md px-3 py-2 rounded-3xl justify-between"> <lord-icon class="w-8 h-8" src="https://cdn.lordicon.com/albqovim.json" trigger="loop" delay="1500" colors="primary:#fff" state="intro">
 </lord-icon> <span x-text="$t('download')"></span> <lord-icon class="w-8 h-8" src="https://cdn.lordicon.com/albqovim.json" trigger="loop" delay="1500" colors="primary:#fff" state="intro">
 </lord-icon> </a>
                                                                             <div class="flex items-center rtl:mr-[-10px] ltr:ml-[-10px] md:rtl:mr-[-20px] md:ltr:ml-[-20px]">
@@ -1098,8 +1093,7 @@ if (expireDateInit.includes("∞")) {
                                                                             <p x-text="$t('clickForAdd')" class="text-sm mb-4 font-normal text-white lg:text-base"> </p>
                                                                             <button onclick="openFoXrayURL()" class="flex mb-4 items-center gap-x-4 w-full bg-stone-800 shadow-md px-3 py-2 rounded-3xl justify-between">
                                                                                 <lord-icon class="w-8 h-8" src="https://cdn.lordicon.com/mrdiiocb.json" trigger="loop" delay="2000" colors="primary:#fff">
-</lord-icon>
-                                                                                <span x-text="$t('AddtoApp')"></span>
+</lord-icon><span x-text="$t('AddtoApp')"></span>
                                                                                 <lord-icon class="w-8 h-8" src="https://cdn.lordicon.com/mrdiiocb.json" trigger="loop" delay="2000" colors="primary:#fff">
 </lord-icon>
                                                                             </button>
@@ -1128,7 +1122,8 @@ if (expireDateInit.includes("∞")) {
                                                                                     <rect width="29" height="29" fill="white"/>
                                                                                 </clipPath>
                                                                             </defs>
-                                                                        </svg><span x-text="$t('addV2Box')"> </span>
+                                                                        </svg>
+                                                                        <span x-text="$t('addV2Box')"> </span>
                                                                     </div>
                                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" :class="{'!rotate-180': expanded}" class="w-6 h-6 mx-6 transform origin-center transition duration-200 ease-out">
                                                                         <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 8.25l7.5 7.5 7.5-7.5"/>
@@ -1138,8 +1133,7 @@ if (expireDateInit.includes("∞")) {
                                                                 <div class="overflow-hidden">
                                                                     <div class="p-4 pb-6">
                                                                         <div class="flex flex-col">
-                                                                            <div class="flex items-center gap-x-2">
-                                                                                <span x-text="$t('needediOS')"></span>
+                                                                            <div class="flex items-center gap-x-2"><span x-text="$t('needediOS')"></span>
                                                                                 <div class="flex items-center rtl:flex-row-reverse rtl:justify-end gap-x-1">
                                                                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                                                         <g clip-path="url(#clip0_23_24)">
@@ -1150,7 +1144,8 @@ if (expireDateInit.includes("∞")) {
                                                                                                 <rect width="24" height="24" fill="white"/>
                                                                                             </clipPath>
                                                                                         </defs>
-                                                                                    </svg><span class="text-sm">14+</span>
+                                                                                    </svg>
+                                                                                    <span class="text-sm">14+</span>
                                                                                 </div>
                                                                             </div>
                                                                             <div class="flex items-center rtl:mr-[-10px] ltr:ml-[-10px] md:rtl:mr-[-20px] md:ltr:ml-[-20px]">
@@ -1158,8 +1153,7 @@ if (expireDateInit.includes("∞")) {
 </lord-icon>
                                                                                 <h3 x-text="$t('downloadApp')" class="text-xl font-black leading-none tracking-tight text-white md:text-2xl"> </h3>
                                                                             </div>
-                                                                            <p x-text="$t('clickForDownload')" class="text-sm mb-4 font-normal text-white lg:text-base"> </p>
-                                                                            <a href="https://apps.apple.com/us/app/v2box-v2ray-client/id6446814690" class="flex mb-4 items-center gap-x-4 w-full bg-gray-800 shadow-md px-3 py-2 rounded-3xl justify-between"> <lord-icon class="w-8 h-8" src="https://cdn.lordicon.com/albqovim.json" trigger="loop" delay="1500" colors="primary:#fff" state="intro">
+                                                                            <p x-text="$t('clickForDownload')" class="text-sm mb-4 font-normal text-white lg:text-base"> </p><a href="https://apps.apple.com/us/app/v2box-v2ray-client/id6446814690" class="flex mb-4 items-center gap-x-4 w-full bg-gray-800 shadow-md px-3 py-2 rounded-3xl justify-between"> <lord-icon class="w-8 h-8" src="https://cdn.lordicon.com/albqovim.json" trigger="loop" delay="1500" colors="primary:#fff" state="intro">
 </lord-icon> <span x-text="$t('download')"></span> <lord-icon class="w-8 h-8" src="https://cdn.lordicon.com/albqovim.json" trigger="loop" delay="1500" colors="primary:#fff" state="intro">
 </lord-icon> </a>
                                                                             <div class="flex items-center rtl:mr-[-10px] ltr:ml-[-10px] md:rtl:mr-[-20px] md:ltr:ml-[-20px]">
@@ -1167,8 +1161,7 @@ if (expireDateInit.includes("∞")) {
 </lord-icon>
                                                                                 <h3 x-text="$t('addConfigs')" class="text-xl font-black leading-none tracking-tight text-white md:text-2xl"> </h3>
                                                                             </div>
-                                                                            <p x-text="$t('clickForAdd')" class="text-sm mb-4 font-normal text-white lg:text-base"> </p>
-                                                                            <a id="ios-v2box" class="flex mb-4 items-center gap-x-4 w-full bg-stone-800 shadow-md px-3 py-2 rounded-3xl justify-between"> <lord-icon class="w-8 h-8" src="https://cdn.lordicon.com/mrdiiocb.json" trigger="loop" delay="2000" colors="primary:#fff">
+                                                                            <p x-text="$t('clickForAdd')" class="text-sm mb-4 font-normal text-white lg:text-base"> </p><a id="ios-v2box" class="flex mb-4 items-center gap-x-4 w-full bg-stone-800 shadow-md px-3 py-2 rounded-3xl justify-between"> <lord-icon class="w-8 h-8" src="https://cdn.lordicon.com/mrdiiocb.json" trigger="loop" delay="2000" colors="primary:#fff">
 </lord-icon> <span x-text="$t('AddtoApp')"></span> <lord-icon class="w-8 h-8" src="https://cdn.lordicon.com/mrdiiocb.json" trigger="loop" delay="2000" colors="primary:#fff">
 </lord-icon> </a>
                                                                         </div>
@@ -1193,7 +1186,8 @@ if (expireDateInit.includes("∞")) {
                                                                                     <rect width="22" height="34" fill="white"/>
                                                                                 </clipPath>
                                                                             </defs>
-                                                                        </svg><span x-text="$t('addShadowrocket')"> </span>
+                                                                        </svg>
+                                                                        <span x-text="$t('addShadowrocket')"> </span>
                                                                     </div>
                                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" :class="{'!rotate-180': expanded}" class="w-6 h-6 mx-6 transform origin-center transition duration-200 ease-out">
                                                                         <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 8.25l7.5 7.5 7.5-7.5"/>
@@ -1203,8 +1197,7 @@ if (expireDateInit.includes("∞")) {
                                                                 <div class="overflow-hidden">
                                                                     <div class="p-4 pb-6">
                                                                         <div class="flex flex-col">
-                                                                            <div class="flex items-center gap-x-2">
-                                                                                <span x-text="$t('needediOS')"></span>
+                                                                            <div class="flex items-center gap-x-2"><span x-text="$t('needediOS')"></span>
                                                                                 <div class="flex items-center rtl:flex-row-reverse rtl:justify-end gap-x-1">
                                                                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                                                         <g clip-path="url(#clip0_23_24)">
@@ -1215,7 +1208,8 @@ if (expireDateInit.includes("∞")) {
                                                                                                 <rect width="24" height="24" fill="white"/>
                                                                                             </clipPath>
                                                                                         </defs>
-                                                                                    </svg><span class="text-sm">12+</span>
+                                                                                    </svg>
+                                                                                    <span class="text-sm">12+</span>
                                                                                 </div>
                                                                             </div>
                                                                             <div class="flex items-center rtl:mr-[-10px] ltr:ml-[-10px] md:rtl:mr-[-20px] md:ltr:ml-[-20px]">
@@ -1223,8 +1217,7 @@ if (expireDateInit.includes("∞")) {
 </lord-icon>
                                                                                 <h3 x-text="$t('downloadApp')" class="text-xl font-black leading-none tracking-tight text-white md:text-2xl"> </h3>
                                                                             </div>
-                                                                            <p x-text="$t('clickForDownload')" class="text-sm mb-4 font-normal text-white lg:text-base"> </p>
-                                                                            <a href="https://apps.apple.com/ca/app/shadowrocket/id932747118" class="flex mb-4 items-center gap-x-4 w-full bg-gray-800 shadow-md px-3 py-2 rounded-3xl justify-between"> <lord-icon class="w-8 h-8" src="https://cdn.lordicon.com/albqovim.json" trigger="loop" delay="1500" colors="primary:#fff" state="intro">
+                                                                            <p x-text="$t('clickForDownload')" class="text-sm mb-4 font-normal text-white lg:text-base"> </p><a href="https://apps.apple.com/ca/app/shadowrocket/id932747118" class="flex mb-4 items-center gap-x-4 w-full bg-gray-800 shadow-md px-3 py-2 rounded-3xl justify-between"> <lord-icon class="w-8 h-8" src="https://cdn.lordicon.com/albqovim.json" trigger="loop" delay="1500" colors="primary:#fff" state="intro">
 </lord-icon> <span x-text="$t('download')"></span> <lord-icon class="w-8 h-8" src="https://cdn.lordicon.com/albqovim.json" trigger="loop" delay="1500" colors="primary:#fff" state="intro">
 </lord-icon> </a>
                                                                             <div class="flex items-center rtl:mr-[-10px] ltr:ml-[-10px] md:rtl:mr-[-20px] md:ltr:ml-[-20px]">
@@ -1235,8 +1228,7 @@ if (expireDateInit.includes("∞")) {
                                                                             <p x-text="$t('clickForAdd')" class="text-sm mb-4 font-normal text-white lg:text-base"> </p>
                                                                             <button onclick="openShadowrocketURL()" class="flex mb-4 items-center gap-x-4 w-full bg-stone-800 shadow-md px-3 py-2 rounded-3xl justify-between">
                                                                                 <lord-icon class="w-8 h-8" src="https://cdn.lordicon.com/mrdiiocb.json" trigger="loop" delay="2000" colors="primary:#fff">
-</lord-icon>
-                                                                                <span x-text="$t('AddtoApp')"></span>
+</lord-icon><span x-text="$t('AddtoApp')"></span>
                                                                                 <lord-icon class="w-8 h-8" src="https://cdn.lordicon.com/mrdiiocb.json" trigger="loop" delay="2000" colors="primary:#fff">
 </lord-icon>
                                                                             </button>
@@ -1360,7 +1352,8 @@ if (expireDateInit.includes("∞")) {
                                                                                     <rect width="28" height="28" fill="white"/>
                                                                                 </clipPath>
                                                                             </defs>
-                                                                        </svg><span x-text="$t('addamneziavpn')"> </span>
+                                                                        </svg>
+                                                                        <span x-text="$t('addamneziavpn')"> </span>
                                                                     </div>
                                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" :class="{'!rotate-180': expanded}" class="w-6 h-6 mx-6 transform origin-center transition duration-200 ease-out">
                                                                         <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 8.25l7.5 7.5 7.5-7.5"/>
@@ -1370,8 +1363,7 @@ if (expireDateInit.includes("∞")) {
                                                                 <div class="overflow-hidden">
                                                                     <div class="p-4 pb-6">
                                                                         <div class="flex flex-col">
-                                                                            <div class="flex items-center gap-x-2">
-                                                                                <span x-text="$t('needediOS')"></span>
+                                                                            <div class="flex items-center gap-x-2"><span x-text="$t('needediOS')"></span>
                                                                                 <div class="flex items-center rtl:flex-row-reverse rtl:justify-end gap-x-1">
                                                                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                                                         <g clip-path="url(#clip0_23_24)">
@@ -1382,7 +1374,8 @@ if (expireDateInit.includes("∞")) {
                                                                                                 <rect width="24" height="24" fill="white"/>
                                                                                             </clipPath>
                                                                                         </defs>
-                                                                                    </svg><span class="text-sm">15+</span>
+                                                                                    </svg>
+                                                                                    <span class="text-sm">15+</span>
                                                                                 </div>
                                                                             </div>
                                                                             <div class="flex items-center rtl:mr-[-10px] ltr:ml-[-10px] md:rtl:mr-[-20px] md:ltr:ml-[-20px]">
@@ -1390,8 +1383,7 @@ if (expireDateInit.includes("∞")) {
 </lord-icon>
                                                                                 <h3 x-text="$t('downloadApp')" class="text-xl font-black leading-none tracking-tight text-white md:text-2xl"> </h3>
                                                                             </div>
-                                                                            <p x-text="$t('clickForDownload')" class="text-sm mb-4 font-normal text-white lg:text-base"> </p>
-                                                                            <a href="https://apps.apple.com/us/app/sing-box/id6451272673" class="flex mb-4 items-center gap-x-4 w-full bg-gray-800 shadow-md px-3 py-2 rounded-3xl justify-between"> <lord-icon class="w-8 h-8" src="https://cdn.lordicon.com/albqovim.json" trigger="loop" delay="1500" colors="primary:#fff" state="intro">
+                                                                            <p x-text="$t('clickForDownload')" class="text-sm mb-4 font-normal text-white lg:text-base"> </p><a href="https://apps.apple.com/us/app/sing-box/id6451272673" class="flex mb-4 items-center gap-x-4 w-full bg-gray-800 shadow-md px-3 py-2 rounded-3xl justify-between"> <lord-icon class="w-8 h-8" src="https://cdn.lordicon.com/albqovim.json" trigger="loop" delay="1500" colors="primary:#fff" state="intro">
 </lord-icon> <span x-text="$t('download')"></span> <lord-icon class="w-8 h-8" src="https://cdn.lordicon.com/albqovim.json" trigger="loop" delay="1500" colors="primary:#fff" state="intro">
 </lord-icon> </a>
                                                                             <div class="flex items-center rtl:mr-[-10px] ltr:ml-[-10px] md:rtl:mr-[-20px] md:ltr:ml-[-20px]">
@@ -1399,8 +1391,7 @@ if (expireDateInit.includes("∞")) {
 </lord-icon>
                                                                                 <h3 x-text="$t('addConfigs')" class="text-xl font-black leading-none tracking-tight text-white md:text-2xl"> </h3>
                                                                             </div>
-                                                                            <p x-text="$t('clickForAdd')" class="text-sm mb-4 font-normal text-white lg:text-base"> </p>
-                                                                            <a id="ios-singbox" class="flex mb-4 items-center gap-x-4 w-full bg-stone-800 shadow-md px-3 py-2 rounded-3xl justify-between"> <lord-icon class="w-8 h-8" src="https://cdn.lordicon.com/mrdiiocb.json" trigger="loop" delay="2000" colors="primary:#fff">
+                                                                            <p x-text="$t('clickForAdd')" class="text-sm mb-4 font-normal text-white lg:text-base"> </p><a id="ios-singbox" class="flex mb-4 items-center gap-x-4 w-full bg-stone-800 shadow-md px-3 py-2 rounded-3xl justify-between"> <lord-icon class="w-8 h-8" src="https://cdn.lordicon.com/mrdiiocb.json" trigger="loop" delay="2000" colors="primary:#fff">
 </lord-icon> <span x-text="$t('AddtoApp')"></span> <lord-icon class="w-8 h-8" src="https://cdn.lordicon.com/mrdiiocb.json" trigger="loop" delay="2000" colors="primary:#fff">
 </lord-icon> </a>
                                                                         </div>
@@ -1422,7 +1413,8 @@ if (expireDateInit.includes("∞")) {
                                             <div class="flex items-center justify-start gap-x-2 text-lg sm:text-xl font-medium">
                                                 <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <path fill-rule="evenodd" clip-rule="evenodd" d="M9.17 1.165C9.07551 0.997296 8.92015 0.872344 8.73609 0.816007C8.55202 0.75967 8.35334 0.776261 8.18117 0.862346C8.009 0.948432 7.87652 1.09742 7.81115 1.27847C7.74578 1.45953 7.75253 1.65878 7.83 1.835L8.667 3.51C8.00017 3.9556 7.42938 4.53028 6.98832 5.20012C6.54726 5.86996 6.24487 6.62137 6.099 7.41L5.99 8H18.01L17.901 7.41C17.7551 6.62137 17.4527 5.86996 17.0117 5.20012C16.5706 4.53028 15.9998 3.9556 15.333 3.51L16.171 1.835C16.258 1.65726 16.2713 1.45232 16.2078 1.26486C16.1444 1.07739 16.0095 0.922596 15.8324 0.834197C15.6553 0.745798 15.4505 0.730964 15.2626 0.792928C15.0746 0.854892 14.9188 0.988631 14.829 1.165L13.992 2.839C13.352 2.61401 12.6784 2.49938 12 2.5C11.3216 2.49938 10.648 2.61401 10.008 2.839L9.17 1.165ZM3.5 9C3.10218 9 2.72064 9.15804 2.43934 9.43934C2.15804 9.72064 2 10.1022 2 10.5V15.5C2 15.8978 2.15804 16.2794 2.43934 16.5607C2.72064 16.842 3.10218 17 3.5 17C3.89782 17 4.27936 16.842 4.56066 16.5607C4.84196 16.2794 5 15.8978 5 15.5V10.5C5 10.1022 4.84196 9.72064 4.56066 9.43934C4.27936 9.15804 3.89782 9 3.5 9ZM20.5 9C20.1022 9 19.7206 9.15804 19.4393 9.43934C19.158 9.72064 19 10.1022 19 10.5V15.5C19 15.8978 19.158 16.2794 19.4393 16.5607C19.7206 16.842 20.1022 17 20.5 17C20.8978 17 21.2794 16.842 21.5607 16.5607C21.842 16.2794 22 15.8978 22 15.5V10.5C22 10.1022 21.842 9.72064 21.5607 9.43934C21.2794 9.15804 20.8978 9 20.5 9ZM18 9H6V17.5C6 17.8978 6.15804 18.2794 6.43934 18.5607C6.72064 18.842 7.10218 19 7.5 19H8V21.5C8 21.8978 8.15804 22.2794 8.43934 22.5607C8.72064 22.842 9.10218 23 9.5 23C9.89782 23 10.2794 22.842 10.5607 22.5607C10.842 22.2794 11 21.8978 11 21.5V19H13V21.5C13 21.8978 13.158 22.2794 13.4393 22.5607C13.7206 22.842 14.1022 23 14.5 23C14.8978 23 15.2794 22.842 15.5607 22.5607C15.842 22.2794 16 21.8978 16 21.5V19H16.5C16.8978 19 17.2794 18.842 17.5607 18.5607C17.842 18.2794 18 17.8978 18 17.5V9Z" fill="white"/>
-                                                </svg><span x-text="$t('Android')"> </span>
+                                                </svg>
+                                                <span x-text="$t('Android')"> </span>
                                             </div>
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" :class="{'!rotate-180': expanded}" class="w-6 h-6 mx-6 transform origin-center transition duration-200 ease-out">
                                                 <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 8.25l7.5 7.5 7.5-7.5"/>
@@ -1448,8 +1440,7 @@ background: linear-gradient(115deg, rgba(153, 107, 138, 0.77) 0%, rgba(128, 136,
                                                                                 <path d="M230 1385 l0 -75 75 0 75 0 2 -549 3 -549 580 616 c319 338 582 619 583 624 2 4 -86 8 -195 8 l-198 0 -275 -257 -275 -256 -5 254 -5 254 -182 3 -183 2 0 -75z"/>
                                                                             </g>
                                                                         </svg>
-                                                                        <div class="flex items-center justify-start gap-x-2">
-                                                                            <span x-text="$t('addV2rayTun')"> </span>
+                                                                        <div class="flex items-center justify-start gap-x-2"><span x-text="$t('addV2rayTun')"> </span>
                                                                         </div>
                                                                     </div>
                                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" :class="{'!rotate-180': expanded}" class="w-6 h-6 mx-6 transform origin-center transition duration-200 ease-out">
@@ -1468,14 +1459,16 @@ background: linear-gradient(115deg, rgba(153, 107, 138, 0.77) 0%, rgba(128, 136,
                                                                         <p x-text="$t('clickForDownload')" class="text-sm mb-4 font-normal text-white lg:text-base"> </p>
                                                                         <!-- Две кнопки рядом -->
                                                                         <div class="flex mb-6 w-full">
-                                                                            <!-- Левая кнопка --><a id="android-v2rayTun-download" href="intent://details?id=com.v2raytun.android#Intent;scheme=market;package=com.android.vending;end" class="flex flex-1 flex-col glow-border-bottom items-center justify-center
+                                                                            <!-- Левая кнопка -->
+                                                                            <a id="android-v2rayTun-download" href="intent://details?id=com.v2raytun.android#Intent;scheme=market;package=com.android.vending;end" class="flex flex-1 flex-col glow-border-bottom items-center justify-center
  mr-2 overflow-hidden rounded-2xl"> <span class="mb-1 text-gray-500 text-xs uppercase">скачать в</span> <svg class="animate-spin-slow h-8 mb-1 pulse-icon w-8" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
                                                                                     <path fill="#3BCCFF" d="M48,59.49v393a4.33,4.33,0,0,0,7.37,3.07L260,256,55.37,56.42A4.33,4.33,0,0,0,48,59.49Z"/>
                                                                                     <path fill="#48FF48" d="M345.8,174,89.22,32.64l-.16-.09c-4.42-2.4-8.62,3.58-5,7.06L285.19,231.93Z"/>
                                                                                     <path fill="#FFD400" d="M84.08,472.39c-3.64,3.48.56,9.46,5,7.06l.16-.09L345.8,338l-60.61-57.95Z"/>
                                                                                     <path fill="#FF3333" d="M449.38,231l-71.65-39.46L310.36,256l67.37,64.43L449.38,281C468.87,270.23,468.87,241.77,449.38,231Z"/>
                                                                                 </svg> </a>
-                                                                            <!-- Правая кнопка --><a id="android-v2rayTun-download" href="https://github.com/DigneZzZ/v2raytun/releases/download/3.12.46/v2RayTun_universal.apk" class="flex flex-1 flex-col glow-border-bottom items-center justify-center
+                                                                            <!-- Правая кнопка -->
+                                                                            <a id="android-v2rayTun-download" href="https://github.com/DigneZzZ/v2raytun/releases/download/3.12.46/v2RayTun_universal.apk" class="flex flex-1 flex-col glow-border-bottom items-center justify-center
  ml-10 overflow-hidden rounded-2xl"> <span class="text-gray-500 text-xs uppercase mb-2">файл .apk</span> <svg class="h-8 pulse-icon w-8" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
                                                                                     <path d="M12 2L5 9h4v7h6V9h4z"/>
                                                                                     <path d="M5 18h14v2H5z"/>
@@ -1486,18 +1479,15 @@ background: linear-gradient(115deg, rgba(153, 107, 138, 0.77) 0%, rgba(128, 136,
                                                                             <lord-icon src="https://cdn.lordicon.com/vcoyflbj.json" trigger="hover" colors="primary:#fff,secondary:#fff" class="w-12 h-12 md:w-20 md:h-20"></lord-icon>
                                                                             <h3 x-text="$t('addConfigs')" class="text-xl font-black leading-none tracking-tight text-white md:text-2xl"></h3>
                                                                         </div>
-                                                                        <p x-text="$t('clickForAdd')" class="text-sm mb-4 font-normal text-white lg:text-base"></p>
-                                                                        <a id="android-v2rayTun" class="flex mb-4 items-center gap-x-4 w-full bg-stone-800 shadow-md px-3 py-2 rounded-3xl justify-between"> <lord-icon class="w-8 h-8" src="https://cdn.lordicon.com/mrdiiocb.json" trigger="loop" delay="2000" colors="primary:#fff"></lord-icon> <span x-text="$t('AddtoApp')"></span> <lord-icon class="w-8 h-8" src="https://cdn.lordicon.com/mrdiiocb.json" trigger="loop" delay="2000" colors="primary:#fff"></lord-icon> </a>
+                                                                        <p x-text="$t('clickForAdd')" class="text-sm mb-4 font-normal text-white lg:text-base"></p><a id="android-v2rayTun" class="flex mb-4 items-center gap-x-4 w-full bg-stone-800 shadow-md px-3 py-2 rounded-3xl justify-between"> <lord-icon class="w-8 h-8" src="https://cdn.lordicon.com/mrdiiocb.json" trigger="loop" delay="2000" colors="primary:#fff"></lord-icon> <span x-text="$t('AddtoApp')"></span> <lord-icon class="w-8 h-8" src="https://cdn.lordicon.com/mrdiiocb.json" trigger="loop" delay="2000" colors="primary:#fff"></lord-icon> </a>
                                                                         <div class="flex items-center rtl:mr-[-10px] ltr:ml-[-10px] md:rtl:mr-[-20px] md:ltr:ml-[-20px]">
                                                                             <lord-icon src="https://cdn.lordicon.com/igpsgesd.json" trigger="hover" colors="primary:#fff,secondary:#fff" class="w-12 h-12 md:w-20 md:h-20"></lord-icon>
                                                                             <h3 x-text="$t('v2rayTuns3')" class="text-xl font-black leading-none tracking-tight text-white md:text-2xl"></h3>
                                                                         </div>
                                                                         <p x-text="$t('v2rayTuns3Info')" class="text-sm mb-4 font-normal text-white lg:text-base"></p>
                                                                         <div class="flex gap-4">
-                                                                            <!-- Превью 1 -->
-                                                                            <a href="https://raw.githubusercontent.com/jenya77meg/telegram-vpn-bot/2.0/volumes/marzban/templates/subscription/assets/icons/v2ray.photo1.png" class="glightbox block w-28 h-28 rounded-lg overflow-hidden" data-gallery="vpn-steps"> <img src="https://raw.githubusercontent.com/jenya77meg/telegram-vpn-bot/2.0/volumes/marzban/templates/subscription/assets/icons/v2ray.photo1.png" class="object-cover w-full h-full" alt="v2rayTun Step 1"/> </a>
-                                                                            <!-- Превью 2 -->
-                                                                            <a href="https://raw.githubusercontent.com/x0sina/marzban-sub/main/2.jpg" class="glightbox block w-28 h-28 rounded-lg overflow-hidden" data-gallery="vpn-steps"> <img src="https://raw.githubusercontent.com/x0sina/marzban-sub/main/2.jpg" class="object-cover w-full h-full" alt="v2rayTun Step 2"/> </a>
+                                                                            <!-- Превью 1 --><a href="https://raw.githubusercontent.com/jenya77meg/telegram-vpn-bot/2.0/volumes/marzban/templates/subscription/assets/icons/v2raytun1.jpg" class="glightbox block w-28 h-28 rounded-lg overflow-hidden" data-gallery="vpn-steps"> <img src="https://raw.githubusercontent.com/jenya77meg/telegram-vpn-bot/2.0/volumes/marzban/templates/subscription/assets/icons/v2ray.photo1.png" class="object-cover w-full h-full" alt="v2rayTun Step 1"/> </a>
+                                                                            <!-- Превью 2 --><a href="https://raw.githubusercontent.com/x0sina/marzban-sub/main/2.jpg" class="glightbox block w-28 h-28 rounded-lg overflow-hidden" data-gallery="vpn-steps"> <img src="https://raw.githubusercontent.com/x0sina/marzban-sub/main/2.jpg" class="object-cover w-full h-full" alt="v2rayTun Step 2"/> </a>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -1515,7 +1505,8 @@ background: linear-gradient(115deg,rgba(60, 145, 85, 1) 0%, rgba(43, 140, 126, 1
     width: 1.75rem;
     height: 1.75rem;
     filter: brightness(0) invert(1);
-  " class="object-contain flex-shrink-0"/><span x-text="$t('addHusi')"> </span>
+  " class="object-contain flex-shrink-0"/>
+                                                                        <span x-text="$t('addHusi')"> </span>
                                                                     </div>
                                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" :class="{'!rotate-180': expanded}" class="w-6 h-6 mx-6 transform origin-center transition duration-200 ease-out">
                                                                         <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 8.25l7.5 7.5 7.5-7.5"/>
@@ -1531,8 +1522,7 @@ background: linear-gradient(115deg,rgba(60, 145, 85, 1) 0%, rgba(43, 140, 126, 1
                                                                         </div>
                                                                         <p x-text="$t('clickForDownload')" class="text-sm mb-4 font-normal text-white lg:text-base"> </p>
                                                                         <div class="flex mb-6 w-full">
-                                                                            <!-- Левая кнопка -->
-                                                                            <a id="android-v2rayTun-download" href="#" aria-disabled="true" onclick="return false" class="bg-transparent cursor-not-allowed flex flex-1 flex-col glow-border-bottom-off
+                                                                            <!-- Левая кнопка --><a id="android-v2rayTun-download" href="#" aria-disabled="true" onclick="return false" class="bg-transparent cursor-not-allowed flex flex-1 flex-col glow-border-bottom-off
 
 
  items-center justify-center mr-3 overflow-hidden pointer-events-none rounded-2xl
@@ -1542,8 +1532,7 @@ background: linear-gradient(115deg,rgba(60, 145, 85, 1) 0%, rgba(43, 140, 126, 1
                                                                                     <path d="M84.08,472.39c-3.64,3.48.56,9.46,5,7.06l.16-.09L345.8,338l-60.61-57.95Z"/>
                                                                                     <path d="M449.38,231l-71.65-39.46L310.36,256l67.37,64.43L449.38,281C468.87,270.23,468.87,241.77,449.38,231Z"/>
                                                                                 </svg></a>
-                                                                            <!-- Правая кнопка -->
-                                                                            <a href="https://github.com/xchacha20-poly1305/husi/releases/download/v0.11.0-alpha.5/husi-0.11.0-alpha.5-arm64-v8a.apk" class="flex flex-1 flex-col glow-border-bottom items-center justify-center
+                                                                            <!-- Правая кнопка --><a href="https://github.com/xchacha20-poly1305/husi/releases/download/v0.11.0-alpha.5/husi-0.11.0-alpha.5-arm64-v8a.apk" class="flex flex-1 flex-col glow-border-bottom items-center justify-center
 
  ml-10 ml-10 overflow-hidden rounded-2xl shadow-2xl"> <span class="text-gray-500 text-xs uppercase mb-2">файл .apk</span> <svg class="h-8 pulse-icon w-8" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
                                                                                     <path d="M12 2L5 9h4v7h6V9h4z"/>
@@ -1555,8 +1544,7 @@ background: linear-gradient(115deg,rgba(60, 145, 85, 1) 0%, rgba(43, 140, 126, 1
 </lord-icon>
                                                                             <h3 x-text="$t('addConfigs')" class="text-xl font-black leading-none tracking-tight text-white md:text-2xl"> </h3>
                                                                         </div>
-                                                                        <p x-text="$t('clickForAdd')" class="text-sm mb-4 font-normal text-white lg:text-base"> </p>
-                                                                        <a id="android-sinbox (husi)" class=" flex mb-4 items-center gap-x-4 w-full
+                                                                        <p x-text="$t('clickForAdd')" class="text-sm mb-4 font-normal text-white lg:text-base"> </p><a id="android-sinbox (husi)" class=" flex mb-4 items-center gap-x-4 w-full
                                                                         bg-stone-800 shadow-md px-3 py-2 rounded-3xl
                                                                         justify-between"> <lord-icon class="w-8 h-8" src="https://cdn.lordicon.com/mrdiiocb.json" trigger="loop" delay="2000" colors="primary:#fff">
 </lord-icon> <span x-text="$t('AddtoApp')"></span> <lord-icon class="w-8 h-8" src="https://cdn.lordicon.com/mrdiiocb.json" trigger="loop" delay="2000" colors="primary:#fff">
@@ -1576,8 +1564,7 @@ background: linear-gradient(115deg,rgba(60, 145, 85, 1) 0%, rgba(43, 140, 126, 1
                                                         <div x-data="{ expanded: false }">
                                                             <h2> <button style="direction: ltr;" id="faqs-title-01" type="button" class="flex items-center p-4 justify-between w-full text-left font-semibold" @click="expanded = !expanded" :aria-expanded="expanded" aria-controls="faqs-text-01">
                                                                     <div class="flex items-center justify-start gap-x-2 text-lg sm:text-xl font-medium">
-                                                                        <img src="/assets/icons/logo-amnezia.svg" alt="" style="width: 1.75rem; height: 1.75rem;" class="object-contain flex-shrink-0"/>
-                                                                        <span x-text="$t('addamneziavpn')"> </span>
+                                                                        <img src="/assets/icons/logo-amnezia.svg" alt="" style="width: 1.75rem; height: 1.75rem;" class="object-contain flex-shrink-0"/><span x-text="$t('addamneziavpn')"> </span>
                                                                     </div>
                                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" :class="{'!rotate-180': expanded}" class="w-6 h-6 mx-6 transform origin-center transition duration-200 ease-out">
                                                                         <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 8.25l7.5 7.5 7.5-7.5"/>
@@ -1594,14 +1581,16 @@ background: linear-gradient(115deg,rgba(60, 145, 85, 1) 0%, rgba(43, 140, 126, 1
                                                                             </div>
                                                                             <p x-text="$t('clickForDownload')" class="text-sm mb-4 font-normal text-white lg:text-base"> </p>
                                                                             <div class="flex mb-6 w-full">
-                                                                                <!-- Левая кнопка --><a id="android-AmneziaVPN-download" href="intent://details?id=org.amnezia.vpn#Intent;scheme=market;package=com.android.vending;end" class="flex flex-1 flex-col glow-border-bottom items-center justify-center
+                                                                                <!-- Левая кнопка -->
+                                                                                <a id="android-AmneziaVPN-download" href="intent://details?id=org.amnezia.vpn#Intent;scheme=market;package=com.android.vending;end" class="flex flex-1 flex-col glow-border-bottom items-center justify-center
  mr-2 overflow-hidden rounded-2xl"> <span class="mb-1 text-gray-500 text-xs uppercase">скачать в</span> <svg class="animate-spin-slow h-8 mb-1 pulse-icon w-8" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
                                                                                         <path fill="#3BCCFF" d="M48,59.49v393a4.33,4.33,0,0,0,7.37,3.07L260,256,55.37,56.42A4.33,4.33,0,0,0,48,59.49Z"/>
                                                                                         <path fill="#48FF48" d="M345.8,174,89.22,32.64l-.16-.09c-4.42-2.4-8.62,3.58-5,7.06L285.19,231.93Z"/>
                                                                                         <path fill="#FFD400" d="M84.08,472.39c-3.64,3.48.56,9.46,5,7.06l.16-.09L345.8,338l-60.61-57.95Z"/>
                                                                                         <path fill="#FF3333" d="M449.38,231l-71.65-39.46L310.36,256l67.37,64.43L449.38,281C468.87,270.23,468.87,241.77,449.38,231Z"/>
                                                                                     </svg> </a>
-                                                                                <!-- Правая кнопка --><a href="https://github.com/amnezia-vpn/amnezia-client/releases/download/4.8.5.0/AmneziaVPN_4.8.5.0_android8+_arm64-v8a.apk" class="flex flex-1 flex-col glow-border-bottom items-center justify-center
+                                                                                <!-- Правая кнопка -->
+                                                                                <a href="https://github.com/amnezia-vpn/amnezia-client/releases/download/4.8.5.0/AmneziaVPN_4.8.5.0_android8+_arm64-v8a.apk" class="flex flex-1 flex-col glow-border-bottom items-center justify-center
  ml-10 overflow-hidden rounded-2xl"> <span class="text-gray-500 text-xs uppercase mb-2">файл .apk</span> <svg class="h-8 pulse-icon w-8" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
                                                                                         <path d="M12 2L5 9h4v7h6V9h4z"/>
                                                                                         <path d="M5 18h14v2H5z"/>
@@ -1612,8 +1601,13 @@ background: linear-gradient(115deg,rgba(60, 145, 85, 1) 0%, rgba(43, 140, 126, 1
 </lord-icon>
                                                                                 <h3 x-text="$t('addConfigs')" class="text-xl font-black leading-none tracking-tight text-white md:text-2xl"> </h3>
                                                                             </div>
-                                                                            <p x-text="$t('clickForAdd')" class="text-sm mb-4 font-normal text-white lg:text-base"> </p>
-                                                                            <a id="duplicate_section" class="bg-gray-600 flex justify-between py-2 rounded-3xl shadow-md w-full"> </a>
+                                                                            <p x-text="$t('clickForAdd')" class="text-sm mb-4 font-normal text-white lg:text-base"> </p><a id="duplicate_section" class="bg-gray-600 flex justify-between py-2 rounded-3xl shadow-md w-full"> </a>
+                                                                            <!-- контейнер всех превью -->
+                                                                            <div class="flex gap-4 max-h-28 mt-5 overflow-y-auto">
+                                                                                <!-- Превью 1 --><a href="https://raw.githubusercontent.com/jenya77meg/telegram-vpn-bot/2.0/volumes/marzban/templates/subscription/assets/icons/amnezia2.jpg" class="glightbox block w-28 h-28 rounded-lg overflow-hidden" data-gallery="vpn-steps"> <img src="https://raw.githubusercontent.com/jenya77meg/telegram-vpn-bot/2.0/volumes/marzban/templates/subscription/assets/icons/amnezia2.jpg" class="object-cover object-bottom w-full h-full" alt="Amnezia VPN Step 2"/> </a>
+                                                                                <!-- Превью 2 --><a href="https://raw.githubusercontent.com/jenya77meg/telegram-vpn-bot/2.0/volumes/marzban/templates/subscription/assets/icons/amnezia3.jpg" class="glightbox block w-28 h-28 rounded-lg overflow-hidden" data-gallery="vpn-steps"> <img src="https://raw.githubusercontent.com/jenya77meg/telegram-vpn-bot/2.0/volumes/marzban/templates/subscription/assets/icons/amnezia3.jpg" class="object-cover object-bottom w-full h-full" alt="Amnezia VPN Step 3"/> </a>
+                                                                                <!-- Превью 3 --><a href="https://raw.githubusercontent.com/jenya77meg/telegram-vpn-bot/2.0/volumes/marzban/templates/subscription/assets/icons/amnezia4.jpg" class="glightbox block w-28 h-28 rounded-lg overflow-hidden" data-gallery="vpn-steps"> <img src="https://raw.githubusercontent.com/jenya77meg/telegram-vpn-bot/2.0/volumes/marzban/templates/subscription/assets/icons/amnezia4.jpg" class="object-cover object-bottom w-full h-full" alt="Amnezia VPN Step 4"/> </a>
+                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -1633,7 +1627,8 @@ background: linear-gradient(115deg,rgba(60, 145, 85, 1) 0%, rgba(43, 140, 126, 1
                                             <div class="flex items-center justify-start gap-x-2 text-lg sm:text-xl font-medium">
                                                 <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <path fill-rule="evenodd" clip-rule="evenodd" d="M22.25 12.75V23.424L10.75 21.004V12.75H22.25ZM22.25 11.25V0.576L10.75 2.996V11.25H22.25ZM9.25 3.313L1.75 4.89V11.249H9.25V3.313ZM1.75 12.75H9.25V20.688L1.75 19.108V12.75Z" fill="white"/>
-                                                </svg><span x-text="$t('Windows')"> </span>
+                                                </svg>
+                                                <span x-text="$t('Windows')"> </span>
                                             </div>
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" :class="{'!rotate-180': expanded}" class="w-6 h-6 mx-6 transform origin-center transition duration-200 ease-out">
                                                 <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 8.25l7.5 7.5 7.5-7.5"/>
@@ -1655,7 +1650,8 @@ background: linear-gradient(115deg,rgba(60, 145, 85, 1) 0%, rgba(43, 140, 126, 1
                                                                             <g transform="translate(0.000000,170.000000) scale(0.100000,-0.100000)" fill="#FFF" stroke="none">
                                                                                 <path d="M230 1385 l0 -75 75 0 75 0 2 -549 3 -549 580 616 c319 338 582 619 583 624 2 4 -86 8 -195 8 l-198 0 -275 -257 -275 -256 -5 254 -5 254 -182 3 -183 2 0 -75z"/>
                                                                             </g>
-                                                                        </svg><span x-text="$t('addV2rayN')"> </span>
+                                                                        </svg>
+                                                                        <span x-text="$t('addV2rayN')"> </span>
                                                                     </div>
                                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" :class="{'!rotate-180': expanded}" class="w-6 h-6 mx-6 transform origin-center transition duration-200 ease-out">
                                                                         <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 8.25l7.5 7.5 7.5-7.5"/>
@@ -1669,7 +1665,8 @@ background: linear-gradient(115deg,rgba(60, 145, 85, 1) 0%, rgba(43, 140, 126, 1
 </lord-icon>
                                                                             <h3 x-text="$t('downloadApp')" class="text-xl font-black leading-none tracking-tight text-white md:text-2xl"> </h3>
                                                                         </div>
-                                                                        <p x-text="$t('clickForDownload')" class="text-sm mb-4 font-normal text-white lg:text-base"> </p><a href="https://github.com/2dust/v2rayN/releases/download/6.27/zz_v2rayN-With-Core-SelfContained.7z" class="flex mb-4 items-center gap-x-4 w-full bg-gray-800 shadow-md px-3 py-2 rounded-3xl justify-between"> <lord-icon class="w-8 h-8" src="https://cdn.lordicon.com/albqovim.json" trigger="loop" delay="1500" colors="primary:#fff" state="intro">
+                                                                        <p x-text="$t('clickForDownload')" class="text-sm mb-4 font-normal text-white lg:text-base"> </p>
+                                                                        <a href="https://github.com/2dust/v2rayN/releases/download/6.27/zz_v2rayN-With-Core-SelfContained.7z" class="flex mb-4 items-center gap-x-4 w-full bg-gray-800 shadow-md px-3 py-2 rounded-3xl justify-between"> <lord-icon class="w-8 h-8" src="https://cdn.lordicon.com/albqovim.json" trigger="loop" delay="1500" colors="primary:#fff" state="intro">
 </lord-icon> <span x-text="$t('download')"></span> <lord-icon class="w-8 h-8" src="https://cdn.lordicon.com/albqovim.json" trigger="loop" delay="1500" colors="primary:#fff" state="intro">
 </lord-icon> </a>
                                                                     </div>
@@ -1684,7 +1681,8 @@ background: linear-gradient(115deg,rgba(60, 145, 85, 1) 0%, rgba(43, 140, 126, 1
                                                                     <div class="flex items-center justify-start gap-x-2 text-lg sm:text-xl font-medium">
                                                                         <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                                             <path fill-rule="evenodd" clip-rule="evenodd" d="M22.25 12.75V23.424L10.75 21.004V12.75H22.25ZM22.25 11.25V0.576L10.75 2.996V11.25H22.25ZM9.25 3.313L1.75 4.89V11.249H9.25V3.313ZM1.75 12.75H9.25V20.688L1.75 19.108V12.75Z" fill="white"/>
-                                                                        </svg><span x-text="$t('addnekoray')"> </span>
+                                                                        </svg>
+                                                                        <span x-text="$t('addnekoray')"> </span>
                                                                     </div>
                                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" :class="{'!rotate-180': expanded}" class="w-6 h-6 mx-6 transform origin-center transition duration-200 ease-out">
                                                                         <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 8.25l7.5 7.5 7.5-7.5"/>
@@ -1698,7 +1696,8 @@ background: linear-gradient(115deg,rgba(60, 145, 85, 1) 0%, rgba(43, 140, 126, 1
 </lord-icon>
                                                                             <h3 x-text="$t('downloadApp')" class="text-xl font-black leading-none tracking-tight text-white md:text-2xl"> </h3>
                                                                         </div>
-                                                                        <p x-text="$t('clickForDownload')" class="text-sm mb-4 font-normal text-white lg:text-base"> </p><a href="https://github.com/MatsuriDayo/nekoray/releases/download/3.21/nekoray-3.21-2023-09-12-windows64.zip" class="flex mb-4 items-center gap-x-4 w-full bg-gray-800 shadow-md px-3 py-2 rounded-3xl justify-between"> <lord-icon class="w-8 h-8" src="https://cdn.lordicon.com/albqovim.json" trigger="loop" delay="1500" colors="primary:#fff" state="intro">
+                                                                        <p x-text="$t('clickForDownload')" class="text-sm mb-4 font-normal text-white lg:text-base"> </p>
+                                                                        <a href="https://github.com/MatsuriDayo/nekoray/releases/download/3.21/nekoray-3.21-2023-09-12-windows64.zip" class="flex mb-4 items-center gap-x-4 w-full bg-gray-800 shadow-md px-3 py-2 rounded-3xl justify-between"> <lord-icon class="w-8 h-8" src="https://cdn.lordicon.com/albqovim.json" trigger="loop" delay="1500" colors="primary:#fff" state="intro">
 </lord-icon> <span x-text="$t('download')"></span> <lord-icon class="w-8 h-8" src="https://cdn.lordicon.com/albqovim.json" trigger="loop" delay="1500" colors="primary:#fff" state="intro">
 </lord-icon> </a>
                                                                     </div>
@@ -1713,7 +1712,8 @@ background: linear-gradient(115deg,rgba(60, 145, 85, 1) 0%, rgba(43, 140, 126, 1
                                                                     <div class="flex items-center justify-start gap-x-2 text-lg sm:text-xl font-medium">
                                                                         <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                                             <path fill-rule="evenodd" clip-rule="evenodd" d="M22.25 12.75V23.424L10.75 21.004V12.75H22.25ZM22.25 11.25V0.576L10.75 2.996V11.25H22.25ZM9.25 3.313L1.75 4.89V11.249H9.25V3.313ZM1.75 12.75H9.25V20.688L1.75 19.108V12.75Z" fill="white"/>
-                                                                        </svg><span x-text="$t('addClashVerge')"> </span>
+                                                                        </svg>
+                                                                        <span x-text="$t('addClashVerge')"> </span>
                                                                     </div>
                                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" :class="{'!rotate-180': expanded}" class="w-6 h-6 mx-6 transform origin-center transition duration-200 ease-out">
                                                                         <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 8.25l7.5 7.5 7.5-7.5"/>
@@ -1727,7 +1727,8 @@ background: linear-gradient(115deg,rgba(60, 145, 85, 1) 0%, rgba(43, 140, 126, 1
 </lord-icon>
                                                                             <h3 x-text="$t('downloadApp')" class="text-xl font-black leading-none tracking-tight text-white md:text-2xl"> </h3>
                                                                         </div>
-                                                                        <p x-text="$t('clickForDownload')" class="text-sm mb-4 font-normal text-white lg:text-base"> </p><a href="https://github.com/zzzgydi/clash-verge/releases/download/v1.3.7/Clash.Verge_1.3.7_x64_en-US.msi" class="flex mb-4 items-center gap-x-4 w-full bg-gray-800 shadow-md px-3 py-2 rounded-3xl justify-between"> <lord-icon class="w-8 h-8" src="https://cdn.lordicon.com/albqovim.json" trigger="loop" delay="1500" colors="primary:#fff" state="intro">
+                                                                        <p x-text="$t('clickForDownload')" class="text-sm mb-4 font-normal text-white lg:text-base"> </p>
+                                                                        <a href="https://github.com/zzzgydi/clash-verge/releases/download/v1.3.7/Clash.Verge_1.3.7_x64_en-US.msi" class="flex mb-4 items-center gap-x-4 w-full bg-gray-800 shadow-md px-3 py-2 rounded-3xl justify-between"> <lord-icon class="w-8 h-8" src="https://cdn.lordicon.com/albqovim.json" trigger="loop" delay="1500" colors="primary:#fff" state="intro">
 </lord-icon> <span x-text="$t('download')"></span> <lord-icon class="w-8 h-8" src="https://cdn.lordicon.com/albqovim.json" trigger="loop" delay="1500" colors="primary:#fff" state="intro">
 </lord-icon> </a>
                                                                         <div class="flex items-center rtl:mr-[-10px] ltr:ml-[-10px] md:rtl:mr-[-20px] md:ltr:ml-[-20px]">
@@ -1738,7 +1739,8 @@ background: linear-gradient(115deg,rgba(60, 145, 85, 1) 0%, rgba(43, 140, 126, 1
                                                                         </div>
                                                                         <p x-text="$t('clickForAdd')" class="text-sm mb-4 font-normal text-white lg:text-base">
                                                                         برای اضافه کردن کانفیگ‌ ها داخل برنامه روی لینک
-                                                                        زیر کلیک کنید.</p><a id="windows-clashverge" class=" flex mb-4 items-center gap-x-4 w-full
+                                                                        زیر کلیک کنید.</p>
+                                                                        <a id="windows-clashverge" class=" flex mb-4 items-center gap-x-4 w-full
                                                                         bg-stone-800 shadow-md px-3 py-2 rounded-3xl
                                                                         justify-between"> <lord-icon class="w-8 h-8" src="https://cdn.lordicon.com/mrdiiocb.json" trigger="loop" delay="2000" colors="primary:#fff">
 </lord-icon> <span x-text="$t('AddtoApp')">افزودن به
@@ -1767,7 +1769,8 @@ background: linear-gradient(115deg,rgba(60, 145, 85, 1) 0%, rgba(43, 140, 126, 1
                                             <div id="myConfigsContainer" class="w-8 h-8">
                                                 <lord-icon class="w-8 h-8" src="https://cdn.lordicon.com/gqzfzudq.json" trigger="loop" delay="2000" colors="primary:#fff,secondary:#fff">
 </lord-icon>
-                                            </div><span x-text="$t('myConfigs')"> </span>
+                                            </div>
+                                            <span x-text="$t('myConfigs')"> </span>
                                         </div>
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" :class="{'!rotate-180': expanded}" class="w-6 h-6 mx-6 transform origin-center transition duration-200 ease-out">
                                             <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 8.25l7.5 7.5 7.5-7.5"/>
@@ -1779,7 +1782,8 @@ background: linear-gradient(115deg,rgba(60, 145, 85, 1) 0%, rgba(43, 140, 126, 1
                                             <div id="configs_section" style="direction: ltr;" class="flex flex-col gap-y-2 pt-4">
                                                 <button id="copyBtn" class="flex mb-4 items-center justify-between bg-slate-950 px-4 py-3 text-center rounded-lg">
                                                     <lord-icon src="https://cdn.lordicon.com/nocovwne.json" trigger="loop" delay="2000" colors="primary:#fff,secondary:#fff" class="w-10 h-10">
-</lord-icon><span x-text="$t('copyAllCfgs')" id="copyText"> </span>
+</lord-icon>
+                                                    <span x-text="$t('copyAllCfgs')" id="copyText"> </span>
                                                     <lord-icon src="https://cdn.lordicon.com/nocovwne.json" trigger="loop" delay="2000" colors="primary:#fff,secondary:#fff" class="w-10 h-10">
 </lord-icon>
                                                 </button>
@@ -1792,7 +1796,8 @@ background: linear-gradient(115deg,rgba(60, 145, 85, 1) 0%, rgba(43, 140, 126, 1
                         <h2 x-text="$t('telsupport')" class="mb-4 mt-8 text-3xl font-black leading-none tracking-tight text-white md:text-5xl"> </h2>
                         <p x-text="$t('supTelInfo')" class="text-lg font-normal mb-4 text-gray-300 lg:text-xl"></p>
                         <div class="flex flex-col gap-y-4">
-                            <h2 class="font-bold text-white text-2xl mb-2" x-text="$t('sup')"></h2><a href="https://t.me/yourID" class="py-3 px-4 transition-all duration-200 inline-flex gap-x-3 justify-center text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg"> <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" class="w-6 h-6 fill-white" viewBox="0 0 50 50">
+                            <h2 class="font-bold text-white text-2xl mb-2" x-text="$t('sup')"></h2>
+                            <a href="https://t.me/yourID" class="py-3 px-4 transition-all duration-200 inline-flex gap-x-3 justify-center text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg"> <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" class="w-6 h-6 fill-white" viewBox="0 0 50 50">
                                     <path d="M25,2c12.703,0,23,10.297,23,23S37.703,48,25,48S2,37.703,2,25S12.297,2,25,2z M32.934,34.375	c0.423-1.298,2.405-14.234,2.65-16.783c0.074-0.772-0.17-1.285-0.648-1.514c-0.578-0.278-1.434-0.139-2.427,0.219	c-1.362,0.491-18.774,7.884-19.78,8.312c-0.954,0.405-1.856,0.847-1.856,1.487c0,0.45,0.267,0.703,1.003,0.966	c0.766,0.273,2.695,0.858,3.834,1.172c1.097,0.303,2.346,0.04,3.046-0.395c0.742-0.461,9.305-6.191,9.92-6.693	c0.614-0.502,1.104,0.141,0.602,0.644c-0.502,0.502-6.38,6.207-7.155,6.997c-0.941,0.959-0.273,1.953,0.358,2.351	c0.721,0.454,5.906,3.932,6.687,4.49c0.781,0.558,1.573,0.811,2.298,0.811C32.191,36.439,32.573,35.484,32.934,34.375z">
 </path>
                                 </svg> <span class="sm:text-lg" x-text="$t('support')"></span> </a>
