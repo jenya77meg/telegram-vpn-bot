@@ -18,15 +18,7 @@ server {
         root /var/www/certbot;
     }
 
-    location ^~ /statics/ {
-        alias  /opt/telegram-vpn-bot/volumes/marzban/static/;
-        # Без лишнего логирования
-        access_log off;
-        # Кэш на месяц
-        expires 30d;
-        # Гарантируем, что отдаём именно файл
-        try_files $uri =404;
-    }
+    
 
     # Проксируем страницу инструкции
     location = /instruction {
@@ -76,15 +68,7 @@ server {
     ssl_certificate     /etc/nginx/certs/fullchain.pem;
     ssl_certificate_key /etc/nginx/certs/privkey.pem;
 
-    location ^~ /statics/ {
-        alias  /opt/telegram-vpn-bot/volumes/marzban/static/;
-        # Без лишнего логирования
-        access_log off;
-        # Кэш на месяц
-        expires 30d;
-        # Гарантируем, что отдаём именно файл
-        try_files $uri =404;
-    }
+    
 
     # Проксируем страницу инструкции
     location = /instruction {
