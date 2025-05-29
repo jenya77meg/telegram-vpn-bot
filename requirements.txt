@@ -1,12 +1,43 @@
-aiogram~=3.5.0
-aiohttp~=3.9.5
-certifi==2024.2.2
-ujson==5.9.0
-environs==11.0.0
-requests~=2.31.0
-cachetools~=5.3.3
-marzban-api-client==0.4.9
-betterlogging~=1.0.0
-aiosqlite~=0.20.0
-Jinja2~=3.1.3
-aiohttp_jinja2~=1.5.1
+# Telegram Bot Framework
+aiogram[i18n]~=3.1.1             # aiogram с поддержкой i18n (заменяем 3.1.1 на ~3.5.0)
+aiohttp~=3.8.5                  # веб-сервер для webhook и HTTP-клиент
+aiohttp_jinja2~=1.5.1           # шаблоны Jinja2 для aiohttp
+
+# HTTP, JSON и переменные окружения
+requests~=2.31.0                # HTTP-клиент (унифицировано)
+ujson==5.9.0                    # быстрый JSON-парсер
+certifi==2024.2.2               # SSL-сертификаты
+environs==11.0.0                # удобный парсинг .env
+
+# Логирование и утилиты
+betterlogging~=1.0.0            # расширенное логирование
+cachetools~=5.3.3               # in-memory кеширование
+
+# Шаблонизация и локализация
+Jinja2~=3.1.3                   # шаблонизатор
+# aiogram[i18n] уже включает поддержку Babel
+
+# Работа с Marzban API
+marzban-api-client==0.4.9       # клиент для Marzban Panel
+
+# База данных
+SQLAlchemy[asyncio]             # ORM с асинхронным драйвером
+psycopg2-binary>=2.9            # PostgreSQL-драйвер
+# (если нужна MySQL, то оставить pymysql и asyncmy)
+pymysql                         # MySQL-драйвер
+asyncmy                         # асинхронный MySQL-драйвер
+aiosqlite~=0.20.0               # sqlite-драйвер (если нужен локальный sqlite)
+
+# Миграции
+alembic==1.10.2                 # миграции БД
+
+# Платежные SDK
+yookassa                        # YooKassa SDK
+pyCryptomusAPI                  # Cryptomus API
+
+# Планировщик и утилиты запуска
+aioschedule                     # планировщик (если нужны периодические задачи)
+wait-for-it                     # ожидание старта сервисов в Docker
+
+# Криптография
+cryptography                    # низкоуровневая криптография для токенов и хэшей

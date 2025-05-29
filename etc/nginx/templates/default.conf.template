@@ -1,64 +1,39 @@
-# Определяем upstream’ы
-upstream free_vpn_instruction {
-    server free_vpn_instruction:8080;
-}
-
+# ────────────────────────────────────────
+# upstream для Marzban-панели
+# ────────────────────────────────────────
 upstream free_vpn_bot_marzban {
     server marzban:8002;
 }
 
-# HTTP-виртуалхост
+# ────────────────────────────────────────
+# upstream для Telegram-бота
+# ────────────────────────────────────────
+upstream bot_upstream {
+    server free_vpn_bot:8443;
+}
+
+# ────────────────────────────────────────
+# 1) HTTP → HTTPS + ACME-челленджи
+# ────────────────────────────────────────
 server {
     listen       80;
     listen       [::]:80;
     server_name  $DOMAIN;
 
-        # 1 Обслуживаем HTTP01-челленджи от Certbot
+    # HTTP-01 для LetsEncrypt
     location ^~ /.well-known/acme-challenge/ {
         root /var/www/certbot;
     }
 
-    
-
-    # Проксируем страницу инструкции
-    location = /instruction {
-        proxy_pass          http://free_vpn_instruction/instruction;
-        proxy_http_version  1.1;
-        proxy_set_header    Host              $host;
-        proxy_set_header    X-Real-IP         $remote_addr;
-        proxy_set_header    X-Forwarded-For   $proxy_add_x_forwarded_for;
-    }
-
-    location /assets/ {
-        alias /opt/telegram-vpn-bot/volumes/marzban/templates/subscription/assets/;
-        proxy_pass          http://free_vpn_instruction/assets/;
-        proxy_http_version  1.1;
-        proxy_set_header    Host              $host;
-        proxy_set_header    X-Real-IP         $remote_addr;
-        proxy_set_header    X-Forwarded-For   $proxy_add_x_forwarded_for;
-    }
-
-    location ^~ /api/vpn/usage {
-        proxy_pass          http://free_vpn_instruction/api/vpn/usage;
-        proxy_http_version  1.1;
-        proxy_set_header    Host              $host;
-        proxy_set_header    X-Real-IP         $remote_addr;
-        proxy_set_header    X-Forwarded-For   $proxy_add_x_forwarded_for;
-        add_header          Access-Control-Allow-Origin *;
-    }
-
-    # Проксируем панель Marzban и API по HTTP с редиректом на HTTPS
-    location ~* ^/(dashboard|api|sub|statics)(/|$) {
-        return 301 https://$host$request_uri;
-    }
-
-    # Редирект всего остального на HTTPS
+    # Всё остальное — редирект на HTTPS
     location / {
         return 301 https://$host$request_uri;
     }
 }
 
-# HTTPS-виртуалхост
+# ────────────────────────────────────────
+# 2) HTTPS-виртуалхост для $DOMAIN
+# ────────────────────────────────────────
 server {
     listen       443 ssl;
     listen       [::]:443 ssl;
@@ -68,40 +43,20 @@ server {
     ssl_certificate     /etc/nginx/certs/fullchain.pem;
     ssl_certificate_key /etc/nginx/certs/privkey.pem;
 
-    
-
-    # Проксируем страницу инструкции
-    location = /instruction {
-        proxy_pass          http://free_vpn_instruction/instruction;
+    ## 2.1 Telegram Webhook
+    # теперь бьём точно по пути /webhook и проксируем на bot_upstream/webhook
+    location = /webhook {
+        proxy_pass          http://bot_upstream/webhook;
         proxy_http_version  1.1;
         proxy_set_header    Host              $host;
         proxy_set_header    X-Real-IP         $remote_addr;
         proxy_set_header    X-Forwarded-For   $proxy_add_x_forwarded_for;
     }
 
-    location /assets/ {
-        alias /opt/telegram-vpn-bot/volumes/marzban/templates/subscription/assets/;
-        proxy_pass          http://free_vpn_instruction/assets/;
-        proxy_http_version  1.1;
-        proxy_set_header    Host              $host;
-        proxy_set_header    X-Real-IP         $remote_addr;
-        proxy_set_header    X-Forwarded-For   $proxy_add_x_forwarded_for;
-    }
-
-    location ^~ /api/vpn/usage {
-        proxy_pass          http://free_vpn_instruction/api/vpn/usage;
-        proxy_http_version  1.1;
-        proxy_set_header    Host              $host;
-        proxy_set_header    X-Real-IP         $remote_addr;
-        proxy_set_header    X-Forwarded-For   $proxy_add_x_forwarded_for;
-        add_header          Access-Control-Allow-Origin *;
-    }
-
-    # Проксируем панель Marzban и API внутри HTTPS
+    ## 2.2 Dashboard Marzban (UI + WebSockets)
     location ^~ /dashboard/ {
         proxy_pass          https://free_vpn_bot_marzban/dashboard/;
         proxy_http_version  1.1;
-        proxy_ssl_verify    off;
         proxy_set_header    Host              $host;
         proxy_set_header    X-Real-IP         $remote_addr;
         proxy_set_header    X-Forwarded-For   $proxy_add_x_forwarded_for;
@@ -109,7 +64,8 @@ server {
         proxy_set_header    Connection        "upgrade";
     }
 
-    location ~* ^/(api|sub|statics)(/|$) {
+    ## 2.3 API Marzban
+    location ^~ /api/ {
         proxy_pass          https://free_vpn_bot_marzban;
         proxy_http_version  1.1;
         proxy_ssl_verify    off;
@@ -120,16 +76,34 @@ server {
         proxy_set_header    Connection        "upgrade";
     }
 
-    # По умолчанию проксируем корневой запрос на инструкцию
-    location / {
-        proxy_pass          http://free_vpn_instruction/instruction;
+    ## 2.4 Подписки Xray/Clash
+    location ^~ /sub/ {
+        proxy_pass          https://free_vpn_bot_marzban/sub/;
         proxy_http_version  1.1;
         proxy_set_header    Host              $host;
         proxy_set_header    X-Real-IP         $remote_addr;
         proxy_set_header    X-Forwarded-For   $proxy_add_x_forwarded_for;
     }
 
-    # Кастомные страницы ошибок
+    ## 2.5 Статика панели
+    location ^~ /statics/ {
+        proxy_pass          https://free_vpn_bot_marzban/statics/;
+        proxy_http_version  1.1;
+        proxy_set_header    Host              $host;
+        proxy_set_header    X-Real-IP         $remote_addr;
+        proxy_set_header    X-Forwarded-For   $proxy_add_x_forwarded_for;
+    }
+
+    ## 2.6 Всё остальное — проксируем на бота
+    location / {
+        proxy_pass          http://bot_upstream;
+        proxy_http_version  1.1;
+        proxy_set_header    Host              $host;
+        proxy_set_header    X-Real-IP         $remote_addr;
+        proxy_set_header    X-Forwarded-For   $proxy_add_x_forwarded_for;
+    }
+
+    ## 2.7 Страницы ошибок
     error_page 404 /custom_404.html;
     location = /custom_404.html {
         root /usr/share/nginx/html;
