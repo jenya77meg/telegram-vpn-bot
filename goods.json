@@ -1,0 +1,11 @@
+[
+    {
+        "title": "Simple VPN",
+        "price": {
+            "en": 1,
+            "ru": 100
+        },
+        "callback": "simple_vpn",
+        "months": 1
+    }
+]

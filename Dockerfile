@@ -1,22 +1,20 @@
-FROM python:3.12-slim-bullseye
+FROM python:3.10-slim
+WORKDIR /app
 
-# Dockerfile (vpn_bot)
-FROM python:3.12-slim-bullseye
-
-WORKDIR /usr/src/app
-
-# 1) Устанавливаем системные зависимости и сертификаты через apt
-RUN apt-get update \
- && apt-get install -y --no-install-recommends \
-      ca-certificates \
- && rm -rf /var/lib/apt/lists/*
-
-# 2) Копируем и устанавливаем Python-зависимости
-COPY requirements.txt ./
+COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# 3) Копируем весь код бота
-COPY . .
+# Устанавливаем ca-certificates и curl
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+      ca-certificates \
+      curl && \
+    rm -rf /var/lib/apt/lists/*
 
-# 4) Запускаем бота
-CMD ["python3", "-m", "bot"]
+COPY bot        ./bot
+COPY locales    ./locales
+COPY goods.json ./
+
+ENV PYTHONUNBUFFERED=1
+
+ENTRYPOINT ["python", "bot/main.py"]
