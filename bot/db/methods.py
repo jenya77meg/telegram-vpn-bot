@@ -6,7 +6,7 @@ from sqlalchemy import insert, select, update, delete
 from db.models import YPayments, CPayments, VPNUsers
 import glv
 
-engine = create_async_engine(glv.config['DB_URL'])
+engine = create_async_engine(glv.config['DB_URL'], echo=True)
 
 async def create_vpn_profile(tg_id: int):
     async with engine.connect() as conn:

@@ -47,6 +47,13 @@ services:
       UVICORN_SSL_CERTFILE: "/etc/marzban/certs/fullchain.pem"
       UVICORN_SSL_KEYFILE:  "/etc/marzban/certs/privkey.pem"
       UVICORN_SSL_CA_TYPE:  "public"
+    healthcheck:
+      test: ["CMD-SHELL", "curl -sSf https://localhost:8002/api/system || exit 1"]
+      interval: 5s
+      timeout: 2s
+      retries: 5
+    
+    
     ports:
       - "1081:1081"
       - "127.0.0.1:8002:8002"
@@ -93,6 +100,8 @@ services:
       DB_NAME:             ${DB_NAME}
       DB_USER:             ${DB_USER}
       DB_PASS:             ${DB_PASS}
+      DB_HOST:             ${DB_HOST}
+      DB_PORT:             ${DB_PORT}
       PANEL_HOST:          ${PANEL_HOST}
       PANEL_GLOBAL:        ${PANEL_GLOBAL}
       PANEL_USER:          ${PANEL_USER}

@@ -890,13 +890,16 @@ if (expireDateInit.includes("∞")) {
                                 </div>
                                 <!-- RemainingDays -->
                                 <div class="backdrop-blur-md bg-white/5 border border-white/20 flex flex-1 flex-col items-center rounded-xl">
-                                    <div class="mb-2 mt-3 opacity-80 text-gray-300 text-xs uppercase">Осталось дней</div>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                {% set remaining_days = ((user.expire - now().timestamp()) // (24 * 3600)) %}
-                                    <div class="mt-1 text-lg font-semibold">
-                                        {% if not user.expire %}
-                                        ∞ дн.
-                                        {% else %}
-                                        {{ remaining_days | int }} дн.
-                                        {% endif %}
+                                    <div class="mb-2 mt-3 opacity-80 text-gray-300 text-xs uppercase">Осталось дней</div> 
+                                    {% if not user.expire %}
+    {% set remaining_days = '∞' %}
+{% else %}
+    {% set remaining_days = ((user.expire - now().timestamp()) // (24 * 3600)) | int %}
+{% endif %}
+<div class="mt-1 text-lg font-semibold">
+    {{ remaining_days }} дн.
+</div>
+
 </div>
                                 </div>
                             </div>
