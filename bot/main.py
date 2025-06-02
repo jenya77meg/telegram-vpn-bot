@@ -3,10 +3,10 @@ import logging
 import sys
 import time
 from pathlib import Path
+import os
 
 from aiogram import Bot, Dispatcher, enums
 from aiogram.fsm.storage.memory import MemoryStorage
-from aiogram.utils.i18n import I18n, SimpleI18nMiddleware
 from aiohttp import web
 from aiogram.webhook.aiohttp_server import SimpleRequestHandler, setup_application
 
@@ -14,7 +14,7 @@ from handlers.commands import register_commands
 from handlers.messages import register_messages
 from handlers.callbacks import register_callbacks
 from middlewares.db_check import DBCheck
-from app.routes import check_crypto_payment, check_yookassa_payment
+from app.routes import check_crypto_payment, check_yookassa_payment, get_user_display_info_endpoint
 from tasks import register
 import glv
 from utils.marzban_api import panel
@@ -54,9 +54,28 @@ def setup_routers():
     register_callbacks(glv.dp)
 
 def setup_middlewares():
-    i18n = I18n(path=Path(__file__).parent / 'locales', default_locale='en', domain='bot')
-    i18n_middleware = SimpleI18nMiddleware(i18n=i18n)
-    i18n_middleware.setup(glv.dp)
+    # Удаляем все, что связано с i18n
+    # locales_path = Path(__file__).parent / 'locales'
+    # default_locale = 'ru'
+    # domain = 'bot'
+
+    # print(f"[I18N_DEBUG] Attempting to set up I18n.")
+    # print(f"[I18N_DEBUG] Locales path: {locales_path}")
+    # print(f"[I18N_DEBUG] Default locale: {default_locale}")
+    # print(f"[I18N_DEBUG] Domain: {domain}")
+
+    # ru_mo_file_path = locales_path / default_locale / 'LC_MESSAGES' / f"{domain}.mo"
+    # print(f"[I18N_DEBUG] Expected Russian .mo file path: {ru_mo_file_path}")
+    # if os.path.exists(ru_mo_file_path):
+    #     print(f"[I18N_DEBUG] Russian .mo file EXISTS at: {ru_mo_file_path}")
+    # else:
+    #     print(f"[I18N_DEBUG] Russian .mo file DOES NOT EXIST at: {ru_mo_file_path} <--- PROBLEM HERE?")
+
+    # i18n = I18n(path=locales_path, default_locale=default_locale, domain=domain)
+    # i18n_middleware = SimpleI18nMiddleware(i18n=i18n)
+    # i18n_middleware.setup(glv.dp)
+    
+    # Оставляем только DBCheck middleware
     glv.dp.message.middleware(DBCheck())
 
 async def main():
@@ -79,6 +98,9 @@ async def main():
     # Платёжные вебхуки
     app.router.add_post("/cryptomus_payment", check_crypto_payment)
     app.router.add_post("/yookassa_payment", check_yookassa_payment)
+    
+    # API для получения информации о пользователе
+    app.router.add_get("/api/user_info/{vpn_id}", get_user_display_info_endpoint)
 
     # Телеграм-вебхук
     webhook_requests_handler = SimpleRequestHandler(

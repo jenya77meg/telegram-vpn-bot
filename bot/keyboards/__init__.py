@@ -4,3 +4,6 @@ from .payments import get_payment_keyboard
 from .back import get_back_keyboard
 from .pay import get_pay_keyboard
 from .subscription import get_subscription_keyboard
+from .welcome import get_welcome_keyboard
+from .profile_actions import get_profile_actions_keyboard
+from .faq import get_faq_questions_keyboard

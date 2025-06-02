@@ -10,7 +10,8 @@ from db.methods import (
     get_marzban_profile_db,
     get_yookassa_payment,
     get_cryptomus_payment,
-    delete_payment
+    delete_payment,
+    get_user_display_info
 )
 from keyboards import get_main_menu_keyboard
 from utils import webhook_data, goods, marzban_api
@@ -40,11 +41,11 @@ async def check_crypto_payment(request: Request):
     if data['status'] in ['paid', 'paid_over']:
         good = goods.get(payment.callback)
         user = await get_marzban_profile_db(payment.tg_id)
-        result = await marzban_api.generate_marzban_subscription(user.vpn_id, good)
+        marzban_user_data = await marzban_api.generate_marzban_subscription(str(user.tg_id), good)
         text = get_i18n_string("Thank you for your choice ❤️\n️\n<a href=\{link}\">Subscribe</a> so you don't miss any announcements ✅\n️\nYour subscription is purchased and available in \"My subscription 👤\".", payment.lang)
         await glv.bot.send_message(payment.chat_id,
             text.format(
-                link=glv.config['PANEL_GLOBAL'] + result['subscription_url']
+                link=glv.config['PANEL_GLOBAL'] + marzban_user_data['subscription_url']
             ),
             reply_markup=get_main_menu_keyboard(payment.lang)
         )
@@ -74,11 +75,11 @@ async def check_yookassa_payment(request: Request):
     if data['status'] in ['succeeded']:
         good = goods.get(payment.callback)
         user = await get_marzban_profile_db(payment.tg_id)
-        result = await marzban_api.generate_marzban_subscription(user.vpn_id, good)
+        marzban_user_data = await marzban_api.generate_marzban_subscription(str(user.tg_id), good)
         text = get_i18n_string("Thank you for your choice ❤️\n️\n<a href=\"{link}\">Subscribe</a> so you don't miss any announcements ✅\n️\nYour subscription is purchased and available in \"My subscription 👤\".", payment.lang)
         await glv.bot.send_message(payment.chat_id,
             text.format(
-                link=glv.config['PANEL_GLOBAL'] + result['subscription_url']
+                link=glv.config['PANEL_GLOBAL'] + marzban_user_data['subscription_url']
             ),
             reply_markup=get_main_menu_keyboard(payment.lang)
         )
@@ -86,3 +87,12 @@ async def check_yookassa_payment(request: Request):
     if data['status'] == 'canceled':
         await delete_payment(payment.payment_id)
     return web.Response()
+
+async def get_user_display_info_endpoint(request):
+    """API endpoint для получения читаемой информации о пользователе"""
+    vpn_id = request.match_info.get('vpn_id', '')
+    if not vpn_id:
+        return web.json_response({'error': 'vpn_id is required'}, status=400)
+    
+    user_info = await get_user_display_info(vpn_id)
+    return web.json_response(user_info)

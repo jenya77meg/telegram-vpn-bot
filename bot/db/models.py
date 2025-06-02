@@ -9,6 +9,8 @@ class VPNUsers(Base):
     tg_id = Column(BigInteger)
     vpn_id = Column(String(64), default="")
     test = Column(Boolean, default=False)
+    display_name = Column(String(255), default="")
+    telegram_username = Column(String(255), default="")
 
 class CPayments(Base):
     __tablename__ = "crypto_payments"

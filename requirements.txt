@@ -1,6 +1,6 @@
 # Telegram Bot Framework
-aiogram[i18n]~=3.1.1             # aiogram с поддержкой i18n (заменяем 3.1.1 на ~3.5.0)
-aiohttp~=3.8.5                  # веб-сервер для webhook и HTTP-клиент
+aiogram[i18n]~=3.5.0             # aiogram с поддержкой i18n (заменяем 3.1.1 на ~3.5.0)
+aiohttp~=3.9.0                  # веб-сервер для webhook и HTTP-клиент
 aiohttp_jinja2~=1.5.1           # шаблоны Jinja2 для aiohttp
 
 # HTTP, JSON и переменные окружения

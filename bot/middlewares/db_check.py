@@ -12,6 +12,11 @@ class DBCheck(BaseMiddleware):
         data: Dict[str, Any]
     ) -> Any:
         user = data["event_from_user"]
-        await create_vpn_profile(user.id)
+        await create_vpn_profile(
+            user.id, 
+            first_name=user.first_name or "",
+            last_name=user.last_name or "",
+            username=user.username or ""
+        )
         result = await handler(event, data)
         return result

@@ -1,15 +1,17 @@
-from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup,  WebAppInfo
+from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup, WebAppInfo
 from aiogram.utils.keyboard import InlineKeyboardBuilder
-from aiogram.utils.i18n import gettext as _
 
 import glv
+
+# Текст кнопки на русском
+TEXT_FOLLOW_LINK_RU = "Перейти 🔗"
 
 def get_subscription_keyboard(subscription_url) -> InlineKeyboardMarkup:
     builder = InlineKeyboardBuilder()
     builder.row(
         InlineKeyboardButton(
-            text=_("Follow 🔗"),
-            web_app=WebAppInfo(url=subscription_url)
+            text=TEXT_FOLLOW_LINK_RU,
+            url=subscription_url
         )
     )
     return builder.as_markup()

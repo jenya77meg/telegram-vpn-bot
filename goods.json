@@ -1,11 +1,20 @@
 [
     {
-        "title": "Simple VPN",
-        "price": {
-            "en": 1,
-            "ru": 100
-        },
-        "callback": "simple_vpn",
+        "title": "Подписка на 1 месяц",
+        "price": {"ru": 400},
+        "callback": "vpn_1_month",
         "months": 1
+    },
+    {
+        "title": "Подписка на 3 месяца",
+        "price": {"ru": 1080},
+        "callback": "vpn_3_months",
+        "months": 3
+    },
+    {
+        "title": "Подписка на 6 месяцев",
+        "price": {"ru": 2040},
+        "callback": "vpn_6_months",
+        "months": 6
     }
 ]

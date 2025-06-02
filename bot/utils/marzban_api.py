@@ -41,7 +41,7 @@ class Marzban:
     async def _send_request(self, method: str, path: str, headers=None, data=None) -> dict | list:
         url = f"{self.ip}{path}"
         async with aiohttp.ClientSession() as session:
-            async with session.request(method, url, headers=headers, json=data) as resp:
+            async with session.request(method, url, headers=headers, json=data, ssl=False) as resp:
                 if 200 <= resp.status < 300:
                     return await resp.json()
                 else:
@@ -124,30 +124,57 @@ async def check_if_user_exists(name: str) -> bool:
 
 
 async def get_marzban_profile(tg_id: int):
-    result = await get_marzban_profile_db(tg_id)
-    exists = await check_if_user_exists(result.vpn_id)
+    marzban_username = str(tg_id) # В Marzban теперь username = tg_id
+    exists = await check_if_user_exists(marzban_username)
     if not exists:
-        return None
-    return await panel.get_user(result.vpn_id)
+        # Для обратной совместимости: если пользователь не найден по tg_id в Marzban,
+        # попробуем найти по vpn_id (MD5) из нашей локальной БД,
+        # так как он мог быть создан в Marzban старым способом.
+        db_profile = await get_marzban_profile_db(tg_id)
+        if db_profile and db_profile.vpn_id and db_profile.vpn_id != marzban_username:
+            old_marzban_username_md5 = db_profile.vpn_id
+            # Печать для отладки, чтобы видеть какой идентификатор используется
+            print(f"DEBUG: User tg_id={tg_id} not found in Marzban by tg_id ('{marzban_username}'). Trying old vpn_id: '{old_marzban_username_md5}'")
+            exists_by_old_md5 = await check_if_user_exists(old_marzban_username_md5)
+            if exists_by_old_md5:
+                print(f"DEBUG: User tg_id={tg_id} FOUND in Marzban by old vpn_id: '{old_marzban_username_md5}'")
+                return await panel.get_user(old_marzban_username_md5)
+            else:
+                print(f"DEBUG: User tg_id={tg_id} NOT found in Marzban by old vpn_id: '{old_marzban_username_md5}' either.")
+        else:
+            # Профиль в локальной БД не найден или vpn_id совпадает с tg_id (маловероятно, но для полноты)
+            print(f"DEBUG: User tg_id={tg_id} not found in Marzban by tg_id ('{marzban_username}') and no distinct old vpn_id in local DB.")
+        return None # Не найден ни по tg_id, ни по старому vpn_id в Marzban
+    
+    # Нашли в Marzban по tg_id (marzban_username), его и возвращаем
+    print(f"DEBUG: User tg_id={tg_id} FOUND in Marzban by tg_id as username: '{marzban_username}'")
+    return await panel.get_user(marzban_username)
 
 
-async def generate_test_subscription(username: str):
+async def generate_test_subscription(username: str, custom_hours: int = None):
+    hours_to_use = custom_hours if custom_hours is not None else glv.config['PERIOD_LIMIT']
+    
+    # Печать для отладки, какие часы используются
+    print(f"DEBUG MarzbanAPI: generate_test_subscription for '{username}' using {hours_to_use} hours.")
+
     exists = await check_if_user_exists(username)
     now = time.time()
     if exists:
         user = await panel.get_user(username)
         user['status'] = 'active'
-        if user['expire'] < now:
-            user['expire'] = get_test_subscription(glv.config['PERIOD_LIMIT'])
+        # Убедимся, что user['expire'] это число, иначе сравнение и сложение вызовут ошибку
+        current_expire = user.get('expire') if isinstance(user.get('expire'), (int, float)) else 0
+        if current_expire < now:
+            user['expire'] = get_test_subscription(hours_to_use)
         else:
-            user['expire'] += get_test_subscription(glv.config['PERIOD_LIMIT'], additional=True)
+            user['expire'] = current_expire + get_test_subscription(hours_to_use, additional=True)
         return await panel.modify_user(username, user)
     else:
         new_user = {
             'username': username,
             'proxies': ps["proxies"],
             'inbounds': ps["inbounds"],
-            'expire': get_test_subscription(glv.config['PERIOD_LIMIT']),
+            'expire': get_test_subscription(hours_to_use),
             'data_limit': 0,
             'data_limit_reset_strategy': "no_reset",
         }
