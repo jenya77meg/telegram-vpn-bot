@@ -66,7 +66,7 @@ def get_faq_questions_keyboard() -> InlineKeyboardMarkup:
         InlineKeyboardButton(text=FAQ_Q7_BUTTON_TEXT, callback_data=FAQ_Q7_CALLBACK)
     )
     builder.row(
-        InlineKeyboardButton(text=FAQ_Q8_BUTTON_TEXT, callback_data=FAQ_Q8_CALLBACK)
+       InlineKeyboardButton(text=FAQ_Q8_BUTTON_TEXT, callback_data=FAQ_Q8_CALLBACK)
     )
     # Кнопка для возврата в главное меню (имитирует /start)
     # Убрал кнопку "Назад", так как это может конфликтовать с уже существующей кнопкой "Назад" из reply-клавиатуры.

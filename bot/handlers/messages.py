@@ -79,8 +79,10 @@ async def profile(message: Message):
             status_sub_val = "Отключена 🔘"
         elif marzban_status == 'expired':
             status_sub_val = "Истекла ⌛️"
+        elif marzban_status == 'limited':
+            status_sub_val = "Ограничена ⚠️"
         else:
-            status_sub_val = f"{marzban_status.capitalize()} ❓"
+            status_sub_val = f"Неизвестный статус ({marzban_status}) ❓"
 
         expire_timestamp = marzban_user_data.get('expire')
         if expire_timestamp:

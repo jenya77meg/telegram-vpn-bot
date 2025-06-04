@@ -1,6 +1,5 @@
 from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from aiogram.utils.keyboard import InlineKeyboardBuilder
-from aiogram.utils.i18n import gettext as _
 
 import glv
 
@@ -20,9 +19,7 @@ def get_payment_keyboard(good) -> InlineKeyboardMarkup:
     if yoo:
         builder.row(
             InlineKeyboardButton(
-                text=_("YooKassa - {price}₽").format(
-                    price=good['price']['ru']
-                ),
+                text=f"YooKassa - {good['price']['ru']}₽",
                 callback_data=f"pay_kassa_{good['callback']}"
             )
         )

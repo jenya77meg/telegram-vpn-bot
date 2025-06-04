@@ -1,13 +1,12 @@
 from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup,  WebAppInfo
 from aiogram.utils.keyboard import InlineKeyboardBuilder
-from aiogram.utils.i18n import gettext as _
 
-def get_pay_keyboard(pay_url) -> InlineKeyboardMarkup:
+def get_pay_keyboard(url) -> InlineKeyboardMarkup:
     builder = InlineKeyboardBuilder()
     builder.row(
         InlineKeyboardButton(
-            text=_("Pay 💳"),
-            url=pay_url
+            text="Оплатить 💳",
+            url=url
         )
     )
     return builder.as_markup()

@@ -2,6 +2,7 @@ import uuid
 import logging
 import ipaddress
 import time
+import json
 
 from aiohttp.web_request import Request
 from aiohttp import web
@@ -11,11 +12,11 @@ from db.methods import (
     get_yookassa_payment,
     get_cryptomus_payment,
     delete_payment,
-    get_user_display_info
+    get_user_display_info,
+    update_test_subscription_state
 )
 from keyboards import get_main_menu_keyboard
 from utils import webhook_data, goods, marzban_api
-from utils import get_i18n_string
 import glv
 
 YOOKASSA_IPS = (
@@ -42,12 +43,12 @@ async def check_crypto_payment(request: Request):
         good = goods.get(payment.callback)
         user = await get_marzban_profile_db(payment.tg_id)
         marzban_user_data = await marzban_api.generate_marzban_subscription(str(user.tg_id), good)
-        text = get_i18n_string("Thank you for your choice ❤️\n️\n<a href=\{link}\">Subscribe</a> so you don't miss any announcements ✅\n️\nYour subscription is purchased and available in \"My subscription 👤\".", payment.lang)
+        await update_test_subscription_state(payment.tg_id, is_test=False)
+        text = f"Спасибо за ваш выбор ❤️\n️\nВаша подписка оформлена и доступна в разделе \"Мой профиль 👤\"."
         await glv.bot.send_message(payment.chat_id,
-            text.format(
-                link=glv.config['PANEL_GLOBAL'] + marzban_user_data['subscription_url']
-            ),
-            reply_markup=get_main_menu_keyboard(payment.lang)
+            text,
+            reply_markup=get_main_menu_keyboard(),
+            parse_mode="HTML"
         )
         await delete_payment(payment.payment_uuid)
     if data['status'] == 'cancel':
@@ -76,12 +77,12 @@ async def check_yookassa_payment(request: Request):
         good = goods.get(payment.callback)
         user = await get_marzban_profile_db(payment.tg_id)
         marzban_user_data = await marzban_api.generate_marzban_subscription(str(user.tg_id), good)
-        text = get_i18n_string("Thank you for your choice ❤️\n️\n<a href=\"{link}\">Subscribe</a> so you don't miss any announcements ✅\n️\nYour subscription is purchased and available in \"My subscription 👤\".", payment.lang)
+        await update_test_subscription_state(payment.tg_id, is_test=False)
+        text = f"Спасибо за ваш выбор ❤️\n️\nВаша подписка оформлена и доступна в разделе \"Мой профиль 👤\"."
         await glv.bot.send_message(payment.chat_id,
-            text.format(
-                link=glv.config['PANEL_GLOBAL'] + marzban_user_data['subscription_url']
-            ),
-            reply_markup=get_main_menu_keyboard(payment.lang)
+            text,
+            reply_markup=get_main_menu_keyboard(),
+            parse_mode="HTML"
         )
         await delete_payment(payment.payment_id)
     if data['status'] == 'canceled':

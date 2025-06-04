@@ -8,27 +8,32 @@ import glv
 if glv.config['YOOKASSA_SHOPID'] and glv.config['YOOKASSA_TOKEN']:
     Configuration.configure(glv.config['YOOKASSA_SHOPID'], glv.config['YOOKASSA_TOKEN'])
 
-async def create_payment(tg_id: int, callback: str, chat_id: int, lang_code: str) -> dict:
+async def create_payment(tg_id: int, callback: str, chat_id: int, user_email: str = None) -> dict:
     good = goods.get(callback)
-    resp = Payment.create({
+    receipt_item_description = f"Доступ к сервису {glv.config['SHOP_NAME']} - {good['title']}"
+
+    bot_username = (await glv.bot.get_me()).username
+    return_url_for_payment = f"https://t.me/{bot_username}"
+
+    payment_params = {
         "amount": {
             "value": good['price']['ru'],
             "currency": "RUB"
         },
         "confirmation": {
             "type": "redirect",
-            "return_url": f"https://t.me/{(await glv.bot.get_me()).username}"
+            "return_url": return_url_for_payment
         },
         "capture": True,
-        "description": f"Подписка на VPN {glv.config['SHOP_NAME']}",
+        "description": f"Оплата подписки на сервис {glv.config['SHOP_NAME']} (товар: {good['title']})",
         "save_payment_method": False,
         "receipt": {
             "customer": {
-                "email": glv.config['EMAIL']
+                "email": user_email if user_email else glv.config['EMAIL']
             },
             "items": [
                 {
-                    "description": f"Подписка на VPN сервис: кол-во месяцев - {good['months']}",
+                    "description": receipt_item_description,
                     "quantity": "1",
                     "amount": {
                         "value": good['price']['ru'],
@@ -38,9 +43,13 @@ async def create_payment(tg_id: int, callback: str, chat_id: int, lang_code: str
                 },
             ]
         }
-        })
-    await add_yookassa_payment(tg_id, callback, chat_id, lang_code, resp.id)
+    }
+    
+    resp = Payment.create(payment_params)
+
+    await add_yookassa_payment(tg_id, callback, chat_id, "ru", resp.id)
     return {
         "url": resp.confirmation.confirmation_url,
-        "amount": resp.amount.value
+        "amount": resp.amount.value,
+        "payment_id": resp.id
     }

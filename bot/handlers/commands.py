@@ -15,7 +15,8 @@ router = Router(name="commands-router")
 
 WELCOME_TEXT_RU = (
     "Добро пожаловать в мир свободного и быстрого интернета!\n\n"  # Здесь одинарные \n, это корректно
-    "Наш VPN предлагает:\n"
+    #  "Наш сервис предлагает доступ к chatgpt, gemini, claude и другим сервисам:\n"
+  
     "✅ 7 дней бесплатного теста — попробуйте без обязательств!\n"
     "✅ Высокую скорость и стабильное соединение для стриминга, игр и работы.\n"
     "✅ Безлимитный трафик — пользуйтесь сколько угодно.\n"
@@ -105,16 +106,19 @@ async def simulate_payment_3months(message: Message):
         await update_test_subscription_state(user_id, is_test=False)
 
         # Для сообщения об успехе все еще можно использовать months из selected_good
-        months_for_message = selected_good.get('months', 'N/A')
+        months_for_message = selected_good.get('months', 'не указано')
+        expire_date_str = (datetime.fromtimestamp(new_marzban_user_data.get('expire')).strftime('%d.%m.%Y %H:%M') 
+                           if new_marzban_user_data.get('expire') 
+                           else 'нет данных')
 
         success_message = (
             f"✅ Успешная имитация оплаты!\n"
             f"Подписка на {months_for_message} мес. активирована.\n"
-            f"Детали подписки (из Marzban):"
-            f"Username: {new_marzban_user_data.get('username')}\n"
-            f"Status: {new_marzban_user_data.get('status')}\n"
-            f"Expires: {datetime.fromtimestamp(new_marzban_user_data.get('expire')).strftime('%d.%m.%Y %H:%M') if new_marzban_user_data.get('expire') else 'N/A'}\n"
-            f"Subscription URL: {new_marzban_user_data.get('subscription_url')}"
+            f"Детали подписки (из Marzban):\n"
+            f"Имя пользователя: {new_marzban_user_data.get('username')}\n"
+            f"Статус: {new_marzban_user_data.get('status')}\n"
+            f"Истекает: {expire_date_str}\n"
+            f"URL подписки: {new_marzban_user_data.get('subscription_url')}"
         )
         await message.answer(success_message)
 
