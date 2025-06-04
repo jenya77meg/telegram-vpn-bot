@@ -12,7 +12,6 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 COPY bot        ./bot
-COPY locales    ./locales
 COPY goods.json ./
 
 ENV PYTHONUNBUFFERED=1
