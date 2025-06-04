@@ -1,4 +1,3 @@
-
 services:
   nginx:
     container_name: free_vpn_bot_nginx
@@ -47,6 +46,7 @@ services:
       UVICORN_SSL_CERTFILE: "/etc/marzban/certs/fullchain.pem"
       UVICORN_SSL_KEYFILE:  "/etc/marzban/certs/privkey.pem"
       UVICORN_SSL_CA_TYPE:  "public"
+      XRAY_LOCATION_ASSET: /opt/marzban/assets
     healthcheck:
       test: ["CMD-SHELL", "curl -sSf https://localhost:8002/api/system || exit 1"]
       interval: 5s
@@ -63,6 +63,9 @@ services:
       - ./volumes/marzban:/var/lib/marzban
       - ./volumes/marzban/templates/subscription:/var/lib/marzban/templates/subscription:ro
       - ./xray_config.json:/opt/marzban/xray_config.json:ro
+      # - ./volumes/xray_assets/geoip.dat:/opt/marzban/geoip.dat:ro
+      # - ./volumes/xray_assets/geosite.dat:/opt/marzban/geosite.dat:ro
+      - ./volumes/xray_assets:/opt/marzban/assets:ro
       - /etc/timezone:/etc/timezone:ro
       - ./certs/fullchain.pem:/etc/marzban/certs/fullchain.pem:ro
       - ./certs/privkey.pem:/etc/marzban/certs/privkey.pem:ro
