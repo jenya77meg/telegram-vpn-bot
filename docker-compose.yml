@@ -32,6 +32,7 @@ services:
       - ./certbot/data:/var/www/certbot
       # статика Marzban
       - ./volumes/marzban/static:/opt/telegram-vpn-bot/volumes/marzban/static:ro
+      - ./volumes/marzban/templates/subscription/assets:/opt/telegram-vpn-bot/volumes/marzban/templates/subscription/assets:ro
 
   marzban:
     image: gozargah/marzban:latest

@@ -94,6 +94,11 @@ server {
         proxy_set_header    X-Forwarded-For   $proxy_add_x_forwarded_for;
     }
 
+    ## 2.5.1 Локальные ассеты шаблона
+    location ^~ /assets/ {
+        alias /opt/telegram-vpn-bot/volumes/marzban/templates/subscription/assets/;
+    }
+
     ## 2.6 Всё остальное — проксируем на бота
     location / {
         proxy_pass          http://bot_upstream;
