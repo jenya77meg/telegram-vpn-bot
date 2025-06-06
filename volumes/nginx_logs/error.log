@@ -1,0 +1,49 @@
+2025/06/06 13:29:14 [emerg] 1#1: directive "if" has no opening "{" in /etc/nginx/conf.d/default.conf:44
+2025/06/06 13:29:15 [emerg] 1#1: directive "if" has no opening "{" in /etc/nginx/conf.d/default.conf:44
+2025/06/06 13:29:16 [emerg] 1#1: directive "if" has no opening "{" in /etc/nginx/conf.d/default.conf:44
+2025/06/06 13:29:17 [emerg] 1#1: directive "if" has no opening "{" in /etc/nginx/conf.d/default.conf:44
+2025/06/06 13:29:18 [emerg] 1#1: directive "if" has no opening "{" in /etc/nginx/conf.d/default.conf:44
+2025/06/06 13:29:20 [emerg] 1#1: directive "if" has no opening "{" in /etc/nginx/conf.d/default.conf:44
+2025/06/06 13:29:23 [emerg] 1#1: directive "if" has no opening "{" in /etc/nginx/conf.d/default.conf:44
+2025/06/06 13:29:30 [emerg] 1#1: directive "if" has no opening "{" in /etc/nginx/conf.d/default.conf:44
+2025/06/06 13:29:43 [emerg] 1#1: directive "if" has no opening "{" in /etc/nginx/conf.d/default.conf:44
+2025/06/06 13:30:09 [emerg] 1#1: directive "if" has no opening "{" in /etc/nginx/conf.d/default.conf:44
+2025/06/06 13:31:00 [emerg] 1#1: directive "if" has no opening "{" in /etc/nginx/conf.d/default.conf:44
+2025/06/06 13:31:45 [notice] 1#1: using the "epoll" event method
+2025/06/06 13:31:45 [notice] 1#1: nginx/1.25.5
+2025/06/06 13:31:45 [notice] 1#1: built by gcc 13.2.1 20231014 (Alpine 13.2.1_git20231014) 
+2025/06/06 13:31:45 [notice] 1#1: OS: Linux 6.8.0-48-generic
+2025/06/06 13:31:45 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2025/06/06 13:31:45 [notice] 1#1: start worker processes
+2025/06/06 13:31:45 [notice] 1#1: start worker process 21
+2025/06/06 13:31:45 [notice] 1#1: start worker process 22
+2025/06/06 13:43:51 [warn] 21#21: *22 an upstream response is buffered to a temporary file /var/cache/nginx/proxy_temp/1/00/0000000001 while reading upstream, client: 85.249.29.158, server: $domain, request: "GET /sub/NjMzNjE3NjE4LDE3NDkyMTc0MjYDXOs7WKYL_ HTTP/2.0", upstream: "https://192.168.160.5:8002/sub/NjMzNjE3NjE4LDE3NDkyMTc0MjYDXOs7WKYL_", host: "host.almet-sam.ru"
+2025/06/06 15:51:54 [notice] 1#1: using the "epoll" event method
+2025/06/06 15:51:54 [notice] 1#1: nginx/1.25.5
+2025/06/06 15:51:54 [notice] 1#1: built by gcc 13.2.1 20231014 (Alpine 13.2.1_git20231014) 
+2025/06/06 15:51:54 [notice] 1#1: OS: Linux 6.8.0-48-generic
+2025/06/06 15:51:54 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2025/06/06 15:51:54 [notice] 1#1: start worker processes
+2025/06/06 15:51:54 [notice] 1#1: start worker process 21
+2025/06/06 15:51:54 [notice] 1#1: start worker process 22
+2025/06/06 16:07:46 [notice] 1#1: signal 3 (SIGQUIT) received, shutting down
+2025/06/06 16:07:46 [notice] 21#21: gracefully shutting down
+2025/06/06 16:07:46 [notice] 21#21: exiting
+2025/06/06 16:07:46 [notice] 21#21: exit
+2025/06/06 16:07:46 [notice] 22#22: gracefully shutting down
+2025/06/06 16:07:46 [notice] 22#22: exiting
+2025/06/06 16:07:46 [notice] 22#22: exit
+2025/06/06 16:07:46 [notice] 1#1: signal 17 (SIGCHLD) received from 22
+2025/06/06 16:07:46 [notice] 1#1: worker process 22 exited with code 0
+2025/06/06 16:07:46 [notice] 1#1: signal 29 (SIGIO) received
+2025/06/06 16:07:46 [notice] 1#1: signal 17 (SIGCHLD) received from 21
+2025/06/06 16:07:46 [notice] 1#1: worker process 21 exited with code 0
+2025/06/06 16:07:46 [notice] 1#1: exit
+2025/06/06 16:09:41 [notice] 1#1: using the "epoll" event method
+2025/06/06 16:09:41 [notice] 1#1: nginx/1.25.5
+2025/06/06 16:09:41 [notice] 1#1: built by gcc 13.2.1 20231014 (Alpine 13.2.1_git20231014) 
+2025/06/06 16:09:41 [notice] 1#1: OS: Linux 6.8.0-48-generic
+2025/06/06 16:09:41 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2025/06/06 16:09:41 [notice] 1#1: start worker processes
+2025/06/06 16:09:41 [notice] 1#1: start worker process 21
+2025/06/06 16:09:41 [notice] 1#1: start worker process 22

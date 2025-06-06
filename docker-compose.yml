@@ -33,6 +33,7 @@ services:
       # статика Marzban
       - ./volumes/marzban/static:/opt/telegram-vpn-bot/volumes/marzban/static:ro
       - ./volumes/marzban/templates/subscription/assets:/opt/telegram-vpn-bot/volumes/marzban/templates/subscription/assets:ro
+      - ./volumes/nginx_logs:/var/log/nginx
 
   marzban:
     image: gozargah/marzban:latest
@@ -134,8 +135,23 @@ services:
     networks:
       - free_vpn_bot
 
+  fail2ban:
+    image: crazymax/fail2ban:latest
+    container_name: free_vpn_bot_fail2ban
+    restart: always
+    network_mode: "host"
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+    volumes:
+      - ./fail2ban-data:/data
+      - ./volumes/nginx_logs:/var/log/nginx:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+
 volumes:
   db_data:
+    driver: local
+  nginx_logs:
     driver: local
 
 networks:

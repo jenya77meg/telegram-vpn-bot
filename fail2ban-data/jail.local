@@ -1,0 +1,23 @@
+[DEFAULT]
+# Базовые настройки
+bantime  = 1h
+findtime = 10m
+maxretry = 5
+destemail = root@localhost
+sender = root@localhost
+
+# Действие для блокировки. `iptables-multiport` блокирует доступ к портам.
+# Мы будем использовать действие, которое напрямую взаимодействует с Docker.
+banaction = "iptables-multiport"
+banaction_allports = "iptables-allports"
+
+[nginx-http-auth]
+enabled = true
+
+[nginx-bot-protect]
+enabled = true
+port    = http,https
+logpath = /data/logs/access.log
+maxretry = 3
+findtime = 60
+bantime  = 24h 

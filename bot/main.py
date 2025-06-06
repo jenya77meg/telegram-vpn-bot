@@ -34,7 +34,12 @@ logging.basicConfig(level=logging.INFO, stream=sys.stdout)
 
 async def on_startup(bot: Bot):
     # 0) Автоматически создаём все таблицы из Base.metadata
-    engine = create_async_engine(glv.config['DB_URL'], echo=True)
+    engine = create_async_engine(
+        glv.config['DB_URL'], 
+        echo=True,
+        pool_recycle=3600,
+        pool_pre_ping=True,
+    )
     async with engine.begin() as conn:
         await conn.run_sync(Base.metadata.create_all)
 

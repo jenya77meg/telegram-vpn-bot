@@ -40,6 +40,12 @@ server {
     http2          on;
     server_name  $DOMAIN;
 
+    # --- Блок защиты от плохих ботов ---
+    if ($http_user_agent ~* "Hello World|Edg/90\.0\.818\.46") {
+        return 403;
+    }
+    # ------------------------------------
+
     ssl_certificate     /etc/nginx/certs/fullchain.pem;
     ssl_certificate_key /etc/nginx/certs/privkey.pem;
 
@@ -98,6 +104,18 @@ server {
     location ^~ /assets/ {
         alias /opt/telegram-vpn-bot/volumes/marzban/templates/subscription/assets/;
     }
+
+    # --- Блокировка стандартных файлов, чтобы не мусорить в логах ---
+    location = /favicon.ico {
+        log_not_found off;
+        access_log off;
+    }
+
+    location = /robots.txt {
+        log_not_found off;
+        access_log off;
+    }
+    # ----------------------------------------------------------------
 
     ## 2.6 Всё остальное — проксируем на бота
     location / {
