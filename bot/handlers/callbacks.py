@@ -39,38 +39,95 @@ FAQ_A8_TEXT = "Приложения:\nAndroid: v2rayTun, Husi, AmneziaVPN\niOS/m
 
 @router.callback_query(F.data.startswith("pay_kassa_"))
 async def callback_payment_method_select(callback: CallbackQuery):
-    await callback.message.delete()
     data = callback.data.replace("pay_kassa_", "")
     if data not in goods.get_callbacks():
         await callback.answer()
         return
+    
+    good = goods.get(data)
     result = await yookassa.create_payment(
         callback.from_user.id, 
         data, 
         callback.message.chat.id, 
     )
-    await callback.message.answer(
-        TEXT_TO_BE_PAID_RUB.format(amount=result['amount']),
-        reply_markup=get_pay_keyboard(result['url']))
+
+    months = good.get('months')
+    if months == 1:
+        duration_text = "1 месяц"
+    elif months in [3, 6]:
+        duration_text = f"{months} месяцев"
+    else:
+        duration_text = f"{months} дней" # для тестового периода
+
+    text = f"""   *Вы собираетесь купить:* 
+
+📋 {good['title']}
+💸 **стоимость:** {result['amount']}₽
+
+**Описание:**
+✅ Прокси на **{duration_text}** (протокол Vless).
+•  **Локация:**
+ 🇳🇱 Нидерланды. 
+
+🔒 Полная анонимность, не собираем данные пользователей.
+🔑 **1 ключ = 1 устройство.**
+
+⚠️ Для подключения к RU сайтам и приложениям без VPN см. инструкцию (доступна по сслыке после оплаты).
+
+👇 **Введите ваш email для получения чека**"""
+
+    await callback.message.edit_text(
+        text,
+        reply_markup=get_pay_keyboard(result['url']),
+        parse_mode="Markdown"
+    )
     await callback.answer()
 
 @router.callback_query(F.data.startswith("pay_crypto_"))
 async def callback_payment_method_select(callback: CallbackQuery):
-    await callback.message.delete()
     data = callback.data.replace("pay_crypto_", "")
     if data not in goods.get_callbacks():
         await callback.answer()
         return
+
+    good = goods.get(data)
     result = await cryptomus.create_payment(
         callback.from_user.id, 
         data, 
         callback.message.chat.id, 
     )
-    now = datetime.now()
-    expire_date = (now + timedelta(minutes=60)).strftime("%d/%m/%Y, %H:%M")
-    await callback.message.answer(
-        TEXT_TO_BE_PAID_USD.format(amount=result['amount']),
-        reply_markup=get_pay_keyboard(result['url']))
+
+    months = good.get('months')
+    if months == 1:
+        duration_text = "1 месяц"
+    elif months in [3, 6]:
+        duration_text = f"{months} месяцев"
+    else:
+        duration_text = f"{months} дней" # для тестового периода
+
+    text = f"""✨ *Вы собираетесь купить подписку* ✨
+
+📋 **Подписка:** {good['title']}
+💰 **Цена:** {result['amount']}$
+
+---
+
+**Описание:**
+
+✅ Прокси на **{duration_text}** (протокол Vless).
+🌍 **Локация:** 🇳🇱 Нидерланды.
+
+🔒 Полная анонимность, не собираем данные пользователей.
+🔑 **1 ключ = 1 устройство.**
+
+---
+
+👇 **Выберите способ оплаты:**"""
+    await callback.message.edit_text(
+        text,
+        reply_markup=get_pay_keyboard(result['url']),
+        parse_mode="Markdown"
+    )
     await callback.answer()
 
 @router.callback_query(F.data == "buy_subscription_action")

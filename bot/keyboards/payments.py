@@ -19,7 +19,7 @@ def get_payment_keyboard(good) -> InlineKeyboardMarkup:
     if yoo:
         builder.row(
             InlineKeyboardButton(
-                text=f"YooKassa - {good['price']['ru']}₽",
+                text=f"Картой РФ | (MirPay) - {good['price']['ru']}₽",
                 callback_data=f"pay_kassa_{good['callback']}"
             )
         )

@@ -50,7 +50,7 @@ services:
       UVICORN_SSL_CA_TYPE:  "public"
       XRAY_LOCATION_ASSET: /opt/marzban/assets
     healthcheck:
-      test: ["CMD-SHELL", "curl -sSf https://localhost:8002/api/system || exit 1"]
+      test: ["CMD-SHELL", "python -c 'import requests; requests.get(\"https://localhost:8002/\", verify=False, timeout=5).raise_for_status()' || exit 1"]
       interval: 5s
       timeout: 2s
       retries: 5
@@ -83,8 +83,8 @@ services:
     container_name: free_vpn_bot
     restart: always
     stop_signal: SIGINT
-    ports:
-      - "8443:8443"
+    # ports:
+    #   - "8443:8443" # Этот порт не должен быть открыт наружу
     env_file:
       - .env
     networks:
@@ -128,8 +128,8 @@ services:
       MYSQL_USER:     ${DB_USER}
       MYSQL_PASSWORD: ${DB_PASS}
       MYSQL_ROOT_PASSWORD: ${DB_PASS}
-    ports:
-      - "${DB_PORT}:3306"
+    # ports: # Крайне не рекомендуется открывать порт БД наружу
+    #   - "${DB_PORT}:3306"
     volumes:
       - db_data:/var/lib/mysql
     networks:
