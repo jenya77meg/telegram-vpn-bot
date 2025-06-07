@@ -51,7 +51,7 @@ services:
       XRAY_LOCATION_ASSET: /opt/marzban/assets
     healthcheck:
       test: ["CMD-SHELL", "python -c 'import requests; requests.get(\"https://localhost:8002/\", verify=False, timeout=5).raise_for_status()' || exit 1"]
-      interval: 5s
+      interval: 10s
       timeout: 2s
       retries: 5
     
@@ -62,6 +62,7 @@ services:
     networks:
       - free_vpn_bot
     volumes:
+      - ./marzban_subscription.py:/code/app/routers/subscription.py:ro
       - ./volumes/marzban:/var/lib/marzban
       - ./volumes/marzban/templates/subscription:/var/lib/marzban/templates/subscription:ro
       - ./xray_config.json:/opt/marzban/xray_config.json:ro

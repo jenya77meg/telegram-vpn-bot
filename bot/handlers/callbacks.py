@@ -33,7 +33,6 @@ TEXT_ALREADY_USED_TRIAL = "Вы уже использовали пробный �
 TEXT_PROFILE_NOT_FOUND_ERROR = "Ошибка: Ваш профиль не найден. Пожалуйста, попробуйте /start еще раз."
 TEXT_TRIAL_SUCCESS = (
     "Благодарим за выбор ❤️\n️\n"
-    # "<a href=\"{link}\">Подпишитесь</a>, чтобы не пропустить анонсы ✅\n️\n"
     "Ваша 7-дневная пробная подписка оформлена и доступна в разделе \"Мой профиль 👤\"."
 )
 TEXT_TRIAL_ACTIVATED_ALERT = "7-дневный пробный период активирован! Проверьте 'Мой профиль 👤'."
@@ -324,9 +323,9 @@ async def handle_try_free_action(callback: CallbackQuery):
         # Используем значение из конфигурации
         sub_details = await marzban_api.generate_test_subscription(str(user_id), custom_hours=glv.config['PERIOD_LIMIT'])
         if sub_details:
-            await update_test_subscription_state(user_id)
+            await update_test_subscription_state(user_id, is_test=True)
             await callback.answer(TEXT_TRIAL_ACTIVATED_ALERT, show_alert=True)
-            await callback.message.answer(TEXT_TRIAL_SUCCESS.format(link=glv.config['CHANNEL_LINK']))
+            await callback.message.answer(TEXT_TRIAL_SUCCESS)
         else:
             await callback.answer(TEXT_TRIAL_ACTIVATION_ERROR, show_alert=True)
     except Exception as e:
