@@ -45,9 +45,9 @@ async def create_vpn_profile(tg_id: int, first_name: str = "", last_name: str = 
 
 async def get_marzban_profile_db(tg_id: int) -> VPNUsers:
     async with engine.connect() as conn:
-        sql_query = select(VPNUsers).where(VPNUsers.tg_id == tg_id)
-        result: VPNUsers = (await conn.execute(sql_query)).fetchone()
-    return result
+        sql_q = select(VPNUsers).where(VPNUsers.tg_id == tg_id)
+        user: VPNUsers = (await conn.execute(sql_q)).fetchone()
+    return user
 
 async def get_marzban_profile_by_vpn_id(vpn_id: str):
     async with engine.connect() as conn:
@@ -160,5 +160,15 @@ async def delete_payment(payment_id):
         await conn.execute(sql_q)
         await conn.commit()
         sql_q = delete(CPayments).where(CPayments.payment_uuid == payment_id)
+        await conn.execute(sql_q)
+        await conn.commit()
+
+async def get_user_email(tg_id: int) -> str | None:
+    user = await get_marzban_profile_db(tg_id)
+    return user.email if user else None
+
+async def update_user_email(tg_id: int, email: str):
+    async with engine.connect() as conn:
+        sql_q = update(VPNUsers).where(VPNUsers.tg_id == tg_id).values(email=email)
         await conn.execute(sql_q)
         await conn.commit()

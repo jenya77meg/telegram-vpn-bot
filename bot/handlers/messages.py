@@ -10,7 +10,7 @@ from keyboards import (
     get_buy_menu_keyboard, get_back_keyboard, get_main_menu_keyboard,
     get_profile_actions_keyboard, get_faq_questions_keyboard # <--- ВОТ ОН
 )
-from db.methods import can_get_test_sub, update_test_subscription_state, get_marzban_profile_db
+from db.methods import can_get_test_sub, update_test_subscription_state, get_marzban_profile_db, get_user_email
 from utils import marzban_api
 import glv
 
@@ -59,6 +59,13 @@ async def profile(message: Message):
     
     profile_info_parts = [f"Ваш профиль:<b>{user_full_name}</b>"]
     profile_info_parts.append(f"Telegram ID:<b>{tg_id}</b>")
+
+    # Получаем email пользователя
+    user_email = await get_user_email(tg_id)
+    if user_email:
+        profile_info_parts.append(f"Ваш email: <b>{user_email}</b>")
+    else:
+        profile_info_parts.append("Ваш email: <b>Не указан</b>")
 
     # ... (остальная логика функции profile из твоего файла) ...
     marzban_user_data = await marzban_api.get_marzban_profile(tg_id) # Добавил для полноты, если этого нет

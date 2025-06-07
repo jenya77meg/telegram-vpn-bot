@@ -1,5 +1,10 @@
 import os
+import sys
 from logging.config import fileConfig
+
+# this will add the 'bot' directory to the python path,
+# so that alembic can find the db models
+sys.path.insert(0, os.path.realpath(os.path.join(os.path.dirname(__file__), '..')))
 
 from sqlalchemy import engine_from_config
 from sqlalchemy import pool
@@ -17,7 +22,7 @@ config = context.config
 if config.config_file_name is not None:
     fileConfig(config.config_file_name)
 
-config.set_main_option('sqlalchemy.url', f"mysql+pymysql://{os.environ.get('DB_USER')}:{os.environ.get('DB_PASS')}@{os.environ.get('DB_ADDRESS')}:3306/{os.environ.get('DB_NAME')}")
+config.set_main_option('sqlalchemy.url', f"mysql+pymysql://{os.environ.get('DB_USER')}:{os.environ.get('DB_PASS')}@{os.environ.get('DB_HOST')}:3306/{os.environ.get('DB_NAME')}")
 target_metadata = Base.metadata
 
 # add your model's MetaData object here

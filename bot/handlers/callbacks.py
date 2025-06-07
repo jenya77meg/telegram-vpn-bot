@@ -1,15 +1,29 @@
 from datetime import datetime, timedelta
+from typing import Optional
 
 from aiogram import Router, F, types
 from aiogram import Dispatcher
-from aiogram.types import CallbackQuery, Message
+from aiogram.fsm.context import FSMContext
+from aiogram.fsm.state import StatesGroup, State
+from aiogram.types import CallbackQuery, Message, InlineKeyboardButton
+from aiogram.utils.keyboard import InlineKeyboardBuilder
 
 from keyboards import get_payment_keyboard, get_pay_keyboard, get_buy_menu_keyboard
 from utils import goods, yookassa, cryptomus, marzban_api
-from db.methods import can_get_test_sub, update_test_subscription_state, get_marzban_profile_db
+from db.methods import (
+    can_get_test_sub, 
+    update_test_subscription_state, 
+    get_marzban_profile_db,
+    get_user_email,
+    update_user_email
+)
 import glv
 
 router = Router(name="callbacks-router") 
+
+class EmailState(StatesGroup):
+    wait_for_email = State()
+    confirm_email = State()
 
 # Русские строки
 TEXT_TO_BE_PAID_RUB = "К оплате - {amount}₽ ⬇️"
@@ -37,32 +51,27 @@ FAQ_A6_TEXT = "Если у вас возникли трудности или в�
 FAQ_A7_TEXT = "VPN (шифрованный туннель) защищает ваш интернет-трафик от посторонних.\nЭто повышает безопасность в общественных Wi-Fi и скрывает действия от провайдера.\nМы используем надёжные протоколы."
 FAQ_A8_TEXT = "Приложения:\nAndroid: v2rayTun, Husi, AmneziaVPN\niOS/macOS: Streisand, FoXray, v2Box\nWindows: v2rayN, Nekoray\nИнструкции в разделе «Мой профиль 👤»."
 
-@router.callback_query(F.data.startswith("pay_kassa_"))
-async def callback_payment_method_select(callback: CallbackQuery):
-    data = callback.data.replace("pay_kassa_", "")
-    if data not in goods.get_callbacks():
-        await callback.answer()
-        return
+async def prepare_payment_data(user_id: int, chat_id: int, email: Optional[str], product_callback: str):
+    """Готовит данные для сообщения об оплате."""
+    good = goods.get(product_callback)
     
-    good = goods.get(data)
+    # Сохраняем email в БД, если он предоставлен, или None, если нет.
+    await update_user_email(user_id, email)
+    
     result = await yookassa.create_payment(
-        callback.from_user.id, 
-        data, 
-        callback.message.chat.id, 
+        user_id,
+        product_callback,
+        chat_id,
+        email
     )
 
     months = good.get('months')
-    if months == 1:
-        duration_text = "1 месяц"
-    elif months in [3, 6]:
-        duration_text = f"{months} месяцев"
-    else:
-        duration_text = f"{months} дней" # для тестового периода
+    duration_text = f"{months} {'месяц' if months == 1 else 'месяца' if 1 < months < 5 else 'месяцев'}"
 
     text = f"""   *Вы собираетесь купить:* 
 
 📋 {good['title']}
-💸 **стоимость:** {result['amount']}₽
+💸 **Стоимость:** {result['amount']}₽
 
 **Описание:**
 ✅ Прокси на **{duration_text}** (протокол Vless).
@@ -73,15 +82,150 @@ async def callback_payment_method_select(callback: CallbackQuery):
 🔑 **1 ключ = 1 устройство.**
 
 ⚠️ Для подключения к RU сайтам и приложениям без VPN см. инструкцию (доступна по сслыке после оплаты).
+"""
+    
+    if email:
+        text += f"\n\n👇 **Чек будет отправлен на email:** `{email}`"
 
-👇 **Введите ваш email для получения чека**"""
+    return text, get_pay_keyboard(result['url'])
+
+
+@router.callback_query(F.data.startswith("pay_kassa_"))
+async def callback_payment_method_select_kassa(callback: CallbackQuery, state: FSMContext):
+    product_callback = callback.data.replace("pay_kassa_", "")
+    if product_callback not in goods.get_callbacks():
+        await callback.answer()
+        return
+
+    await state.update_data(product_callback=product_callback)
+    user_email = await get_user_email(callback.from_user.id)
+
+    if user_email:
+        # Email есть, просим подтвердить
+        await state.set_state(EmailState.confirm_email)
+        builder = InlineKeyboardBuilder()
+        builder.row(InlineKeyboardButton(text="✅ Да, всё верно", callback_data="email_confirm_yes"))
+        builder.row(InlineKeyboardButton(text="✏️ Указать другой", callback_data="email_confirm_no"))
+        await callback.message.edit_text(
+            f"Отправим чек на ваш email: `{user_email}`?",
+            reply_markup=builder.as_markup(),
+            parse_mode="Markdown"
+        )
+    else:
+        # Email нет, просим ввести
+        await state.set_state(EmailState.wait_for_email)
+        await callback.message.edit_text(
+            "Пожалуйста, введите ваш email для отправки чека.\n\n"
+            "Если вы не хотите получать чек, напишите «*нет*».",
+            parse_mode="Markdown"
+        )
+        await state.update_data(message_id_to_edit=callback.message.message_id)
+
+    await callback.answer()
+
+
+@router.callback_query(EmailState.confirm_email, F.data == "email_confirm_yes")
+async def process_email_confirm(callback: CallbackQuery, state: FSMContext):
+    user_data = await state.get_data()
+    product_callback = user_data.get('product_callback')
+    user_email = await get_user_email(callback.from_user.id)
+    
+    text, keyboard = await prepare_payment_data(
+        user_id=callback.from_user.id,
+        chat_id=callback.message.chat.id,
+        email=user_email,
+        product_callback=product_callback
+    )
 
     await callback.message.edit_text(
-        text,
-        reply_markup=get_pay_keyboard(result['url']),
+        text=text,
+        reply_markup=keyboard,
         parse_mode="Markdown"
     )
-    await callback.answer()
+    await state.clear()
+
+
+@router.callback_query(EmailState.confirm_email, F.data == "email_confirm_no")
+async def process_email_change(callback: CallbackQuery, state: FSMContext):
+    await state.set_state(EmailState.wait_for_email)
+    await callback.message.edit_text(
+        "Хорошо, введите новый email.\n\n"
+        "Если вы не хотите получать чек, напишите «*нет*».",
+        parse_mode="Markdown"
+    )
+    await state.update_data(message_id_to_edit=callback.message.message_id)
+
+
+@router.message(EmailState.wait_for_email, F.text.lower() == "нет")
+async def process_email_skip(message: Message, state: FSMContext):
+    user_data = await state.get_data()
+    product_callback = user_data.get('product_callback')
+    message_id_to_edit = user_data.get('message_id_to_edit')
+    
+    # Сразу удаляем сообщение пользователя
+    await message.delete()
+
+    text, keyboard = await prepare_payment_data(
+        user_id=message.from_user.id,
+        chat_id=message.chat.id,
+        email=None,
+        product_callback=product_callback
+    )
+
+    if message_id_to_edit:
+        await message.bot.edit_message_text(
+            text=text,
+            chat_id=message.chat.id,
+            message_id=message_id_to_edit,
+            reply_markup=keyboard,
+            parse_mode="Markdown"
+        )
+    else:
+        # Fallback
+        await message.answer(text=text, reply_markup=keyboard, parse_mode="Markdown")
+        
+    await state.clear()
+
+
+@router.message(EmailState.wait_for_email, F.text.contains('@'))
+async def process_email_input(message: Message, state: FSMContext):
+    user_data = await state.get_data()
+    product_callback = user_data.get('product_callback')
+    message_id_to_edit = user_data.get('message_id_to_edit')
+    user_email = message.text
+
+    # Сразу удаляем сообщение пользователя с email'ом
+    await message.delete()
+
+    text, keyboard = await prepare_payment_data(
+        user_id=message.from_user.id,
+        chat_id=message.chat.id,
+        email=user_email,
+        product_callback=product_callback
+    )
+
+    if message_id_to_edit:
+        await message.bot.edit_message_text(
+            text=text,
+            chat_id=message.chat.id,
+            message_id=message_id_to_edit,
+            reply_markup=keyboard,
+            parse_mode="Markdown"
+        )
+    else:
+        # Fallback, если вдруг ID сообщения для редактирования не нашелся
+        await message.answer(
+            text=text,
+            reply_markup=keyboard,
+            parse_mode="Markdown"
+        )
+    await state.clear()
+
+
+@router.message(EmailState.wait_for_email)
+async def process_invalid_email(message: Message, state: FSMContext):
+    await message.answer("Это не похоже на email. Пожалуйста, введите корректный email-адрес или напишите «*нет*».", parse_mode="Markdown")
+
 
 @router.callback_query(F.data.startswith("pay_crypto_"))
 async def callback_payment_method_select(callback: CallbackQuery):
@@ -89,23 +233,19 @@ async def callback_payment_method_select(callback: CallbackQuery):
     if data not in goods.get_callbacks():
         await callback.answer()
         return
-
-    good = goods.get(data)
     result = await cryptomus.create_payment(
         callback.from_user.id, 
         data, 
         callback.message.chat.id, 
     )
-
+    now = datetime.now()
+    expire_date = (now + timedelta(minutes=60)).strftime("%d/%m/%Y, %H:%M")
+    good = goods.get(data)
     months = good.get('months')
-    if months == 1:
-        duration_text = "1 месяц"
-    elif months in [3, 6]:
-        duration_text = f"{months} месяцев"
-    else:
-        duration_text = f"{months} дней" # для тестового периода
+    duration_text = f"{months} {'месяц' if months == 1 else 'месяца' if 1 < months < 5 else 'месяцев'}"
 
-    text = f"""✨ *Вы собираетесь купить подписку* ✨
+    await callback.message.edit_text(
+        text=f"""✨ *Вы собираетесь купить подписку* ✨
 
 📋 **Подписка:** {good['title']}
 💰 **Цена:** {result['amount']}$
@@ -122,9 +262,7 @@ async def callback_payment_method_select(callback: CallbackQuery):
 
 ---
 
-👇 **Выберите способ оплаты:**"""
-    await callback.message.edit_text(
-        text,
+👇 **Выберите способ оплаты:**""",
         reply_markup=get_pay_keyboard(result['url']),
         parse_mode="Markdown"
     )
@@ -183,49 +321,45 @@ async def handle_try_free_action(callback: CallbackQuery):
              return
 
     try:
-        try:
-            trial_duration_hours = int(glv.config.get('PERIOD_LIMIT', 7 * 24))
-        except ValueError:
-            trial_duration_hours = 7 * 24
-            print(f"[WARNING] PERIOD_LIMIT in .env is not a valid integer. Defaulting to {trial_duration_hours} hours for trial.")
-
-        marzban_user_data = await marzban_api.generate_test_subscription(
-            str(db_profile.tg_id), 
-            custom_hours=trial_duration_hours
-        )
-        
-        # Устанавливаем флаг, что тестовая подписка была использована
-        await update_test_subscription_state(user_id, is_test=True) # is_test=True, так как это выдача триала
-
-        final_text = TEXT_TRIAL_SUCCESS.format(
-             link=glv.config['PANEL_GLOBAL'] + marzban_user_data['subscription_url']
-        )
-
-        await glv.bot.send_message(chat_id, final_text, parse_mode="HTML") # Добавим parse_mode для ссылки
-        await callback.answer(TEXT_TRIAL_ACTIVATED_ALERT, show_alert=True)
-
+        # Используем значение из конфигурации
+        sub_details = await marzban_api.generate_test_subscription(str(user_id), custom_hours=glv.config['PERIOD_LIMIT'])
+        if sub_details:
+            await update_test_subscription_state(user_id)
+            await callback.answer(TEXT_TRIAL_ACTIVATED_ALERT, show_alert=True)
+            await callback.message.answer(TEXT_TRIAL_SUCCESS.format(link=glv.config['CHANNEL_LINK']))
+        else:
+            await callback.answer(TEXT_TRIAL_ACTIVATION_ERROR, show_alert=True)
     except Exception as e:
-        error_message_for_user = TEXT_TRIAL_ACTIVATION_ERROR
-        if callback.message:
-             await callback.message.answer(error_message_for_user)
-        await callback.answer(error_message_for_user, show_alert=True)
-        
-        import traceback
-        print(f"Error in handle_try_free_action for user {user_id}: {str(e)}")
-        print(traceback.format_exc())
+        print(f"Error in handle_try_free_action: {e}")
+        await callback.answer(TEXT_TRIAL_ACTIVATION_ERROR, show_alert=True)
+    
+
+@router.callback_query(F.data.startswith("faq_"))
+async def process_faq_callback(callback: CallbackQuery):
+    question_key = callback.data.split('_')[1]
+    
+    faq_map = {
+        "q1": FAQ_A1_TEXT, "q2": FAQ_A2_TEXT, "q3": FAQ_A3_TEXT,
+        "q4": FAQ_A4_TEXT, "q5": FAQ_A5_TEXT, "q6": FAQ_A6_TEXT,
+        "q7": FAQ_A7_TEXT, "q8": FAQ_A8_TEXT
+    }
+    
+    answer_text = faq_map.get(question_key, "Ответ не найден.")
+    await callback.answer(answer_text, show_alert=True)
 
 @router.callback_query(lambda c: c.data in goods.get_callbacks())
 async def callback_payment_select_good(callback: CallbackQuery):
-    # await callback.message.delete() # Убираем удаление
     good = goods.get(callback.data)
-    # Заменяем answer на edit_text
+    if not good:
+        await callback.answer("Товар не найден!", show_alert=True)
+        return
+
     await callback.message.edit_text(
         text=TEXT_SELECT_PAYMENT_METHOD, 
         reply_markup=get_payment_keyboard(good)
     )
     await callback.answer()
 
-# Обработчики для кнопок FAQ
 @router.callback_query(F.data == "faq_q1")
 async def handle_faq_q1(callback: CallbackQuery):
     await callback.answer(FAQ_A1_TEXT, show_alert=True)
@@ -257,6 +391,7 @@ async def handle_faq_q7(callback: CallbackQuery):
 @router.callback_query(F.data == "faq_q8")
 async def handle_faq_q8(callback: CallbackQuery):
     await callback.answer(FAQ_A8_TEXT, show_alert=True)
+
 
 def register_callbacks(dp: Dispatcher):
     dp.include_router(router)

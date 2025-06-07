@@ -11,6 +11,7 @@ class VPNUsers(Base):
     test = Column(Boolean, default=False)
     display_name = Column(String(255), default="")
     telegram_username = Column(String(255), default="")
+    email = Column(String(255), nullable=True)
 
 class CPayments(Base):
     __tablename__ = "crypto_payments"

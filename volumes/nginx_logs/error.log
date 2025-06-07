@@ -515,3 +515,568 @@
 2025/06/06 18:33:14 [notice] 1#1: start worker processes
 2025/06/06 18:33:14 [notice] 1#1: start worker process 21
 2025/06/06 18:33:14 [notice] 1#1: start worker process 22
+2025/06/06 20:13:08 [notice] 1#1: signal 3 (SIGQUIT) received, shutting down
+2025/06/06 20:13:08 [notice] 21#21: gracefully shutting down
+2025/06/06 20:13:08 [notice] 22#22: gracefully shutting down
+2025/06/06 20:13:08 [notice] 22#22: exiting
+2025/06/06 20:13:08 [notice] 21#21: exiting
+2025/06/06 20:13:08 [notice] 22#22: exit
+2025/06/06 20:13:08 [notice] 21#21: exit
+2025/06/06 20:13:08 [notice] 1#1: signal 17 (SIGCHLD) received from 21
+2025/06/06 20:13:08 [notice] 1#1: worker process 21 exited with code 0
+2025/06/06 20:13:08 [notice] 1#1: signal 29 (SIGIO) received
+2025/06/06 20:13:08 [notice] 1#1: signal 17 (SIGCHLD) received from 22
+2025/06/06 20:13:08 [notice] 1#1: worker process 22 exited with code 0
+2025/06/06 20:13:08 [notice] 1#1: exit
+2025/06/06 20:13:14 [notice] 1#1: using the "epoll" event method
+2025/06/06 20:13:14 [notice] 1#1: nginx/1.25.5
+2025/06/06 20:13:14 [notice] 1#1: built by gcc 13.2.1 20231014 (Alpine 13.2.1_git20231014) 
+2025/06/06 20:13:14 [notice] 1#1: OS: Linux 6.8.0-48-generic
+2025/06/06 20:13:14 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2025/06/06 20:13:14 [notice] 1#1: start worker processes
+2025/06/06 20:13:14 [notice] 1#1: start worker process 20
+2025/06/06 20:13:14 [notice] 1#1: start worker process 21
+2025/06/06 20:17:18 [notice] 1#1: signal 3 (SIGQUIT) received, shutting down
+2025/06/06 20:17:18 [notice] 20#20: gracefully shutting down
+2025/06/06 20:17:18 [notice] 20#20: exiting
+2025/06/06 20:17:18 [notice] 20#20: exit
+2025/06/06 20:17:18 [notice] 21#21: gracefully shutting down
+2025/06/06 20:17:18 [notice] 21#21: exiting
+2025/06/06 20:17:18 [notice] 21#21: exit
+2025/06/06 20:17:18 [notice] 1#1: signal 17 (SIGCHLD) received from 21
+2025/06/06 20:17:18 [notice] 1#1: worker process 21 exited with code 0
+2025/06/06 20:17:18 [notice] 1#1: signal 29 (SIGIO) received
+2025/06/06 20:17:18 [notice] 1#1: signal 17 (SIGCHLD) received from 20
+2025/06/06 20:17:18 [notice] 1#1: worker process 20 exited with code 0
+2025/06/06 20:17:18 [notice] 1#1: exit
+2025/06/06 20:17:48 [notice] 1#1: using the "epoll" event method
+2025/06/06 20:17:48 [notice] 1#1: nginx/1.25.5
+2025/06/06 20:17:48 [notice] 1#1: built by gcc 13.2.1 20231014 (Alpine 13.2.1_git20231014) 
+2025/06/06 20:17:48 [notice] 1#1: OS: Linux 6.8.0-48-generic
+2025/06/06 20:17:48 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2025/06/06 20:17:48 [notice] 1#1: start worker processes
+2025/06/06 20:17:48 [notice] 1#1: start worker process 20
+2025/06/06 20:17:48 [notice] 1#1: start worker process 21
+2025/06/06 20:22:30 [notice] 1#1: signal 3 (SIGQUIT) received, shutting down
+2025/06/06 20:22:30 [notice] 20#20: gracefully shutting down
+2025/06/06 20:22:30 [notice] 20#20: exiting
+2025/06/06 20:22:30 [notice] 20#20: exit
+2025/06/06 20:22:30 [notice] 21#21: gracefully shutting down
+2025/06/06 20:22:30 [notice] 21#21: exiting
+2025/06/06 20:22:30 [notice] 21#21: exit
+2025/06/06 20:22:30 [notice] 1#1: signal 17 (SIGCHLD) received from 20
+2025/06/06 20:22:30 [notice] 1#1: worker process 20 exited with code 0
+2025/06/06 20:22:30 [notice] 1#1: signal 29 (SIGIO) received
+2025/06/06 20:22:30 [notice] 1#1: signal 17 (SIGCHLD) received from 21
+2025/06/06 20:22:30 [notice] 1#1: worker process 21 exited with code 0
+2025/06/06 20:22:30 [notice] 1#1: exit
+2025/06/06 20:22:33 [notice] 1#1: using the "epoll" event method
+2025/06/06 20:22:33 [notice] 1#1: nginx/1.25.5
+2025/06/06 20:22:33 [notice] 1#1: built by gcc 13.2.1 20231014 (Alpine 13.2.1_git20231014) 
+2025/06/06 20:22:33 [notice] 1#1: OS: Linux 6.8.0-48-generic
+2025/06/06 20:22:33 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2025/06/06 20:22:33 [notice] 1#1: start worker processes
+2025/06/06 20:22:33 [notice] 1#1: start worker process 21
+2025/06/06 20:22:33 [notice] 1#1: start worker process 22
+2025/06/06 20:25:42 [notice] 1#1: signal 3 (SIGQUIT) received, shutting down
+2025/06/06 20:25:42 [notice] 22#22: gracefully shutting down
+2025/06/06 20:25:42 [notice] 22#22: exiting
+2025/06/06 20:25:42 [notice] 21#21: gracefully shutting down
+2025/06/06 20:25:42 [notice] 21#21: exiting
+2025/06/06 20:25:42 [notice] 21#21: exit
+2025/06/06 20:25:42 [notice] 22#22: exit
+2025/06/06 20:25:42 [notice] 1#1: signal 17 (SIGCHLD) received from 21
+2025/06/06 20:25:42 [notice] 1#1: worker process 21 exited with code 0
+2025/06/06 20:25:42 [notice] 1#1: signal 29 (SIGIO) received
+2025/06/06 20:25:42 [notice] 1#1: signal 17 (SIGCHLD) received from 22
+2025/06/06 20:25:42 [notice] 1#1: worker process 22 exited with code 0
+2025/06/06 20:25:42 [notice] 1#1: exit
+2025/06/06 20:25:48 [notice] 1#1: using the "epoll" event method
+2025/06/06 20:25:48 [notice] 1#1: nginx/1.25.5
+2025/06/06 20:25:48 [notice] 1#1: built by gcc 13.2.1 20231014 (Alpine 13.2.1_git20231014) 
+2025/06/06 20:25:48 [notice] 1#1: OS: Linux 6.8.0-48-generic
+2025/06/06 20:25:48 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2025/06/06 20:25:48 [notice] 1#1: start worker processes
+2025/06/06 20:25:48 [notice] 1#1: start worker process 21
+2025/06/06 20:25:48 [notice] 1#1: start worker process 22
+2025/06/06 20:28:01 [notice] 1#1: signal 3 (SIGQUIT) received, shutting down
+2025/06/06 20:28:01 [notice] 21#21: gracefully shutting down
+2025/06/06 20:28:01 [notice] 22#22: gracefully shutting down
+2025/06/06 20:28:01 [notice] 21#21: exiting
+2025/06/06 20:28:01 [notice] 22#22: exiting
+2025/06/06 20:28:01 [notice] 21#21: exit
+2025/06/06 20:28:01 [notice] 22#22: exit
+2025/06/06 20:28:01 [notice] 1#1: signal 17 (SIGCHLD) received from 22
+2025/06/06 20:28:01 [notice] 1#1: worker process 22 exited with code 0
+2025/06/06 20:28:01 [notice] 1#1: signal 29 (SIGIO) received
+2025/06/06 20:28:01 [notice] 1#1: signal 17 (SIGCHLD) received from 21
+2025/06/06 20:28:01 [notice] 1#1: worker process 21 exited with code 0
+2025/06/06 20:28:01 [notice] 1#1: exit
+2025/06/06 20:28:07 [notice] 1#1: using the "epoll" event method
+2025/06/06 20:28:07 [notice] 1#1: nginx/1.25.5
+2025/06/06 20:28:07 [notice] 1#1: built by gcc 13.2.1 20231014 (Alpine 13.2.1_git20231014) 
+2025/06/06 20:28:07 [notice] 1#1: OS: Linux 6.8.0-48-generic
+2025/06/06 20:28:07 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2025/06/06 20:28:07 [notice] 1#1: start worker processes
+2025/06/06 20:28:07 [notice] 1#1: start worker process 21
+2025/06/06 20:28:07 [notice] 1#1: start worker process 22
+2025/06/06 20:29:40 [notice] 1#1: signal 3 (SIGQUIT) received, shutting down
+2025/06/06 20:29:40 [notice] 21#21: gracefully shutting down
+2025/06/06 20:29:40 [notice] 21#21: exiting
+2025/06/06 20:29:40 [notice] 21#21: exit
+2025/06/06 20:29:40 [notice] 22#22: gracefully shutting down
+2025/06/06 20:29:40 [notice] 22#22: exiting
+2025/06/06 20:29:40 [notice] 22#22: exit
+2025/06/06 20:29:40 [notice] 1#1: signal 17 (SIGCHLD) received from 21
+2025/06/06 20:29:40 [notice] 1#1: worker process 21 exited with code 0
+2025/06/06 20:29:40 [notice] 1#1: signal 29 (SIGIO) received
+2025/06/06 20:29:40 [notice] 1#1: signal 17 (SIGCHLD) received from 22
+2025/06/06 20:29:40 [notice] 1#1: worker process 22 exited with code 0
+2025/06/06 20:29:40 [notice] 1#1: exit
+2025/06/06 20:29:45 [notice] 1#1: using the "epoll" event method
+2025/06/06 20:29:45 [notice] 1#1: nginx/1.25.5
+2025/06/06 20:29:45 [notice] 1#1: built by gcc 13.2.1 20231014 (Alpine 13.2.1_git20231014) 
+2025/06/06 20:29:45 [notice] 1#1: OS: Linux 6.8.0-48-generic
+2025/06/06 20:29:45 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2025/06/06 20:29:45 [notice] 1#1: start worker processes
+2025/06/06 20:29:45 [notice] 1#1: start worker process 21
+2025/06/06 20:29:45 [notice] 1#1: start worker process 22
+2025/06/06 20:30:40 [error] 21#21: *1 connect() failed (113: Host is unreachable) while connecting to upstream, client: 208.110.70.42, server: $domain, request: "GET /restore.php HTTP/1.1", upstream: "http://192.168.144.5:8443/restore.php", host: "79.137.195.53"
+2025/06/06 20:30:40 [error] 22#22: *4 connect() failed (113: Host is unreachable) while connecting to upstream, client: 208.110.70.42, server: $domain, request: "GET /restore.php HTTP/1.1", upstream: "http://192.168.144.5:8443/restore.php", host: "79.137.195.53", referrer: "http://79.137.195.53/restore.php"
+2025/06/06 20:30:40 [error] 21#21: *1 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 208.110.70.42, server: $domain, request: "GET /restore.php HTTP/1.1", upstream: "http://192.168.144.5:8443/restore.php", host: "79.137.195.53"
+2025/06/06 20:30:40 [error] 22#22: *4 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 208.110.70.42, server: $domain, request: "GET /restore.php HTTP/1.1", upstream: "http://192.168.144.5:8443/restore.php", host: "79.137.195.53", referrer: "http://79.137.195.53/restore.php"
+2025/06/06 20:31:44 [notice] 1#1: signal 3 (SIGQUIT) received, shutting down
+2025/06/06 20:31:44 [notice] 22#22: gracefully shutting down
+2025/06/06 20:31:44 [notice] 21#21: gracefully shutting down
+2025/06/06 20:31:44 [notice] 21#21: exiting
+2025/06/06 20:31:44 [notice] 22#22: exiting
+2025/06/06 20:31:44 [notice] 22#22: exit
+2025/06/06 20:31:44 [notice] 21#21: exit
+2025/06/06 20:31:44 [notice] 1#1: signal 17 (SIGCHLD) received from 22
+2025/06/06 20:31:44 [notice] 1#1: worker process 22 exited with code 0
+2025/06/06 20:31:44 [notice] 1#1: signal 29 (SIGIO) received
+2025/06/06 20:31:44 [notice] 1#1: signal 17 (SIGCHLD) received from 21
+2025/06/06 20:31:44 [notice] 1#1: worker process 21 exited with code 0
+2025/06/06 20:31:44 [notice] 1#1: exit
+2025/06/06 20:31:47 [notice] 1#1: using the "epoll" event method
+2025/06/06 20:31:47 [notice] 1#1: nginx/1.25.5
+2025/06/06 20:31:47 [notice] 1#1: built by gcc 13.2.1 20231014 (Alpine 13.2.1_git20231014) 
+2025/06/06 20:31:47 [notice] 1#1: OS: Linux 6.8.0-48-generic
+2025/06/06 20:31:47 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2025/06/06 20:31:47 [notice] 1#1: start worker processes
+2025/06/06 20:31:47 [notice] 1#1: start worker process 21
+2025/06/06 20:31:47 [notice] 1#1: start worker process 22
+2025/06/06 20:33:50 [notice] 1#1: signal 3 (SIGQUIT) received, shutting down
+2025/06/06 20:33:50 [notice] 21#21: gracefully shutting down
+2025/06/06 20:33:50 [notice] 21#21: exiting
+2025/06/06 20:33:50 [notice] 21#21: exit
+2025/06/06 20:33:50 [notice] 22#22: gracefully shutting down
+2025/06/06 20:33:50 [notice] 22#22: exiting
+2025/06/06 20:33:50 [notice] 22#22: exit
+2025/06/06 20:33:50 [notice] 1#1: signal 17 (SIGCHLD) received from 21
+2025/06/06 20:33:50 [notice] 1#1: worker process 21 exited with code 0
+2025/06/06 20:33:50 [notice] 1#1: worker process 22 exited with code 0
+2025/06/06 20:33:50 [notice] 1#1: exit
+2025/06/06 20:33:55 [notice] 1#1: using the "epoll" event method
+2025/06/06 20:33:55 [notice] 1#1: nginx/1.25.5
+2025/06/06 20:33:55 [notice] 1#1: built by gcc 13.2.1 20231014 (Alpine 13.2.1_git20231014) 
+2025/06/06 20:33:55 [notice] 1#1: OS: Linux 6.8.0-48-generic
+2025/06/06 20:33:55 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2025/06/06 20:33:55 [notice] 1#1: start worker processes
+2025/06/06 20:33:55 [notice] 1#1: start worker process 21
+2025/06/06 20:33:55 [notice] 1#1: start worker process 22
+2025/06/06 20:44:01 [notice] 1#1: signal 3 (SIGQUIT) received, shutting down
+2025/06/06 20:44:01 [notice] 21#21: gracefully shutting down
+2025/06/06 20:44:01 [notice] 21#21: exiting
+2025/06/06 20:44:01 [notice] 22#22: gracefully shutting down
+2025/06/06 20:44:01 [notice] 22#22: exiting
+2025/06/06 20:44:01 [notice] 21#21: exit
+2025/06/06 20:44:01 [notice] 22#22: exit
+2025/06/06 20:44:01 [notice] 1#1: signal 17 (SIGCHLD) received from 21
+2025/06/06 20:44:01 [notice] 1#1: worker process 21 exited with code 0
+2025/06/06 20:44:01 [notice] 1#1: worker process 22 exited with code 0
+2025/06/06 20:44:01 [notice] 1#1: exit
+2025/06/06 20:44:07 [notice] 1#1: using the "epoll" event method
+2025/06/06 20:44:07 [notice] 1#1: nginx/1.25.5
+2025/06/06 20:44:07 [notice] 1#1: built by gcc 13.2.1 20231014 (Alpine 13.2.1_git20231014) 
+2025/06/06 20:44:07 [notice] 1#1: OS: Linux 6.8.0-48-generic
+2025/06/06 20:44:07 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2025/06/06 20:44:07 [notice] 1#1: start worker processes
+2025/06/06 20:44:07 [notice] 1#1: start worker process 21
+2025/06/06 20:44:07 [notice] 1#1: start worker process 22
+2025/06/06 20:48:26 [notice] 1#1: signal 3 (SIGQUIT) received, shutting down
+2025/06/06 20:48:26 [notice] 21#21: gracefully shutting down
+2025/06/06 20:48:26 [notice] 21#21: exiting
+2025/06/06 20:48:26 [notice] 21#21: exit
+2025/06/06 20:48:26 [notice] 22#22: gracefully shutting down
+2025/06/06 20:48:26 [notice] 22#22: exiting
+2025/06/06 20:48:26 [notice] 22#22: exit
+2025/06/06 20:48:26 [notice] 1#1: signal 17 (SIGCHLD) received from 21
+2025/06/06 20:48:26 [notice] 1#1: worker process 21 exited with code 0
+2025/06/06 20:48:26 [notice] 1#1: signal 29 (SIGIO) received
+2025/06/06 20:48:26 [notice] 1#1: signal 17 (SIGCHLD) received from 22
+2025/06/06 20:48:26 [notice] 1#1: worker process 22 exited with code 0
+2025/06/06 20:48:26 [notice] 1#1: exit
+2025/06/06 20:48:32 [notice] 1#1: using the "epoll" event method
+2025/06/06 20:48:32 [notice] 1#1: nginx/1.25.5
+2025/06/06 20:48:32 [notice] 1#1: built by gcc 13.2.1 20231014 (Alpine 13.2.1_git20231014) 
+2025/06/06 20:48:32 [notice] 1#1: OS: Linux 6.8.0-48-generic
+2025/06/06 20:48:32 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2025/06/06 20:48:32 [notice] 1#1: start worker processes
+2025/06/06 20:48:32 [notice] 1#1: start worker process 20
+2025/06/06 20:48:32 [notice] 1#1: start worker process 21
+2025/06/06 20:50:54 [notice] 1#1: signal 3 (SIGQUIT) received, shutting down
+2025/06/06 20:50:54 [notice] 20#20: gracefully shutting down
+2025/06/06 20:50:54 [notice] 20#20: exiting
+2025/06/06 20:50:54 [notice] 21#21: gracefully shutting down
+2025/06/06 20:50:54 [notice] 21#21: exiting
+2025/06/06 20:50:54 [notice] 20#20: exit
+2025/06/06 20:50:54 [notice] 21#21: exit
+2025/06/06 20:50:54 [notice] 1#1: signal 17 (SIGCHLD) received from 20
+2025/06/06 20:50:54 [notice] 1#1: worker process 20 exited with code 0
+2025/06/06 20:50:54 [notice] 1#1: worker process 21 exited with code 0
+2025/06/06 20:50:54 [notice] 1#1: exit
+2025/06/06 20:50:59 [notice] 1#1: using the "epoll" event method
+2025/06/06 20:50:59 [notice] 1#1: nginx/1.25.5
+2025/06/06 20:50:59 [notice] 1#1: built by gcc 13.2.1 20231014 (Alpine 13.2.1_git20231014) 
+2025/06/06 20:50:59 [notice] 1#1: OS: Linux 6.8.0-48-generic
+2025/06/06 20:50:59 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2025/06/06 20:50:59 [notice] 1#1: start worker processes
+2025/06/06 20:50:59 [notice] 1#1: start worker process 21
+2025/06/06 20:50:59 [notice] 1#1: start worker process 22
+2025/06/06 20:55:24 [notice] 1#1: signal 3 (SIGQUIT) received, shutting down
+2025/06/06 20:55:24 [notice] 21#21: gracefully shutting down
+2025/06/06 20:55:24 [notice] 21#21: exiting
+2025/06/06 20:55:24 [notice] 21#21: exit
+2025/06/06 20:55:24 [notice] 22#22: gracefully shutting down
+2025/06/06 20:55:24 [notice] 22#22: exiting
+2025/06/06 20:55:24 [notice] 22#22: exit
+2025/06/06 20:55:24 [notice] 1#1: signal 17 (SIGCHLD) received from 21
+2025/06/06 20:55:24 [notice] 1#1: worker process 21 exited with code 0
+2025/06/06 20:55:24 [notice] 1#1: signal 29 (SIGIO) received
+2025/06/06 20:55:24 [notice] 1#1: signal 17 (SIGCHLD) received from 22
+2025/06/06 20:55:24 [notice] 1#1: worker process 22 exited with code 0
+2025/06/06 20:55:24 [notice] 1#1: exit
+2025/06/06 20:55:29 [notice] 1#1: using the "epoll" event method
+2025/06/06 20:55:29 [notice] 1#1: nginx/1.25.5
+2025/06/06 20:55:29 [notice] 1#1: built by gcc 13.2.1 20231014 (Alpine 13.2.1_git20231014) 
+2025/06/06 20:55:29 [notice] 1#1: OS: Linux 6.8.0-48-generic
+2025/06/06 20:55:29 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2025/06/06 20:55:29 [notice] 1#1: start worker processes
+2025/06/06 20:55:29 [notice] 1#1: start worker process 21
+2025/06/06 20:55:29 [notice] 1#1: start worker process 22
+2025/06/06 20:59:27 [notice] 1#1: signal 3 (SIGQUIT) received, shutting down
+2025/06/06 20:59:27 [notice] 22#22: gracefully shutting down
+2025/06/06 20:59:27 [notice] 22#22: exiting
+2025/06/06 20:59:27 [notice] 21#21: gracefully shutting down
+2025/06/06 20:59:27 [notice] 21#21: exiting
+2025/06/06 20:59:27 [notice] 22#22: exit
+2025/06/06 20:59:27 [notice] 21#21: exit
+2025/06/06 20:59:27 [notice] 1#1: signal 17 (SIGCHLD) received from 21
+2025/06/06 20:59:27 [notice] 1#1: worker process 21 exited with code 0
+2025/06/06 20:59:27 [notice] 1#1: signal 29 (SIGIO) received
+2025/06/06 20:59:27 [notice] 1#1: signal 17 (SIGCHLD) received from 22
+2025/06/06 20:59:27 [notice] 1#1: worker process 22 exited with code 0
+2025/06/06 20:59:27 [notice] 1#1: exit
+2025/06/06 20:59:34 [notice] 1#1: using the "epoll" event method
+2025/06/06 20:59:34 [notice] 1#1: nginx/1.25.5
+2025/06/06 20:59:34 [notice] 1#1: built by gcc 13.2.1 20231014 (Alpine 13.2.1_git20231014) 
+2025/06/06 20:59:34 [notice] 1#1: OS: Linux 6.8.0-48-generic
+2025/06/06 20:59:34 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2025/06/06 20:59:34 [notice] 1#1: start worker processes
+2025/06/06 20:59:34 [notice] 1#1: start worker process 20
+2025/06/06 20:59:34 [notice] 1#1: start worker process 21
+2025/06/07 00:11:36 [warn] 20#20: *728 an upstream response is buffered to a temporary file /var/cache/nginx/proxy_temp/1/00/0000000001 while reading upstream, client: 78.138.191.191, server: $domain, request: "GET /sub/NjMzNjE3NjE4LDE3NDkyMzMzMjc5HqhCZpudf HTTP/2.0", upstream: "https://172.18.0.2:8002/sub/NjMzNjE3NjE4LDE3NDkyMzMzMjc5HqhCZpudf", host: "host.almet-sam.ru"
+2025/06/07 00:26:03 [error] 21#21: *866 open() "/usr/share/nginx/html/custom_404.html" failed (2: No such file or directory), client: 167.94.138.197, server: $domain, request: "GET /favicon.ico HTTP/1.1", host: "79.137.195.53"
+2025/06/07 00:26:12 [error] 21#21: *872 open() "/usr/share/nginx/html/custom_404.html" failed (2: No such file or directory), client: 167.94.138.197, server: $domain, request: "GET /favicon.ico HTTP/1.1", host: "79.137.195.53"
+2025/06/07 00:45:20 [error] 20#20: *1059 open() "/usr/share/nginx/html/custom_404.html" failed (2: No such file or directory), client: 64.62.197.29, server: $domain, request: "GET /favicon.ico HTTP/1.1", host: "79.137.195.53"
+2025/06/07 02:31:38 [error] 21#21: *1334 open() "/usr/share/nginx/html/custom_404.html" failed (2: No such file or directory), client: 4.227.36.80, server: $domain, request: "GET /robots.txt HTTP/2.0", host: "host.almet-sam.ru"
+2025/06/07 04:58:16 [error] 21#21: *1559 open() "/usr/share/nginx/html/custom_404.html" failed (2: No such file or directory), client: 195.184.76.144, server: $domain, request: "GET /favicon.ico HTTP/1.1", host: "79.137.195.53"
+2025/06/07 06:16:23 [error] 20#20: *1797 open() "/usr/share/nginx/html/custom_404.html" failed (2: No such file or directory), client: 71.6.165.200, server: $domain, request: "GET /robots.txt HTTP/1.1", host: "79.137.195.53"
+2025/06/07 06:16:26 [error] 20#20: *1803 open() "/usr/share/nginx/html/custom_404.html" failed (2: No such file or directory), client: 71.6.165.200, server: $domain, request: "GET /favicon.ico HTTP/1.1", host: "79.137.195.53"
+2025/06/07 08:19:22 [notice] 1#1: signal 3 (SIGQUIT) received, shutting down
+2025/06/07 08:19:22 [notice] 20#20: gracefully shutting down
+2025/06/07 08:19:22 [notice] 20#20: exiting
+2025/06/07 08:19:22 [notice] 21#21: gracefully shutting down
+2025/06/07 08:19:22 [notice] 21#21: exiting
+2025/06/07 08:19:22 [notice] 21#21: exit
+2025/06/07 08:19:22 [notice] 20#20: exit
+2025/06/07 08:19:22 [notice] 1#1: signal 17 (SIGCHLD) received from 21
+2025/06/07 08:19:22 [notice] 1#1: worker process 20 exited with code 0
+2025/06/07 08:19:22 [notice] 1#1: worker process 21 exited with code 0
+2025/06/07 08:19:22 [notice] 1#1: exit
+2025/06/07 08:19:25 [notice] 1#1: using the "epoll" event method
+2025/06/07 08:19:25 [notice] 1#1: nginx/1.25.5
+2025/06/07 08:19:25 [notice] 1#1: built by gcc 13.2.1 20231014 (Alpine 13.2.1_git20231014) 
+2025/06/07 08:19:25 [notice] 1#1: OS: Linux 6.8.0-48-generic
+2025/06/07 08:19:25 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2025/06/07 08:19:25 [notice] 1#1: start worker processes
+2025/06/07 08:19:25 [notice] 1#1: start worker process 21
+2025/06/07 08:19:25 [notice] 1#1: start worker process 22
+2025/06/07 08:32:48 [notice] 1#1: signal 3 (SIGQUIT) received, shutting down
+2025/06/07 08:32:48 [notice] 22#22: gracefully shutting down
+2025/06/07 08:32:48 [notice] 21#21: gracefully shutting down
+2025/06/07 08:32:48 [notice] 21#21: exiting
+2025/06/07 08:32:48 [notice] 22#22: exiting
+2025/06/07 08:32:48 [notice] 21#21: exit
+2025/06/07 08:32:48 [notice] 22#22: exit
+2025/06/07 08:32:48 [notice] 1#1: signal 17 (SIGCHLD) received from 22
+2025/06/07 08:32:48 [notice] 1#1: worker process 22 exited with code 0
+2025/06/07 08:32:48 [notice] 1#1: signal 29 (SIGIO) received
+2025/06/07 08:32:48 [notice] 1#1: signal 17 (SIGCHLD) received from 21
+2025/06/07 08:32:48 [notice] 1#1: worker process 21 exited with code 0
+2025/06/07 08:32:48 [notice] 1#1: exit
+2025/06/07 08:32:53 [notice] 1#1: using the "epoll" event method
+2025/06/07 08:32:53 [notice] 1#1: nginx/1.25.5
+2025/06/07 08:32:53 [notice] 1#1: built by gcc 13.2.1 20231014 (Alpine 13.2.1_git20231014) 
+2025/06/07 08:32:53 [notice] 1#1: OS: Linux 6.8.0-48-generic
+2025/06/07 08:32:53 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2025/06/07 08:32:53 [notice] 1#1: start worker processes
+2025/06/07 08:32:53 [notice] 1#1: start worker process 20
+2025/06/07 08:32:53 [notice] 1#1: start worker process 21
+2025/06/07 08:53:20 [error] 21#21: *197 open() "/opt/telegram-vpn-bot/volumes/marzban/templates/subscription/assets/_core/php/profile.php" failed (2: No such file or directory), client: 159.89.211.52, server: $domain, request: "POST /assets/_core/php/profile.php HTTP/1.1", host: "79.137.195.53"
+2025/06/07 08:53:20 [error] 21#21: *197 open() "/usr/share/nginx/html/custom_404.html" failed (2: No such file or directory), client: 159.89.211.52, server: $domain, request: "POST /assets/_core/php/profile.php HTTP/1.1", host: "79.137.195.53"
+2025/06/07 08:53:20 [error] 21#21: *419 open() "/opt/telegram-vpn-bot/volumes/marzban/templates/subscription/assets/file:/etc/passwd" failed (2: No such file or directory), client: 159.89.211.52, server: $domain, request: "GET /assets/file:%2f%2f/etc/passwd HTTP/1.1", host: "79.137.195.53"
+2025/06/07 08:53:20 [error] 21#21: *419 open() "/usr/share/nginx/html/custom_404.html" failed (2: No such file or directory), client: 159.89.211.52, server: $domain, request: "GET /assets/file:%2f%2f/etc/passwd HTTP/1.1", host: "79.137.195.53"
+2025/06/07 08:53:20 [error] 21#21: *999 "/opt/telegram-vpn-bot/volumes/marzban/templates/subscription/assets/app/something/services/AppModule.class/index.html" is not found (2: No such file or directory), client: 159.89.211.52, server: $domain, request: "GET /assets/app/something/services/AppModule.class/ HTTP/1.1", host: "79.137.195.53"
+2025/06/07 08:53:20 [error] 21#21: *999 open() "/usr/share/nginx/html/custom_404.html" failed (2: No such file or directory), client: 159.89.211.52, server: $domain, request: "GET /assets/app/something/services/AppModule.class/ HTTP/1.1", host: "79.137.195.53"
+2025/06/07 08:53:21 [warn] 20#20: *994 a client request body is buffered to a temporary file /var/cache/nginx/client_temp/0000000001, client: 159.89.211.52, server: $domain, request: "GET /sap/public/bc/ur/Login/assets/corbu/sap_logo.png HTTP/1.1", host: "79.137.195.53"
+2025/06/07 08:53:21 [warn] 21#21: *1191 a client request body is buffered to a temporary file /var/cache/nginx/client_temp/0000000002, client: 159.89.211.52, server: $domain, request: "GET /sap/admin/public/default.html HTTP/1.1", host: "79.137.195.53"
+2025/06/07 08:53:21 [error] 20#20: *1654 open() "/opt/telegram-vpn-bot/volumes/marzban/templates/subscription/assets/php/profile.php" failed (2: No such file or directory), client: 159.89.211.52, server: $domain, request: "POST /assets/php/profile.php HTTP/1.1", host: "79.137.195.53"
+2025/06/07 08:53:21 [error] 20#20: *1654 open() "/usr/share/nginx/html/custom_404.html" failed (2: No such file or directory), client: 159.89.211.52, server: $domain, request: "POST /assets/php/profile.php HTTP/1.1", host: "79.137.195.53"
+2025/06/07 08:53:21 [error] 21#21: *1711 open() "/opt/telegram-vpn-bot/volumes/marzban/templates/subscription/assets/php/upload.php" failed (2: No such file or directory), client: 159.89.211.52, server: $domain, request: "POST /assets/php/upload.php HTTP/1.1", host: "79.137.195.53"
+2025/06/07 08:53:21 [error] 21#21: *1711 open() "/usr/share/nginx/html/custom_404.html" failed (2: No such file or directory), client: 159.89.211.52, server: $domain, request: "POST /assets/php/upload.php HTTP/1.1", host: "79.137.195.53"
+2025/06/07 08:53:22 [warn] 20#20: *1717 a client request body is buffered to a temporary file /var/cache/nginx/client_temp/0000000003, client: 159.89.211.52, server: $domain, request: "POST /apriso/portal/kiosk/querylogin.aspx HTTP/1.1", host: "79.137.195.53"
+2025/06/07 08:53:22 [warn] 21#21: *1918 a client request body is buffered to a temporary file /var/cache/nginx/client_temp/0000000004, client: 159.89.211.52, server: $domain, request: "POST /wls-wsat/CoordinatorPortType HTTP/1.1", host: "79.137.195.53"
+2025/06/07 08:53:23 [warn] 20#20: *2695 a client request body is buffered to a temporary file /var/cache/nginx/client_temp/0000000005, client: 159.89.211.52, server: $domain, request: "POST /_async/AsyncResponseService HTTP/1.1", host: "79.137.195.53"
+2025/06/07 08:53:23 [warn] 20#20: 1024 worker_connections are not enough, reusing connections
+2025/06/07 08:53:23 [warn] 21#21: 1024 worker_connections are not enough, reusing connections
+2025/06/07 08:53:24 [warn] 21#21: 1024 worker_connections are not enough, reusing connections
+2025/06/07 08:53:24 [warn] 20#20: 1024 worker_connections are not enough, reusing connections
+2025/06/07 08:53:24 [error] 21#21: *4284 open() "/usr/share/nginx/html/custom_404.html" failed (2: No such file or directory), client: 159.89.211.52, server: $domain, request: "GET /favicon.ico HTTP/1.1", host: "79.137.195.53"
+2025/06/07 08:53:25 [warn] 21#21: 1024 worker_connections are not enough, reusing connections
+2025/06/07 08:53:25 [warn] 20#20: 1024 worker_connections are not enough, reusing connections
+2025/06/07 08:53:25 [error] 20#20: *5184 "/opt/telegram-vpn-bot/volumes/marzban/templates/subscription/assets/comp/RichFilemanager/scripts/jQuery-File-Upload/server/php/index.html" is not found (2: No such file or directory), client: 159.89.211.52, server: $domain, request: "POST /assets/comp/RichFilemanager/scripts/jQuery-File-Upload/server/php/ HTTP/1.1", host: "79.137.195.53"
+2025/06/07 08:53:25 [error] 20#20: *5184 open() "/usr/share/nginx/html/custom_404.html" failed (2: No such file or directory), client: 159.89.211.52, server: $domain, request: "POST /assets/comp/RichFilemanager/scripts/jQuery-File-Upload/server/php/ HTTP/1.1", host: "79.137.195.53"
+2025/06/07 08:53:26 [warn] 20#20: *5245 a client request body is buffered to a temporary file /var/cache/nginx/client_temp/0000000006, client: 159.89.211.52, server: $domain, request: "POST /sys/ui/extend/varkind/custom.jsp HTTP/1.1", host: "79.137.195.53"
+2025/06/07 08:53:26 [warn] 21#21: 1024 worker_connections are not enough, reusing connections
+2025/06/07 08:53:26 [warn] 20#20: 1024 worker_connections are not enough, reusing connections
+2025/06/07 08:53:27 [warn] 21#21: *5696 a client request body is buffered to a temporary file /var/cache/nginx/client_temp/0000000007, client: 159.89.211.52, server: $domain, request: "POST /Kingdee.BOS.ServiceFacade.ServicesStub.DevReportService.GetBusinessObjectData.common.kdsvc HTTP/1.1", host: "79.137.195.53"
+2025/06/07 08:53:27 [warn] 20#20: *5801 a client request body is buffered to a temporary file /var/cache/nginx/client_temp/0000000008, client: 159.89.211.52, server: $domain, request: "POST /3.0/authService/config HTTP/1.1", host: "79.137.195.53", referrer: "https://79.137.195.53"
+2025/06/07 08:53:27 [warn] 20#20: 1024 worker_connections are not enough, reusing connections
+2025/06/07 08:53:27 [warn] 21#21: 1024 worker_connections are not enough, reusing connections
+2025/06/07 08:53:27 [error] 20#20: *6721 open() "/usr/share/nginx/html/custom_404.html" failed (2: No such file or directory), client: 159.89.211.52, server: $domain, request: "GET /favicon.ico HTTP/1.1", host: "79.137.195.53"
+2025/06/07 08:53:28 [warn] 20#20: 1024 worker_connections are not enough, reusing connections
+2025/06/07 08:53:28 [warn] 21#21: 1024 worker_connections are not enough, reusing connections
+2025/06/07 08:53:28 [error] 21#21: *7680 open() "/opt/telegram-vpn-bot/volumes/marzban/templates/subscription/assets/php/_devtools/installer/step_2.php" failed (2: No such file or directory), client: 159.89.211.52, server: $domain, request: "GET /assets/php/_devtools/installer/step_2.php?installation_path=%22%3E%3C%2Fscript%3E%3Cscript%3Ealert%28document.domain%29%3C%2Fscript%3E HTTP/1.1", host: "79.137.195.53"
+2025/06/07 08:53:28 [error] 21#21: *7680 open() "/usr/share/nginx/html/custom_404.html" failed (2: No such file or directory), client: 159.89.211.52, server: $domain, request: "GET /assets/php/_devtools/installer/step_2.php?installation_path=%22%3E%3C%2Fscript%3E%3Cscript%3Ealert%28document.domain%29%3C%2Fscript%3E HTTP/1.1", host: "79.137.195.53"
+2025/06/07 08:53:29 [warn] 21#21: 1024 worker_connections are not enough, reusing connections
+2025/06/07 08:53:29 [warn] 20#20: 1024 worker_connections are not enough, reusing connections
+2025/06/07 08:53:29 [error] 21#21: *8753 open() "/opt/telegram-vpn-bot/volumes/marzban/templates/subscription/assets/php/filebrowser/filebrowser.main.php" failed (2: No such file or directory), client: 159.89.211.52, server: $domain, request: "GET /assets/php/filebrowser/filebrowser.main.php?file=../../../../../../../../../../etc/passwd&do=download HTTP/1.1", host: "79.137.195.53"
+2025/06/07 08:53:29 [error] 21#21: *8753 open() "/usr/share/nginx/html/custom_404.html" failed (2: No such file or directory), client: 159.89.211.52, server: $domain, request: "GET /assets/php/filebrowser/filebrowser.main.php?file=../../../../../../../../../../etc/passwd&do=download HTTP/1.1", host: "79.137.195.53"
+2025/06/07 08:53:30 [warn] 20#20: 1024 worker_connections are not enough, reusing connections
+2025/06/07 08:53:30 [error] 21#21: *9438 open() "/usr/share/nginx/html/custom_404.html" failed (2: No such file or directory), client: 159.89.211.52, server: $domain, request: "GET /favicon.ico HTTP/1.1", host: "79.137.195.53"
+2025/06/07 08:53:30 [error] 20#20: *9396 open() "/opt/telegram-vpn-bot/volumes/marzban/templates/subscription/assets/i18n/en.json" failed (2: No such file or directory), client: 159.89.211.52, server: $domain, request: "GET /assets/i18n/en.json HTTP/1.1", host: "79.137.195.53"
+2025/06/07 08:53:30 [error] 20#20: *9396 open() "/usr/share/nginx/html/custom_404.html" failed (2: No such file or directory), client: 159.89.211.52, server: $domain, request: "GET /assets/i18n/en.json HTTP/1.1", host: "79.137.195.53"
+2025/06/07 08:53:30 [error] 20#20: *9467 open() "/opt/telegram-vpn-bot/volumes/marzban/templates/subscription/assets/other/service-account-credentials.json" failed (2: No such file or directory), client: 159.89.211.52, server: $domain, request: "GET /assets/other/service-account-credentials.json HTTP/1.1", host: "79.137.195.53"
+2025/06/07 08:53:30 [error] 20#20: *9467 open() "/usr/share/nginx/html/custom_404.html" failed (2: No such file or directory), client: 159.89.211.52, server: $domain, request: "GET /assets/other/service-account-credentials.json HTTP/1.1", host: "79.137.195.53"
+2025/06/07 08:53:30 [warn] 21#21: 1024 worker_connections are not enough, reusing connections
+2025/06/07 08:53:30 [error] 21#21: *9766 open() "/usr/share/nginx/html/custom_404.html" failed (2: No such file or directory), client: 159.89.211.52, server: $domain, request: "GET /favicon.ico HTTP/1.1", host: "79.137.195.53"
+2025/06/07 08:53:30 [error] 20#20: *9729 open() "/opt/telegram-vpn-bot/volumes/marzban/templates/subscription/assets/img/favicon/favicon.ico" failed (2: No such file or directory), client: 159.89.211.52, server: $domain, request: "GET /assets/img/favicon/favicon.ico HTTP/1.1", host: "79.137.195.53"
+2025/06/07 08:53:30 [error] 20#20: *9729 open() "/usr/share/nginx/html/custom_404.html" failed (2: No such file or directory), client: 159.89.211.52, server: $domain, request: "GET /assets/img/favicon/favicon.ico HTTP/1.1", host: "79.137.195.53"
+2025/06/07 08:53:31 [warn] 21#21: 1024 worker_connections are not enough, reusing connections
+2025/06/07 08:53:31 [warn] 20#20: 1024 worker_connections are not enough, reusing connections
+2025/06/07 08:53:31 [error] 20#20: *10515 open() "/opt/telegram-vpn-bot/volumes/marzban/templates/subscription/assets/credentials.json" failed (2: No such file or directory), client: 159.89.211.52, server: $domain, request: "GET /assets/credentials.json HTTP/1.1", host: "79.137.195.53"
+2025/06/07 08:53:31 [error] 20#20: *10515 open() "/usr/share/nginx/html/custom_404.html" failed (2: No such file or directory), client: 159.89.211.52, server: $domain, request: "GET /assets/credentials.json HTTP/1.1", host: "79.137.195.53"
+2025/06/07 08:53:32 [warn] 21#21: 1024 worker_connections are not enough, reusing connections
+2025/06/07 08:53:32 [warn] 20#20: 1024 worker_connections are not enough, reusing connections
+2025/06/07 08:53:32 [error] 20#20: *11725 open() "/opt/telegram-vpn-bot/volumes/marzban/templates/subscription/assets/login" failed (2: No such file or directory), client: 159.89.211.52, server: $domain, request: "GET /assets/login?a=https://interact.sh HTTP/1.1", host: "79.137.195.53"
+2025/06/07 08:53:32 [error] 20#20: *11725 open() "/usr/share/nginx/html/custom_404.html" failed (2: No such file or directory), client: 159.89.211.52, server: $domain, request: "GET /assets/login?a=https://interact.sh HTTP/1.1", host: "79.137.195.53"
+2025/06/07 08:53:33 [warn] 20#20: 1024 worker_connections are not enough, reusing connections
+2025/06/07 08:53:33 [warn] 21#21: 1024 worker_connections are not enough, reusing connections
+2025/06/07 08:53:33 [error] 20#20: *12425 open() "/opt/telegram-vpn-bot/volumes/marzban/templates/subscription/assets/built%2F..%2F..%2F%E0%A4%A/package.json" failed (2: No such file or directory), client: 159.89.211.52, server: $domain, request: "GET /assets/built%252F..%252F..%252F%25E0%25A4%25A/package.json HTTP/1.1", host: "79.137.195.53"
+2025/06/07 08:53:33 [error] 20#20: *12425 open() "/usr/share/nginx/html/custom_404.html" failed (2: No such file or directory), client: 159.89.211.52, server: $domain, request: "GET /assets/built%252F..%252F..%252F%25E0%25A4%25A/package.json HTTP/1.1", host: "79.137.195.53"
+2025/06/07 08:53:34 [warn] 20#20: 1024 worker_connections are not enough, reusing connections
+2025/06/07 08:53:34 [error] 20#20: *13205 open() "/opt/telegram-vpn-bot/volumes/marzban/templates/subscription/assets/.gitignore" failed (2: No such file or directory), client: 159.89.211.52, server: $domain, request: "GET /assets/.gitignore HTTP/1.1", host: "79.137.195.53"
+2025/06/07 08:53:34 [error] 20#20: *13205 open() "/usr/share/nginx/html/custom_404.html" failed (2: No such file or directory), client: 159.89.211.52, server: $domain, request: "GET /assets/.gitignore HTTP/1.1", host: "79.137.195.53"
+2025/06/07 08:53:34 [warn] 21#21: 1024 worker_connections are not enough, reusing connections
+2025/06/07 08:53:35 [warn] 21#21: 1024 worker_connections are not enough, reusing connections
+2025/06/07 08:53:35 [warn] 20#20: 1024 worker_connections are not enough, reusing connections
+2025/06/07 08:53:35 [error] 21#21: *13853 open() "/usr/share/nginx/html/custom_404.html" failed (2: No such file or directory), client: 159.89.211.52, server: $domain, request: "GET /favicon.ico HTTP/1.1", host: "79.137.195.53"
+2025/06/07 08:53:35 [error] 21#21: *14014 open() "/usr/share/nginx/html/custom_404.html" failed (2: No such file or directory), client: 159.89.211.52, server: $domain, request: "GET /favicon.ico HTTP/1.1", host: "79.137.195.53"
+2025/06/07 08:53:35 [error] 21#21: *14127 open() "/opt/telegram-vpn-bot/volumes/marzban/templates/subscription/assets/pubspec.yaml" failed (2: No such file or directory), client: 159.89.211.52, server: $domain, request: "GET /assets/pubspec.yaml HTTP/1.1", host: "79.137.195.53"
+2025/06/07 08:53:35 [error] 21#21: *14127 open() "/usr/share/nginx/html/custom_404.html" failed (2: No such file or directory), client: 159.89.211.52, server: $domain, request: "GET /assets/pubspec.yaml HTTP/1.1", host: "79.137.195.53"
+2025/06/07 08:53:35 [error] 20#20: *14106 open() "/opt/telegram-vpn-bot/volumes/marzban/templates/subscription/assets/npm-debug.log" failed (2: No such file or directory), client: 159.89.211.52, server: $domain, request: "GET /assets/npm-debug.log HTTP/1.1", host: "79.137.195.53"
+2025/06/07 08:53:35 [error] 20#20: *14106 open() "/usr/share/nginx/html/custom_404.html" failed (2: No such file or directory), client: 159.89.211.52, server: $domain, request: "GET /assets/npm-debug.log HTTP/1.1", host: "79.137.195.53"
+2025/06/07 08:53:36 [error] 20#20: *14553 open() "/opt/telegram-vpn-bot/volumes/marzban/templates/subscription/assets/config.rb" failed (2: No such file or directory), client: 159.89.211.52, server: $domain, request: "GET /assets/config.rb HTTP/1.1", host: "79.137.195.53"
+2025/06/07 08:53:36 [error] 20#20: *14553 open() "/usr/share/nginx/html/custom_404.html" failed (2: No such file or directory), client: 159.89.211.52, server: $domain, request: "GET /assets/config.rb HTTP/1.1", host: "79.137.195.53"
+2025/06/07 08:53:36 [error] 20#20: *14554 open() "/opt/telegram-vpn-bot/volumes/marzban/templates/subscription/assets/backend/elfinder/elfinder-cke.html" failed (2: No such file or directory), client: 159.89.211.52, server: $domain, request: "GET /assets/backend/elfinder/elfinder-cke.html HTTP/1.1", host: "79.137.195.53"
+2025/06/07 08:53:36 [error] 20#20: *14554 open() "/usr/share/nginx/html/custom_404.html" failed (2: No such file or directory), client: 159.89.211.52, server: $domain, request: "GET /assets/backend/elfinder/elfinder-cke.html HTTP/1.1", host: "79.137.195.53"
+2025/06/07 08:53:37 [error] 20#20: *14759 open() "/opt/telegram-vpn-bot/volumes/marzban/templates/subscription/assets/elFinder-2.1.9/elfinder.html" failed (2: No such file or directory), client: 159.89.211.52, server: $domain, request: "GET /assets/elFinder-2.1.9/elfinder.html HTTP/1.1", host: "79.137.195.53"
+2025/06/07 08:53:37 [error] 20#20: *14759 open() "/usr/share/nginx/html/custom_404.html" failed (2: No such file or directory), client: 159.89.211.52, server: $domain, request: "GET /assets/elFinder-2.1.9/elfinder.html HTTP/1.1", host: "79.137.195.53"
+2025/06/07 08:53:37 [error] 21#21: *14819 open() "/opt/telegram-vpn-bot/volumes/marzban/templates/subscription/assets/elFinder/elfinder.html" failed (2: No such file or directory), client: 159.89.211.52, server: $domain, request: "GET /assets/elFinder/elfinder.html HTTP/1.1", host: "79.137.195.53"
+2025/06/07 08:53:37 [error] 21#21: *14819 open() "/usr/share/nginx/html/custom_404.html" failed (2: No such file or directory), client: 159.89.211.52, server: $domain, request: "GET /assets/elFinder/elfinder.html HTTP/1.1", host: "79.137.195.53"
+2025/06/07 08:53:40 [warn] 21#21: 1024 worker_connections are not enough, reusing connections
+2025/06/07 08:53:44 [warn] 20#20: 1024 worker_connections are not enough, reusing connections
+2025/06/07 09:35:55 [error] 20#20: *15193 upstream prematurely closed connection while reading response header from upstream, client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://172.20.0.5:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/07 09:35:55 [error] 20#20: *15193 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://172.20.0.5:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/07 09:35:57 [error] 20#20: *15193 upstream prematurely closed connection while reading response header from upstream, client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://172.20.0.5:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/07 09:35:57 [error] 20#20: *15193 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://172.20.0.5:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/07 09:36:01 [error] 20#20: *15193 upstream prematurely closed connection while reading response header from upstream, client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://172.20.0.5:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/07 09:36:01 [error] 20#20: *15193 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://172.20.0.5:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/07 09:36:09 [error] 20#20: *15193 upstream prematurely closed connection while reading response header from upstream, client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://172.20.0.5:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/07 09:36:09 [error] 20#20: *15193 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://172.20.0.5:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/07 09:36:25 [error] 20#20: *15193 upstream prematurely closed connection while reading response header from upstream, client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://172.20.0.5:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/07 09:36:25 [error] 20#20: *15193 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://172.20.0.5:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/07 09:36:28 [notice] 1#1: signal 3 (SIGQUIT) received, shutting down
+2025/06/07 09:36:28 [notice] 20#20: gracefully shutting down
+2025/06/07 09:36:28 [notice] 21#21: gracefully shutting down
+2025/06/07 09:36:28 [notice] 21#21: exiting
+2025/06/07 09:36:28 [notice] 21#21: exit
+2025/06/07 09:36:28 [notice] 1#1: signal 17 (SIGCHLD) received from 21
+2025/06/07 09:36:28 [notice] 1#1: worker process 21 exited with code 0
+2025/06/07 09:36:28 [notice] 1#1: signal 29 (SIGIO) received
+2025/06/07 09:36:28 [notice] 20#20: exiting
+2025/06/07 09:36:28 [notice] 20#20: exit
+2025/06/07 09:36:28 [notice] 1#1: signal 17 (SIGCHLD) received from 20
+2025/06/07 09:36:28 [notice] 1#1: worker process 20 exited with code 0
+2025/06/07 09:36:28 [notice] 1#1: exit
+2025/06/07 09:36:34 [notice] 1#1: using the "epoll" event method
+2025/06/07 09:36:34 [notice] 1#1: nginx/1.25.5
+2025/06/07 09:36:34 [notice] 1#1: built by gcc 13.2.1 20231014 (Alpine 13.2.1_git20231014) 
+2025/06/07 09:36:34 [notice] 1#1: OS: Linux 6.8.0-48-generic
+2025/06/07 09:36:34 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2025/06/07 09:36:34 [notice] 1#1: start worker processes
+2025/06/07 09:36:34 [notice] 1#1: start worker process 20
+2025/06/07 09:36:34 [notice] 1#1: start worker process 21
+2025/06/07 09:36:34 [error] 20#20: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 78.138.191.191, server: $domain, request: "GET /api/system HTTP/2.0", upstream: "https://172.21.0.5:8002/api/system", host: "host.almet-sam.ru", referrer: "https://host.almet-sam.ru/dashboard/"
+2025/06/07 09:36:34 [error] 20#20: *1 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 78.138.191.191, server: $domain, request: "GET /api/system HTTP/2.0", upstream: "https://172.21.0.5:8002/api/system", host: "host.almet-sam.ru", referrer: "https://host.almet-sam.ru/dashboard/"
+2025/06/07 09:36:35 [error] 20#20: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 78.138.191.191, server: $domain, request: "GET /api/system HTTP/2.0", upstream: "https://172.21.0.5:8002/api/system", host: "host.almet-sam.ru", referrer: "https://host.almet-sam.ru/dashboard/"
+2025/06/07 09:36:35 [error] 20#20: *1 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 78.138.191.191, server: $domain, request: "GET /api/system HTTP/2.0", upstream: "https://172.21.0.5:8002/api/system", host: "host.almet-sam.ru", referrer: "https://host.almet-sam.ru/dashboard/"
+2025/06/07 09:36:38 [error] 20#20: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 78.138.191.191, server: $domain, request: "GET /api/system HTTP/2.0", upstream: "https://172.21.0.5:8002/api/system", host: "host.almet-sam.ru", referrer: "https://host.almet-sam.ru/dashboard/"
+2025/06/07 09:36:38 [error] 20#20: *1 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 78.138.191.191, server: $domain, request: "GET /api/system HTTP/2.0", upstream: "https://172.21.0.5:8002/api/system", host: "host.almet-sam.ru", referrer: "https://host.almet-sam.ru/dashboard/"
+2025/06/07 09:36:57 [error] 20#20: *10 upstream prematurely closed connection while reading response header from upstream, client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://172.21.0.5:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/07 09:36:57 [error] 20#20: *10 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://172.21.0.5:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/07 09:38:01 [error] 20#20: *10 upstream prematurely closed connection while reading response header from upstream, client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://172.21.0.5:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/07 09:38:01 [error] 20#20: *10 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://172.21.0.5:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/07 09:40:10 [error] 20#20: *39 upstream prematurely closed connection while reading response header from upstream, client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://172.21.0.5:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/07 09:40:10 [error] 20#20: *39 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://172.21.0.5:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/07 09:44:26 [error] 20#20: *41 upstream prematurely closed connection while reading response header from upstream, client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://172.21.0.5:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/07 09:44:26 [error] 20#20: *41 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://172.21.0.5:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/07 09:49:26 [error] 20#20: *83 upstream prematurely closed connection while reading response header from upstream, client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://172.21.0.5:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/07 09:49:26 [error] 20#20: *83 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://172.21.0.5:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/07 09:50:02 [notice] 1#1: signal 3 (SIGQUIT) received, shutting down
+2025/06/07 09:50:02 [notice] 21#21: gracefully shutting down
+2025/06/07 09:50:02 [notice] 21#21: exiting
+2025/06/07 09:50:02 [notice] 20#20: gracefully shutting down
+2025/06/07 09:50:02 [notice] 21#21: exit
+2025/06/07 09:50:02 [notice] 1#1: signal 17 (SIGCHLD) received from 21
+2025/06/07 09:50:02 [notice] 1#1: worker process 21 exited with code 0
+2025/06/07 09:50:02 [notice] 1#1: signal 29 (SIGIO) received
+2025/06/07 09:50:02 [notice] 20#20: exiting
+2025/06/07 09:50:02 [notice] 20#20: exit
+2025/06/07 09:50:02 [notice] 1#1: signal 17 (SIGCHLD) received from 20
+2025/06/07 09:50:02 [notice] 1#1: worker process 20 exited with code 0
+2025/06/07 09:50:02 [notice] 1#1: exit
+2025/06/07 09:50:07 [notice] 1#1: using the "epoll" event method
+2025/06/07 09:50:07 [notice] 1#1: nginx/1.25.5
+2025/06/07 09:50:07 [notice] 1#1: built by gcc 13.2.1 20231014 (Alpine 13.2.1_git20231014) 
+2025/06/07 09:50:07 [notice] 1#1: OS: Linux 6.8.0-48-generic
+2025/06/07 09:50:07 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2025/06/07 09:50:07 [notice] 1#1: start worker processes
+2025/06/07 09:50:07 [notice] 1#1: start worker process 20
+2025/06/07 09:50:07 [notice] 1#1: start worker process 21
+2025/06/07 09:51:33 [notice] 1#1: signal 3 (SIGQUIT) received, shutting down
+2025/06/07 09:51:33 [notice] 20#20: gracefully shutting down
+2025/06/07 09:51:33 [notice] 21#21: gracefully shutting down
+2025/06/07 09:51:33 [notice] 21#21: exiting
+2025/06/07 09:51:33 [notice] 20#20: exiting
+2025/06/07 09:51:33 [notice] 21#21: exit
+2025/06/07 09:51:33 [notice] 20#20: exit
+2025/06/07 09:51:33 [notice] 1#1: signal 17 (SIGCHLD) received from 20
+2025/06/07 09:51:33 [notice] 1#1: worker process 20 exited with code 0
+2025/06/07 09:51:33 [notice] 1#1: signal 29 (SIGIO) received
+2025/06/07 09:51:33 [notice] 1#1: signal 17 (SIGCHLD) received from 21
+2025/06/07 09:51:33 [notice] 1#1: worker process 21 exited with code 0
+2025/06/07 09:51:33 [notice] 1#1: exit
+2025/06/07 09:51:38 [notice] 1#1: using the "epoll" event method
+2025/06/07 09:51:38 [notice] 1#1: nginx/1.25.5
+2025/06/07 09:51:38 [notice] 1#1: built by gcc 13.2.1 20231014 (Alpine 13.2.1_git20231014) 
+2025/06/07 09:51:38 [notice] 1#1: OS: Linux 6.8.0-48-generic
+2025/06/07 09:51:38 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2025/06/07 09:51:38 [notice] 1#1: start worker processes
+2025/06/07 09:51:38 [notice] 1#1: start worker process 21
+2025/06/07 09:51:38 [notice] 1#1: start worker process 22
+2025/06/07 09:54:26 [error] 22#22: *17 upstream prematurely closed connection while reading response header from upstream, client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://172.23.0.2:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/07 09:54:26 [error] 22#22: *17 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://172.23.0.2:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/07 09:55:52 [error] 22#22: *26 upstream prematurely closed connection while reading response header from upstream, client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://172.23.0.2:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/07 09:55:52 [error] 22#22: *26 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://172.23.0.2:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/07 09:55:54 [error] 22#22: *26 upstream prematurely closed connection while reading response header from upstream, client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://172.23.0.2:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/07 09:55:54 [error] 22#22: *26 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://172.23.0.2:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/07 09:55:59 [error] 22#22: *26 upstream prematurely closed connection while reading response header from upstream, client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://172.23.0.2:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/07 09:55:59 [error] 22#22: *26 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://172.23.0.2:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/07 09:56:07 [error] 22#22: *26 upstream prematurely closed connection while reading response header from upstream, client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://172.23.0.2:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/07 09:56:07 [error] 22#22: *26 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://172.23.0.2:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/07 09:56:23 [error] 22#22: *26 upstream prematurely closed connection while reading response header from upstream, client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://172.23.0.2:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/07 09:56:23 [error] 22#22: *26 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://172.23.0.2:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/07 09:56:23 [error] 22#22: *19 open() "/usr/share/nginx/html/custom_404.html" failed (2: No such file or directory), client: 78.138.191.191, server: $domain, request: "GET /favicon.ico HTTP/2.0", host: "host.almet-sam.ru", referrer: "https://host.almet-sam.ru/sub/NjY4NjQ0MTkwNiwxNzQ5MjkwMTUzYnUWK2xoY9/info"
+2025/06/07 09:56:55 [error] 22#22: *26 upstream prematurely closed connection while reading response header from upstream, client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://172.23.0.2:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/07 09:56:55 [error] 22#22: *26 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://172.23.0.2:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/07 09:57:29 [warn] 22#22: *48 an upstream response is buffered to a temporary file /var/cache/nginx/proxy_temp/1/00/0000000001 while reading upstream, client: 78.138.191.191, server: $domain, request: "GET /sub/NjY4NjQ0MTkwNiwxNzQ5MjkwMTUzYnUWK2xoY9 HTTP/2.0", upstream: "https://172.23.0.2:8002/sub/NjY4NjQ0MTkwNiwxNzQ5MjkwMTUzYnUWK2xoY9", host: "host.almet-sam.ru"
+2025/06/07 09:57:59 [error] 22#22: *26 upstream prematurely closed connection while reading response header from upstream, client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://172.23.0.2:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/07 09:57:59 [error] 22#22: *26 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://172.23.0.2:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/07 09:58:02 [notice] 1#1: signal 3 (SIGQUIT) received, shutting down
+2025/06/07 09:58:02 [notice] 21#21: gracefully shutting down
+2025/06/07 09:58:02 [notice] 21#21: exiting
+2025/06/07 09:58:02 [notice] 21#21: exit
+2025/06/07 09:58:02 [notice] 22#22: gracefully shutting down
+2025/06/07 09:58:02 [notice] 1#1: signal 17 (SIGCHLD) received from 21
+2025/06/07 09:58:02 [notice] 1#1: worker process 21 exited with code 0
+2025/06/07 09:58:02 [notice] 1#1: signal 29 (SIGIO) received
+2025/06/07 09:58:02 [notice] 22#22: exiting
+2025/06/07 09:58:02 [notice] 22#22: exit
+2025/06/07 09:58:02 [notice] 1#1: signal 17 (SIGCHLD) received from 22
+2025/06/07 09:58:02 [notice] 1#1: worker process 22 exited with code 0
+2025/06/07 09:58:02 [notice] 1#1: exit
+2025/06/07 09:58:08 [notice] 1#1: using the "epoll" event method
+2025/06/07 09:58:08 [notice] 1#1: nginx/1.25.5
+2025/06/07 09:58:08 [notice] 1#1: built by gcc 13.2.1 20231014 (Alpine 13.2.1_git20231014) 
+2025/06/07 09:58:08 [notice] 1#1: OS: Linux 6.8.0-48-generic
+2025/06/07 09:58:08 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2025/06/07 09:58:08 [notice] 1#1: start worker processes
+2025/06/07 09:58:08 [notice] 1#1: start worker process 21
+2025/06/07 09:58:08 [notice] 1#1: start worker process 22
+2025/06/07 09:58:08 [error] 21#21: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 78.138.191.191, server: $domain, request: "GET /api/system HTTP/2.0", upstream: "https://172.24.0.5:8002/api/system", host: "host.almet-sam.ru", referrer: "https://host.almet-sam.ru/dashboard/"
+2025/06/07 09:58:08 [error] 21#21: *1 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 78.138.191.191, server: $domain, request: "GET /api/system HTTP/2.0", upstream: "https://172.24.0.5:8002/api/system", host: "host.almet-sam.ru", referrer: "https://host.almet-sam.ru/dashboard/"
+2025/06/07 09:58:10 [error] 21#21: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 78.138.191.191, server: $domain, request: "GET /api/system HTTP/2.0", upstream: "https://172.24.0.5:8002/api/system", host: "host.almet-sam.ru", referrer: "https://host.almet-sam.ru/dashboard/"
+2025/06/07 09:58:10 [error] 21#21: *1 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 78.138.191.191, server: $domain, request: "GET /api/system HTTP/2.0", upstream: "https://172.24.0.5:8002/api/system", host: "host.almet-sam.ru", referrer: "https://host.almet-sam.ru/dashboard/"
+2025/06/07 09:58:12 [error] 21#21: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 78.138.191.191, server: $domain, request: "GET /api/system HTTP/2.0", upstream: "https://172.24.0.5:8002/api/system", host: "host.almet-sam.ru", referrer: "https://host.almet-sam.ru/dashboard/"
+2025/06/07 09:58:12 [error] 21#21: *1 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 78.138.191.191, server: $domain, request: "GET /api/system HTTP/2.0", upstream: "https://172.24.0.5:8002/api/system", host: "host.almet-sam.ru", referrer: "https://host.almet-sam.ru/dashboard/"
+2025/06/07 10:00:07 [error] 21#21: *25 upstream prematurely closed connection while reading response header from upstream, client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://172.24.0.5:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/07 10:00:07 [error] 21#21: *25 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://172.24.0.5:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/07 10:04:23 [error] 21#21: *27 upstream prematurely closed connection while reading response header from upstream, client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://172.24.0.5:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/07 10:04:23 [error] 21#21: *27 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://172.24.0.5:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/07 10:04:47 [notice] 1#1: signal 3 (SIGQUIT) received, shutting down
+2025/06/07 10:04:47 [notice] 21#21: gracefully shutting down
+2025/06/07 10:04:47 [notice] 22#22: gracefully shutting down
+2025/06/07 10:04:47 [notice] 22#22: exiting
+2025/06/07 10:04:47 [notice] 22#22: exit
+2025/06/07 10:04:47 [notice] 1#1: signal 17 (SIGCHLD) received from 22
+2025/06/07 10:04:47 [notice] 1#1: worker process 22 exited with code 0
+2025/06/07 10:04:47 [notice] 1#1: signal 29 (SIGIO) received
+2025/06/07 10:04:47 [notice] 21#21: exiting
+2025/06/07 10:04:47 [notice] 21#21: exit
+2025/06/07 10:04:47 [notice] 1#1: signal 17 (SIGCHLD) received from 21
+2025/06/07 10:04:47 [notice] 1#1: worker process 21 exited with code 0
+2025/06/07 10:04:47 [notice] 1#1: exit
+2025/06/07 10:06:05 [notice] 1#1: using the "epoll" event method
+2025/06/07 10:06:05 [notice] 1#1: nginx/1.25.5
+2025/06/07 10:06:05 [notice] 1#1: built by gcc 13.2.1 20231014 (Alpine 13.2.1_git20231014) 
+2025/06/07 10:06:05 [notice] 1#1: OS: Linux 6.8.0-48-generic
+2025/06/07 10:06:05 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2025/06/07 10:06:05 [notice] 1#1: start worker processes
+2025/06/07 10:06:05 [notice] 1#1: start worker process 21
+2025/06/07 10:06:05 [notice] 1#1: start worker process 22
+2025/06/07 10:09:24 [error] 22#22: *3 upstream prematurely closed connection while reading response header from upstream, client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://172.25.0.3:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/07 10:09:24 [error] 22#22: *3 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://172.25.0.3:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/07 10:10:24 [error] 22#22: *7 open() "/usr/share/nginx/html/custom_404.html" failed (2: No such file or directory), client: 93.158.91.19, server: $domain, request: "GET /favicon.ico HTTP/1.1", host: "almet-sam.ru"

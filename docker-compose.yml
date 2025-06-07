@@ -83,6 +83,8 @@ services:
     container_name: free_vpn_bot
     restart: always
     stop_signal: SIGINT
+    entrypoint: [""]
+    command: python bot/main.py
     # ports:
     #   - "8443:8443" # Этот порт не должен быть открыт наружу
     env_file:
@@ -90,6 +92,7 @@ services:
     networks:
       - free_vpn_bot
     volumes:
+      - "./bot:/app/bot"
       - "./goods.json:/app/goods.json"
       - "./locales:/app/bot/locales"
     environment:
