@@ -73,12 +73,13 @@
 
         function setHrefs() {
             document.getElementById("ios-streisand").href = `streisand://import/${fullUrl}`;
-            document.getElementById("ios-v2box").href = `v2box://install-sub?url=${fullUrl}&name=Sub`;
+            document.getElementById("ios-v2raytun").href = `v2raytun://import/${fullUrl}`;
             document.getElementById("android-v2rayTun").href = `v2raytun://import/${fullUrl}`;
             document.getElementById("ios-singbox").href = `sing-box://import-remote-profile?url=${fullUrl}#Sub`;
             document.getElementById("android-sinbox (husi)").href = `sing-box://import-remote-profile?url=${fullUrl}#Sub`;
             document.getElementById("windows-clashverge").href = `clash://install-config?url=${fullUrl}`;
             document.getElementById("android-v2rayTun-routing").href = "v2raytun://import_route/eyJkb21haW5TdHJhdGVneSI6IkFzSXMiLCJpZCI6IkMyRTc0QzRGLTMwQzEtNDNBMy04QjhFLTM3Qzk1MzlDMERCQSIsImJhbGFuY2VycyI6W10sImRvbWFpbk1hdGNoZXIiOiJoeWJyaWQiLCJuYW1lIjoiUnVsZXNldCIsInJ1bGVzIjpbeyJfX25hbWVfXyI6IkJsb2NrIHVkcDQ0MyIsImlkIjoiRjVBNTBDNkEtQkM2RC00MDY1LUE5NTctREQyQUM5MjlGNEI3IiwidHlwZSI6ImZpZWxkIiwicG9ydCI6IjQ0MyIsIm5ldHdvcmsiOiJ1ZHAiLCJvdXRib3VuZFRhZyI6ImJsb2NrIn0seyJfX25hbWVfXyI6IkRpcmVjdCBMQU4gSVBzIiwiaWQiOiIyOTYwOEFFMC01NTg0LTQ2MDgtOTA1My1ERjk0MENCRjQwMDgiLCJ0eXBlIjoiZmllbGQiLCJpcCI6WyJnZW9pcDpwcml2YXRlIl0sIm91dGJvdW5kVGFnIjoiZGlyZWN0In0seyJfX25hbWVfXyI6IkRpcmVjdCBMQU4gZG9tYWlucyIsImlkIjoiODkwQURERDctQ0Y5Mi00QzlELUI4QzItOEFCMEFFOEJCRTkwIiwidHlwZSI6ImZpZWxkIiwiZG9tYWluIjpbImdlb3NpdGU6cHJpdmF0ZSJdLCJvdXRib3VuZFRhZyI6ImRpcmVjdCJ9LHsiX19uYW1lX18iOiJSVSIsImlkIjoiQjVENDE2Q0UtNzZDQi00QUFCLTk1MDAtREM1RTM5NTMwQkVCIiwidHlwZSI6ImZpZWxkIiwiZG9tYWluIjpbInJlZ2V4cDooXFwucnUkfFxcLnN1JHx4bi0tcDFhaSQpIl0sIm91dGJvdW5kVGFnIjoiZGlyZWN0In0seyJfX25hbWVfXyI6IlByb3h5IGFsbCBwb3J0cyIsImlkIjoiRUJEMThGRjMtQUQxMy00MTY0LTgwQUQtRUFFNkVBOEVDQzI1IiwidHlwZSI6ImZpZWxkIiwicG9ydCI6IjAtNjU1MzUiLCJvdXRib3VuZFRhZyI6InByb3h5In1dfQ==";
+            document.getElementById("ios-v2rayTun-routing").href = "v2raytun://import_route/eyJkb21haW5TdHJhdGVneSI6IkFzSXMiLCJpZCI6IkMyRTc0QzRGLTMwQzEtNDNBMy04QjhFLTM3Qzk1MzlDMERCQSIsImJhbGFuY2VycyI6W10sImRvbWFpbk1hdGNoZXIiOiJoeWJyaWQiLCJuYW1lIjoiUnVsZXNldCIsInJ1bGVzIjpbeyJfX25hbWVfXyI6IkJsb2NrIHVkcDQ0MyIsImlkIjoiRjVBNTBDNkEtQkM2RC00MDY1LUE5NTctREQyQUM5MjlGNEI3IiwidHlwZSI6ImZpZWxkIiwicG9ydCI6IjQ0MyIsIm5ldHdvcmsiOiJ1ZHAiLCJvdXRib3VuZFRhZyI6ImJsb2NrIn0seyJfX25hbWVfXyI6IkRpcmVjdCBMQU4gSVBzIiwiaWQiOiIyOTYwOEFFMC01NTg0LTQ2MDgtOTA1My1ERjk0MENCRjQwMDgiLCJ0eXBlIjoiZmllbGQiLCJpcCI6WyJnZW9pcDpwcml2YXRlIl0sIm91dGJvdW5kVGFnIjoiZGlyZWN0In0seyJfX25hbWVfXyI6IkRpcmVjdCBMQU4gZG9tYWlucyIsImlkIjoiODkwQURERDctQ0Y5Mi00QzlELUI4QzItOEFCMEFFOEJCRTkwIiwidHlwZSI6ImZpZWxkIiwiZG9tYWluIjpbImdlb3NpdGU6cHJpdmF0ZSJdLCJvdXRib3VuZFRhZyI6ImRpcmVjdCJ9LHsiX19uYW1lX18iOiJSVSIsImlkIjoiQjVENDE2Q0UtNzZDQi00QUFCLTk1MDAtREM1RTM5NTMwQkVCIiwidHlwZSI6ImZpZWxkIiwiZG9tYWluIjpbInJlZ2V4cDooXFwucnUkfFxcLnN1JHx4bi0tcDFhaSQpIl0sIm91dGJvdW5kVGFnIjoiZGlyZWN0In0seyJfX25hbWVfXyI6IlByb3h5IGFsbCBwb3J0cyIsImlkIjoiRUJEMThGRjMtQUQxMy00MTY0LTgwQUQtRUFFNkVBOEVDQzI1IiwidHlwZSI6ImZpZWxkIiwicG9ydCI6IjAtNjU1MzUiLCJvdXRib3VuZFRhZyI6InByb3h5In1dfQ==";
 
             // Android Apps
 
@@ -332,6 +333,15 @@
                     break;
             }
         }
+        function reorderIOSBlocks() {
+            const iosContainer = document.querySelector('#iOSContainer .flex.flex-col.gap-y-4');
+            const v2boxAnchor = document.getElementById('ios-v2raytun');
+            if (!iosContainer || !v2boxAnchor) return;
+            const v2boxBlock = v2boxAnchor.closest('.bg-gradient-to-r');
+            if (v2boxBlock && v2boxBlock.parentElement === iosContainer) {
+                iosContainer.insertBefore(v2boxBlock, iosContainer.firstElementChild);
+            }
+        }
 
         function renderConfigs() {
             const subLinks = "{{ user.links }}"
@@ -476,11 +486,11 @@ if (expireDateInit.includes("∞")) {
                     ],
                     tutorial: "",
                 },
-                V2Box: {
+                v2RayTun: {
                     url: [
                         {
-                            name: "IOS 14+",
-                            url: "https://apps.apple.com/us/app/v2box-v2ray-client/id6446814690",
+                            name: "IOS 16+",
+                            url: "https://apps.apple.com/us/app/v2raytun/id6476628951",
                             best: false,
                         },
                     ],
@@ -589,13 +599,13 @@ if (expireDateInit.includes("∞")) {
                 AmneziaVPN: "Android - Download AmneziaVPN",
                 Streisand: "iOS - Download Streisand",
                 FoXray: "iOS - Downaload FoXray",
-                V2Box: "iOS - Download v2Box",
+                V2rayTun: "iOS - Download V2rayTun",
                 addto: "Quick Install",
                 addV2rayTun: "v2rayTun",
                 addStreisand: "Streisand",
                 addFoXray: "FoXray",
                 addHusi: "Husi",
-                addV2Box: "v2Box",
+                addv2RayTun: "v2RayTun",
                 addShadowrocket: "Shadowrocket",
                 addamneziavpn: "Amnezia VPN",
                 addV2rayN: "v2rayN",
@@ -674,13 +684,13 @@ if (expireDateInit.includes("∞")) {
                 AmneziaVPN: "Android - Download AmneziaVPN",
                 Streisand: "iOS - Download Streisand",
                 FoXray: "iOS - Downaload FoXray",
-                V2Box: "iOS - Download v2Box",
+                V2rayTun: "iOS - Download V2rayTun",
                 addto: "Быстрая настройка",
                 addV2rayTun: "v2rayTun",
                 addStreisand: "Streisand",
                 addFoXray: "FoXray",
                 addHusi: "Husi",
-                addV2Box: "v2Box",
+                addv2RayTun: "v2RayTun",
                 addShadowrocket: "Shadowrocket",
                 addamneziavpn: "Amnezia VPN",
                 addV2rayN: "v2rayN",
@@ -695,7 +705,8 @@ if (expireDateInit.includes("∞")) {
                 restofusage: "Использовано данных",
                 needediOS: "Нужна версия iOS: ",
                 clickForDownload: "Нажмите на ссылку ниже, чтобы загрузить программу",
-                clickForAdd: "Нажмите на ссылку ниже, чтобы добавить конфигурации в программу",
+                clickForAdd: "Нажмите на кнопку ниже, чтобы добавить конфигурации в программу",
+                clickForAddv2ray: "Нажмите на кнопку ниже, чтобы автоматически импортировать в программу",
                 copyLink: "Копировать",
                 qrCode: "QrCode",
                 downloadApp: "Скачайте программу",
@@ -709,13 +720,13 @@ if (expireDateInit.includes("∞")) {
                 clickOutClose: "Нажмите за пределами окна, чтобы закрыть.",
                 chooseApp: "Выберите нужную вам программу",
                 routingTitle: "Правила для VPN",
-                routingInfo: "При добавлении правил, сайты внутри страны будут открываться без VPN.",
+                routingInfo: "При добавлении правил, приложения и сайты внутри страны будут открываться без VPN.",
                 routingIR: "Добавить Иранские сайты",
-                routingRU: "Добавить Российские сайты",
-                routingV2rayTun: "Добавить правила v2rayTun",
+                routingRU: "Добавить правила Streisand",
+                routingV2rayTun: "Добавить правила v2RayTun",
                 myiOS: 'Моя версия IOS: ',
                 v2rayTuns3: "Обновите подписку",
-                v2rayTuns3Info: "Импортировав подписку в v2rayTun, выберите нужную подписку и нажмите «Подключиться» (см. фото ниже).",
+                v2rayTuns3Info: "Импортировав подписку в v2RayTun, выберите нужную подписку и нажмите «Подключиться» (см. фото ниже).",
                 howToConnect: "Как подключиться?",
                 connectInfo: "Воспользоваться подпиской можно через следующее меню для нужной операционной системы",
                 macInfo: "Примечание: подключение на Mac OS аналогично IOS",
@@ -749,6 +760,7 @@ if (expireDateInit.includes("∞")) {
             const progressBar = document.getElementById('progress__bar')
             progressBar.style.setProperty("--value", dataUsage)
             renderOS()
+            reorderIOSBlocks()
             setHrefs()
             renderConfigs()
             const iOSVer = iOSversion()
@@ -994,9 +1006,9 @@ if (expireDateInit.includes("∞")) {
                                                                         <div class="flex items-center rtl:mr-[-10px] ltr:ml-[-10px] md:rtl:mr-[-20px] md:ltr:ml-[-20px]"> 
                                                                             <lord-icon src="https://cdn.lordicon.com/vcoyflbj.json" trigger="hover" colors="primary:#fff,secondary:#fff" class="w-12 h-12 md:w-20 md:h-20 "> 
 </lord-icon>                                                                             
-                                                                            <h3 x-text="$t('addConfigs')" class="text-xl font-black leading-none tracking-tight text-white md:text-2xl"> </h3> 
+                                                                            <h3 x-text="$t('addsub')" class="text-xl font-black leading-none tracking-tight text-white md:text-2xl"> </h3> 
                                                                         </div>                                                                         
-                                                                        <p x-text="$t('clickForAdd')" class="text-sm mb-4 font-normal text-white lg:text-base"> </p> <a id="ios-streisand" class="bg-stone-800 flex gap-x-4 items-center justify-between mb-4 px-3 py-2 rounded-3xl shadow-md text-center w-full"> <lord-icon class="w-8 h-8" src="https://cdn.lordicon.com/mrdiiocb.json" trigger="loop" delay="2000" colors="primary:#fff"> 
+                                                                        <p x-text="$t('clickForAddv2ray')" class="text-sm mb-4 font-normal text-white lg:text-base"> </p> <a id="ios-streisand" class="bg-stone-800 flex gap-x-4 items-center justify-between mb-4 px-3 py-2 rounded-3xl shadow-md text-center w-full"> <lord-icon class="w-8 h-8" src="https://cdn.lordicon.com/mrdiiocb.json" trigger="loop" delay="2000" colors="primary:#fff"> 
 </lord-icon> <span x-text="$t('AddtoApp')"></span> <lord-icon class="w-8 h-8" src="https://cdn.lordicon.com/mrdiiocb.json" trigger="loop" delay="2000" colors="primary:#fff"> 
 </lord-icon> </a> 
                                                                         <div class="flex items-center rtl:mr-[-10px] ltr:ml-[-10px] md:rtl:mr-[-20px] md:ltr:ml-[-20px]"> 
@@ -1109,7 +1121,7 @@ if (expireDateInit.includes("∞")) {
                                                                                 <rect width="29" height="29" fill="white"/> 
                                                                             </clipPath>                                                                             
                                                                         </defs>                                                                         
-                                                                    </svg>                                                                     <span x-text="$t('addV2Box')"> </span> 
+                                                                    </svg>                                                                     <span x-text="$t('addv2RayTun')"> </span> 
                                                                 </div>                                                                 
                                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" :class="{'!rotate-180': expanded}" class="w-6 h-6 mx-4 transform origin-center transition duration-200 ease-out"> 
                                                                     <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 8.25l7.5 7.5 7.5-7.5"/> 
@@ -1130,7 +1142,7 @@ if (expireDateInit.includes("∞")) {
                                                                                             <rect width="24" height="24" fill="white"/> 
                                                                                         </clipPath>                                                                                         
                                                                                     </defs>                                                                                     
-                                                                                </svg>                                                                                 <span class="text-sm">14+</span> 
+                                                                                </svg>                                                                                 <span class="text-sm">16+</span> 
                                                                             </div>                                                                             
                                                                         </div>                                                                         
                                                                         <div class="flex items-center rtl:mr-[-10px] ltr:ml-[-10px] md:rtl:mr-[-20px] md:ltr:ml-[-20px]"> 
@@ -1138,16 +1150,41 @@ if (expireDateInit.includes("∞")) {
 </lord-icon>                                                                             
                                                                             <h3 x-text="$t('downloadApp')" class="text-xl font-black leading-none tracking-tight text-white md:text-2xl"> </h3> 
                                                                         </div>                                                                         
-                                                                        <p x-text="$t('clickForDownload')" class="text-sm mb-4 font-normal text-white lg:text-base"> </p> <a href="https://apps.apple.com/us/app/v2box-v2ray-client/id6446814690" class="flex mb-4 items-center gap-x-4 w-full bg-gray-800 shadow-md px-3 py-2 rounded-3xl justify-between"> <lord-icon class="w-8 h-8" src="https://cdn.lordicon.com/albqovim.json" trigger="loop" delay="1500" colors="primary:#fff" state="intro"> 
+                                                                        <p x-text="$t('clickForDownload')" class="text-sm mb-4 font-normal text-white lg:text-base"> </p> <a href="https://apps.apple.com/us/app/v2raytun/id6476628951" class="flex mb-4 items-center gap-x-4 w-full bg-gray-800 shadow-md px-3 py-2 rounded-3xl justify-between"> <lord-icon class="w-8 h-8" src="https://cdn.lordicon.com/albqovim.json" trigger="loop" delay="1500" colors="primary:#fff" state="intro"> 
 </lord-icon> <span x-text="$t('download')"></span> <lord-icon class="w-8 h-8" src="https://cdn.lordicon.com/albqovim.json" trigger="loop" delay="1500" colors="primary:#fff" state="intro"> 
 </lord-icon> </a> 
                                                                         <div class="flex items-center rtl:mr-[-10px] ltr:ml-[-10px] md:rtl:mr-[-20px] md:ltr:ml-[-20px]"> 
                                                                             <lord-icon src="https://cdn.lordicon.com/vcoyflbj.json" trigger="hover" colors="primary:#fff,secondary:#fff" class="w-12 h-12 md:w-20 md:h-20 "> 
 </lord-icon>                                                                             
-                                                                            <h3 x-text="$t('addConfigs')" class="text-xl font-black leading-none tracking-tight text-white md:text-2xl"> </h3> 
+                                                                            <h3 x-text="$t('addsub')" class="text-xl font-black leading-none tracking-tight text-white md:text-2xl"> </h3> 
                                                                         </div>                                                                         
-                                                                        <p x-text="$t('clickForAdd')" class="text-sm mb-4 font-normal text-white lg:text-base"> </p> <a id="ios-v2box" class="flex mb-4 items-center gap-x-4 w-full bg-stone-800 shadow-md px-3 py-2 rounded-3xl justify-between"> <lord-icon class="w-8 h-8" src="https://cdn.lordicon.com/mrdiiocb.json" trigger="loop" delay="2000" colors="primary:#fff"> 
-</lord-icon> <span x-text="$t('AddtoApp')"></span> <lord-icon class="w-8 h-8" src="https://cdn.lordicon.com/mrdiiocb.json" trigger="loop" delay="2000" colors="primary:#fff"> 
+                                                                        <p x-text="$t('clickForAddv2ray')" class="text-sm mb-4 font-normal text-white lg:text-base"> </p> 
+                                                                        <a id="ios-v2raytun" class="bg-stone-800 flex gap-x-4 items-center justify-between mb-4 px-3 py-2 rounded-3xl shadow-md text-center w-full"> <lord-icon class="w-8 h-8" src="https://cdn.lordicon.com/mrdiiocb.json" trigger="loop" delay="2000" colors="primary:#fff"> 
+                                                                        </lord-icon> <span x-text="$t('AddtoApp')"></span> <lord-icon class="w-8 h-8" src="https://cdn.lordicon.com/mrdiiocb.json" trigger="loop" delay="2000" colors="primary:#fff"> 
+                                                                        </lord-icon> </a>
+<p x-text="$t('v2rayTuns3Info')" class="text-sm mb-4 font-normal text-white lg:text-base"></p>
+<div class="flex gap-4 justify-center mb-2"> 
+    <!-- Превью 1 -->                                                                         <a href="https://raw.githubusercontent.com/jenya77meg/telegram-vpn-bot/3.0/volumes/marzban/templates/subscription/assets/icons/v2RayTun1.jpg" class="glightbox block w-28 h-28 rounded-lg overflow-hidden" data-gallery="vpn-steps"> <img src="https://raw.githubusercontent.com/jenya77meg/telegram-vpn-bot/3.0/volumes/marzban/templates/subscription/assets/icons/v2RayTun1mini.jpg" class="object-cover w-full h-full" alt="v2rayTun Step 1"/> </a> 
+</div>                                                                     
+<div class="flex items-center rtl:mr-[-10px] ltr:ml-[-10px] md:rtl:mr-[-20px] md:ltr:ml-[-20px]"> 
+    <lord-icon src="https://cdn.lordicon.com/igpsgesd.json" trigger="hover" colors="primary:#fff,secondary:#fff" class="w-12 h-12 md:w-20 md:h-20 "> 
+</lord-icon>                                                                         
+    <h3 x-text="$t('routingTitle')" class="text-xl font-black leading-none tracking-tight text-white md:text-2xl"> </h3> 
+</div>                                                                     
+<p x-text="$t('routingInfo')" class="text-sm mb-4 font-normal text-white lg:text-base"> </p> <a id="ios-v2rayTun-routing" href="v2raytun://import_route/eyJkb21haW5TdHJhdGVneSI6IkFzSXMiLCJpZCI6IkMyRTc0QzRGLTMwQzEtNDNBMy04QjhFLTM3Qzk1MzlDMERCQSIsImJhbGFuY2VycyI6W10sImRvbWFpbk1hdGNoZXIiOiJoeWJyaWQiLCJuYW1lIjoiUnVsZXNldCIsInJ1bGVzIjpbeyJfX25hbWVfXyI6IkJsb2NrIHVkcDQ0MyIsImlkIjoiRjVBNTBDNkEtQkM2RC00MDY1LUE5NTctREQyQUM5MjlGNEI3IiwidHlwZSI6ImZpZWxkIiwicG9ydCI6IjQ0MyIsIm5ldHdvcmsiOiJ1ZHAiLCJvdXRib3VuZFRhZyI6ImJsb2NrIn0seyJfX25hbWVfXyI6IkRpcmVjdCBMQU4gSVBzIiwiaWQiOiIyOTYwOEFFMC01NTg0LTQ2MDgtOTA1My1ERjk0MENCRjQwMDgiLCJ0eXBlIjoiZmllbGQiLCJpcCI6WyJnZW9pcDpwcml2YXRlIl0sIm91dGJvdW5kVGFnIjoiZGlyZWN0In0seyJfX25hbWVfXyI6IkRpcmVjdCBMQU4gZG9tYWlucyIsImlkIjoiODkwQURERDctQ0Y5Mi00QzlELUI4QzItOEFCMEFFOEJCRTkwIiwidHlwZSI6ImZpZWxkIiwiZG9tYWluIjpbImdlb3NpdGU6cHJpdmF0ZSJdLCJvdXRib3VuZFRhZyI6ImRpcmVjdCJ9LHsiX19uYW1lX18iOiJSVSIsImlkIjoiQjVENDE2Q0UtNzZDQi00QUFCLTk1MDAtREM1RTM5NTMwQkVCIiwidHlwZSI6ImZpZWxkIiwiZG9tYWluIjpbInJlZ2V4cDooXFwucnUkfFxcLnN1JHx4bi0tcDFhaSQpIl0sIm91dGJvdW5kVGFnIjoiZGlyZWN0In0seyJfX25hbWVfXyI6IlByb3h5IGFsbCBwb3J0cyIsImlkIjoiRUJEMThGRjMtQUQxMy00MTY0LTgwQUQtRUFFNkVBOEVDQzI1IiwidHlwZSI6ImZpZWxkIiwicG9ydCI6IjAtNjU1MzUiLCJvdXRib3VuZFRhZyI6InByb3h5In1dfQ==" class="bg-gradient-to-r duration-300 flex from-indigo-600 gap-x-4 items-center justify-between mb-4 px-3 py-2 rounded-2xl shadow-md text-center to-indigo-800 transition-all via-indigo-700 w-full focus:outline-none focus:ring-4 focus:ring-blue-700"> <div class="rounded-xl overflow-hidden"> 
+        <svg width="37" height="25" viewBox="0 0 37 25" fill="none" xmlns="http://www.w3.org/2000/svg"> 
+            <g clip-path="url(#clip0_106_7)"> 
+                <path d="M37 8.33325H0V16.6666H37V8.33325Z" fill="#0039A6"/> 
+                <path d="M37 0H0V8.33333H37V0Z" fill="white"/> 
+                <path d="M37 16.6667H0V25.0001H37V16.6667Z" fill="#D52B1E"/> 
+            </g>                                                                                 
+            <defs> 
+                <clipPath id="clip0_106_7"> 
+                    <rect width="37" height="25" fill="white"/> 
+                </clipPath>                                                                                     
+            </defs>                                                                                 
+        </svg>                                                                             
+    </div> <span x-text="$t('routingV2rayTun')"></span> <lord-icon class="w-8 h-8" src="https://cdn.lordicon.com/mrdiiocb.json" trigger="loop" delay="2000" colors="primary:#fff"> 
 </lord-icon> </a> 
                                                                     </div>                                                                     
                                                                 </div>                                                                 
@@ -1322,10 +1359,10 @@ background: linear-gradient(115deg, rgba(153, 107, 138, 0.77) 0%, rgba(128, 136,
                                                                         <lord-icon src="https://cdn.lordicon.com/vcoyflbj.json" trigger="hover" colors="primary:#fff,secondary:#fff" class="w-12 h-12 md:w-20 md:h-20"></lord-icon>                                                                         
                                                                         <h3 x-text="$t('addsub')" class="text-xl font-black leading-none tracking-tight text-white md:text-2xl"></h3> 
                                                                     </div>                                                                     
-                                                                    <p x-text="$t('clickForAdd')" class="text-sm mb-4 font-normal text-white lg:text-base"></p> <a id="android-v2rayTun" class="bg-stone-800 flex gap-x-4 items-center justify-between mb-4 px-3 py-2 rounded-3xl shadow-md text-center w-full"> <lord-icon class="w-8 h-8" src="https://cdn.lordicon.com/mrdiiocb.json" trigger="loop" delay="2000" colors="primary:#fff"></lord-icon> <span x-text="$t('AddtoApp')"></span> <lord-icon class="w-8 h-8" src="https://cdn.lordicon.com/mrdiiocb.json" trigger="loop" delay="2000" colors="primary:#fff"></lord-icon> </a> 
+                                                                    <p x-text="$t('clickForAddv2ray')" class="text-sm mb-4 font-normal text-white lg:text-base"></p> <a id="android-v2rayTun" class="bg-stone-800 flex gap-x-4 items-center justify-between mb-4 px-3 py-2 rounded-3xl shadow-md text-center w-full"> <lord-icon class="w-8 h-8" src="https://cdn.lordicon.com/mrdiiocb.json" trigger="loop" delay="2000" colors="primary:#fff"></lord-icon> <span x-text="$t('AddtoApp')"></span> <lord-icon class="w-8 h-8" src="https://cdn.lordicon.com/mrdiiocb.json" trigger="loop" delay="2000" colors="primary:#fff"></lord-icon> </a> 
                                                                     <p x-text="$t('v2rayTuns3Info')" class="text-sm mb-4 font-normal text-white lg:text-base"></p> 
                                                                     <div class="flex gap-4 justify-center mb-2"> 
-                                                                        <!-- Превью 1 -->                                                                         <a href="https://raw.githubusercontent.com/jenya77meg/telegram-vpn-bot/2.0/volumes/marzban/templates/subscription/assets/icons/v2raytun1.jpg" class="glightbox block w-28 h-28 rounded-lg overflow-hidden" data-gallery="vpn-steps"> <img src="https://raw.githubusercontent.com/jenya77meg/telegram-vpn-bot/2.0/volumes/marzban/templates/subscription/assets/icons/v2ray.photo1.png" class="object-cover w-full h-full" alt="v2rayTun Step 1"/> </a> 
+                                                                        <!-- Превью 1 -->                                                                         <a href="https://raw.githubusercontent.com/jenya77meg/telegram-vpn-bot/3.0/volumes/marzban/templates/subscription/assets/icons/v2RayTun1.jpg" class="glightbox block w-28 h-28 rounded-lg overflow-hidden" data-gallery="vpn-steps"> <img src="https://raw.githubusercontent.com/jenya77meg/telegram-vpn-bot/3.0/volumes/marzban/templates/subscription/assets/icons/v2RayTun1mini.jpg" class="object-cover w-full h-full" alt="v2rayTun Step 1"/> </a> 
                                                                     </div>                                                                     
                                                                     <div class="flex items-center rtl:mr-[-10px] ltr:ml-[-10px] md:rtl:mr-[-20px] md:ltr:ml-[-20px]"> 
                                                                         <lord-icon src="https://cdn.lordicon.com/igpsgesd.json" trigger="hover" colors="primary:#fff,secondary:#fff" class="w-12 h-12 md:w-20 md:h-20 "> 
@@ -1407,9 +1444,9 @@ background: linear-gradient(115deg,rgba(60, 145, 85, 1) 0%, rgba(43, 140, 126, 1
 </lord-icon> <span x-text="$t('AddtoApp')"></span> <lord-icon class="w-8 h-8" src="https://cdn.lordicon.com/mrdiiocb.json" trigger="loop" delay="2000" colors="primary:#fff"> 
 </lord-icon> </a> 
                                                                     <div class="flex gap-4 max-h-28 mt-5 overflow-y-auto"> 
-                                                                        <!-- Превью 1 -->                                                                         <a href="https://raw.githubusercontent.com/jenya77meg/telegram-vpn-bot/2.0/volumes/marzban/templates/subscription/assets/icons/husi2.jpg" class="glightbox block w-28 h-28 rounded-lg overflow-hidden" data-gallery="vpn-steps"> <img src="https://raw.githubusercontent.com/jenya77meg/telegram-vpn-bot/2.0/volumes/marzban/templates/subscription/assets/icons/husi2mini.jpg" class="object-cover object-bottom w-full h-full" alt="Amnezia VPN Step 2"/> </a> 
-                                                                        <!-- Превью 2 -->                                                                         <a href="https://raw.githubusercontent.com/jenya77meg/telegram-vpn-bot/2.0/volumes/marzban/templates/subscription/assets/icons/husi3.jpg" class="glightbox block w-28 h-28 rounded-lg overflow-hidden" data-gallery="vpn-steps"> <img src="https://raw.githubusercontent.com/jenya77meg/telegram-vpn-bot/2.0/volumes/marzban/templates/subscription/assets/icons/husi3mini.jpg" class="object-cover object-bottom w-full h-full" alt="Amnezia VPN Step 3"/> </a> 
-                                                                        <!-- Превью 3 -->                                                                         <a href="https://raw.githubusercontent.com/jenya77meg/telegram-vpn-bot/2.0/volumes/marzban/templates/subscription/assets/icons/husi4.jpg" class="glightbox block w-28 h-28 rounded-lg overflow-hidden" data-gallery="vpn-steps"> <img src="https://raw.githubusercontent.com/jenya77meg/telegram-vpn-bot/2.0/volumes/marzban/templates/subscription/assets/icons/husi4mini.jpg" class="object-cover object-bottom w-full h-full" alt="Amnezia VPN Step 4"/> </a> 
+                                                                        <!-- Превью 1 -->                                                                         <a href="https://raw.githubusercontent.com/jenya77meg/telegram-vpn-bot/3.0/volumes/marzban/templates/subscription/assets/icons/husi2.jpg" class="glightbox block w-28 h-28 rounded-lg overflow-hidden" data-gallery="vpn-steps"> <img src="https://raw.githubusercontent.com/jenya77meg/telegram-vpn-bot/3.0/volumes/marzban/templates/subscription/assets/icons/husi2mini.jpg" class="object-cover object-bottom w-full h-full" alt="Amnezia VPN Step 2"/> </a> 
+                                                                        <!-- Превью 2 -->                                                                         <a href="https://raw.githubusercontent.com/jenya77meg/telegram-vpn-bot/3.0/volumes/marzban/templates/subscription/assets/icons/husi3.jpg" class="glightbox block w-28 h-28 rounded-lg overflow-hidden" data-gallery="vpn-steps"> <img src="https://raw.githubusercontent.com/jenya77meg/telegram-vpn-bot/3.0/volumes/marzban/templates/subscription/assets/icons/husi3mini.jpg" class="object-cover object-bottom w-full h-full" alt="Amnezia VPN Step 3"/> </a> 
+                                                                        <!-- Превью 3 -->                                                                         <a href="https://raw.githubusercontent.com/jenya77meg/telegram-vpn-bot/3.0/volumes/marzban/templates/subscription/assets/icons/husi4.jpg" class="glightbox block w-28 h-28 rounded-lg overflow-hidden" data-gallery="vpn-steps"> <img src="https://raw.githubusercontent.com/jenya77meg/telegram-vpn-bot/3.0/volumes/marzban/templates/subscription/assets/icons/husi4mini.jpg" class="object-cover object-bottom w-full h-full" alt="Amnezia VPN Step 4"/> </a> 
                                                                     </div>                                                                     
                                                                 </div>                                                                 
                                                             </div>                                                             
@@ -1468,9 +1505,9 @@ background: linear-gradient(115deg,rgba(60, 145, 85, 1) 0%, rgba(43, 140, 126, 1
 для копирования ключа конфигурации. Откройте Amnezia VPN и добавьте новый профиль, как показано на изображении.</p> <a id="duplicate_section" class="bg-gray-600 flex justify-between py-2 rounded-3xl shadow-md w-full"> </a> 
                                                                         <!-- контейнер всех превью -->                                                                         
                                                                         <div class="flex gap-4 max-h-28 mt-5 overflow-y-auto"> 
-                                                                            <!-- Превью 1 -->                                                                             <a href="https://raw.githubusercontent.com/jenya77meg/telegram-vpn-bot/2.0/volumes/marzban/templates/subscription/assets/icons/amnezia2.jpg" class="glightbox block w-28 h-28 rounded-lg overflow-hidden" data-gallery="vpn-steps"> <img src="https://raw.githubusercontent.com/jenya77meg/telegram-vpn-bot/2.0/volumes/marzban/templates/subscription/assets/icons/amnezia2mini.jpg" class="object-cover object-bottom w-full h-full" alt="Amnezia VPN Step 2"/> </a> 
-                                                                            <!-- Превью 2 -->                                                                             <a href="https://raw.githubusercontent.com/jenya77meg/telegram-vpn-bot/2.0/volumes/marzban/templates/subscription/assets/icons/amnezia3.jpg" class="glightbox block w-28 h-28 rounded-lg overflow-hidden" data-gallery="vpn-steps"> <img src="https://raw.githubusercontent.com/jenya77meg/telegram-vpn-bot/2.0/volumes/marzban/templates/subscription/assets/icons/amnezia3mini.jpg" class="object-cover object-bottom w-full h-full" alt="Amnezia VPN Step 3"/> </a> 
-                                                                            <!-- Превью 3 -->                                                                             <a href="https://raw.githubusercontent.com/jenya77meg/telegram-vpn-bot/2.0/volumes/marzban/templates/subscription/assets/icons/amnezia4.jpg" class="glightbox block w-28 h-28 rounded-lg overflow-hidden" data-gallery="vpn-steps"> <img src="https://raw.githubusercontent.com/jenya77meg/telegram-vpn-bot/2.0/volumes/marzban/templates/subscription/assets/icons/amnezia4mini.jpg" class="object-cover object-bottom w-full h-full" alt="Amnezia VPN Step 4"/> </a> 
+                                                                            <!-- Превью 1 -->                                                                             <a href="https://raw.githubusercontent.com/jenya77meg/telegram-vpn-bot/3.0/volumes/marzban/templates/subscription/assets/icons/amnezia2.jpg" class="glightbox block w-28 h-28 rounded-lg overflow-hidden" data-gallery="vpn-steps"> <img src="https://raw.githubusercontent.com/jenya77meg/telegram-vpn-bot/3.0/volumes/marzban/templates/subscription/assets/icons/amnezia2mini.jpg" class="object-cover object-bottom w-full h-full" alt="Amnezia VPN Step 2"/> </a> 
+                                                                            <!-- Превью 2 -->                                                                             <a href="https://raw.githubusercontent.com/jenya77meg/telegram-vpn-bot/3.0/volumes/marzban/templates/subscription/assets/icons/amnezia3.jpg" class="glightbox block w-28 h-28 rounded-lg overflow-hidden" data-gallery="vpn-steps"> <img src="https://raw.githubusercontent.com/jenya77meg/telegram-vpn-bot/3.0/volumes/marzban/templates/subscription/assets/icons/amnezia3mini.jpg" class="object-cover object-bottom w-full h-full" alt="Amnezia VPN Step 3"/> </a> 
+                                                                            <!-- Превью 3 -->                                                                             <a href="https://raw.githubusercontent.com/jenya77meg/telegram-vpn-bot/3.0/volumes/marzban/templates/subscription/assets/icons/amnezia4.jpg" class="glightbox block w-28 h-28 rounded-lg overflow-hidden" data-gallery="vpn-steps"> <img src="https://raw.githubusercontent.com/jenya77meg/telegram-vpn-bot/3.0/volumes/marzban/templates/subscription/assets/icons/amnezia4mini.jpg" class="object-cover object-bottom w-full h-full" alt="Amnezia VPN Step 4"/> </a> 
                                                                         </div>                                                                         
                                                                     </div>                                                                     
                                                                 </div>                                                                 
@@ -1592,11 +1629,11 @@ background: linear-gradient(115deg,rgba(60, 145, 85, 1) 0%, rgba(43, 140, 126, 1
                                                                         <lord-icon src="https://cdn.lordicon.com/vcoyflbj.json" trigger="hover" colors="primary:#fff,secondary:#fff" class="w-12 h-12 md:w-20 md:h-20 "> 
 </lord-icon>                                                                         
                                                                         <h3 x-text="$t('addConfigs')" class="text-xl font-black leading-none tracking-tight text-white md:text-2xl"> 
-                                                                            افزودن کانفیگ ها</h3> 
+                                                                            ا</h3> 
                                                                     </div>                                                                     
                                                                     <p x-text="$t('clickForAdd')" class="text-sm mb-4 font-normal text-white lg:text-base"> 
-                                                                        برای اضافه کردن کانفیگ‌ ها داخل برنامه روی لینک
-                                                                        زیر کلیک کنید.</p> <a id="windows-clashverge" class=" flex mb-4 items-center gap-x-4 w-full
+                                                                        
+                                                                        زد.</p> <a id="windows-clashverge" class=" flex mb-4 items-center gap-x-4 w-full
                                                                         bg-stone-800 shadow-md px-3 py-2 rounded-3xl
                                                                         justify-between"> <lord-icon class="w-8 h-8" src="https://cdn.lordicon.com/mrdiiocb.json" trigger="loop" delay="2000" colors="primary:#fff"> 
 </lord-icon> <span x-text="$t('AddtoApp')">افزودن به
@@ -1650,7 +1687,7 @@ background: linear-gradient(115deg,rgba(60, 145, 85, 1) 0%, rgba(43, 140, 126, 1
                     <h2 x-text="$t('telsupport')" class="mb-4 mt-8 text-3xl font-black leading-none tracking-tight text-white md:text-5xl"> </h2> 
                     <p x-text="$t('supTelInfo')" class="text-lg font-normal mb-4 text-gray-300 lg:text-xl"></p> 
                     <div class="flex flex-col gap-y-4"> 
-                        <h2 class="font-bold text-white text-2xl mb-2" x-text="$t('sup')"></h2> <a href="https://t.me/@AlmetVPN_support" class="py-3 px-4 transition-all duration-200 inline-flex gap-x-3 justify-center text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg"> <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" class="w-6 h-6 fill-white" viewBox="0 0 50 50"> 
+                        <h2 class="font-bold text-white text-2xl mb-2" x-text="$t('sup')"></h2> <a href="https://t.me/AlmetVPN_support" class="py-3 px-4 transition-all duration-200 inline-flex gap-x-3 justify-center text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg"> <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" class="w-6 h-6 fill-white" viewBox="0 0 50 50"> 
                                 <path d="M25,2c12.703,0,23,10.297,23,23S37.703,48,25,48S2,37.703,2,25S12.297,2,25,2z M32.934,34.375	c0.423-1.298,2.405-14.234,2.65-16.783c0.074-0.772-0.17-1.285-0.648-1.514c-0.578-0.278-1.434-0.139-2.427,0.219	c-1.362,0.491-18.774,7.884-19.78,8.312c-0.954,0.405-1.856,0.847-1.856,1.487c0,0.45,0.267,0.703,1.003,0.966	c0.766,0.273,2.695,0.858,3.834,1.172c1.097,0.303,2.346,0.04,3.046-0.395c0.742-0.461,9.305-6.191,9.92-6.693	c0.614-0.502,1.104,0.141,0.602,0.644c-0.502,0.502-6.38,6.207-7.155,6.997c-0.941,0.959-0.273,1.953,0.358,2.351	c0.721,0.454,5.906,3.932,6.687,4.49c0.781,0.558,1.573,0.811,2.298,0.811C32.191,36.439,32.573,35.484,32.934,34.375z"> 
 </path>                                 
                             </svg> <span class="sm:text-lg" x-text="$t('support')"></span> </a> 
