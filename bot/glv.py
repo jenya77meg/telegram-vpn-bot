@@ -23,7 +23,9 @@ config = {
     'PANEL_PASS': os.environ.get('PANEL_PASS'),
     'WEBHOOK_URL': os.environ.get('WEBHOOK_URL'),
     'WEBHOOK_PORT': int(os.environ.get('WEBHOOK_PORT')),
-    'RENEW_NOTIFICATION_TIME': str(os.environ.get('RENEW_NOTIFICATION_TIME'))
+    'RENEW_NOTIFICATION_TIME': str(os.environ.get('RENEW_NOTIFICATION_TIME')),
+    'EXPIRED_NOTIFICATION_TIME': os.environ.get('EXPIRED_NOTIFICATION_TIME', '13:00')
+
 }
 
 bot: Bot = None

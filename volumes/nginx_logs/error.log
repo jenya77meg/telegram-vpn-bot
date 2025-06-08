@@ -1400,3 +1400,664 @@
 2025/06/07 19:23:28 [error] 22#22: *41 open() "/usr/share/nginx/html/custom_404.html" failed (2: No such file or directory), client: 167.94.138.46, server: $domain, request: "GET /favicon.ico HTTP/1.1", host: "79.137.195.53", referrer: "http://79.137.195.53/favicon.ico"
 2025/06/07 19:23:51 [error] 22#22: *46 open() "/usr/share/nginx/html/custom_404.html" failed (2: No such file or directory), client: 167.94.138.46, server: $domain, request: "GET /favicon.ico HTTP/1.1", host: "79.137.195.53", referrer: "http://79.137.195.53/favicon.ico"
 2025/06/07 19:25:22 [warn] 22#22: *49 an upstream response is buffered to a temporary file /var/cache/nginx/proxy_temp/4/00/0000000004 while reading upstream, client: 78.138.191.191, server: $domain, request: "GET /sub/MjIyMiwxNzQ5Mjk3Mjk5mn9wB6bzS- HTTP/2.0", upstream: "https://192.168.16.5:8002/sub/MjIyMiwxNzQ5Mjk3Mjk5mn9wB6bzS-", host: "host.almet-sam.ru"
+2025/06/07 20:24:34 [error] 22#22: *200 upstream prematurely closed connection while reading response header from upstream, client: 79.127.211.218, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://192.168.16.5:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/07 20:24:34 [error] 22#22: *200 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 79.127.211.218, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://192.168.16.5:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/07 20:24:36 [error] 22#22: *200 upstream prematurely closed connection while reading response header from upstream, client: 79.127.211.218, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://192.168.16.5:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/07 20:24:36 [error] 22#22: *200 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 79.127.211.218, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://192.168.16.5:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/07 20:24:40 [error] 22#22: *200 upstream prematurely closed connection while reading response header from upstream, client: 79.127.211.218, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://192.168.16.5:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/07 20:24:40 [error] 22#22: *200 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 79.127.211.218, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://192.168.16.5:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/07 20:24:48 [error] 22#22: *200 upstream prematurely closed connection while reading response header from upstream, client: 79.127.211.218, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://192.168.16.5:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/07 20:24:48 [error] 22#22: *200 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 79.127.211.218, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://192.168.16.5:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/07 20:25:04 [error] 22#22: *200 upstream prematurely closed connection while reading response header from upstream, client: 79.127.211.218, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://192.168.16.5:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/07 20:25:04 [error] 22#22: *200 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 79.127.211.218, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://192.168.16.5:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/07 20:25:36 [error] 22#22: *200 upstream prematurely closed connection while reading response header from upstream, client: 79.127.211.218, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://192.168.16.5:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/07 20:25:36 [error] 22#22: *200 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 79.127.211.218, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://192.168.16.5:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/07 20:25:37 [notice] 1#1: signal 3 (SIGQUIT) received, shutting down
+2025/06/07 20:25:37 [notice] 21#21: gracefully shutting down
+2025/06/07 20:25:37 [notice] 22#22: gracefully shutting down
+2025/06/07 20:25:37 [notice] 21#21: exiting
+2025/06/07 20:25:37 [notice] 21#21: exit
+2025/06/07 20:25:37 [notice] 1#1: signal 17 (SIGCHLD) received from 21
+2025/06/07 20:25:37 [notice] 1#1: worker process 21 exited with code 0
+2025/06/07 20:25:37 [notice] 1#1: signal 29 (SIGIO) received
+2025/06/07 20:25:37 [notice] 22#22: exiting
+2025/06/07 20:25:37 [notice] 22#22: exit
+2025/06/07 20:25:37 [notice] 1#1: signal 17 (SIGCHLD) received from 22
+2025/06/07 20:25:37 [notice] 1#1: worker process 22 exited with code 0
+2025/06/07 20:25:37 [notice] 1#1: exit
+2025/06/07 20:25:42 [notice] 1#1: using the "epoll" event method
+2025/06/07 20:25:42 [notice] 1#1: nginx/1.25.5
+2025/06/07 20:25:42 [notice] 1#1: built by gcc 13.2.1 20231014 (Alpine 13.2.1_git20231014) 
+2025/06/07 20:25:42 [notice] 1#1: OS: Linux 6.8.0-48-generic
+2025/06/07 20:25:42 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2025/06/07 20:25:42 [notice] 1#1: start worker processes
+2025/06/07 20:25:42 [notice] 1#1: start worker process 21
+2025/06/07 20:25:42 [notice] 1#1: start worker process 22
+2025/06/07 20:25:43 [error] 21#21: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 79.127.211.218, server: $domain, request: "GET /api/system HTTP/2.0", upstream: "https://192.168.32.5:8002/api/system", host: "host.almet-sam.ru", referrer: "https://host.almet-sam.ru/dashboard/"
+2025/06/07 20:25:43 [error] 21#21: *1 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 79.127.211.218, server: $domain, request: "GET /api/system HTTP/2.0", upstream: "https://192.168.32.5:8002/api/system", host: "host.almet-sam.ru", referrer: "https://host.almet-sam.ru/dashboard/"
+2025/06/07 20:25:45 [error] 21#21: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 79.127.211.218, server: $domain, request: "GET /api/system HTTP/2.0", upstream: "https://192.168.32.5:8002/api/system", host: "host.almet-sam.ru", referrer: "https://host.almet-sam.ru/dashboard/"
+2025/06/07 20:25:45 [error] 21#21: *1 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 79.127.211.218, server: $domain, request: "GET /api/system HTTP/2.0", upstream: "https://192.168.32.5:8002/api/system", host: "host.almet-sam.ru", referrer: "https://host.almet-sam.ru/dashboard/"
+2025/06/07 20:26:11 [notice] 1#1: signal 3 (SIGQUIT) received, shutting down
+2025/06/07 20:26:11 [notice] 21#21: gracefully shutting down
+2025/06/07 20:26:11 [notice] 22#22: gracefully shutting down
+2025/06/07 20:26:11 [notice] 21#21: exiting
+2025/06/07 20:26:11 [notice] 21#21: exit
+2025/06/07 20:26:11 [notice] 1#1: signal 17 (SIGCHLD) received from 21
+2025/06/07 20:26:11 [notice] 1#1: worker process 21 exited with code 0
+2025/06/07 20:26:11 [notice] 1#1: signal 29 (SIGIO) received
+2025/06/07 20:26:24 [notice] 1#1: using the "epoll" event method
+2025/06/07 20:26:24 [notice] 1#1: nginx/1.25.5
+2025/06/07 20:26:24 [notice] 1#1: built by gcc 13.2.1 20231014 (Alpine 13.2.1_git20231014) 
+2025/06/07 20:26:24 [notice] 1#1: OS: Linux 6.8.0-48-generic
+2025/06/07 20:26:24 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2025/06/07 20:26:24 [notice] 1#1: start worker processes
+2025/06/07 20:26:24 [notice] 1#1: start worker process 21
+2025/06/07 20:26:24 [notice] 1#1: start worker process 22
+2025/06/07 20:26:41 [error] 21#21: *7 upstream prematurely closed connection while reading response header from upstream, client: 79.127.211.218, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://192.168.48.2:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/07 20:26:41 [error] 21#21: *7 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 79.127.211.218, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://192.168.48.2:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/07 20:26:43 [notice] 1#1: signal 3 (SIGQUIT) received, shutting down
+2025/06/07 20:26:43 [notice] 22#22: gracefully shutting down
+2025/06/07 20:26:43 [notice] 21#21: gracefully shutting down
+2025/06/07 20:26:43 [notice] 21#21: exiting
+2025/06/07 20:26:43 [notice] 21#21: exit
+2025/06/07 20:26:43 [notice] 1#1: signal 17 (SIGCHLD) received from 21
+2025/06/07 20:26:43 [notice] 1#1: worker process 21 exited with code 0
+2025/06/07 20:26:43 [notice] 1#1: signal 29 (SIGIO) received
+2025/06/07 20:26:55 [notice] 1#1: using the "epoll" event method
+2025/06/07 20:26:55 [notice] 1#1: nginx/1.25.5
+2025/06/07 20:26:55 [notice] 1#1: built by gcc 13.2.1 20231014 (Alpine 13.2.1_git20231014) 
+2025/06/07 20:26:55 [notice] 1#1: OS: Linux 6.8.0-48-generic
+2025/06/07 20:26:55 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2025/06/07 20:26:55 [notice] 1#1: start worker processes
+2025/06/07 20:26:55 [notice] 1#1: start worker process 21
+2025/06/07 20:26:55 [notice] 1#1: start worker process 22
+2025/06/07 20:26:57 [error] 21#21: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 79.127.211.218, server: $domain, request: "GET /api/system HTTP/2.0", upstream: "https://192.168.64.5:8002/api/system", host: "host.almet-sam.ru", referrer: "https://host.almet-sam.ru/dashboard/"
+2025/06/07 20:26:57 [error] 21#21: *1 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 79.127.211.218, server: $domain, request: "GET /api/system HTTP/2.0", upstream: "https://192.168.64.5:8002/api/system", host: "host.almet-sam.ru", referrer: "https://host.almet-sam.ru/dashboard/"
+2025/06/07 20:28:00 [notice] 1#1: signal 3 (SIGQUIT) received, shutting down
+2025/06/07 20:28:00 [notice] 21#21: gracefully shutting down
+2025/06/07 20:28:00 [notice] 22#22: gracefully shutting down
+2025/06/07 20:28:00 [notice] 22#22: exiting
+2025/06/07 20:28:00 [notice] 22#22: exit
+2025/06/07 20:28:00 [notice] 1#1: signal 17 (SIGCHLD) received from 22
+2025/06/07 20:28:00 [notice] 1#1: worker process 22 exited with code 0
+2025/06/07 20:28:00 [notice] 1#1: signal 29 (SIGIO) received
+2025/06/07 20:28:00 [notice] 21#21: exiting
+2025/06/07 20:28:00 [notice] 21#21: exit
+2025/06/07 20:28:00 [notice] 1#1: signal 17 (SIGCHLD) received from 21
+2025/06/07 20:28:00 [notice] 1#1: worker process 21 exited with code 0
+2025/06/07 20:28:00 [notice] 1#1: exit
+2025/06/07 20:28:05 [notice] 1#1: using the "epoll" event method
+2025/06/07 20:28:05 [notice] 1#1: nginx/1.25.5
+2025/06/07 20:28:05 [notice] 1#1: built by gcc 13.2.1 20231014 (Alpine 13.2.1_git20231014) 
+2025/06/07 20:28:05 [notice] 1#1: OS: Linux 6.8.0-48-generic
+2025/06/07 20:28:05 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2025/06/07 20:28:05 [notice] 1#1: start worker processes
+2025/06/07 20:28:05 [notice] 1#1: start worker process 21
+2025/06/07 20:28:05 [notice] 1#1: start worker process 22
+2025/06/07 20:28:06 [error] 21#21: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 79.127.211.218, server: $domain, request: "GET /api/system HTTP/2.0", upstream: "https://192.168.80.3:8002/api/system", host: "host.almet-sam.ru", referrer: "https://host.almet-sam.ru/dashboard/"
+2025/06/07 20:28:06 [error] 21#21: *1 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 79.127.211.218, server: $domain, request: "GET /api/system HTTP/2.0", upstream: "https://192.168.80.3:8002/api/system", host: "host.almet-sam.ru", referrer: "https://host.almet-sam.ru/dashboard/"
+2025/06/07 20:28:08 [error] 21#21: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 79.127.211.218, server: $domain, request: "GET /api/system HTTP/2.0", upstream: "https://192.168.80.3:8002/api/system", host: "host.almet-sam.ru", referrer: "https://host.almet-sam.ru/dashboard/"
+2025/06/07 20:28:08 [error] 21#21: *1 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 79.127.211.218, server: $domain, request: "GET /api/system HTTP/2.0", upstream: "https://192.168.80.3:8002/api/system", host: "host.almet-sam.ru", referrer: "https://host.almet-sam.ru/dashboard/"
+2025/06/07 20:28:49 [error] 21#21: *38 upstream prematurely closed connection while reading response header from upstream, client: 79.127.211.218, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://192.168.80.3:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/07 20:28:49 [error] 21#21: *38 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 79.127.211.218, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://192.168.80.3:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/07 20:32:54 [notice] 1#1: signal 3 (SIGQUIT) received, shutting down
+2025/06/07 20:32:54 [notice] 22#22: gracefully shutting down
+2025/06/07 20:32:54 [notice] 22#22: exiting
+2025/06/07 20:32:54 [notice] 21#21: gracefully shutting down
+2025/06/07 20:32:54 [notice] 21#21: exiting
+2025/06/07 20:32:54 [notice] 22#22: exit
+2025/06/07 20:32:54 [notice] 21#21: exit
+2025/06/07 20:32:54 [notice] 1#1: signal 17 (SIGCHLD) received from 21
+2025/06/07 20:32:54 [notice] 1#1: worker process 21 exited with code 0
+2025/06/07 20:32:54 [notice] 1#1: signal 29 (SIGIO) received
+2025/06/07 20:32:54 [notice] 1#1: signal 17 (SIGCHLD) received from 22
+2025/06/07 20:32:54 [notice] 1#1: worker process 22 exited with code 0
+2025/06/07 20:32:54 [notice] 1#1: exit
+2025/06/07 20:32:59 [notice] 1#1: using the "epoll" event method
+2025/06/07 20:32:59 [notice] 1#1: nginx/1.25.5
+2025/06/07 20:32:59 [notice] 1#1: built by gcc 13.2.1 20231014 (Alpine 13.2.1_git20231014) 
+2025/06/07 20:32:59 [notice] 1#1: OS: Linux 6.8.0-48-generic
+2025/06/07 20:32:59 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2025/06/07 20:32:59 [notice] 1#1: start worker processes
+2025/06/07 20:32:59 [notice] 1#1: start worker process 20
+2025/06/07 20:32:59 [notice] 1#1: start worker process 21
+2025/06/07 20:33:05 [error] 20#20: *1 upstream prematurely closed connection while reading response header from upstream, client: 79.127.211.218, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://192.168.96.5:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/07 20:33:05 [error] 20#20: *1 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 79.127.211.218, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://192.168.96.5:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/07 20:34:06 [error] 21#21: *3 connect() failed (113: Host is unreachable) while connecting to upstream, client: 91.108.5.40, server: $domain, request: "POST /webhook HTTP/1.1", upstream: "http://192.168.96.2:8443/webhook", host: "host.almet-sam.ru"
+2025/06/07 20:34:06 [error] 21#21: *3 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 91.108.5.40, server: $domain, request: "POST /webhook HTTP/1.1", upstream: "http://192.168.96.2:8443/webhook", host: "host.almet-sam.ru"
+2025/06/07 20:34:09 [error] 21#21: *3 connect() failed (113: Host is unreachable) while connecting to upstream, client: 91.108.5.40, server: $domain, request: "POST /webhook HTTP/1.1", upstream: "http://192.168.96.2:8443/webhook", host: "host.almet-sam.ru"
+2025/06/07 20:34:09 [error] 21#21: *3 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 91.108.5.40, server: $domain, request: "POST /webhook HTTP/1.1", upstream: "http://192.168.96.2:8443/webhook", host: "host.almet-sam.ru"
+2025/06/07 20:34:13 [error] 21#21: *3 connect() failed (111: Connection refused) while connecting to upstream, client: 91.108.5.40, server: $domain, request: "POST /webhook HTTP/1.1", upstream: "http://192.168.96.2:8443/webhook", host: "host.almet-sam.ru"
+2025/06/07 20:34:13 [error] 21#21: *3 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 91.108.5.40, server: $domain, request: "POST /webhook HTTP/1.1", upstream: "http://192.168.96.2:8443/webhook", host: "host.almet-sam.ru"
+2025/06/07 20:34:56 [error] 21#21: *3 connect() failed (113: Host is unreachable) while connecting to upstream, client: 91.108.5.40, server: $domain, request: "POST /webhook HTTP/1.1", upstream: "http://192.168.96.2:8443/webhook", host: "host.almet-sam.ru"
+2025/06/07 20:34:56 [error] 21#21: *3 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 91.108.5.40, server: $domain, request: "POST /webhook HTTP/1.1", upstream: "http://192.168.96.2:8443/webhook", host: "host.almet-sam.ru"
+2025/06/07 20:35:07 [error] 21#21: *3 connect() failed (113: Host is unreachable) while connecting to upstream, client: 91.108.5.40, server: $domain, request: "POST /webhook HTTP/1.1", upstream: "http://192.168.96.2:8443/webhook", host: "host.almet-sam.ru"
+2025/06/07 20:35:07 [error] 21#21: *3 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 91.108.5.40, server: $domain, request: "POST /webhook HTTP/1.1", upstream: "http://192.168.96.2:8443/webhook", host: "host.almet-sam.ru"
+2025/06/07 20:35:26 [error] 21#21: *3 connect() failed (113: Host is unreachable) while connecting to upstream, client: 91.108.5.40, server: $domain, request: "POST /webhook HTTP/1.1", upstream: "http://192.168.96.2:8443/webhook", host: "host.almet-sam.ru"
+2025/06/07 20:35:26 [error] 21#21: *3 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 91.108.5.40, server: $domain, request: "POST /webhook HTTP/1.1", upstream: "http://192.168.96.2:8443/webhook", host: "host.almet-sam.ru"
+2025/06/07 20:35:37 [notice] 1#1: signal 3 (SIGQUIT) received, shutting down
+2025/06/07 20:35:37 [notice] 20#20: gracefully shutting down
+2025/06/07 20:35:37 [notice] 20#20: exiting
+2025/06/07 20:35:37 [notice] 21#21: gracefully shutting down
+2025/06/07 20:35:37 [notice] 21#21: exiting
+2025/06/07 20:35:37 [notice] 20#20: exit
+2025/06/07 20:35:37 [notice] 21#21: exit
+2025/06/07 20:35:37 [notice] 1#1: signal 17 (SIGCHLD) received from 21
+2025/06/07 20:35:37 [notice] 1#1: worker process 21 exited with code 0
+2025/06/07 20:35:37 [notice] 1#1: signal 29 (SIGIO) received
+2025/06/07 20:35:37 [notice] 1#1: signal 17 (SIGCHLD) received from 20
+2025/06/07 20:35:37 [notice] 1#1: worker process 20 exited with code 0
+2025/06/07 20:35:37 [notice] 1#1: exit
+2025/06/07 20:35:40 [notice] 1#1: using the "epoll" event method
+2025/06/07 20:35:40 [notice] 1#1: nginx/1.25.5
+2025/06/07 20:35:40 [notice] 1#1: built by gcc 13.2.1 20231014 (Alpine 13.2.1_git20231014) 
+2025/06/07 20:35:40 [notice] 1#1: OS: Linux 6.8.0-48-generic
+2025/06/07 20:35:40 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2025/06/07 20:35:40 [notice] 1#1: start worker processes
+2025/06/07 20:35:40 [notice] 1#1: start worker process 21
+2025/06/07 20:35:40 [notice] 1#1: start worker process 22
+2025/06/07 20:37:25 [notice] 1#1: signal 3 (SIGQUIT) received, shutting down
+2025/06/07 20:37:25 [notice] 21#21: gracefully shutting down
+2025/06/07 20:37:25 [notice] 21#21: exiting
+2025/06/07 20:37:25 [notice] 21#21: exit
+2025/06/07 20:37:25 [notice] 22#22: gracefully shutting down
+2025/06/07 20:37:25 [notice] 22#22: exiting
+2025/06/07 20:37:25 [notice] 22#22: exit
+2025/06/07 20:37:25 [notice] 1#1: signal 17 (SIGCHLD) received from 21
+2025/06/07 20:37:25 [notice] 1#1: worker process 21 exited with code 0
+2025/06/07 20:37:25 [notice] 1#1: signal 29 (SIGIO) received
+2025/06/07 20:37:25 [notice] 1#1: signal 17 (SIGCHLD) received from 22
+2025/06/07 20:37:25 [notice] 1#1: worker process 22 exited with code 0
+2025/06/07 20:37:25 [notice] 1#1: exit
+2025/06/07 20:37:29 [notice] 1#1: using the "epoll" event method
+2025/06/07 20:37:29 [notice] 1#1: nginx/1.25.5
+2025/06/07 20:37:29 [notice] 1#1: built by gcc 13.2.1 20231014 (Alpine 13.2.1_git20231014) 
+2025/06/07 20:37:29 [notice] 1#1: OS: Linux 6.8.0-48-generic
+2025/06/07 20:37:29 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2025/06/07 20:37:29 [notice] 1#1: start worker processes
+2025/06/07 20:37:29 [notice] 1#1: start worker process 20
+2025/06/07 20:37:29 [notice] 1#1: start worker process 21
+2025/06/07 20:38:06 [error] 20#20: *6 upstream prematurely closed connection while reading response header from upstream, client: 79.127.211.218, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://192.168.128.5:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/07 20:38:06 [error] 20#20: *6 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 79.127.211.218, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://192.168.128.5:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/07 20:41:25 [notice] 1#1: signal 3 (SIGQUIT) received, shutting down
+2025/06/07 20:41:25 [notice] 20#20: gracefully shutting down
+2025/06/07 20:41:25 [notice] 20#20: exiting
+2025/06/07 20:41:25 [notice] 20#20: exit
+2025/06/07 20:41:25 [notice] 21#21: gracefully shutting down
+2025/06/07 20:41:25 [notice] 1#1: signal 17 (SIGCHLD) received from 20
+2025/06/07 20:41:25 [notice] 21#21: exiting
+2025/06/07 20:41:25 [notice] 21#21: exit
+2025/06/07 20:41:25 [notice] 1#1: worker process 20 exited with code 0
+2025/06/07 20:41:25 [notice] 1#1: signal 29 (SIGIO) received
+2025/06/07 20:41:25 [notice] 1#1: signal 17 (SIGCHLD) received from 21
+2025/06/07 20:41:25 [notice] 1#1: worker process 21 exited with code 0
+2025/06/07 20:41:25 [notice] 1#1: exit
+2025/06/07 20:41:29 [notice] 1#1: using the "epoll" event method
+2025/06/07 20:41:29 [notice] 1#1: nginx/1.25.5
+2025/06/07 20:41:29 [notice] 1#1: built by gcc 13.2.1 20231014 (Alpine 13.2.1_git20231014) 
+2025/06/07 20:41:29 [notice] 1#1: OS: Linux 6.8.0-48-generic
+2025/06/07 20:41:29 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2025/06/07 20:41:29 [notice] 1#1: start worker processes
+2025/06/07 20:41:29 [notice] 1#1: start worker process 20
+2025/06/07 20:41:29 [notice] 1#1: start worker process 21
+2025/06/07 20:41:30 [error] 21#21: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 79.127.211.218, server: $domain, request: "GET /api/system HTTP/2.0", upstream: "https://192.168.144.4:8002/api/system", host: "host.almet-sam.ru", referrer: "https://host.almet-sam.ru/dashboard/"
+2025/06/07 20:41:30 [error] 21#21: *1 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 79.127.211.218, server: $domain, request: "GET /api/system HTTP/2.0", upstream: "https://192.168.144.4:8002/api/system", host: "host.almet-sam.ru", referrer: "https://host.almet-sam.ru/dashboard/"
+2025/06/07 20:42:34 [notice] 1#1: signal 3 (SIGQUIT) received, shutting down
+2025/06/07 20:42:34 [notice] 20#20: gracefully shutting down
+2025/06/07 20:42:34 [notice] 21#21: gracefully shutting down
+2025/06/07 20:42:34 [notice] 20#20: exiting
+2025/06/07 20:42:34 [notice] 20#20: exit
+2025/06/07 20:42:34 [notice] 21#21: exiting
+2025/06/07 20:42:34 [notice] 21#21: exit
+2025/06/07 20:42:34 [notice] 1#1: signal 17 (SIGCHLD) received from 20
+2025/06/07 20:42:34 [notice] 1#1: worker process 20 exited with code 0
+2025/06/07 20:42:34 [notice] 1#1: signal 29 (SIGIO) received
+2025/06/07 20:42:34 [notice] 1#1: signal 17 (SIGCHLD) received from 21
+2025/06/07 20:42:34 [notice] 1#1: worker process 21 exited with code 0
+2025/06/07 20:42:34 [notice] 1#1: exit
+2025/06/07 20:42:39 [notice] 1#1: using the "epoll" event method
+2025/06/07 20:42:39 [notice] 1#1: nginx/1.25.5
+2025/06/07 20:42:39 [notice] 1#1: built by gcc 13.2.1 20231014 (Alpine 13.2.1_git20231014) 
+2025/06/07 20:42:39 [notice] 1#1: OS: Linux 6.8.0-48-generic
+2025/06/07 20:42:39 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2025/06/07 20:42:39 [notice] 1#1: start worker processes
+2025/06/07 20:42:39 [notice] 1#1: start worker process 20
+2025/06/07 20:42:39 [notice] 1#1: start worker process 21
+2025/06/07 20:42:40 [error] 20#20: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 79.127.211.218, server: $domain, request: "GET /api/system HTTP/2.0", upstream: "https://192.168.160.2:8002/api/system", host: "host.almet-sam.ru", referrer: "https://host.almet-sam.ru/dashboard/"
+2025/06/07 20:42:40 [error] 20#20: *1 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 79.127.211.218, server: $domain, request: "GET /api/system HTTP/2.0", upstream: "https://192.168.160.2:8002/api/system", host: "host.almet-sam.ru", referrer: "https://host.almet-sam.ru/dashboard/"
+2025/06/07 20:42:42 [error] 20#20: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 79.127.211.218, server: $domain, request: "GET /api/system HTTP/2.0", upstream: "https://192.168.160.2:8002/api/system", host: "host.almet-sam.ru", referrer: "https://host.almet-sam.ru/dashboard/"
+2025/06/07 20:42:42 [error] 20#20: *1 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 79.127.211.218, server: $domain, request: "GET /api/system HTTP/2.0", upstream: "https://192.168.160.2:8002/api/system", host: "host.almet-sam.ru", referrer: "https://host.almet-sam.ru/dashboard/"
+2025/06/07 20:43:06 [error] 20#20: *10 upstream prematurely closed connection while reading response header from upstream, client: 79.127.211.218, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://192.168.160.2:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/07 20:43:06 [error] 20#20: *10 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 79.127.211.218, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://192.168.160.2:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/07 20:43:12 [error] 20#20: *19 open() "/usr/share/nginx/html/custom_404.html" failed (2: No such file or directory), client: 45.90.63.0, server: $domain, request: "GET /favicon.ico HTTP/1.1", host: "almet-sam.ru"
+2025/06/07 20:43:12 [error] 20#20: *19 open() "/usr/share/nginx/html/custom_404.html" failed (2: No such file or directory), client: 45.90.63.0, server: $domain, request: "GET /favicon.ico HTTP/1.1", host: "almet-sam.ru"
+2025/06/07 20:43:13 [error] 20#20: *19 open() "/usr/share/nginx/html/custom_404.html" failed (2: No such file or directory), client: 45.90.63.0, server: $domain, request: "GET /favicon.ico HTTP/1.1", host: "almet-sam.ru"
+2025/06/07 20:44:29 [notice] 1#1: signal 3 (SIGQUIT) received, shutting down
+2025/06/07 20:44:29 [notice] 21#21: gracefully shutting down
+2025/06/07 20:44:29 [notice] 20#20: gracefully shutting down
+2025/06/07 20:44:29 [notice] 21#21: exiting
+2025/06/07 20:44:29 [notice] 21#21: exit
+2025/06/07 20:44:29 [notice] 20#20: exiting
+2025/06/07 20:44:29 [notice] 20#20: exit
+2025/06/07 20:44:29 [notice] 1#1: signal 17 (SIGCHLD) received from 21
+2025/06/07 20:44:29 [notice] 1#1: worker process 21 exited with code 0
+2025/06/07 20:44:29 [notice] 1#1: signal 29 (SIGIO) received
+2025/06/07 20:44:29 [notice] 1#1: signal 17 (SIGCHLD) received from 20
+2025/06/07 20:44:29 [notice] 1#1: worker process 20 exited with code 0
+2025/06/07 20:44:29 [notice] 1#1: exit
+2025/06/07 20:44:34 [notice] 1#1: using the "epoll" event method
+2025/06/07 20:44:34 [notice] 1#1: nginx/1.25.5
+2025/06/07 20:44:34 [notice] 1#1: built by gcc 13.2.1 20231014 (Alpine 13.2.1_git20231014) 
+2025/06/07 20:44:34 [notice] 1#1: OS: Linux 6.8.0-48-generic
+2025/06/07 20:44:34 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2025/06/07 20:44:34 [notice] 1#1: start worker processes
+2025/06/07 20:44:34 [notice] 1#1: start worker process 20
+2025/06/07 20:44:34 [notice] 1#1: start worker process 21
+2025/06/07 20:44:35 [error] 20#20: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 79.127.211.218, server: $domain, request: "GET /api/system HTTP/2.0", upstream: "https://192.168.176.2:8002/api/system", host: "host.almet-sam.ru", referrer: "https://host.almet-sam.ru/dashboard/"
+2025/06/07 20:44:35 [error] 20#20: *1 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 79.127.211.218, server: $domain, request: "GET /api/system HTTP/2.0", upstream: "https://192.168.176.2:8002/api/system", host: "host.almet-sam.ru", referrer: "https://host.almet-sam.ru/dashboard/"
+2025/06/07 20:44:36 [error] 20#20: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 79.127.211.218, server: $domain, request: "GET /api/system HTTP/2.0", upstream: "https://192.168.176.2:8002/api/system", host: "host.almet-sam.ru", referrer: "https://host.almet-sam.ru/dashboard/"
+2025/06/07 20:44:36 [error] 20#20: *1 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 79.127.211.218, server: $domain, request: "GET /api/system HTTP/2.0", upstream: "https://192.168.176.2:8002/api/system", host: "host.almet-sam.ru", referrer: "https://host.almet-sam.ru/dashboard/"
+2025/06/07 20:44:38 [error] 20#20: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 79.127.211.218, server: $domain, request: "GET /api/system HTTP/2.0", upstream: "https://192.168.176.2:8002/api/system", host: "host.almet-sam.ru", referrer: "https://host.almet-sam.ru/dashboard/"
+2025/06/07 20:44:38 [error] 20#20: *1 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 79.127.211.218, server: $domain, request: "GET /api/system HTTP/2.0", upstream: "https://192.168.176.2:8002/api/system", host: "host.almet-sam.ru", referrer: "https://host.almet-sam.ru/dashboard/"
+2025/06/07 20:45:49 [error] 20#20: *30 upstream prematurely closed connection while reading response header from upstream, client: 79.127.211.218, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://192.168.176.2:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/07 20:45:49 [error] 20#20: *30 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 79.127.211.218, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://192.168.176.2:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/07 20:45:51 [error] 20#20: *30 upstream prematurely closed connection while reading response header from upstream, client: 79.127.211.218, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://192.168.176.2:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/07 20:45:51 [error] 20#20: *30 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 79.127.211.218, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://192.168.176.2:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/07 20:45:55 [error] 20#20: *30 upstream prematurely closed connection while reading response header from upstream, client: 79.127.211.218, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://192.168.176.2:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/07 20:45:55 [error] 20#20: *30 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 79.127.211.218, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://192.168.176.2:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/07 20:46:03 [error] 20#20: *30 upstream prematurely closed connection while reading response header from upstream, client: 79.127.211.218, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://192.168.176.2:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/07 20:46:03 [error] 20#20: *30 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 79.127.211.218, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://192.168.176.2:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/07 20:46:19 [error] 20#20: *30 upstream prematurely closed connection while reading response header from upstream, client: 79.127.211.218, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://192.168.176.2:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/07 20:46:19 [error] 20#20: *30 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 79.127.211.218, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://192.168.176.2:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/07 20:46:51 [error] 20#20: *30 upstream prematurely closed connection while reading response header from upstream, client: 79.127.211.218, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://192.168.176.2:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/07 20:46:51 [error] 20#20: *30 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 79.127.211.218, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://192.168.176.2:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/07 20:47:56 [error] 20#20: *30 upstream prematurely closed connection while reading response header from upstream, client: 79.127.211.218, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://192.168.176.2:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/07 20:47:56 [error] 20#20: *30 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 79.127.211.218, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://192.168.176.2:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/07 20:49:27 [notice] 1#1: signal 3 (SIGQUIT) received, shutting down
+2025/06/07 20:49:27 [notice] 20#20: gracefully shutting down
+2025/06/07 20:49:27 [notice] 20#20: exiting
+2025/06/07 20:49:27 [notice] 20#20: exit
+2025/06/07 20:49:27 [notice] 21#21: gracefully shutting down
+2025/06/07 20:49:27 [notice] 21#21: exiting
+2025/06/07 20:49:27 [notice] 21#21: exit
+2025/06/07 20:49:27 [notice] 1#1: signal 17 (SIGCHLD) received from 20
+2025/06/07 20:49:27 [notice] 1#1: worker process 20 exited with code 0
+2025/06/07 20:49:27 [notice] 1#1: signal 29 (SIGIO) received
+2025/06/07 20:49:27 [notice] 1#1: signal 17 (SIGCHLD) received from 21
+2025/06/07 20:49:27 [notice] 1#1: worker process 21 exited with code 0
+2025/06/07 20:49:27 [notice] 1#1: exit
+2025/06/07 20:49:32 [notice] 1#1: using the "epoll" event method
+2025/06/07 20:49:32 [notice] 1#1: nginx/1.25.5
+2025/06/07 20:49:32 [notice] 1#1: built by gcc 13.2.1 20231014 (Alpine 13.2.1_git20231014) 
+2025/06/07 20:49:32 [notice] 1#1: OS: Linux 6.8.0-48-generic
+2025/06/07 20:49:32 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2025/06/07 20:49:32 [notice] 1#1: start worker processes
+2025/06/07 20:49:32 [notice] 1#1: start worker process 21
+2025/06/07 20:49:32 [notice] 1#1: start worker process 22
+2025/06/07 20:50:04 [error] 22#22: *2 upstream prematurely closed connection while reading response header from upstream, client: 79.127.211.218, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://192.168.192.3:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/07 20:50:04 [error] 22#22: *2 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 79.127.211.218, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://192.168.192.3:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/07 20:54:20 [error] 21#21: *16 upstream prematurely closed connection while reading response header from upstream, client: 79.127.211.218, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://192.168.192.3:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/07 20:54:20 [error] 21#21: *16 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 79.127.211.218, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://192.168.192.3:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/07 20:56:03 [error] 21#21: *18 open() "/usr/share/nginx/html/custom_404.html" failed (2: No such file or directory), client: 78.138.191.191, server: $domain, request: "GET /favicon.ico HTTP/2.0", host: "host.almet-sam.ru", referrer: "https://host.almet-sam.ru/sub/MjIyMiwxNzQ5Mjk3Mjk5mn9wB6bzS-"
+2025/06/07 20:59:20 [error] 21#21: *19 upstream prematurely closed connection while reading response header from upstream, client: 79.127.211.218, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://192.168.192.3:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/07 20:59:20 [error] 21#21: *19 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 79.127.211.218, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://192.168.192.3:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/07 21:04:21 [error] 21#21: *22 upstream prematurely closed connection while reading response header from upstream, client: 79.127.211.218, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://192.168.192.3:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/07 21:04:21 [error] 21#21: *22 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 79.127.211.218, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://192.168.192.3:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/07 23:18:02 [error] 21#21: *83 open() "/usr/share/nginx/html/custom_404.html" failed (2: No such file or directory), client: 213.180.203.50, server: $domain, request: "GET /robots.txt HTTP/1.1", host: "host.almet-sam.ru"
+2025/06/08 02:20:28 [error] 21#21: *750 open() "/usr/share/nginx/html/custom_404.html" failed (2: No such file or directory), client: 93.158.91.244, server: $domain, request: "GET /robots.txt HTTP/1.1", host: "almet-sam.ru", referrer: "http://almet-sam.ru/robots.txt"
+2025/06/08 03:23:14 [error] 22#22: *816 open() "/usr/share/nginx/html/custom_404.html" failed (2: No such file or directory), client: 91.196.152.124, server: $domain, request: "GET /favicon.ico HTTP/1.1", host: "79.137.195.53"
+2025/06/08 04:34:16 [error] 21#21: *853 open() "/usr/share/nginx/html/custom_404.html" failed (2: No such file or directory), client: 167.94.146.52, server: $domain, request: "GET /favicon.ico HTTP/1.1", host: "79.137.195.53"
+2025/06/08 04:34:25 [error] 21#21: *857 open() "/usr/share/nginx/html/custom_404.html" failed (2: No such file or directory), client: 167.94.146.52, server: $domain, request: "GET /favicon.ico HTTP/1.1", host: "79.137.195.53"
+2025/06/08 05:59:57 [error] 22#22: *1253 open() "/usr/share/nginx/html/custom_404.html" failed (2: No such file or directory), client: 194.164.107.6, server: $domain, request: "GET /favicon.ico HTTP/2.0", host: "79.137.195.53"
+2025/06/08 07:57:32 [error] 21#21: *1873 open() "/opt/telegram-vpn-bot/volumes/marzban/templates/subscription/assets/file:/etc/passwd" failed (2: No such file or directory), client: 167.172.6.243, server: $domain, request: "GET /assets/file:%2f%2f/etc/passwd HTTP/1.1", host: "79.137.195.53"
+2025/06/08 07:57:32 [error] 21#21: *1873 open() "/usr/share/nginx/html/custom_404.html" failed (2: No such file or directory), client: 167.172.6.243, server: $domain, request: "GET /assets/file:%2f%2f/etc/passwd HTTP/1.1", host: "79.137.195.53"
+2025/06/08 07:57:32 [error] 21#21: *2359 "/opt/telegram-vpn-bot/volumes/marzban/templates/subscription/assets/app/something/services/AppModule.class/index.html" is not found (2: No such file or directory), client: 167.172.6.243, server: $domain, request: "GET /assets/app/something/services/AppModule.class/ HTTP/1.1", host: "79.137.195.53"
+2025/06/08 07:57:32 [error] 21#21: *2359 open() "/usr/share/nginx/html/custom_404.html" failed (2: No such file or directory), client: 167.172.6.243, server: $domain, request: "GET /assets/app/something/services/AppModule.class/ HTTP/1.1", host: "79.137.195.53"
+2025/06/08 07:57:33 [warn] 22#22: *2625 a client request body is buffered to a temporary file /var/cache/nginx/client_temp/0000000001, client: 167.172.6.243, server: $domain, request: "GET /sap/admin/public/default.html HTTP/1.1", host: "79.137.195.53"
+2025/06/08 07:57:33 [error] 22#22: *2979 open() "/opt/telegram-vpn-bot/volumes/marzban/templates/subscription/assets/_core/php/profile.php" failed (2: No such file or directory), client: 167.172.6.243, server: $domain, request: "POST /assets/_core/php/profile.php HTTP/1.1", host: "79.137.195.53"
+2025/06/08 07:57:33 [error] 22#22: *2979 open() "/usr/share/nginx/html/custom_404.html" failed (2: No such file or directory), client: 167.172.6.243, server: $domain, request: "POST /assets/_core/php/profile.php HTTP/1.1", host: "79.137.195.53"
+2025/06/08 07:57:33 [warn] 21#21: *2715 a client request body is buffered to a temporary file /var/cache/nginx/client_temp/0000000002, client: 167.172.6.243, server: $domain, request: "POST /wls-wsat/CoordinatorPortType HTTP/1.1", host: "79.137.195.53"
+2025/06/08 07:57:33 [error] 21#21: *3490 open() "/opt/telegram-vpn-bot/volumes/marzban/templates/subscription/assets/php/upload.php" failed (2: No such file or directory), client: 167.172.6.243, server: $domain, request: "POST /assets/php/upload.php HTTP/1.1", host: "79.137.195.53"
+2025/06/08 07:57:33 [error] 21#21: *3490 open() "/usr/share/nginx/html/custom_404.html" failed (2: No such file or directory), client: 167.172.6.243, server: $domain, request: "POST /assets/php/upload.php HTTP/1.1", host: "79.137.195.53"
+2025/06/08 07:57:34 [warn] 22#22: *3501 a client request body is buffered to a temporary file /var/cache/nginx/client_temp/0000000003, client: 167.172.6.243, server: $domain, request: "GET /sap/public/bc/ur/Login/assets/corbu/sap_logo.png HTTP/1.1", host: "79.137.195.53"
+2025/06/08 07:57:34 [warn] 21#21: 1024 worker_connections are not enough, reusing connections
+2025/06/08 07:57:35 [warn] 22#22: *4177 a client request body is buffered to a temporary file /var/cache/nginx/client_temp/0000000004, client: 167.172.6.243, server: $domain, request: "POST /apriso/portal/kiosk/querylogin.aspx HTTP/1.1", host: "79.137.195.53"
+2025/06/08 07:57:35 [warn] 22#22: *4365 a client request body is buffered to a temporary file /var/cache/nginx/client_temp/0000000005, client: 167.172.6.243, server: $domain, request: "POST /_async/AsyncResponseService HTTP/1.1", host: "79.137.195.53"
+2025/06/08 07:57:35 [warn] 22#22: 1024 worker_connections are not enough, reusing connections
+2025/06/08 07:57:35 [warn] 21#21: 1024 worker_connections are not enough, reusing connections
+2025/06/08 07:57:35 [error] 22#22: *5043 open() "/opt/telegram-vpn-bot/volumes/marzban/templates/subscription/assets/php/profile.php" failed (2: No such file or directory), client: 167.172.6.243, server: $domain, request: "POST /assets/php/profile.php HTTP/1.1", host: "79.137.195.53"
+2025/06/08 07:57:35 [error] 22#22: *5043 open() "/usr/share/nginx/html/custom_404.html" failed (2: No such file or directory), client: 167.172.6.243, server: $domain, request: "POST /assets/php/profile.php HTTP/1.1", host: "79.137.195.53"
+2025/06/08 07:57:36 [warn] 22#22: 1024 worker_connections are not enough, reusing connections
+2025/06/08 07:57:36 [warn] 21#21: 1024 worker_connections are not enough, reusing connections
+2025/06/08 07:57:36 [error] 21#21: *5979 open() "/usr/share/nginx/html/custom_404.html" failed (2: No such file or directory), client: 167.172.6.243, server: $domain, request: "GET /favicon.ico HTTP/1.1", host: "79.137.195.53"
+2025/06/08 07:57:37 [warn] 21#21: 1024 worker_connections are not enough, reusing connections
+2025/06/08 07:57:37 [warn] 22#22: 1024 worker_connections are not enough, reusing connections
+2025/06/08 07:57:37 [error] 22#22: *6784 "/opt/telegram-vpn-bot/volumes/marzban/templates/subscription/assets/comp/RichFilemanager/scripts/jQuery-File-Upload/server/php/index.html" is not found (2: No such file or directory), client: 167.172.6.243, server: $domain, request: "POST /assets/comp/RichFilemanager/scripts/jQuery-File-Upload/server/php/ HTTP/1.1", host: "79.137.195.53"
+2025/06/08 07:57:37 [error] 22#22: *6784 open() "/usr/share/nginx/html/custom_404.html" failed (2: No such file or directory), client: 167.172.6.243, server: $domain, request: "POST /assets/comp/RichFilemanager/scripts/jQuery-File-Upload/server/php/ HTTP/1.1", host: "79.137.195.53"
+2025/06/08 07:57:38 [warn] 22#22: 1024 worker_connections are not enough, reusing connections
+2025/06/08 07:57:38 [warn] 21#21: 1024 worker_connections are not enough, reusing connections
+2025/06/08 07:57:38 [warn] 22#22: *7468 a client request body is buffered to a temporary file /var/cache/nginx/client_temp/0000000006, client: 167.172.6.243, server: $domain, request: "POST /Kingdee.BOS.ServiceFacade.ServicesStub.DevReportService.GetBusinessObjectData.common.kdsvc HTTP/1.1", host: "79.137.195.53"
+2025/06/08 07:57:39 [warn] 21#21: *7711 a client request body is buffered to a temporary file /var/cache/nginx/client_temp/0000000007, client: 167.172.6.243, server: $domain, request: "POST /3.0/authService/config HTTP/1.1", host: "79.137.195.53", referrer: "https://79.137.195.53"
+2025/06/08 07:57:39 [warn] 22#22: *7788 a client request body is buffered to a temporary file /var/cache/nginx/client_temp/0000000008, client: 167.172.6.243, server: $domain, request: "POST /sys/ui/extend/varkind/custom.jsp HTTP/1.1", host: "79.137.195.53"
+2025/06/08 07:57:39 [warn] 21#21: 1024 worker_connections are not enough, reusing connections
+2025/06/08 07:57:39 [warn] 22#22: 1024 worker_connections are not enough, reusing connections
+2025/06/08 07:57:40 [warn] 22#22: 1024 worker_connections are not enough, reusing connections
+2025/06/08 07:57:40 [warn] 21#21: 1024 worker_connections are not enough, reusing connections
+2025/06/08 07:57:40 [error] 21#21: *9311 open() "/opt/telegram-vpn-bot/volumes/marzban/templates/subscription/assets/php/_devtools/installer/step_2.php" failed (2: No such file or directory), client: 167.172.6.243, server: $domain, request: "GET /assets/php/_devtools/installer/step_2.php?installation_path=%22%3E%3C%2Fscript%3E%3Cscript%3Ealert%28document.domain%29%3C%2Fscript%3E HTTP/1.1", host: "79.137.195.53"
+2025/06/08 07:57:40 [error] 21#21: *9311 open() "/usr/share/nginx/html/custom_404.html" failed (2: No such file or directory), client: 167.172.6.243, server: $domain, request: "GET /assets/php/_devtools/installer/step_2.php?installation_path=%22%3E%3C%2Fscript%3E%3Cscript%3Ealert%28document.domain%29%3C%2Fscript%3E HTTP/1.1", host: "79.137.195.53"
+2025/06/08 07:57:40 [error] 21#21: *9392 open() "/opt/telegram-vpn-bot/volumes/marzban/templates/subscription/assets/other/service-account-credentials.json" failed (2: No such file or directory), client: 167.172.6.243, server: $domain, request: "GET /assets/other/service-account-credentials.json HTTP/1.1", host: "79.137.195.53"
+2025/06/08 07:57:40 [error] 21#21: *9392 open() "/usr/share/nginx/html/custom_404.html" failed (2: No such file or directory), client: 167.172.6.243, server: $domain, request: "GET /assets/other/service-account-credentials.json HTTP/1.1", host: "79.137.195.53"
+2025/06/08 07:57:41 [warn] 22#22: 1024 worker_connections are not enough, reusing connections
+2025/06/08 07:57:41 [warn] 21#21: 1024 worker_connections are not enough, reusing connections
+2025/06/08 07:57:41 [error] 22#22: *10377 open() "/usr/share/nginx/html/custom_404.html" failed (2: No such file or directory), client: 167.172.6.243, server: $domain, request: "GET /favicon.ico HTTP/1.1", host: "79.137.195.53"
+2025/06/08 07:57:42 [warn] 21#21: 1024 worker_connections are not enough, reusing connections
+2025/06/08 07:57:42 [warn] 22#22: 1024 worker_connections are not enough, reusing connections
+2025/06/08 07:57:42 [error] 21#21: *11025 open() "/opt/telegram-vpn-bot/volumes/marzban/templates/subscription/assets/backend/elfinder/elfinder-cke.html" failed (2: No such file or directory), client: 167.172.6.243, server: $domain, request: "GET /assets/backend/elfinder/elfinder-cke.html HTTP/1.1", host: "79.137.195.53"
+2025/06/08 07:57:42 [error] 21#21: *11025 open() "/usr/share/nginx/html/custom_404.html" failed (2: No such file or directory), client: 167.172.6.243, server: $domain, request: "GET /assets/backend/elfinder/elfinder-cke.html HTTP/1.1", host: "79.137.195.53"
+2025/06/08 07:57:42 [error] 21#21: *11364 open() "/opt/telegram-vpn-bot/volumes/marzban/templates/subscription/assets/credentials.json" failed (2: No such file or directory), client: 167.172.6.243, server: $domain, request: "GET /assets/credentials.json HTTP/1.1", host: "79.137.195.53"
+2025/06/08 07:57:42 [error] 21#21: *11364 open() "/usr/share/nginx/html/custom_404.html" failed (2: No such file or directory), client: 167.172.6.243, server: $domain, request: "GET /assets/credentials.json HTTP/1.1", host: "79.137.195.53"
+2025/06/08 07:57:42 [error] 21#21: *11478 open() "/opt/telegram-vpn-bot/volumes/marzban/templates/subscription/assets/i18n/en.json" failed (2: No such file or directory), client: 167.172.6.243, server: $domain, request: "GET /assets/i18n/en.json HTTP/1.1", host: "79.137.195.53"
+2025/06/08 07:57:42 [error] 21#21: *11478 open() "/usr/share/nginx/html/custom_404.html" failed (2: No such file or directory), client: 167.172.6.243, server: $domain, request: "GET /assets/i18n/en.json HTTP/1.1", host: "79.137.195.53"
+2025/06/08 07:57:43 [warn] 21#21: 1024 worker_connections are not enough, reusing connections
+2025/06/08 07:57:43 [warn] 22#22: 1024 worker_connections are not enough, reusing connections
+2025/06/08 07:57:43 [error] 21#21: *12365 open() "/opt/telegram-vpn-bot/volumes/marzban/templates/subscription/assets/elFinder-2.1.9/elfinder.html" failed (2: No such file or directory), client: 167.172.6.243, server: $domain, request: "GET /assets/elFinder-2.1.9/elfinder.html HTTP/1.1", host: "79.137.195.53"
+2025/06/08 07:57:43 [error] 21#21: *12365 open() "/usr/share/nginx/html/custom_404.html" failed (2: No such file or directory), client: 167.172.6.243, server: $domain, request: "GET /assets/elFinder-2.1.9/elfinder.html HTTP/1.1", host: "79.137.195.53"
+2025/06/08 07:57:43 [error] 22#22: *12538 open() "/opt/telegram-vpn-bot/volumes/marzban/templates/subscription/assets/built%2F..%2F..%2F%E0%A4%A/package.json" failed (2: No such file or directory), client: 167.172.6.243, server: $domain, request: "GET /assets/built%252F..%252F..%252F%25E0%25A4%25A/package.json HTTP/1.1", host: "79.137.195.53"
+2025/06/08 07:57:43 [error] 22#22: *12538 open() "/usr/share/nginx/html/custom_404.html" failed (2: No such file or directory), client: 167.172.6.243, server: $domain, request: "GET /assets/built%252F..%252F..%252F%25E0%25A4%25A/package.json HTTP/1.1", host: "79.137.195.53"
+2025/06/08 07:57:44 [warn] 22#22: 1024 worker_connections are not enough, reusing connections
+2025/06/08 07:57:44 [warn] 21#21: 1024 worker_connections are not enough, reusing connections
+2025/06/08 07:57:44 [error] 22#22: *13442 open() "/opt/telegram-vpn-bot/volumes/marzban/templates/subscription/assets/php/filebrowser/filebrowser.main.php" failed (2: No such file or directory), client: 167.172.6.243, server: $domain, request: "GET /assets/php/filebrowser/filebrowser.main.php?file=../../../../../../../../../../etc/passwd&do=download HTTP/1.1", host: "79.137.195.53"
+2025/06/08 07:57:44 [error] 22#22: *13442 open() "/usr/share/nginx/html/custom_404.html" failed (2: No such file or directory), client: 167.172.6.243, server: $domain, request: "GET /assets/php/filebrowser/filebrowser.main.php?file=../../../../../../../../../../etc/passwd&do=download HTTP/1.1", host: "79.137.195.53"
+2025/06/08 07:57:44 [error] 21#21: *13656 open() "/opt/telegram-vpn-bot/volumes/marzban/templates/subscription/assets/pubspec.yaml" failed (2: No such file or directory), client: 167.172.6.243, server: $domain, request: "GET /assets/pubspec.yaml HTTP/1.1", host: "79.137.195.53"
+2025/06/08 07:57:44 [error] 21#21: *13656 open() "/usr/share/nginx/html/custom_404.html" failed (2: No such file or directory), client: 167.172.6.243, server: $domain, request: "GET /assets/pubspec.yaml HTTP/1.1", host: "79.137.195.53"
+2025/06/08 07:57:45 [warn] 22#22: 1024 worker_connections are not enough, reusing connections
+2025/06/08 07:57:45 [warn] 21#21: 1024 worker_connections are not enough, reusing connections
+2025/06/08 07:57:45 [error] 22#22: *14217 open() "/opt/telegram-vpn-bot/volumes/marzban/templates/subscription/assets/elFinder/elfinder.html" failed (2: No such file or directory), client: 167.172.6.243, server: $domain, request: "GET /assets/elFinder/elfinder.html HTTP/1.1", host: "79.137.195.53"
+2025/06/08 07:57:45 [error] 22#22: *14217 open() "/usr/share/nginx/html/custom_404.html" failed (2: No such file or directory), client: 167.172.6.243, server: $domain, request: "GET /assets/elFinder/elfinder.html HTTP/1.1", host: "79.137.195.53"
+2025/06/08 07:57:45 [error] 21#21: *14456 open() "/opt/telegram-vpn-bot/volumes/marzban/templates/subscription/assets/npm-debug.log" failed (2: No such file or directory), client: 167.172.6.243, server: $domain, request: "GET /assets/npm-debug.log HTTP/1.1", host: "79.137.195.53"
+2025/06/08 07:57:45 [error] 21#21: *14456 open() "/usr/share/nginx/html/custom_404.html" failed (2: No such file or directory), client: 167.172.6.243, server: $domain, request: "GET /assets/npm-debug.log HTTP/1.1", host: "79.137.195.53"
+2025/06/08 07:57:45 [error] 22#22: *14600 open() "/usr/share/nginx/html/custom_404.html" failed (2: No such file or directory), client: 167.172.6.243, server: $domain, request: "GET /favicon.ico HTTP/1.1", host: "79.137.195.53"
+2025/06/08 07:57:46 [warn] 21#21: 1024 worker_connections are not enough, reusing connections
+2025/06/08 07:57:46 [warn] 22#22: 1024 worker_connections are not enough, reusing connections
+2025/06/08 07:57:47 [warn] 22#22: 1024 worker_connections are not enough, reusing connections
+2025/06/08 07:57:47 [warn] 21#21: 1024 worker_connections are not enough, reusing connections
+2025/06/08 07:57:47 [error] 21#21: *16387 open() "/opt/telegram-vpn-bot/volumes/marzban/templates/subscription/assets/login" failed (2: No such file or directory), client: 167.172.6.243, server: $domain, request: "GET /assets/login?a=https://interact.sh HTTP/1.1", host: "79.137.195.53"
+2025/06/08 07:57:47 [error] 21#21: *16387 open() "/usr/share/nginx/html/custom_404.html" failed (2: No such file or directory), client: 167.172.6.243, server: $domain, request: "GET /assets/login?a=https://interact.sh HTTP/1.1", host: "79.137.195.53"
+2025/06/08 07:57:47 [error] 21#21: *16410 open() "/usr/share/nginx/html/custom_404.html" failed (2: No such file or directory), client: 167.172.6.243, server: $domain, request: "GET /favicon.ico HTTP/1.1", host: "79.137.195.53"
+2025/06/08 07:57:48 [warn] 21#21: 1024 worker_connections are not enough, reusing connections
+2025/06/08 07:57:48 [warn] 22#22: 1024 worker_connections are not enough, reusing connections
+2025/06/08 07:57:48 [error] 22#22: *17114 open() "/opt/telegram-vpn-bot/volumes/marzban/templates/subscription/assets/config.rb" failed (2: No such file or directory), client: 167.172.6.243, server: $domain, request: "GET /assets/config.rb HTTP/1.1", host: "79.137.195.53"
+2025/06/08 07:57:48 [error] 22#22: *17114 open() "/usr/share/nginx/html/custom_404.html" failed (2: No such file or directory), client: 167.172.6.243, server: $domain, request: "GET /assets/config.rb HTTP/1.1", host: "79.137.195.53"
+2025/06/08 07:57:48 [error] 21#21: *17221 open() "/opt/telegram-vpn-bot/volumes/marzban/templates/subscription/assets/.gitignore" failed (2: No such file or directory), client: 167.172.6.243, server: $domain, request: "GET /assets/.gitignore HTTP/1.1", host: "79.137.195.53"
+2025/06/08 07:57:48 [error] 21#21: *17221 open() "/usr/share/nginx/html/custom_404.html" failed (2: No such file or directory), client: 167.172.6.243, server: $domain, request: "GET /assets/.gitignore HTTP/1.1", host: "79.137.195.53"
+2025/06/08 07:57:48 [error] 22#22: *17249 open() "/usr/share/nginx/html/custom_404.html" failed (2: No such file or directory), client: 167.172.6.243, server: $domain, request: "GET /favicon.ico HTTP/1.1", host: "79.137.195.53"
+2025/06/08 07:57:48 [error] 22#22: *17309 open() "/opt/telegram-vpn-bot/volumes/marzban/templates/subscription/assets/img/favicon/favicon.ico" failed (2: No such file or directory), client: 167.172.6.243, server: $domain, request: "GET /assets/img/favicon/favicon.ico HTTP/1.1", host: "79.137.195.53"
+2025/06/08 07:57:48 [error] 22#22: *17309 open() "/usr/share/nginx/html/custom_404.html" failed (2: No such file or directory), client: 167.172.6.243, server: $domain, request: "GET /assets/img/favicon/favicon.ico HTTP/1.1", host: "79.137.195.53"
+2025/06/08 07:57:49 [error] 22#22: *17776 open() "/usr/share/nginx/html/custom_404.html" failed (2: No such file or directory), client: 167.172.6.243, server: $domain, request: "GET /favicon.ico HTTP/1.1", host: "79.137.195.53"
+2025/06/08 07:57:50 [warn] 21#21: 1024 worker_connections are not enough, reusing connections
+2025/06/08 07:57:50 [warn] 22#22: 1024 worker_connections are not enough, reusing connections
+2025/06/08 07:57:51 [warn] 21#21: 1024 worker_connections are not enough, reusing connections
+2025/06/08 07:57:51 [warn] 22#22: 1024 worker_connections are not enough, reusing connections
+2025/06/08 07:57:52 [warn] 21#21: 1024 worker_connections are not enough, reusing connections
+2025/06/08 07:57:52 [warn] 22#22: 1024 worker_connections are not enough, reusing connections
+2025/06/08 07:57:53 [warn] 21#21: 1024 worker_connections are not enough, reusing connections
+2025/06/08 07:57:53 [warn] 22#22: 1024 worker_connections are not enough, reusing connections
+2025/06/08 07:57:54 [warn] 21#21: 1024 worker_connections are not enough, reusing connections
+2025/06/08 07:57:54 [warn] 22#22: 1024 worker_connections are not enough, reusing connections
+2025/06/08 07:57:55 [warn] 21#21: 1024 worker_connections are not enough, reusing connections
+2025/06/08 07:57:55 [warn] 22#22: 1024 worker_connections are not enough, reusing connections
+2025/06/08 07:57:56 [warn] 22#22: 1024 worker_connections are not enough, reusing connections
+2025/06/08 07:57:56 [warn] 21#21: 1024 worker_connections are not enough, reusing connections
+2025/06/08 07:57:57 [warn] 21#21: 1024 worker_connections are not enough, reusing connections
+2025/06/08 07:57:57 [warn] 22#22: 1024 worker_connections are not enough, reusing connections
+2025/06/08 07:57:58 [warn] 22#22: 1024 worker_connections are not enough, reusing connections
+2025/06/08 07:57:58 [warn] 21#21: 1024 worker_connections are not enough, reusing connections
+2025/06/08 07:57:59 [warn] 21#21: 1024 worker_connections are not enough, reusing connections
+2025/06/08 07:57:59 [warn] 22#22: 1024 worker_connections are not enough, reusing connections
+2025/06/08 07:58:00 [warn] 21#21: 1024 worker_connections are not enough, reusing connections
+2025/06/08 07:58:00 [warn] 22#22: 1024 worker_connections are not enough, reusing connections
+2025/06/08 07:58:01 [warn] 22#22: 1024 worker_connections are not enough, reusing connections
+2025/06/08 07:58:01 [warn] 21#21: 1024 worker_connections are not enough, reusing connections
+2025/06/08 07:58:02 [warn] 21#21: 1024 worker_connections are not enough, reusing connections
+2025/06/08 07:58:02 [warn] 22#22: 1024 worker_connections are not enough, reusing connections
+2025/06/08 07:58:03 [warn] 22#22: 1024 worker_connections are not enough, reusing connections
+2025/06/08 07:58:03 [warn] 21#21: 1024 worker_connections are not enough, reusing connections
+2025/06/08 07:58:04 [warn] 22#22: 1024 worker_connections are not enough, reusing connections
+2025/06/08 07:58:04 [warn] 21#21: 1024 worker_connections are not enough, reusing connections
+2025/06/08 07:58:05 [warn] 22#22: 1024 worker_connections are not enough, reusing connections
+2025/06/08 07:58:05 [warn] 21#21: 1024 worker_connections are not enough, reusing connections
+2025/06/08 07:58:06 [warn] 22#22: 1024 worker_connections are not enough, reusing connections
+2025/06/08 07:58:06 [warn] 21#21: 1024 worker_connections are not enough, reusing connections
+2025/06/08 07:58:07 [warn] 22#22: 1024 worker_connections are not enough, reusing connections
+2025/06/08 07:58:07 [warn] 21#21: 1024 worker_connections are not enough, reusing connections
+2025/06/08 07:58:08 [warn] 22#22: 1024 worker_connections are not enough, reusing connections
+2025/06/08 07:58:09 [warn] 21#21: 1024 worker_connections are not enough, reusing connections
+2025/06/08 07:58:10 [warn] 22#22: 1024 worker_connections are not enough, reusing connections
+2025/06/08 07:58:10 [warn] 21#21: 1024 worker_connections are not enough, reusing connections
+2025/06/08 07:58:11 [warn] 22#22: 1024 worker_connections are not enough, reusing connections
+2025/06/08 07:58:11 [warn] 21#21: 1024 worker_connections are not enough, reusing connections
+2025/06/08 07:58:12 [warn] 22#22: 1024 worker_connections are not enough, reusing connections
+2025/06/08 07:58:14 [warn] 21#21: 1024 worker_connections are not enough, reusing connections
+2025/06/08 07:58:24 [warn] 22#22: 1024 worker_connections are not enough, reusing connections
+2025/06/08 07:58:32 [warn] 21#21: 1024 worker_connections are not enough, reusing connections
+2025/06/08 07:58:48 [warn] 22#22: 1024 worker_connections are not enough, reusing connections
+2025/06/08 07:58:56 [warn] 21#21: 1024 worker_connections are not enough, reusing connections
+2025/06/08 08:28:01 [error] 22#22: *23657 open() "/usr/share/nginx/html/custom_404.html" failed (2: No such file or directory), client: 65.49.1.233, server: $domain, request: "GET /favicon.ico HTTP/1.1", host: "79.137.195.53"
+2025/06/08 09:56:22 [error] 21#21: *23712 upstream prematurely closed connection while reading response header from upstream, client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://192.168.192.3:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/08 09:56:22 [error] 21#21: *23712 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://192.168.192.3:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/08 09:56:24 [error] 21#21: *23712 upstream prematurely closed connection while reading response header from upstream, client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://192.168.192.3:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/08 09:56:24 [error] 21#21: *23712 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://192.168.192.3:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/08 09:56:28 [error] 21#21: *23712 upstream prematurely closed connection while reading response header from upstream, client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://192.168.192.3:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/08 09:56:28 [error] 21#21: *23712 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://192.168.192.3:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/08 09:56:36 [error] 21#21: *23712 upstream prematurely closed connection while reading response header from upstream, client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://192.168.192.3:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/08 09:56:36 [error] 21#21: *23712 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://192.168.192.3:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/08 09:56:52 [error] 21#21: *23712 upstream prematurely closed connection while reading response header from upstream, client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://192.168.192.3:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/08 09:56:52 [error] 21#21: *23712 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://192.168.192.3:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/08 09:57:24 [error] 21#21: *23712 upstream prematurely closed connection while reading response header from upstream, client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://192.168.192.3:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/08 09:57:24 [error] 21#21: *23712 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://192.168.192.3:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/08 09:58:28 [error] 21#21: *23712 upstream prematurely closed connection while reading response header from upstream, client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://192.168.192.3:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/08 09:58:28 [error] 21#21: *23712 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://192.168.192.3:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/08 10:00:12 [notice] 1#1: signal 3 (SIGQUIT) received, shutting down
+2025/06/08 10:00:12 [notice] 21#21: gracefully shutting down
+2025/06/08 10:00:12 [notice] 21#21: exiting
+2025/06/08 10:00:12 [notice] 22#22: gracefully shutting down
+2025/06/08 10:00:12 [notice] 22#22: exiting
+2025/06/08 10:00:12 [notice] 21#21: exit
+2025/06/08 10:00:12 [notice] 22#22: exit
+2025/06/08 10:00:12 [notice] 1#1: signal 17 (SIGCHLD) received from 21
+2025/06/08 10:00:12 [notice] 1#1: worker process 21 exited with code 0
+2025/06/08 10:00:12 [notice] 1#1: signal 29 (SIGIO) received
+2025/06/08 10:00:12 [notice] 1#1: signal 17 (SIGCHLD) received from 22
+2025/06/08 10:00:12 [notice] 1#1: worker process 22 exited with code 0
+2025/06/08 10:00:12 [notice] 1#1: exit
+2025/06/08 10:00:16 [notice] 1#1: using the "epoll" event method
+2025/06/08 10:00:16 [notice] 1#1: nginx/1.25.5
+2025/06/08 10:00:16 [notice] 1#1: built by gcc 13.2.1 20231014 (Alpine 13.2.1_git20231014) 
+2025/06/08 10:00:16 [notice] 1#1: OS: Linux 6.8.0-48-generic
+2025/06/08 10:00:16 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2025/06/08 10:00:16 [notice] 1#1: start worker processes
+2025/06/08 10:00:16 [notice] 1#1: start worker process 21
+2025/06/08 10:00:16 [notice] 1#1: start worker process 22
+2025/06/08 10:00:37 [error] 22#22: *5 upstream prematurely closed connection while reading response header from upstream, client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://192.168.208.5:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/08 10:00:37 [error] 22#22: *5 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://192.168.208.5:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/08 10:00:56 [warn] 21#21: *20 an upstream response is buffered to a temporary file /var/cache/nginx/proxy_temp/1/00/0000000001 while reading upstream, client: 85.249.29.158, server: $domain, request: "GET /sub/NjMzNjE3NjE4LDE3NDkzNzY4MzUf09SK5qFQX HTTP/2.0", upstream: "https://192.168.208.5:8002/sub/NjMzNjE3NjE4LDE3NDkzNzY4MzUf09SK5qFQX", host: "host.almet-sam.ru"
+2025/06/08 10:04:53 [error] 21#21: *56 upstream prematurely closed connection while reading response header from upstream, client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://192.168.208.5:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/08 10:04:53 [error] 21#21: *56 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://192.168.208.5:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/08 10:09:29 [error] 21#21: *65 open() "/usr/share/nginx/html/custom_404.html" failed (2: No such file or directory), client: 89.104.110.17, server: $domain, request: "GET /favicon.ico HTTP/1.1", host: "almet-sam.ru"
+2025/06/08 10:09:29 [error] 21#21: *65 open() "/usr/share/nginx/html/custom_404.html" failed (2: No such file or directory), client: 89.104.110.17, server: $domain, request: "GET /favicon.ico HTTP/1.1", host: "almet-sam.ru"
+2025/06/08 10:09:29 [error] 21#21: *65 open() "/usr/share/nginx/html/custom_404.html" failed (2: No such file or directory), client: 89.104.110.17, server: $domain, request: "GET /favicon.ico HTTP/1.1", host: "almet-sam.ru"
+2025/06/08 10:09:53 [error] 21#21: *67 upstream prematurely closed connection while reading response header from upstream, client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://192.168.208.5:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/08 10:09:53 [error] 21#21: *67 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://192.168.208.5:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/08 10:11:11 [error] 21#21: *111 open() "/usr/share/nginx/html/custom_404.html" failed (2: No such file or directory), client: 51.195.190.7, server: $domain, request: "GET /favicon.ico HTTP/1.1", host: "vpn.aeza.network"
+2025/06/08 10:11:13 [error] 22#22: *238 open() "/usr/share/nginx/html/custom_404.html" failed (2: No such file or directory), client: 51.195.190.7, server: $domain, request: "GET /robots.txt HTTP/1.1", host: "vpn.aeza.network"
+2025/06/08 10:14:53 [error] 22#22: *740 upstream prematurely closed connection while reading response header from upstream, client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://192.168.208.5:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/08 10:14:53 [error] 22#22: *740 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://192.168.208.5:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/08 10:19:20 [notice] 1#1: signal 3 (SIGQUIT) received, shutting down
+2025/06/08 10:19:20 [notice] 22#22: gracefully shutting down
+2025/06/08 10:19:20 [notice] 21#21: gracefully shutting down
+2025/06/08 10:19:20 [notice] 21#21: exiting
+2025/06/08 10:19:20 [notice] 22#22: exiting
+2025/06/08 10:19:20 [notice] 21#21: exit
+2025/06/08 10:19:20 [notice] 22#22: exit
+2025/06/08 10:19:20 [notice] 1#1: signal 17 (SIGCHLD) received from 21
+2025/06/08 10:19:20 [notice] 1#1: worker process 21 exited with code 0
+2025/06/08 10:19:20 [notice] 1#1: signal 29 (SIGIO) received
+2025/06/08 10:19:20 [notice] 1#1: signal 17 (SIGCHLD) received from 22
+2025/06/08 10:19:20 [notice] 1#1: worker process 22 exited with code 0
+2025/06/08 10:19:20 [notice] 1#1: exit
+2025/06/08 10:19:26 [notice] 1#1: using the "epoll" event method
+2025/06/08 10:19:26 [notice] 1#1: nginx/1.25.5
+2025/06/08 10:19:26 [notice] 1#1: built by gcc 13.2.1 20231014 (Alpine 13.2.1_git20231014) 
+2025/06/08 10:19:26 [notice] 1#1: OS: Linux 6.8.0-48-generic
+2025/06/08 10:19:26 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2025/06/08 10:19:26 [notice] 1#1: start worker processes
+2025/06/08 10:19:26 [notice] 1#1: start worker process 21
+2025/06/08 10:19:26 [notice] 1#1: start worker process 22
+2025/06/08 10:45:56 [notice] 1#1: signal 3 (SIGQUIT) received, shutting down
+2025/06/08 10:45:56 [notice] 21#21: gracefully shutting down
+2025/06/08 10:45:56 [notice] 22#22: gracefully shutting down
+2025/06/08 10:45:56 [notice] 21#21: exiting
+2025/06/08 10:45:56 [notice] 22#22: exiting
+2025/06/08 10:45:56 [notice] 22#22: exit
+2025/06/08 10:45:56 [notice] 21#21: exit
+2025/06/08 10:45:56 [notice] 1#1: signal 17 (SIGCHLD) received from 22
+2025/06/08 10:45:56 [notice] 1#1: worker process 22 exited with code 0
+2025/06/08 10:45:56 [notice] 1#1: signal 29 (SIGIO) received
+2025/06/08 10:45:56 [notice] 1#1: signal 17 (SIGCHLD) received from 21
+2025/06/08 10:45:56 [notice] 1#1: worker process 21 exited with code 0
+2025/06/08 10:45:56 [notice] 1#1: exit
+2025/06/08 10:46:02 [notice] 1#1: using the "epoll" event method
+2025/06/08 10:46:02 [notice] 1#1: nginx/1.25.5
+2025/06/08 10:46:02 [notice] 1#1: built by gcc 13.2.1 20231014 (Alpine 13.2.1_git20231014) 
+2025/06/08 10:46:02 [notice] 1#1: OS: Linux 6.8.0-48-generic
+2025/06/08 10:46:02 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2025/06/08 10:46:02 [notice] 1#1: start worker processes
+2025/06/08 10:46:02 [notice] 1#1: start worker process 20
+2025/06/08 10:46:02 [notice] 1#1: start worker process 21
+2025/06/08 11:33:10 [error] 20#20: *288 upstream prematurely closed connection while reading response header from upstream, client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://192.168.240.2:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/08 11:33:10 [error] 20#20: *288 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://192.168.240.2:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/08 11:33:12 [error] 20#20: *288 upstream prematurely closed connection while reading response header from upstream, client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://192.168.240.2:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/08 11:33:12 [error] 20#20: *288 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://192.168.240.2:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/08 11:33:16 [error] 20#20: *288 upstream prematurely closed connection while reading response header from upstream, client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://192.168.240.2:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/08 11:33:16 [error] 20#20: *288 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://192.168.240.2:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/08 11:33:24 [error] 20#20: *288 upstream prematurely closed connection while reading response header from upstream, client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://192.168.240.2:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/08 11:33:24 [error] 20#20: *288 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://192.168.240.2:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/08 11:33:41 [error] 20#20: *288 upstream prematurely closed connection while reading response header from upstream, client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://192.168.240.2:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/08 11:33:41 [error] 20#20: *288 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://192.168.240.2:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/08 11:34:13 [error] 20#20: *288 upstream prematurely closed connection while reading response header from upstream, client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://192.168.240.2:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/08 11:34:13 [error] 20#20: *288 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://192.168.240.2:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/08 11:35:03 [notice] 1#1: signal 3 (SIGQUIT) received, shutting down
+2025/06/08 11:35:03 [notice] 20#20: gracefully shutting down
+2025/06/08 11:35:03 [notice] 21#21: gracefully shutting down
+2025/06/08 11:35:03 [notice] 21#21: exiting
+2025/06/08 11:35:03 [notice] 21#21: exit
+2025/06/08 11:35:03 [notice] 1#1: signal 17 (SIGCHLD) received from 21
+2025/06/08 11:35:03 [notice] 1#1: worker process 21 exited with code 0
+2025/06/08 11:35:03 [notice] 1#1: signal 29 (SIGIO) received
+2025/06/08 11:35:03 [notice] 20#20: exiting
+2025/06/08 11:35:03 [notice] 20#20: exit
+2025/06/08 11:35:03 [notice] 1#1: signal 17 (SIGCHLD) received from 20
+2025/06/08 11:35:03 [notice] 1#1: worker process 20 exited with code 0
+2025/06/08 11:35:03 [notice] 1#1: exit
+2025/06/08 11:35:07 [notice] 1#1: using the "epoll" event method
+2025/06/08 11:35:07 [notice] 1#1: nginx/1.25.5
+2025/06/08 11:35:07 [notice] 1#1: built by gcc 13.2.1 20231014 (Alpine 13.2.1_git20231014) 
+2025/06/08 11:35:07 [notice] 1#1: OS: Linux 6.8.0-48-generic
+2025/06/08 11:35:07 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2025/06/08 11:35:07 [notice] 1#1: start worker processes
+2025/06/08 11:35:07 [notice] 1#1: start worker process 21
+2025/06/08 11:35:07 [notice] 1#1: start worker process 22
+2025/06/08 11:35:17 [error] 22#22: *4 upstream prematurely closed connection while reading response header from upstream, client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://172.18.0.4:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/08 11:35:17 [error] 22#22: *4 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://172.18.0.4:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/08 11:37:25 [error] 21#21: *53 upstream prematurely closed connection while reading response header from upstream, client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://172.18.0.4:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/08 11:37:25 [error] 21#21: *53 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://172.18.0.4:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/08 11:41:41 [error] 21#21: *140 upstream prematurely closed connection while reading response header from upstream, client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://172.18.0.4:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/08 11:41:41 [error] 21#21: *140 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://172.18.0.4:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/08 11:46:42 [error] 21#21: *237 upstream prematurely closed connection while reading response header from upstream, client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://172.18.0.4:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/08 11:46:42 [error] 21#21: *237 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://172.18.0.4:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/08 11:51:42 [error] 21#21: *328 upstream prematurely closed connection while reading response header from upstream, client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://172.18.0.4:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/08 11:51:42 [error] 21#21: *328 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://172.18.0.4:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/08 12:16:47 [warn] 22#22: *762 an upstream response is buffered to a temporary file /var/cache/nginx/proxy_temp/1/00/0000000001 while reading upstream, client: 85.249.29.158, server: $domain, request: "GET /sub/NjMzNjE3NjE4LDE3NDkzODUwMDYzbchY600HS HTTP/2.0", upstream: "https://172.18.0.4:8002/sub/NjMzNjE3NjE4LDE3NDkzODUwMDYzbchY600HS", host: "host.almet-sam.ru"
+2025/06/08 12:35:15 [warn] 22#22: *776 an upstream response is buffered to a temporary file /var/cache/nginx/proxy_temp/2/00/0000000002 while reading upstream, client: 85.249.29.158, server: $domain, request: "GET /sub/NjY4NjQ0MTkwNiwxNzQ5Mzg2MTEzx9e3LTgn_X HTTP/2.0", upstream: "https://172.18.0.4:8002/sub/NjY4NjQ0MTkwNiwxNzQ5Mzg2MTEzx9e3LTgn_X", host: "host.almet-sam.ru"
+2025/06/08 12:35:57 [error] 21#21: *786 upstream prematurely closed connection while reading response header from upstream, client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://172.18.0.4:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/08 12:35:57 [error] 21#21: *786 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://172.18.0.4:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/08 12:35:59 [error] 21#21: *786 upstream prematurely closed connection while reading response header from upstream, client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://172.18.0.4:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/08 12:35:59 [error] 21#21: *786 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://172.18.0.4:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/08 12:36:03 [error] 21#21: *786 upstream prematurely closed connection while reading response header from upstream, client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://172.18.0.4:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/08 12:36:03 [error] 21#21: *786 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://172.18.0.4:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/08 12:36:11 [error] 21#21: *786 upstream prematurely closed connection while reading response header from upstream, client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://172.18.0.4:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/08 12:36:11 [error] 21#21: *786 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://172.18.0.4:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/08 12:36:27 [error] 21#21: *786 upstream prematurely closed connection while reading response header from upstream, client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://172.18.0.4:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/08 12:36:27 [error] 21#21: *786 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://172.18.0.4:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/08 12:36:59 [error] 21#21: *786 upstream prematurely closed connection while reading response header from upstream, client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://172.18.0.4:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/08 12:36:59 [error] 21#21: *786 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://172.18.0.4:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/08 12:38:03 [error] 21#21: *786 upstream prematurely closed connection while reading response header from upstream, client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://172.18.0.4:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/08 12:38:03 [error] 21#21: *786 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://172.18.0.4:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/08 12:40:12 [error] 21#21: *853 upstream prematurely closed connection while reading response header from upstream, client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://172.18.0.4:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/08 12:40:12 [error] 21#21: *853 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://172.18.0.4:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/08 12:44:28 [error] 21#21: *906 upstream prematurely closed connection while reading response header from upstream, client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://172.18.0.4:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/08 12:44:28 [error] 21#21: *906 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://172.18.0.4:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/08 12:49:28 [error] 21#21: *978 upstream prematurely closed connection while reading response header from upstream, client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://172.18.0.4:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/08 12:49:28 [error] 21#21: *978 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://172.18.0.4:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/08 12:52:09 [notice] 1#1: signal 3 (SIGQUIT) received, shutting down
+2025/06/08 12:52:09 [notice] 21#21: gracefully shutting down
+2025/06/08 12:52:09 [notice] 22#22: gracefully shutting down
+2025/06/08 12:52:09 [notice] 22#22: exiting
+2025/06/08 12:52:09 [notice] 22#22: exit
+2025/06/08 12:52:09 [notice] 1#1: signal 17 (SIGCHLD) received from 22
+2025/06/08 12:52:09 [notice] 1#1: worker process 22 exited with code 0
+2025/06/08 12:52:09 [notice] 1#1: signal 29 (SIGIO) received
+2025/06/08 12:52:22 [notice] 1#1: using the "epoll" event method
+2025/06/08 12:52:22 [notice] 1#1: nginx/1.25.5
+2025/06/08 12:52:22 [notice] 1#1: built by gcc 13.2.1 20231014 (Alpine 13.2.1_git20231014) 
+2025/06/08 12:52:22 [notice] 1#1: OS: Linux 6.8.0-48-generic
+2025/06/08 12:52:22 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2025/06/08 12:52:22 [notice] 1#1: start worker processes
+2025/06/08 12:52:22 [notice] 1#1: start worker process 21
+2025/06/08 12:52:22 [notice] 1#1: start worker process 22
+2025/06/08 12:54:28 [error] 22#22: *4 upstream prematurely closed connection while reading response header from upstream, client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://172.19.0.2:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/08 12:54:28 [error] 22#22: *4 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://172.19.0.2:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/08 16:07:43 [notice] 1#1: signal 3 (SIGQUIT) received, shutting down
+2025/06/08 16:07:43 [notice] 21#21: gracefully shutting down
+2025/06/08 16:07:43 [notice] 22#22: gracefully shutting down
+2025/06/08 16:07:43 [notice] 22#22: exiting
+2025/06/08 16:07:43 [notice] 21#21: exiting
+2025/06/08 16:07:43 [notice] 22#22: exit
+2025/06/08 16:07:43 [notice] 21#21: exit
+2025/06/08 16:07:43 [notice] 1#1: signal 17 (SIGCHLD) received from 22
+2025/06/08 16:07:43 [notice] 1#1: worker process 22 exited with code 0
+2025/06/08 16:07:43 [notice] 1#1: signal 29 (SIGIO) received
+2025/06/08 16:07:43 [notice] 1#1: signal 17 (SIGCHLD) received from 21
+2025/06/08 16:07:43 [notice] 1#1: worker process 21 exited with code 0
+2025/06/08 16:07:43 [notice] 1#1: exit
+2025/06/08 16:07:49 [notice] 1#1: using the "epoll" event method
+2025/06/08 16:07:49 [notice] 1#1: nginx/1.25.5
+2025/06/08 16:07:49 [notice] 1#1: built by gcc 13.2.1 20231014 (Alpine 13.2.1_git20231014) 
+2025/06/08 16:07:49 [notice] 1#1: OS: Linux 6.8.0-48-generic
+2025/06/08 16:07:49 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2025/06/08 16:07:49 [notice] 1#1: start worker processes
+2025/06/08 16:07:49 [notice] 1#1: start worker process 21
+2025/06/08 16:07:49 [notice] 1#1: start worker process 22
+2025/06/08 16:09:18 [warn] 22#22: *11 an upstream response is buffered to a temporary file /var/cache/nginx/proxy_temp/1/00/0000000001 while reading upstream, client: 85.249.27.98, server: $domain, request: "GET /sub/NjY4NjQ0MTkwNiwxNzQ5Mzk4OTQ575-024jGgB HTTP/2.0", upstream: "https://172.20.0.3:8002/sub/NjY4NjQ0MTkwNiwxNzQ5Mzk4OTQ575-024jGgB", host: "host.almet-sam.ru"
+2025/06/08 16:09:51 [warn] 21#21: *13 an upstream response is buffered to a temporary file /var/cache/nginx/proxy_temp/2/00/0000000002 while reading upstream, client: 85.249.27.98, server: $domain, request: "GET /sub/NjY4NjQ0MTkwNiwxNzQ5Mzk4OTQ575-024jGgB HTTP/2.0", upstream: "https://172.20.0.3:8002/sub/NjY4NjQ0MTkwNiwxNzQ5Mzk4OTQ575-024jGgB", host: "host.almet-sam.ru"
+2025/06/08 16:10:25 [error] 21#21: *19 upstream prematurely closed connection while reading response header from upstream, client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://172.20.0.3:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/08 16:10:25 [error] 21#21: *19 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://172.20.0.3:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/08 16:10:27 [error] 21#21: *19 upstream prematurely closed connection while reading response header from upstream, client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://172.20.0.3:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/08 16:10:27 [error] 21#21: *19 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://172.20.0.3:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/08 16:10:31 [error] 21#21: *19 upstream prematurely closed connection while reading response header from upstream, client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://172.20.0.3:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/08 16:10:31 [error] 21#21: *19 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://172.20.0.3:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/08 16:10:40 [error] 21#21: *19 upstream prematurely closed connection while reading response header from upstream, client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://172.20.0.3:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/08 16:10:40 [error] 21#21: *19 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://172.20.0.3:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/08 16:10:56 [error] 21#21: *19 upstream prematurely closed connection while reading response header from upstream, client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://172.20.0.3:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/08 16:10:56 [error] 21#21: *19 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://172.20.0.3:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/08 16:11:28 [error] 21#21: *19 upstream prematurely closed connection while reading response header from upstream, client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://172.20.0.3:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/08 16:11:28 [error] 21#21: *19 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://172.20.0.3:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/08 16:12:12 [warn] 21#21: *44 an upstream response is buffered to a temporary file /var/cache/nginx/proxy_temp/3/00/0000000003 while reading upstream, client: 85.249.27.98, server: $domain, request: "GET /sub/NjY4NjQ0MTkwNiwxNzQ5Mzk5MTI1Ed6kdNqJTv HTTP/2.0", upstream: "https://172.20.0.3:8002/sub/NjY4NjQ0MTkwNiwxNzQ5Mzk5MTI1Ed6kdNqJTv", host: "host.almet-sam.ru"
+2025/06/08 16:12:32 [error] 21#21: *19 upstream prematurely closed connection while reading response header from upstream, client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://172.20.0.3:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/08 16:12:32 [error] 21#21: *19 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://172.20.0.3:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/08 16:14:40 [error] 21#21: *47 upstream prematurely closed connection while reading response header from upstream, client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://172.20.0.3:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/08 16:14:40 [error] 21#21: *47 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://172.20.0.3:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/08 16:18:56 [error] 21#21: *52 upstream prematurely closed connection while reading response header from upstream, client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://172.20.0.3:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/08 16:18:56 [error] 21#21: *52 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://172.20.0.3:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/08 16:23:57 [error] 21#21: *54 upstream prematurely closed connection while reading response header from upstream, client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://172.20.0.3:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
+2025/06/08 16:23:57 [error] 21#21: *54 open() "/usr/share/nginx/html/custom_50x.html" failed (2: No such file or directory), client: 78.138.191.191, server: $domain, request: "GET /statics/favicon/site.webmanifest HTTP/2.0", upstream: "http://172.20.0.3:8002/statics/favicon/site.webmanifest", host: "host.almet-sam.ru"
