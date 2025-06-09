@@ -172,3 +172,133 @@ async def update_user_email(tg_id: int, email: str):
         sql_q = update(VPNUsers).where(VPNUsers.tg_id == tg_id).values(email=email)
         await conn.execute(sql_q)
         await conn.commit()
+
+async def get_all_vpn_users_tg_id() -> list[int]:
+    async with engine.connect() as conn:
+        query = select(VPNUsers.tg_id)
+        result = (await conn.execute(query)).scalars().all()
+    return result
+
+# --- Seller and Referral Methods ---
+
+from .models import Sellers, Referrals, Payouts
+from sqlalchemy import func
+
+async def add_seller(name: str, tg_id: int, referral_code: str):
+    async with engine.connect() as conn:
+        sql_query = insert(Sellers).values(
+            name=name,
+            tg_id=tg_id,
+            referral_code=referral_code
+        )
+        await conn.execute(sql_query)
+        await conn.commit()
+
+async def remove_seller(referral_code: str):
+    async with engine.connect() as conn:
+        sql_query = delete(Sellers).where(Sellers.referral_code == referral_code)
+        await conn.execute(sql_query)
+        await conn.commit()
+
+async def get_seller_by_referral_code(referral_code: str) -> Sellers | None:
+    async with engine.connect() as conn:
+        sql_query = select(Sellers).where(Sellers.referral_code == referral_code)
+        result = (await conn.execute(sql_query)).fetchone()
+    return result
+
+async def get_all_sellers() -> list[Sellers]:
+    async with engine.connect() as conn:
+        sql_query = select(Sellers)
+        result = (await conn.execute(sql_query)).fetchall()
+    return result
+
+async def add_referral(user_tg_id: int, seller_id: int):
+    async with engine.connect() as conn:
+        sql_query = insert(Referrals).values(
+            user_tg_id=user_tg_id,
+            seller_id=seller_id
+        )
+        await conn.execute(sql_query)
+        await conn.commit()
+
+async def get_referral_by_user(user_tg_id: int) -> Referrals | None:
+    async with engine.connect() as conn:
+        sql_query = select(Referrals).where(Referrals.user_tg_id == user_tg_id)
+        result = (await conn.execute(sql_query)).fetchone()
+    return result
+
+async def get_seller_by_id(seller_id: int) -> Sellers | None:
+    async with engine.connect() as conn:
+        sql_query = select(Sellers).where(Sellers.id == seller_id)
+        result = (await conn.execute(sql_query)).fetchone()
+    return result
+
+async def update_seller_balance(seller_id: int, amount: int):
+    async with engine.connect() as conn:
+        current_balance_query = select(Sellers.balance).where(Sellers.id == seller_id)
+        current_balance = (await conn.execute(current_balance_query)).scalar_one()
+        
+        new_balance = current_balance + amount
+
+        update_query = update(Sellers).where(Sellers.id == seller_id).values(balance=new_balance)
+        await conn.execute(update_query)
+        await conn.commit()
+
+async def get_seller_by_tg_id(tg_id: int) -> Sellers | None:
+    async with engine.connect() as conn:
+        sql_query = select(Sellers).where(Sellers.tg_id == tg_id)
+        result = (await conn.execute(sql_query)).fetchone()
+    return result
+
+async def count_referrals_for_seller(seller_id: int) -> int:
+    async with engine.connect() as conn:
+        query = select(func.count()).select_from(Referrals).where(Referrals.seller_id == seller_id)
+        result = (await conn.execute(query)).scalar_one()
+    return result
+
+async def update_seller_details(current_referral_code: str, field: str, new_value) -> bool:
+    async with engine.connect() as conn:
+        # Check if the new referral code is already taken, if we're changing it
+        if field == 'referral_code':
+            existing = await get_seller_by_referral_code(new_value)
+            if existing:
+                return False # New code is already in use
+
+        update_query = update(Sellers).where(Sellers.referral_code == current_referral_code).values({field: new_value})
+        await conn.execute(update_query)
+        await conn.commit()
+    return True
+
+async def create_payout(seller_id: int, amount_kopecks: int, comment: str | None) -> bool:
+    async with engine.connect() as conn:
+        async with conn.begin(): # Start a transaction
+            # 1. Check if balance is sufficient
+            current_balance_query = select(Sellers.balance).where(Sellers.id == seller_id)
+            current_balance = (await conn.execute(current_balance_query)).scalar_one_or_none()
+
+            if current_balance is None or current_balance < amount_kopecks:
+                return False # Insufficient balance
+
+            # 2. Subtract from seller's balance
+            new_balance = current_balance - amount_kopecks
+            update_balance_query = update(Sellers).where(Sellers.id == seller_id).values(balance=new_balance)
+            await conn.execute(update_balance_query)
+
+            # 3. Record the payout
+            from datetime import datetime
+            payout_record_query = insert(Payouts).values(
+                seller_id=seller_id,
+                amount=amount_kopecks,
+                payout_date=datetime.utcnow().isoformat(),
+                comment=comment
+            )
+            await conn.execute(payout_record_query)
+        
+        # The transaction is automatically committed if the block completes without exceptions
+    return True
+
+async def get_payouts_for_seller(seller_id: int) -> list[Payouts]:
+    async with engine.connect() as conn:
+        query = select(Payouts).where(Payouts.seller_id == seller_id).order_by(Payouts.payout_date.desc())
+        result = (await conn.execute(query)).fetchall()
+    return result

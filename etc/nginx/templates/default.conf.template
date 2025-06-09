@@ -9,7 +9,14 @@ upstream free_vpn_bot_marzban {
 # upstream для Telegram-бота
 # ────────────────────────────────────────
 upstream bot_upstream {
-    server free_vpn_bot:8443;
+    server free_vpn_bot:${WEBHOOK_PORT};
+}
+
+# ────────────────────────────────────────
+# upstream для Uptime Kuma
+# ────────────────────────────────────────
+upstream uptime_kuma_upstream {
+    server uptime-kuma:3001;
 }
 
 # ────────────────────────────────────────
@@ -26,6 +33,24 @@ server {
     }
 
     # Всё остальное — редирект на HTTPS
+    location / {
+        return 301 https://$host$request_uri;
+    }
+}
+
+# ────────────────────────────────────────
+# 1.1) HTTP → HTTPS для Uptime Kuma
+# ────────────────────────────────────────
+server {
+    listen       80;
+    listen       [::]:80;
+    server_name  ss.almet-sam.ru;
+
+    # HTTP-01 для LetsEncrypt (если понадобится отдельный сертификат)
+    location ^~ /.well-known/acme-challenge/ {
+        root /var/www/certbot;
+    }
+
     location / {
         return 301 https://$host$request_uri;
     }
@@ -134,5 +159,27 @@ server {
     error_page 500 502 503 504 /custom_50x.html;
     location = /custom_50x.html {
         root /usr/share/nginx/html;
+    }
+}
+
+# ────────────────────────────────────────
+# 3) HTTPS-виртуалхост для Uptime Kuma
+# ────────────────────────────────────────
+server {
+    listen       443 ssl;
+    listen       [::]:443 ssl;
+    http2        on;
+    server_name  ss.almet-sam.ru;
+
+    ssl_certificate     /etc/nginx/certs/ss.fullchain.pem;
+    ssl_certificate_key /etc/nginx/certs/ss.privkey.pem;
+
+    location / {
+        proxy_pass http://uptime_kuma_upstream;
+        proxy_set_header Host $host;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_http_version 1.1;
     }
 }

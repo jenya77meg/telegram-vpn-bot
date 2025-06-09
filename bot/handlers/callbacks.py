@@ -18,6 +18,7 @@ from db.methods import (
     update_user_email
 )
 import glv
+import asyncio
 
 router = Router(name="callbacks-router") 
 
@@ -49,6 +50,16 @@ FAQ_A5_TEXT = "Мы не ограничиваем трафик.\nСтремим�
 FAQ_A6_TEXT = "Если у вас возникли трудности или вопросы,\nвоспользуйтесь кнопкой «Поддержка ❤️» в главном меню.\nМы постараемся помочь."
 FAQ_A7_TEXT = "VPN (шифрованный туннель) защищает ваш интернет-трафик от посторонних.\nЭто повышает безопасность в общественных Wi-Fi и скрывает действия от провайдера.\nМы используем надёжные протоколы."
 FAQ_A8_TEXT = "Приложения:\nAndroid: v2rayTun, Husi, AmneziaVPN\niOS/macOS: Streisand, FoXray, v2Box\nWindows: v2rayN, Nekoray\nИнструкции в разделе «Мой профиль 👤»."
+
+async def delete_message_after_delay(chat_id: int, message_id: int, delay: int):
+    """Waits for a specified delay and then deletes a message."""
+    await asyncio.sleep(delay)
+    try:
+        await glv.bot.delete_message(chat_id, message_id)
+    except Exception as e:
+        # Message might have been deleted already, or bot was kicked, etc.
+        # We can just log this and move on.
+        print(f"Could not delete message {message_id} in chat {chat_id}: {e}")
 
 async def prepare_payment_data(user_id: int, chat_id: int, email: Optional[str], product_callback: str):
     """Готовит данные для сообщения об оплате."""
@@ -136,11 +147,13 @@ async def process_email_confirm(callback: CallbackQuery, state: FSMContext):
         product_callback=product_callback
     )
 
-    await callback.message.edit_text(
+    sent_message = await callback.message.edit_text(
         text=text,
         reply_markup=keyboard,
         parse_mode="Markdown"
     )
+    # Schedule deletion
+    asyncio.create_task(delete_message_after_delay(callback.message.chat.id, callback.message.message_id, 540))
     await state.clear()
 
 
@@ -172,16 +185,20 @@ async def process_email_skip(message: Message, state: FSMContext):
     )
 
     if message_id_to_edit:
-        await message.bot.edit_message_text(
+        sent_message = await message.bot.edit_message_text(
             text=text,
             chat_id=message.chat.id,
             message_id=message_id_to_edit,
             reply_markup=keyboard,
             parse_mode="Markdown"
         )
+        # Schedule deletion
+        asyncio.create_task(delete_message_after_delay(message.chat.id, message_id_to_edit, 540))
     else:
         # Fallback
-        await message.answer(text=text, reply_markup=keyboard, parse_mode="Markdown")
+        sent_message = await message.answer(text=text, reply_markup=keyboard, parse_mode="Markdown")
+        # Schedule deletion
+        asyncio.create_task(delete_message_after_delay(sent_message.chat.id, sent_message.message_id, 540))
         
     await state.clear()
 
@@ -204,20 +221,24 @@ async def process_email_input(message: Message, state: FSMContext):
     )
 
     if message_id_to_edit:
-        await message.bot.edit_message_text(
+        sent_message = await message.bot.edit_message_text(
             text=text,
             chat_id=message.chat.id,
             message_id=message_id_to_edit,
             reply_markup=keyboard,
             parse_mode="Markdown"
         )
+        # Schedule deletion
+        asyncio.create_task(delete_message_after_delay(message.chat.id, message_id_to_edit, 540))
     else:
         # Fallback, если вдруг ID сообщения для редактирования не нашелся
-        await message.answer(
+        sent_message = await message.answer(
             text=text,
             reply_markup=keyboard,
             parse_mode="Markdown"
         )
+        # Schedule deletion
+        asyncio.create_task(delete_message_after_delay(sent_message.chat.id, sent_message.message_id, 540))
     await state.clear()
 
 
@@ -265,6 +286,8 @@ async def callback_payment_method_select(callback: CallbackQuery):
         reply_markup=get_pay_keyboard(result['url']),
         parse_mode="Markdown"
     )
+    # Schedule deletion
+    asyncio.create_task(delete_message_after_delay(callback.message.chat.id, callback.message.message_id, 540))
     await callback.answer()
 
 @router.callback_query(F.data == "buy_subscription_action")

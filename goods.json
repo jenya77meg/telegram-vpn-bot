@@ -16,11 +16,5 @@
         "price": {"ru": 2040},
         "callback": "vpn_6_months",
         "months": 6
-    },
-    {
-        "title": "Тестовая подписка 10р",
-        "price": {"ru": 10},
-        "callback": "vpn_test_10",
-        "months": 5 
     }
 ]

@@ -19,6 +19,11 @@ from tasks import register
 import glv
 from utils.marzban_api import panel
 
+# --- для healthcheck ---
+from db.methods import engine as db_engine
+from sqlalchemy import select
+# -----------------------
+
 # --- для автосоздания таблиц ---
 from sqlalchemy.ext.asyncio import create_async_engine
 from db.base import Base
@@ -31,6 +36,80 @@ glv.dp = Dispatcher(storage=glv.storage)
 app = web.Application()
 
 logging.basicConfig(level=logging.INFO, stream=sys.stdout)
+
+async def health_check(request):
+    """
+    Эндпоинт для мониторинга состояния сервиса (Uptime Kuma).
+    Проверяет доступность:
+    1. Telegram Bot API
+    2. Базы данных
+    3. Marzban Panel API
+    """
+    services_status = {
+        "telegram": "ok",
+        "database": "ok",
+        "marzban": "ok"
+    }
+    is_healthy = True
+
+    # 1. Проверка Telegram API
+    try:
+        await glv.bot.get_me()
+    except Exception as e:
+        logging.error(f"Health check failed (Telegram): {e}")
+        services_status["telegram"] = "error"
+        is_healthy = False
+
+    # 2. Проверка базы данных
+    try:
+        async with db_engine.connect() as conn:
+            await conn.execute(select(1))
+    except Exception as e:
+        logging.error(f"Health check failed (Database): {e}")
+        services_status["database"] = "error"
+        is_healthy = False
+
+    # 3. Проверка Marzban API
+    try:
+        # get_token() - синхронная функция, поэтому просто вызываем
+        panel.get_token()
+    except Exception as e:
+        logging.error(f"Health check failed (Marzban): {e}")
+        services_status["marzban"] = "error"
+        is_healthy = False
+
+    status_code = 200 if is_healthy else 503
+    return web.json_response(services_status, status=status_code)
+
+# --- Раздельные health checks ---
+
+async def health_check_telegram(request):
+    """Проверяет только доступность Telegram Bot API."""
+    try:
+        await glv.bot.get_me()
+        return web.Response(status=200, text="OK")
+    except Exception as e:
+        logging.error(f"Health check failed (Telegram): {e}")
+        return web.Response(status=503, text="Service Unavailable")
+
+async def health_check_database(request):
+    """Проверяет только доступность Базы данных."""
+    try:
+        async with db_engine.connect() as conn:
+            await conn.execute(select(1))
+        return web.Response(status=200, text="OK")
+    except Exception as e:
+        logging.error(f"Health check failed (Database): {e}")
+        return web.Response(status=503, text="Service Unavailable")
+
+async def health_check_marzban(request):
+    """Проверяет только доступность Marzban Panel API."""
+    try:
+        panel.get_token()
+        return web.Response(status=200, text="OK")
+    except Exception as e:
+        logging.error(f"Health check failed (Marzban): {e}")
+        return web.Response(status=503, text="Service Unavailable")
 
 async def on_startup(bot: Bot):
     # 0) Автоматически создаём все таблицы из Base.metadata
@@ -106,6 +185,12 @@ async def main():
     
     # API для получения информации о пользователе
     app.router.add_get("/api/user_info/{vpn_id}", get_user_display_info_endpoint)
+
+    # Healthchecks для Uptime Kuma
+    app.router.add_get("/healthz", health_check) # Общий
+    app.router.add_get("/healthz/telegram", health_check_telegram)
+    app.router.add_get("/healthz/database", health_check_database)
+    app.router.add_get("/healthz/marzban", health_check_marzban)
 
     # Телеграм-вебхук
     webhook_requests_handler = SimpleRequestHandler(

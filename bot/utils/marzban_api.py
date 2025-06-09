@@ -184,13 +184,24 @@ async def generate_test_subscription(username: str, custom_hours: int = None):
 async def generate_marzban_subscription(username: str, good):
     exists = await check_if_user_exists(username)
     now = time.time()
+    
+    # --- Новая логика для лимита и сброса трафика ---
+    data_limit_bytes = 50 * 1024 * 1024 * 1024  # 50 ГБ в байтах
+    reset_strategy = "month" if good.get('months', 1) > 1 else "no_reset"
+    # ----------------------------------------------------
+
     if exists:
         user = await panel.get_user(username)
         user['status'] = 'active'
-        if user['expire'] < now:
+        if user.get('expire', 0) < now:
             user['expire'] = get_subscription_end_date(good['months'])
         else:
             user['expire'] += get_subscription_end_date(good['months'], additional=True)
+        
+        # Применяем новые параметры
+        user['data_limit'] = data_limit_bytes
+        user['data_limit_reset_strategy'] = reset_strategy
+        
         return await panel.modify_user(username, user)
     else:
         new_user = {
@@ -198,8 +209,8 @@ async def generate_marzban_subscription(username: str, good):
             'proxies': ps["proxies"],
             'inbounds': ps["inbounds"],
             'expire': get_subscription_end_date(good['months']),
-            'data_limit': 0,
-            'data_limit_reset_strategy': "no_reset",
+            'data_limit': data_limit_bytes,
+            'data_limit_reset_strategy': reset_strategy,
         }
         return await panel.add_user(new_user)
 
